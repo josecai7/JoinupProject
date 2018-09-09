@@ -32,7 +32,7 @@ namespace Joinup.Service
                     };
                 }
 
-                var list=JsonConvert.DeserializeObject(answer);
+                var list=JsonConvert.DeserializeObject<List<T>>(answer);
 
                 return new Response
                 {

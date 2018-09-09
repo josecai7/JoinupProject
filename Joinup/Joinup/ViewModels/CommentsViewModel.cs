@@ -42,8 +42,10 @@ namespace Joinup.ViewModels
             }
 
             var list = (List<Comment>)response.Result;
-
             CommentList = new ObservableCollection<Comment>(list);
+
+
+
         }
 
     }
