@@ -1,3 +1,4 @@
+using Joinup.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace Joinup
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new CommentsPage();
 		}
 
 		protected override void OnStart ()
