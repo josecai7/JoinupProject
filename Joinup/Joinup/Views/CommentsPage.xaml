@@ -2,12 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="Joinup.Views.CommentsPage">
+             x:Class="Joinup.Views.CommentsPage"
+             Title="Comentarios">
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Comments}">
             <ListView
-                ItemsSource="{Binding CommentList}">
+                ItemsSource="{Binding CommentList}"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

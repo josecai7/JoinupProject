@@ -5,9 +5,16 @@
              x:Class="Joinup.App">
 	<Application.Resources>
     
-        <!-- Locator -->
+
         <ResourceDictionary>
+
+            <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"/>
+
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">http://apijoinup.azurewebsites.net</x:String>
+
+
         </ResourceDictionary>
 
     </Application.Resources>

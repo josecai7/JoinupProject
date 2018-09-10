@@ -1,9 +1,12 @@
-﻿using Joinup.Common.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
 using Joinup.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Joinup.ViewModels
@@ -26,6 +29,21 @@ namespace Joinup.ViewModels
             }
         }
 
+
+        private bool isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                SetValue( ref isRefreshing, value );
+            }
+        }
+
         public CommentsViewModel()
         {
             apiService = new ApiService();
@@ -33,19 +51,39 @@ namespace Joinup.ViewModels
         }
         private async void LoadComments()
         {
-            var response = await apiService.GetList<Comment>("http://apijoinup.azurewebsites.net", "/api","/Comments");
+            IsRefreshing = true;
 
-            if (!response.IsSuccess)
+            var connection = await apiService.CheckConnection();
+            if (connection.IsSuccess )
             {
-                await Application.Current.MainPage.DisplayAlert("Error","Aceptar","Cancelar");
+                //string url = Application.Current.Resources["UrlAPI"].ToString();
+
+                var response = await apiService.GetList<Comment>( "http://apijoinup.azurewebsites.net", "/api", "/Comments" );
+
+                if ( !response.IsSuccess )
+                {
+                    await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
+                    return;
+                }
+
+                var list = (List<Comment>) response.Result;
+                CommentList = new ObservableCollection<Comment>( list );
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert( "Revisa tu conexión a internet", "Aceptar", "Cancelar" );
                 return;
             }
 
-            var list = (List<Comment>)response.Result;
-            CommentList = new ObservableCollection<Comment>(list);
+            IsRefreshing = false;
+        }
 
-
-
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand( LoadComments );
+            }
         }
 
     }
