@@ -14,13 +14,22 @@ namespace Joinup.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init( true );
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            try
+            {
+                LoadApplication( new App() );
+            }
+            catch ( Exception exc )
+            {
+
+            }
+
         }
     }
 }
