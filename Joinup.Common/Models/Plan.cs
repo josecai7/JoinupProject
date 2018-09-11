@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Joinup.Common.Models
 {
-    public class Comment
+    public class Plan
     {
         [Key]
-        public string CommentId { get; set; }
-        public string UserId { get; set; }
         public string PlanId { get; set; }
-        public string CommentText { get; set; }
-        public DateTime CommentDate { get; set; }
+        public string UserId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int PlanType { get; set; }
+        public DateTime PlanDate { get; set; }
     }
 }

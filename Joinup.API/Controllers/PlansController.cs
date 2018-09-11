@@ -6,7 +6,6 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Joinup.Common.Models;
@@ -14,52 +13,52 @@ using Joinup.Domain.Models;
 
 namespace Joinup.API.Controllers
 {
-    public class CommentsController : ApiController
+    public class PlansController : ApiController
     {
         private DataContext db = new DataContext();
 
-        // GET: api/Comments
-        public IQueryable<Comment> GetComments()
+        // GET: api/Plans
+        public IQueryable<Plan> GetPlans()
         {
-            return db.Comments;
+            return db.Plans;
         }
 
-        // GET: api/Comments/5
-        [ResponseType(typeof(Comment))]
-        public async Task<IHttpActionResult> GetComment(string id)
+        // GET: api/Plans/5
+        [ResponseType(typeof(Plan))]
+        public IHttpActionResult GetPlan(string id)
         {
-            Comment comment = await db.Comments.FindAsync(id);
-            if (comment == null)
+            Plan plan = db.Plans.Find(id);
+            if (plan == null)
             {
                 return NotFound();
             }
 
-            return Ok(comment);
+            return Ok(plan);
         }
 
-        // PUT: api/Comments/5
+        // PUT: api/Plans/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutComment(string id, Comment comment)
+        public IHttpActionResult PutPlan(string id, Plan plan)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != comment.CommentId)
+            if (id != plan.PlanId)
             {
                 return BadRequest();
             }
 
-            db.Entry(comment).State = EntityState.Modified;
+            db.Entry(plan).State = EntityState.Modified;
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CommentExists(id))
+                if (!PlanExists(id))
                 {
                     return NotFound();
                 }
@@ -72,24 +71,24 @@ namespace Joinup.API.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Comments
-        [ResponseType(typeof(Comment))]
-        public async Task<IHttpActionResult> PostComment(Comment comment)
+        // POST: api/Plans
+        [ResponseType(typeof(Plan))]
+        public IHttpActionResult PostPlan(Plan plan)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Comments.Add(comment);
+            db.Plans.Add(plan);
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateException)
             {
-                if (CommentExists(comment.CommentId))
+                if (PlanExists(plan.PlanId))
                 {
                     return Conflict();
                 }
@@ -99,23 +98,23 @@ namespace Joinup.API.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = comment.CommentId }, comment);
+            return CreatedAtRoute("DefaultApi", new { id = plan.PlanId }, plan);
         }
 
-        // DELETE: api/Comments/5
-        [ResponseType(typeof(Comment))]
-        public async Task<IHttpActionResult> DeleteComment(string id)
+        // DELETE: api/Plans/5
+        [ResponseType(typeof(Plan))]
+        public IHttpActionResult DeletePlan(string id)
         {
-            Comment comment = await db.Comments.FindAsync(id);
-            if (comment == null)
+            Plan plan = db.Plans.Find(id);
+            if (plan == null)
             {
                 return NotFound();
             }
 
-            db.Comments.Remove(comment);
-            await db.SaveChangesAsync();
+            db.Plans.Remove(plan);
+            db.SaveChanges();
 
-            return Ok(comment);
+            return Ok(plan);
         }
 
         protected override void Dispose(bool disposing)
@@ -127,9 +126,9 @@ namespace Joinup.API.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CommentExists(string id)
+        private bool PlanExists(string id)
         {
-            return db.Comments.Count(e => e.CommentId == id) > 0;
+            return db.Plans.Count(e => e.PlanId == id) > 0;
         }
     }
 }

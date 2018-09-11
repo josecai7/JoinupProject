@@ -15,12 +15,13 @@ namespace Joinup.API
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<DataContext>(null);
+            Database.SetInitializer( new MigrateDatabaseToLatestVersion<DbContext, Migrations.Configuration>() );
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
     }
 }

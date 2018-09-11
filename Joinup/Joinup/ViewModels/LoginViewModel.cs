@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
 using Joinup.Service;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,37 @@ using Xamarin.Forms;
 
 namespace Joinup.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel:BaseViewModel
     {
         #region Attributes
         private ApiService apiService;
         private bool isRunning;
+        private string email;
+        private string password;
         #endregion
         #region Properties
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+            set
+            {
+                SetValue( ref email, value );
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                SetValue( ref password, value );
+            }
+        }
         public bool IsRunning
         {
             get
@@ -63,7 +86,7 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var token = await apiService.GetToken("http://apijoinup.azurewebsites.net", "/api", "/Comments" );
+            var token = await apiService.GetToken("http://apijoinup.azurewebsites.net", Email, Password );
 
             if ( token == null || string.IsNullOrEmpty( token.AccessToken ) )
             {
@@ -72,6 +95,10 @@ namespace Joinup.ViewModels
                 await Application.Current.MainPage.DisplayAlert( "Usuario o contraseña incorrectos", "Aceptar", "Cancelar" );
                 return;
             }
+
+            var response = await apiService.GetList<Plan>( "http://apijoinup.azurewebsites.net", "/api", "/Plans" );
+
+            await Application.Current.MainPage.DisplayAlert( "BIENNNNN", "Aceptar", "Cancelar" );
         }
         #endregion
     }
