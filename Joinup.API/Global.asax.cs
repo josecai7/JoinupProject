@@ -15,7 +15,7 @@ namespace Joinup.API
     {
         protected void Application_Start()
         {
-            Database.SetInitializer( new MigrateDatabaseToLatestVersion<DbContext, Migrations.Configuration>() );
+            Database.SetInitializer<DbContext>( null);
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

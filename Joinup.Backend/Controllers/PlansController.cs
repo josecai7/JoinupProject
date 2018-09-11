@@ -12,107 +12,107 @@ using Joinup.Common.Models;
 
 namespace Joinup.Backend.Controllers
 {
-    public class CommentsController : Controller
+    public class PlansController : Controller
     {
         private LocalDataContext db = new LocalDataContext();
 
-        // GET: Comments
+        // GET: Plans
         public async Task<ActionResult> Index()
         {
-            return View(await db.Comments.ToListAsync());
+            return View(await db.Plans.ToListAsync());
         }
 
-        // GET: Comments/Details/5
+        // GET: Plans/Details/5
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = await db.Comments.FindAsync(id);
-            if (comment == null)
+            Plan plan = await db.Plans.FindAsync(id);
+            if (plan == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(plan);
         }
 
-        // GET: Comments/Create
+        // GET: Plans/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Comments/Create
+        // POST: Plans/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CommentId,UserId,PlanId,CommentText,CommentDate")] Comment comment)
+        public async Task<ActionResult> Create([Bind(Include = "PlanId,UserId,Name,Description,PlanType,PlanDate")] Plan plan)
         {
             if (ModelState.IsValid)
             {
-                db.Comments.Add(comment);
+                db.Plans.Add(plan);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(comment);
+            return View(plan);
         }
 
-        // GET: Comments/Edit/5
+        // GET: Plans/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = await db.Comments.FindAsync(id);
-            if (comment == null)
+            Plan plan = await db.Plans.FindAsync(id);
+            if (plan == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(plan);
         }
 
-        // POST: Comments/Edit/5
+        // POST: Plans/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CommentId,UserId,PlanId,CommentText,CommentDate")] Comment comment)
+        public async Task<ActionResult> Edit([Bind(Include = "PlanId,UserId,Name,Description,PlanType,PlanDate")] Plan plan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(comment).State = EntityState.Modified;
+                db.Entry(plan).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(comment);
+            return View(plan);
         }
 
-        // GET: Comments/Delete/5
+        // GET: Plans/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Comment comment = await db.Comments.FindAsync(id);
-            if (comment == null)
+            Plan plan = await db.Plans.FindAsync(id);
+            if (plan == null)
             {
                 return HttpNotFound();
             }
-            return View(comment);
+            return View(plan);
         }
 
-        // POST: Comments/Delete/5
+        // POST: Plans/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            Comment comment = await db.Comments.FindAsync(id);
-            db.Comments.Remove(comment);
+            Plan plan = await db.Plans.FindAsync(id);
+            db.Plans.Remove(plan);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

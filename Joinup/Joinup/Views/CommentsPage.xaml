@@ -17,7 +17,7 @@
                         <ViewCell>
                             <Grid>
                                 <Label Grid.Column="0" Text="{Binding UserId}" FontAttributes="Bold" />
-                                <Label Grid.Column="1" Text="{Binding EventId}" />
+                                <Label Grid.Column="1" Text="{Binding PlanId}" />
                                 <Label Grid.Column="2" Text="{Binding CommentText}" HorizontalTextAlignment="End" />
                                 <Label Grid.Column="3" Text="{Binding CommentDate}" HorizontalTextAlignment="End" />
                             </Grid>

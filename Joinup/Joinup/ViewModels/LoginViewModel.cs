@@ -86,7 +86,7 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var token = await apiService.GetToken("http://apijoinup.azurewebsites.net", Email, Password );
+            var token = await apiService.GetToken("http://joinupapi.azurewebsites.net/", Email, Password );
 
             if ( token == null || string.IsNullOrEmpty( token.AccessToken ) )
             {
@@ -96,7 +96,7 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var response = await apiService.GetList<Plan>( "http://apijoinup.azurewebsites.net", "/api", "/Plans" );
+            var response = await apiService.GetList<Plan>("http://joinupapi.azurewebsites.net/", "/api", "/Plans" );
 
             await Application.Current.MainPage.DisplayAlert( "BIENNNNN", "Aceptar", "Cancelar" );
         }

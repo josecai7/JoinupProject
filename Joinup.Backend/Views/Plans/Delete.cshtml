@@ -1,4 +1,4 @@
-﻿@model Joinup.Common.Models.Comment
+﻿@model Joinup.Common.Models.Plan
 
 @{
     ViewBag.Title = "Delete";
@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Comment</h4>
+    <h4>Plan</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,27 +20,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PlanId)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PlanId)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CommentText)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CommentText)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CommentDate)
+            @Html.DisplayNameFor(model => model.PlanType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CommentDate)
+            @Html.DisplayFor(model => model.PlanType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanDate)
         </dd>
 
     </dl>

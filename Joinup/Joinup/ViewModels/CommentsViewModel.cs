@@ -58,7 +58,7 @@ namespace Joinup.ViewModels
             {
                 //string url = Application.Current.Resources["UrlAPI"].ToString();
 
-                var response = await apiService.GetList<Comment>( "http://apijoinup.azurewebsites.net", "/api", "/Comments" );
+                var response = await apiService.GetList<Comment>("http://joinupapi.azurewebsites.net/", "/api", "/Comments" );
 
                 if ( !response.IsSuccess )
                 {
