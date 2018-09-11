@@ -12,6 +12,31 @@ namespace Joinup.Service
 {
     public class ApiService
     {
+        public async Task<TokenResponse> GetToken(string urlBase, string username, string password)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri( urlBase );
+
+                var response = await client.PostAsync( 
+                    "Token",
+                    new StringContent(string.Format( "grant_type=password&username={0}&password={1}", username, password ),
+                    Encoding.UTF8,
+                    "application/x-www-form-urlencoded" ));
+
+                var resultJSON = await response.Content.ReadAsStringAsync();
+
+                var result = JsonConvert.DeserializeObject<TokenResponse>( resultJSON );
+
+                return result;
+            }
+            catch ( Exception ex )
+            {
+                return null;
+            }
+        } 
+
         public async Task<Response> CheckConnection()
         {
             if ( !CrossConnectivity.Current.IsConnected )
@@ -78,9 +103,5 @@ namespace Joinup.Service
                 };
             }
         }
-
-
-
-
     }
 }

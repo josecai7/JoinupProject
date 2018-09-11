@@ -5,7 +5,7 @@
              xmlns:ctrls="clr-namespace:Joinup.Controls;assembly=Joinup"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"   
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BindingContext="{Binding Login, Source={StaticResource Locator}}"
              x:Class="Joinup.Views.LoginPage">
 
     <ContentPage.Resources>
@@ -119,8 +119,8 @@
                     Aspect="AspectFill">
                     <ffimageloading:CachedImage.Source>
                         <OnPlatform x:TypeArguments="ImageSource">
-                            <On Platform="Android, iOS" Value="img_header_background_2" />
-                            <On Platform="UWP" Value="Assets/img_header_background_2.png" />
+                            <On Platform="Android, iOS" Value="Portada" />
+                            <On Platform="UWP" Value="Assets/Portada.jpg" />
                         </OnPlatform>
                     </ffimageloading:CachedImage.Source>
                 </ffimageloading:CachedImage>
@@ -145,8 +145,8 @@
                             x:Name="Logo">
                             <Image.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
-                                    <On Platform="Android, iOS" Value="logo_splash" />
-                                    <On Platform="UWP" Value="Assets/logo_splash.png" />
+                                    <On Platform="Android, iOS" Value="Portada2" />
+                                    <On Platform="UWP" Value="Assets/Portada2.jpg" />
                                 </OnPlatform>
                             </Image.Source>
                             <Image.HeightRequest>
@@ -168,7 +168,7 @@
                     <Label 
                         Grid.Row="1"
                         Text="Username"
-                        TextColor="{Binding Path=LineColorToApply, Source={Reference UsernameEntry}}"
+                        TextColor="Black"
                         Style="{StaticResource HeaderTextStyle}">
                         <Label.HorizontalOptions>
                             <OnIdiom
@@ -185,11 +185,9 @@
                         </Label.WidthRequest>
                     </Label>
                     <ctrls:ExtendedEntry 
-                        x:Name="UsernameEntry"
                         Grid.Row="2"
-                        Placeholder="Username"
-                        AutomationId="username"
-                        Text="{Binding UserName.Value, Mode=TwoWay}">
+                        Placeholder="Email"
+                        Text="{Binding Email, Mode=TwoWay}">
                         <ctrls:ExtendedEntry.HorizontalOptions>
                             <OnIdiom
                                 x:TypeArguments="LayoutOptions" 
@@ -207,7 +205,7 @@
                     <Label 
                         Grid.Row="3"
                         Text="Password"
-                        TextColor="{Binding Path=LineColorToApply, Source={Reference PasswordEntry}}"
+                        TextColor="Orange"
                         Style="{StaticResource HeaderTextStyle}">
                         <Label.HorizontalOptions>
                             <OnIdiom
@@ -225,11 +223,9 @@
                     </Label>
                     <ctrls:ExtendedEntry
                         Grid.Row="4"
-                        x:Name="PasswordEntry"
                         IsPassword="True"                  
                         Placeholder="Password"
-                        AutomationId="password"
-                        Text="{Binding Password.Value, Mode=TwoWay}">
+                        Text="{Binding Password, Mode=TwoWay}">
                         <ctrls:ExtendedEntry.HorizontalOptions>
                             <OnIdiom
                                 x:TypeArguments="LayoutOptions" 
@@ -274,7 +270,7 @@
                     x:Name="SignButtons"
                     Grid.Row="1"    
                     Opacity="0"
-                    Margin="38, -40, 38, 0">
+                    Margin="38, -25, 38, 0">
                     <StackLayout.Spacing>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="Android" Value="1" />
@@ -282,7 +278,12 @@
                         </OnPlatform>
                     </StackLayout.Spacing>
                     <ctrls:ButtonFrame
-                        HeightRequest="40">
+                        HeightRequest="50"
+                        Padding="0"
+                        HasShadow="true"
+                        OutlineColor="LightGray"                       
+                        >
+
                         <ctrls:ButtonFrame.HorizontalOptions>
                             <OnIdiom
                                 x:TypeArguments="LayoutOptions" 
@@ -298,8 +299,7 @@
                         </ctrls:ButtonFrame.WidthRequest>
                         <Button    
                             Text="Login"
-                            AutomationId="signin"
-                            Command="{Binding SignInCommand}"
+                            Command="{Binding DoLoginCommand}"
                             BackgroundColor="{StaticResource WhiteColor}"
                             TextColor="{StaticResource OrangeColor}" />
                     </ctrls:ButtonFrame> 
@@ -311,7 +311,10 @@
                         FontSize="{StaticResource MediumSize}"/>
 
                     <ctrls:ButtonFrame
-                        HeightRequest="40">
+                        HeightRequest="50"
+                        Padding="0"
+                        HasShadow="true"
+                        OutlineColor="LightGray"    >
                         <ctrls:ButtonFrame.HorizontalOptions>
                             <OnIdiom
                                 x:TypeArguments="LayoutOptions" 
@@ -327,7 +330,7 @@
                         </ctrls:ButtonFrame.WidthRequest>
                         <Button   
                             Text="Registrarse"
-                            Command="{Binding MicrosoftSignInCommand}"
+                            Command="{Binding RegisterCommand}"
                             BackgroundColor="{StaticResource BlueColor}"
                             TextColor="{StaticResource WhiteColor}" />
                     </ctrls:ButtonFrame> 

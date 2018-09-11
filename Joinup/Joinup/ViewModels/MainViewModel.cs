@@ -8,9 +8,12 @@ namespace Joinup.ViewModels
     {
         public CommentsViewModel Comments { get; set; }
 
+        public LoginViewModel Login { get; set; }
+
         public MainViewModel()
         {
             Comments = new CommentsViewModel();
+            Login = new LoginViewModel();
         }
     }
 }

@@ -14,6 +14,7 @@ using Joinup.Domain.Models;
 
 namespace Joinup.API.Controllers
 {
+    [Authorize]
     public class CommentsController : ApiController
     {
         private DataContext db = new DataContext();
