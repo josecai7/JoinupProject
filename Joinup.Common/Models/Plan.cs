@@ -12,9 +12,28 @@ namespace Joinup.Common.Models
         [Key]
         public string PlanId { get; set; }
         public string UserId { get; set; }
+        public int PlanType { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int PlanType { get; set; }
+        public string ImagePath { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public int MaxParticipants { get; set; }
+        [DataType(DataType.Date)]
         public DateTime PlanDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime EndPlanDate { get; set; }
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(ImagePath))
+                {
+                    return null;
+                }
+                return $"";
+            }
+        }
+
     }
 }

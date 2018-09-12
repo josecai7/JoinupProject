@@ -48,7 +48,7 @@ namespace Joinup.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PlanId,UserId,Name,Description,PlanType,PlanDate")] Plan plan)
+        public async Task<ActionResult> Create( Plan plan)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace Joinup.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PlanId,UserId,Name,Description,PlanType,PlanDate")] Plan plan)
+        public async Task<ActionResult> Edit([Bind(Include = "PlanId,UserId,PlanType,Name,Description,ImagePath,Latitude,Longitude,MaxParticipants,PlanDate,EndPlanDate")] Plan plan)
         {
             if (ModelState.IsValid)
             {

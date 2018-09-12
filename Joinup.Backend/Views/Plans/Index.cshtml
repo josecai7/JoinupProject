@@ -1,18 +1,21 @@
 ﻿@model IEnumerable<Joinup.Common.Models.Plan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Products";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo", "Create",new { },new { @class="btn btn-primary"})
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanType)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -21,10 +24,22 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PlanType)
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxParticipants)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PlanDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndPlanDate)
         </th>
         <th></th>
     </tr>
@@ -35,21 +50,36 @@
             @Html.DisplayFor(modelItem => item.UserId)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.PlanType)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PlanType)
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxParticipants)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PlanDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PlanId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PlanId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PlanId })
+            @Html.DisplayFor(modelItem => item.EndPlanDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlanId }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.PlanId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlanId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
