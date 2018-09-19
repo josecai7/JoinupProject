@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Joinup.Backend.Models;
 using Joinup.Common.Models;
+using Joinup.Backend.Helpers;
 
 namespace Joinup.Backend.Controllers
 {
@@ -48,16 +49,28 @@ namespace Joinup.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create( Plan plan)
+        public async Task<ActionResult> Create( PlanView planView)
         {
             if (ModelState.IsValid)
             {
+
+                var pic = string.Empty;
+                var folder = "~/Content/Plans";
+
+                if ( planView.ImageFile != null )
+                {
+                    pic = FilesHelper.UploadPhoto( planView.ImageFile, folder );
+                    pic = $"{folder}/{pic}";
+                }
+
+                var plan = planView.ToPlan(pic);
+
                 db.Plans.Add(plan);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(plan);
+            return View( planView );
         }
 
         // GET: Plans/Edit/5
@@ -72,7 +85,28 @@ namespace Joinup.Backend.Controllers
             {
                 return HttpNotFound();
             }
-            return View(plan);
+
+            var view = ToView(plan);
+
+            return View( view );
+        }
+
+        private object ToView(Plan plan)
+        {
+            return new PlanView
+            {
+                PlanId = plan.PlanId,
+                UserId = plan.UserId,
+                PlanType = plan.PlanType,
+                Name = plan.Name,
+                Description = plan.Description,
+                ImagePath = plan.ImagePath,
+                Latitude = plan.Latitude,
+                Longitude = plan.Longitude,
+                MaxParticipants = plan.MaxParticipants,
+                PlanDate = plan.PlanDate,
+                EndPlanDate = plan.EndPlanDate,
+            };
         }
 
         // POST: Plans/Edit/5
@@ -80,15 +114,26 @@ namespace Joinup.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PlanId,UserId,PlanType,Name,Description,ImagePath,Latitude,Longitude,MaxParticipants,PlanDate,EndPlanDate")] Plan plan)
+        public async Task<ActionResult> Edit(PlanView planView)
         {
             if (ModelState.IsValid)
             {
+                var pic = string.Empty;
+                var folder = "~/Content/Plans";
+
+                if ( planView.ImageFile != null )
+                {
+                    pic = FilesHelper.UploadPhoto( planView.ImageFile, folder );
+                    pic = $"{folder}/{pic}";
+                }
+
+                var plan = planView.ToPlan( pic );
+
                 db.Entry(plan).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(plan);
+            return View( planView );
         }
 
         // GET: Plans/Delete/5
