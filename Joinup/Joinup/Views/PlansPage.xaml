@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="Joinup.Views.PlansPage"
+             Title="Planes">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Plans}">
+            <ListView
+                HasUnevenRows="True"
+                ItemsSource="{Binding PlanList}"
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="180" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Frame CornerRadius="10" Grid.Row="0" Margin="0" Padding="0" IsClippedToBounds="True">
+                                    <Image Aspect="AspectFill" Source="{Binding ImageFullPath}" />
+                                </Frame>
+
+                                <Grid
+                                    Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" />
+                                    <Label Grid.Row="1" Text="{Binding Description}" />
+
+                                </Grid>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

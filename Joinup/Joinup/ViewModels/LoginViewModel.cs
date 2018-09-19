@@ -96,9 +96,6 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var response = await apiService.GetList<Plan>("http://joinupapi.azurewebsites.net/", "/api", "/Plans" );
-
-            await Application.Current.MainPage.DisplayAlert( "BIENNNNN", "Aceptar", "Cancelar" );
         }
         #endregion
     }

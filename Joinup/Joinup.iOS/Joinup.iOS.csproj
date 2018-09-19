@@ -180,4 +180,7 @@
       <Name>Joinup</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\no_image.png" />
+  </ItemGroup>
 </Project>

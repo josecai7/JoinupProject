@@ -29,9 +29,9 @@ namespace Joinup.Common.Models
             {
                 if (string.IsNullOrEmpty(ImagePath))
                 {
-                    return null;
+                    return "no_image";
                 }
-                return $"";
+                return $"http://joinupbackend20180911113817.azurewebsites.net/{ImagePath.Substring(1)}";
             }
         }
 

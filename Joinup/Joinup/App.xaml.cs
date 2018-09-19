@@ -12,7 +12,7 @@ namespace Joinup
 		{
 			InitializeComponent();
 
-			MainPage = new LoginPage();
+			MainPage = new PlansPage();
 		}
 
 		protected override void OnStart ()

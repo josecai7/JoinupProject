@@ -10,10 +10,13 @@ namespace Joinup.Infrastructure
         public MainViewModel Main { get; set; }
         public LoginViewModel Login { get; set; }
 
+        public PlansViewModel Plan { get; set; }
+
         public InstanceLocator()
         {
             Main = new MainViewModel();
             Login = new LoginViewModel();
+            Plan = new PlansViewModel();
         }
     }
 }
