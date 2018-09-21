@@ -5,7 +5,7 @@
              xmlns:ctrls="clr-namespace:Joinup.Controls;assembly=Joinup"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"   
-             BindingContext="{Binding Login, Source={StaticResource Locator}}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="Joinup.Views.LoginPage">
 
     <ContentPage.Resources>
@@ -104,7 +104,7 @@
     </ContentPage.Triggers>
 
     <ContentPage.Content
-        BindingContext="{Login}">
+        BindingContext="{Binding Login}">
         <Grid>
             <Grid 
                 RowSpacing="0">

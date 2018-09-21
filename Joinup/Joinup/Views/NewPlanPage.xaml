@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Joinup.Views.NewPlanPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Añadir producto">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                BindingContext="{Binding NewPlan}">
+                <Label Text="Name"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Entry
+                Text="{Binding Name}">
+
+                </Entry>
+                <Label Text="Description"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Entry
+                Text="{Binding Description}">
+
+                </Entry>
+                <Button
+                Command="{Binding SavePlanCommand}">
+
+                </Button>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

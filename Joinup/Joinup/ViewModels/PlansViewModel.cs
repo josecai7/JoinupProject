@@ -84,5 +84,17 @@ namespace Joinup.ViewModels
                 return new RelayCommand( LoadPlans );
             }
         }
+        public ICommand SavePlanCommand
+        {
+            get
+            {
+                return new RelayCommand( SavePlan );
+            }
+        }
+
+        private void SavePlan()
+        {
+            string s;
+        }
     }
 }

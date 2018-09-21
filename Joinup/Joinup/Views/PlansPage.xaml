@@ -4,6 +4,9 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="Joinup.Views.PlansPage"
              Title="Planes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add" Command="{Binding NewPlanCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Plans}">
