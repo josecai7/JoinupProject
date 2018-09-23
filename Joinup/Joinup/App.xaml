@@ -12,8 +12,11 @@
             <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"/>
 
+
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">http://apijoinup.azurewebsites.net</x:String>
+            <x:String x:Key="UrlAPI">https://joinupapi.azurewebsites.net</x:String>
+            <x:String x:Key="UrlPrefix">/api</x:String>
+            <x:String x:Key="UrlPlansController">/Plans</x:String>
 
             <!-- COLORS -->
             <Color x:Key="AccentColor">#BC4C1B</Color>
