@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.NewPlanStep1Page"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
@@ -46,7 +47,11 @@
                     <StackLayout
                         VerticalOptions="Center"
                         HorizontalOptions="Center">
-                        <ffimageloadingsvg:SvgCachedImage HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="Food.svg"/>
+                        <ffimageloadingsvg:SvgCachedImage HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="food.svg">
+                            <ffimageloadingsvg:SvgCachedImage.Transformations>
+                                <fftransformations:TintTransformation HexColor="#CCCCCC" EnableSolidColor="true"/>
+                            </ffimageloadingsvg:SvgCachedImage.Transformations>
+                        </ffimageloadingsvg:SvgCachedImage>
                         <Label
                             Text="Comida"
                             VerticalOptions="Center"

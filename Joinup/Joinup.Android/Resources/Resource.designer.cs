@@ -2385,7 +2385,7 @@ namespace Joinup.Droid
 			public const int design_snackbar_background = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int Food = 2130837596;
+			public const int food = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
 			public const int ic_audiotrack_dark = 2130837597;

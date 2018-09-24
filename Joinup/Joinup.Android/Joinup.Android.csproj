@@ -137,7 +137,7 @@
     <AndroidResource Include="Resources\drawable\Ticket.svg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Food.svg" />
+    <AndroidResource Include="Resources\drawable\food.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
