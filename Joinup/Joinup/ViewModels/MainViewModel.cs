@@ -18,6 +18,8 @@ namespace Joinup.ViewModels
 
         public NewPlanViewModel NewPlan { get; set; }
 
+        public NewPlanStep1ViewModel NewPlanStep1 { get; set; }
+
         public ICommand NewPlanCommand
         {
             get
@@ -28,8 +30,8 @@ namespace Joinup.ViewModels
 
         private async void GoToNewPlan()
         {
-            NewPlan = new NewPlanViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new NewPlanPage());
+            NewPlanStep1 = new NewPlanStep1ViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep1Page());
         }
 
         public MainViewModel()

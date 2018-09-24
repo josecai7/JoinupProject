@@ -12,10 +12,13 @@ namespace Joinup.ViewModels
 {
     public class PlansViewModel : BaseViewModel
     {
+        #region Attributes
         private ApiService apiService;
 
         private ObservableCollection<Plan> planList;
+        #endregion
 
+        #region Properties
         public ObservableCollection<Plan> PlanList
         {
             get
@@ -41,13 +44,46 @@ namespace Joinup.ViewModels
                 SetValue( ref isRefreshing, value );
             }
         }
+        #endregion
 
+        #region Constructors
         public PlansViewModel()
         {
+            instance = this;
             apiService = new ApiService();
             LoadPlans();
         }
+        #endregion
 
+        #region Singleton
+
+        private static PlansViewModel instance;
+
+        public static PlansViewModel GetInstance()
+        {
+            if ( instance == null )
+            {
+                return new PlansViewModel();
+            }
+            else
+            {
+                return instance;
+            }
+        }
+
+        #endregion
+
+        #region Commands
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand( LoadPlans );
+            }
+        }
+        #endregion
+
+        #region Methods
         private async void LoadPlans()
         {
             IsRefreshing = true;
@@ -76,25 +112,6 @@ namespace Joinup.ViewModels
 
             IsRefreshing = false;
         }
-
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                return new RelayCommand( LoadPlans );
-            }
-        }
-        public ICommand SavePlanCommand
-        {
-            get
-            {
-                return new RelayCommand( SavePlan );
-            }
-        }
-
-        private void SavePlan()
-        {
-            string s;
-        }
+        #endregion
     }
 }

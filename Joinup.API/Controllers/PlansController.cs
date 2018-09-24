@@ -25,7 +25,7 @@ namespace Joinup.API.Controllers
 
         // GET: api/Plans/5
         [ResponseType(typeof(Plan))]
-        public IHttpActionResult GetPlan(string id)
+        public IHttpActionResult GetPlan(int id)
         {
             Plan plan = db.Plans.Find(id);
             if (plan == null)
@@ -38,7 +38,7 @@ namespace Joinup.API.Controllers
 
         // PUT: api/Plans/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPlan(string id, Plan plan)
+        public IHttpActionResult PutPlan(int id, Plan plan)
         {
             if (!ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace Joinup.API.Controllers
 
         // DELETE: api/Plans/5
         [ResponseType(typeof(Plan))]
-        public IHttpActionResult DeletePlan(string id)
+        public IHttpActionResult DeletePlan(int id)
         {
             Plan plan = db.Plans.Find(id);
             if (plan == null)
@@ -127,7 +127,7 @@ namespace Joinup.API.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PlanExists(string id)
+        private bool PlanExists(int id)
         {
             return db.Plans.Count(e => e.PlanId == id) > 0;
         }

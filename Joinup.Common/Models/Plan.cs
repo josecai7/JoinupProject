@@ -10,7 +10,7 @@ namespace Joinup.Common.Models
     public class Plan
     {
         [Key]
-        public string PlanId { get; set; }
+        public int PlanId { get; set; }
         public string UserId { get; set; }
         public int PlanType { get; set; }
         public string Name { get; set; }

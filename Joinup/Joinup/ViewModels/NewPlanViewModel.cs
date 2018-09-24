@@ -43,21 +43,26 @@ namespace Joinup.ViewModels
             }
         }
 
-        private void SavePlan()
+        private async void SavePlan()
         {
             Plan plan = new Plan();
-            plan.PlanId = "0009";
             plan.Name = Name;
             plan.Description = Description;
+            plan.EndPlanDate = DateTime.Now;
+            plan.PlanDate = DateTime.Now;
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlPlansController"].ToString();
-            var response = apiService.Post<Plan>(url,prefix,controller,plan);
+            var response = await apiService.Post<Plan>(url,prefix,controller,plan);
+
+            var newplan = (Plan) response.Result;
+
+            var viewModel=PlansViewModel.GetInstance();
+            viewModel.PlanList.Add( newplan );
 
 
-
-            Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         #endregion

@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Joinup.Views.NewPlanStep1Page"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <Grid
+            BindingContext="{Binding NewPlan}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+
+            <!-- Top image (Row 0)-->
+            <ffimageloading:CachedImage 
+                    Grid.Row="0"
+                    Aspect="AspectFill">
+                <ffimageloading:CachedImage.Source>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="Android, iOS" Value="Portada" />
+                        <On Platform="UWP" Value="Assets/Portada.jpg" />
+                    </OnPlatform>
+                </ffimageloading:CachedImage.Source>
+            </ffimageloading:CachedImage>
+
+            <Grid Grid.Row="1" 
+                  BackgroundColor="LightGray"
+                  ColumnSpacing="1"
+                  RowSpacing="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Frame 
+                    Grid.Column="0" 
+                    Grid.Row="0"
+                    Padding="0">
+                    <StackLayout
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                        <ffimageloadingsvg:SvgCachedImage HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Source="Food.svg"/>
+                        <Label
+                            Text="Comida"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+                            
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="1" 
+                    Grid.Row="0">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Tomar algo"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="2" 
+                    Grid.Row="0">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Deporte"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="0" 
+                    Grid.Row="1">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Espectaculos"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="1" 
+                    Grid.Row="1">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Intercambio de idiomas"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="2" 
+                    Grid.Row="1">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Viajes"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="0" 
+                    Grid.Row="2">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Compras"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="1" 
+                    Grid.Row="2">
+                    <StackLayout>
+                        <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Android, iOS" Value="Portada" />
+                                    <On Platform="UWP" Value="Assets/Portada.jpg" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Label
+                            Text="Ocio nocturno"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Column="2" 
+                    Grid.Row="2">
+                <StackLayout>
+                    <ffimageloading:CachedImage 
+                        VerticalOptions="Center"
+                        Aspect="AspectFill">
+                        <ffimageloading:CachedImage.Source>
+                            <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Android, iOS" Value="Portada" />
+                                <On Platform="UWP" Value="Assets/Portada.jpg" />
+                            </OnPlatform>
+                        </ffimageloading:CachedImage.Source>
+                    </ffimageloading:CachedImage>
+                    <Label
+                            Text="Otros"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center">
+
+                    </Label>
+
+                </StackLayout>
+                </Frame>
+            </Grid>
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

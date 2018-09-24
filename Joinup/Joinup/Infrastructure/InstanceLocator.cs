@@ -14,7 +14,9 @@ namespace Joinup.Infrastructure
 
         public NewPlanViewModel NewPlan { get; set; }
 
-    public InstanceLocator()
+        public NewPlanStep1ViewModel NewPlanStep1 { get; set; }
+
+        public InstanceLocator()
         {
             Main = new MainViewModel();
         }
