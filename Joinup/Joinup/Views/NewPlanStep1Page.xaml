@@ -98,10 +98,8 @@
                             WidthRequest="{StaticResource IconBigSize}" 
                             HorizontalOptions="CenterAndExpand" 
                             VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
+                            ReplaceStringMap="{Binding ReplaceMap}"
+                            Source="replace.svg">
                         </ffimageloadingsvg:SvgCachedImage>
                         <Label
                             Text="Bares y Restaurantes"
