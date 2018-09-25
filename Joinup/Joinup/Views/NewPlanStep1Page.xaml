@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             xmlns:custom="clr-namespace:Joinup.CustomControls"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.NewPlanStep1Page"
@@ -12,28 +12,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <Style x:Key="FrameButtonStyle"
-                   TargetType="{x:Type Frame}">
-                <Setter Property="HasShadow"
-                        Value="True" />
-                <Setter Property="OutlineColor"
-                        Value="White" />
-                <Setter Property="Padding"
-                        Value="8" />
-            </Style>
-            <Style x:Key="LabelButtonStyle"
-                   TargetType="{x:Type Label}">
-                <Setter Property="FontFamily"
-                        Value="{StaticResource RobotoRegular}" />
-                <Setter Property="FontSize"
-                        Value="Micro" />
-                <Setter Property="TextColor"
-                        Value="{StaticResource PrimaryColor}" />
-                <Setter Property="VerticalOptions"
-                        Value="Center" />
-                <Setter Property="HorizontalTextAlignment"
-                        Value="Center" />
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -81,258 +59,123 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Frame 
-                    Grid.Column="0" 
-                    Grid.Row="0"
-                    BackgroundColor="{Binding RestaurantFrameColor}"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding RestaurantCategoryCommand}"/>
-                    </Frame.GestureRecognizers>
-                    <StackLayout
-                        VerticalOptions="Center"
-                        HorizontalOptions="Center"
-                        Spacing="16">
-                        <ffimageloadingsvg:SvgCachedImage 
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            ReplaceStringMap="{Binding ReplaceMap}"
-                            Source="replace.svg">
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Text="Bares y Restaurantes"
-                            TextColor="{Binding RestaurantTextColor}"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
 
-                    </StackLayout>
-                </Frame>
-                <Frame 
-                    Grid.Column="1" 
-                    Grid.Row="0"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Tomar algo"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="0"
+                    Grid.Row="0"                   
+                    Selected="{Binding IsRestaurantSelected}"
+                    TitleText="Ir de tapas"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectRestaurantCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="2" 
-                    Grid.Row="0"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Hacer deporte"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="1"
+                    Grid.Row="0"                   
+                    Selected="{Binding IsTakeSomethingSelected}"
+                    TitleText="Tomar algo"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectTakeSomethingCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="0" 
-                    Grid.Row="1"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Espectaculos"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="2"
+                    Grid.Row="0"                   
+                    Selected="{Binding IsDoSportsSelected}"
+                    TitleText="Deportes"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectDoSportsCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="1" 
-                    Grid.Row="1"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Intercambiar idiomas"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="0"
+                    Grid.Row="1"                   
+                    Selected="{Binding IsSpectaclesSelected}"
+                    TitleText="Espectaculos"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectSpectaclesCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="2" 
-                    Grid.Row="1"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Viajar"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="1"
+                    Grid.Row="1"                   
+                    Selected="{Binding IsLanguageExchangesSelected}"
+                    TitleText="Intercambio de idiomas"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectLanguageExchangesCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="0" 
-                    Grid.Row="2"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Ir de compras"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="2"
+                    Grid.Row="1"                   
+                    Selected="{Binding IsTravelSelected}"
+                    TitleText="Viajes"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectTravelCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="1" 
-                    Grid.Row="2"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Salir de copas"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="0"
+                    Grid.Row="2"                   
+                    Selected="{Binding IsShoppingSelected}"
+                    TitleText="Ir de compras"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectShoppingCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
-                <Frame 
-                    Grid.Column="2" 
-                    Grid.Row="2"
-                    Style="{StaticResource FrameButtonStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <ffimageloadingsvg:SvgCachedImage 
-                            Grid.Row="0"
-                            HeightRequest="{StaticResource IconBigSize}" 
-                            WidthRequest="{StaticResource IconBigSize}" 
-                            HorizontalOptions="CenterAndExpand" 
-                            VerticalOptions="CenterAndExpand" 
-                            Source="food.svg">
-                            <ffimageloadingsvg:SvgCachedImage.Transformations>
-                                <fftransformations:TintTransformation HexColor="#008080" EnableSolidColor="true"/>
-                            </ffimageloadingsvg:SvgCachedImage.Transformations>
-                        </ffimageloadingsvg:SvgCachedImage>
-                        <Label
-                            Grid.Row="1"
-                            Text="Otros"
-                            Style="{StaticResource LabelButtonStyle}">
-                        </Label>
+                <custom:ImageButton
+                    Grid.Column="1"
+                    Grid.Row="2"                   
+                    Selected="{Binding IsGoOutForDrinksSelected}"
+                    TitleText="Salir de copas"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectGoOutForDrinksCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
-                    </Grid>
-                </Frame>
+                <custom:ImageButton
+                    Grid.Column="2"
+                    Grid.Row="2"                   
+                    Selected="{Binding IsOtherSelected}"
+                    TitleText="Otros"
+                    Icon="food.svg">
+                    <custom:ImageButton.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SelectOtherCategoryCommand}"
+                   />
+                    </custom:ImageButton.GestureRecognizers>
+                </custom:ImageButton>
 
             </Grid>
 
@@ -342,10 +185,9 @@
                 HorizontalOptions="FillAndExpand"
                 Progress="0.0"
                 ProgressColor="{StaticResource PrimaryColor}">
-                
             </ProgressBar>
             
-            <Button
+                <Button
                 Grid.Row="3"
                 BackgroundColor="{StaticResource PrimaryColor}"
                 Style="{StaticResource BaseButtonStyle}"
@@ -354,10 +196,11 @@
                 Text="Siguiente"
                 HorizontalOptions="Center"
                 VerticalOptions="End">
-                
-                
-            </Button>
+
+
+                </Button>
+
 
         </Grid>
-    </ContentPage.Content>
+</ContentPage.Content>
 </ContentPage>

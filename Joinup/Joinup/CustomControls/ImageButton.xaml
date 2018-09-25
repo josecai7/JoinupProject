@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Joinup.CustomControls.ImageButton">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameButtonStyle"
+                   TargetType="{x:Type Frame}">
+                <Setter Property="HasShadow"
+                        Value="True" />
+                <Setter Property="OutlineColor"
+                        Value="White" />
+                <Setter Property="Padding"
+                        Value="8" />
+            </Style>
+
+            <Style x:Key="LabelButtonStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource RobotoRegular}" />
+                <Setter Property="FontSize"
+                        Value="Micro" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource PrimaryColor}" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Frame 
+        x:Name="frameContainer"
+        Style="{StaticResource FrameButtonStyle}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ffimageloadingsvg:SvgCachedImage 
+                x:Name="icon"
+                            Grid.Row="0"
+                            HeightRequest="{StaticResource IconBigSize}" 
+                            WidthRequest="{StaticResource IconBigSize}" 
+                            ReplaceStringMap=""
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="CenterAndExpand">
+            </ffimageloadingsvg:SvgCachedImage>
+            <Label
+                x:Name="title"
+                Grid.Row="1"
+                Text="Hacer deporte"
+                Style="{StaticResource LabelButtonStyle}">
+            </Label>
+
+        </Grid>
+    </Frame>
+</ContentView>

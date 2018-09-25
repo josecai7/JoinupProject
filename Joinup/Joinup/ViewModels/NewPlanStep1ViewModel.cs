@@ -11,85 +11,270 @@ namespace Joinup.ViewModels
     public class NewPlanStep1ViewModel:BaseViewModel
     {
         #region Attributes
-            private Color restaurantFrameColor=ColorUtils.BackgroundColor;
-            private Color restaurantTextColor = ColorUtils.PrimaryColor;
-            private string restaurantIconSource = "food.svg";
-        private Dictionary<string, string> replaceMap = new Dictionary<string, string>();
+
+        private int selectedCategory = 0;
+
+        private bool isRestaurantSelected;
+        private bool isTakeSomethingSelected;
+        private bool isDoSportsSelected;
+        private bool isSpectaclesSelected;
+        private bool isLanguageExchangesSelected;
+        private bool isTravelSelected;
+        private bool isShoppingSelected;
+        private bool isGoOutForDrinksSelected;
+        private bool isOtherSelected;
         #endregion
         #region Properties
-        public Dictionary<string, string> ReplaceMap
+        public bool IsRestaurantSelected
         {
-            get
-            {
-                return replaceMap;
-            }
-            set
-            {
-                SetValue( ref replaceMap, value );
-            }
+            get { return this.isRestaurantSelected; }
+            set { this.SetValue(ref this.isRestaurantSelected, value); }
         }
-        public Color RestaurantFrameColor
+        public bool IsTakeSomethingSelected
         {
-            get
-            {
-                return restaurantFrameColor;
-            }
-            set
-            {
-                SetValue( ref restaurantFrameColor, value );
-            }
+            get { return this.isTakeSomethingSelected; }
+            set { this.SetValue(ref this.isTakeSomethingSelected, value); }
         }
-        public Color RestaurantTextColor
+        public bool IsDoSportsSelected
         {
-            get
-            {
-                return restaurantTextColor;
-            }
-            set
-            {
-                SetValue( ref restaurantTextColor, value );
-            }
+            get { return this.isDoSportsSelected; }
+            set { this.SetValue(ref this.isDoSportsSelected, value); }
         }
-        public string RestaurantIconSource
+        public bool IsSpectaclesSelected
         {
-            get
-            {
-                return restaurantIconSource;
-            }
-            set
-            {
-                SetValue( ref restaurantIconSource, value );
-            }
+            get { return this.isSpectaclesSelected; }
+            set { this.SetValue(ref this.isSpectaclesSelected, value); }
         }
+        public bool IsLanguageExchangesSelected
+        {
+            get { return this.isLanguageExchangesSelected; }
+            set { this.SetValue(ref this.isLanguageExchangesSelected, value); }
+        }
+        public bool IsTravelSelected
+        {
+            get { return this.isTravelSelected; }
+            set { this.SetValue(ref this.isTravelSelected, value); }
+        }
+        public bool IsShoppingSelected
+        {
+            get { return this.isShoppingSelected; }
+            set { this.SetValue(ref this.isShoppingSelected, value); }
+        }
+        public bool IsGoOutForDrinksSelected
+        {
+            get { return this.isGoOutForDrinksSelected; }
+            set { this.SetValue(ref this.isGoOutForDrinksSelected, value); }
+        }
+        public bool IsOtherSelected
+        {
+            get { return this.isOtherSelected; }
+            set { this.SetValue(ref this.isOtherSelected, value); }
+        }
+
         #endregion
         #region Constructors
         public NewPlanStep1ViewModel()
         {
-            RestaurantIconSource = "food.svg";
         }
         #endregion
+
         #region Commands
-        public ICommand RestaurantCategoryCommand
+        public ICommand SelectRestaurantCategoryCommand
         {
             get
             {
-                return new RelayCommand( SelectRestaurantCategory );
+                return new RelayCommand(SelectRestaurantCategory);
             }
         }
-
+        public ICommand SelectTakeSomethingCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectTakeSomethingCategory);
+            }
+        }
+        public ICommand SelectDoSportsCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectDoSportsCategory);
+            }
+        }
+        public ICommand SelectSpectaclesCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectSpectaclesCategory);
+            }
+        }
+        public ICommand SelectLanguageExchangesCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectLanguageExchangesCategory);
+            }
+        }
+        public ICommand SelectTravelCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectTravelCategory);
+            }
+        }
+        public ICommand SelectShoppingCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectShoppingCategory);
+            }
+        }
+        public ICommand SelectGoOutForDrinksCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectGoOutForDrinksCategory);
+            }
+        }
+        public ICommand SelectOtherCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(SelectOtherCategory);
+            }
+        }
         #endregion
+
         #region Methods
         private void SelectRestaurantCategory()
         {
-            RestaurantFrameColor= ColorUtils.PrimaryColor;
-            RestaurantTextColor = ColorUtils.BackgroundColor;
 
+            if (IsRestaurantSelected)
+            {
+                selectedCategory = 0;
+                IsRestaurantSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsRestaurantSelected = true;
+            }
+        }
 
+        private void SelectTakeSomethingCategory()
+        {
+            if (IsTakeSomethingSelected)
+            {
+                selectedCategory = 0;
+                IsTakeSomethingSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsTakeSomethingSelected = true;
+            }
+        }
 
-            ReplaceMap = new Dictionary<string, string>()
-                {
-                    { "#FILLCOLOR", "#FFFFFF" }
-                };
+        private void SelectDoSportsCategory()
+        {
+            if (IsDoSportsSelected)
+            {
+                selectedCategory = 0;
+                IsDoSportsSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsDoSportsSelected = true;
+            }
+        }
+
+        private void SelectSpectaclesCategory()
+        {
+            if (IsSpectaclesSelected)
+            {
+                selectedCategory = 0;
+                IsSpectaclesSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsSpectaclesSelected = true;
+            }
+        }
+
+        private void SelectLanguageExchangesCategory()
+        {
+            if (IsLanguageExchangesSelected)
+            {
+                selectedCategory = 0;
+                IsLanguageExchangesSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsLanguageExchangesSelected = true;
+            }
+        }
+
+        private void SelectTravelCategory()
+        {
+            if (IsTravelSelected)
+            {
+                selectedCategory = 0;
+                IsTravelSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsTravelSelected = true;
+            }
+        }
+
+        private void SelectShoppingCategory()
+        {
+            if (IsShoppingSelected)
+            {
+                selectedCategory = 0;
+                IsShoppingSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsShoppingSelected = true;
+            }
+        }
+
+        private void SelectGoOutForDrinksCategory()
+        {
+            if (IsGoOutForDrinksSelected)
+            {
+                selectedCategory = 0;
+                IsGoOutForDrinksSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsGoOutForDrinksSelected = true;
+            }
+        }
+
+        private void SelectOtherCategory()
+        {
+            if (IsOtherSelected)
+            {
+                selectedCategory = 0;
+                IsOtherSelected = false;
+            }
+            else
+            {
+                DeselectAll();
+                IsOtherSelected = true;
+            }
+        }
+
+        private void DeselectAll()
+        {
+            IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
         }
         #endregion
     }
