@@ -14,7 +14,7 @@ namespace Joinup.Views
 	{
 		public NewPlanStep1Page ()
 		{
-			InitializeComponent ();
-		}
+            InitializeComponent();
+        }
 	}
 }

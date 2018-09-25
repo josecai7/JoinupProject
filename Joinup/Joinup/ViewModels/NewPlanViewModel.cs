@@ -23,16 +23,7 @@ namespace Joinup.ViewModels
 
         #endregion
 
-        #region Constructors
-
-        public NewPlanViewModel()
-        {
-            apiService = new ApiService();
-
-        }
-
-        #endregion
-
+        
         #region Commands
 
         public ICommand SavePlanCommand

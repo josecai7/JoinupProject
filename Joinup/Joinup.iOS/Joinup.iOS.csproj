@@ -100,6 +100,10 @@
     <BundleResource Include="Resources\fonts\Poppins-SemiBold.ttf" />
     <BundleResource Include="Resources\fonts\Poppins-Bold.ttf" />
     <BundleResource Include="Resources\fonts\Poppins-Light.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Medium.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Regular.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Bold.ttf" />
+    <BundleResource Include="Resources\fonts\Roboto-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
