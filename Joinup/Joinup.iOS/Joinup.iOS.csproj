@@ -104,6 +104,7 @@
     <BundleResource Include="Resources\fonts\Roboto-Regular.ttf" />
     <BundleResource Include="Resources\fonts\Roboto-Bold.ttf" />
     <BundleResource Include="Resources\fonts\Roboto-Light.ttf" />
+    <BundleResource Include="Resources\fonts\fa-regular-400.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

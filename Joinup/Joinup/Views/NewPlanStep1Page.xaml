@@ -30,6 +30,13 @@
                 Grid.Row="0"
                 Margin="16,0,16,0"
                 VerticalOptions="CenterAndExpand">
+
+                <custom:FontIcon
+                    Icon="xamarin"
+                    IconColor="Red">
+                    
+                </custom:FontIcon>
+                
                 <Label
                     Text="¿Que te apetece hacer?"
                     TextColor="{StaticResource PrimaryColor}"
