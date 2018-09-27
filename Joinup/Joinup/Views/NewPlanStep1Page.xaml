@@ -199,6 +199,7 @@
             
                 <Button
                 Grid.Row="3"
+                Command="{Binding NextStep}"
                 BackgroundColor="{StaticResource PrimaryColor}"
                 Style="{StaticResource BaseButtonStyle}"
                 TextColor="White"

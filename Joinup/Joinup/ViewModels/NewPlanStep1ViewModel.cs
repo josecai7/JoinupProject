@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
 using Joinup.Utils;
 using System;
 using System.Collections.Generic;
@@ -142,6 +143,13 @@ namespace Joinup.ViewModels
                 return new RelayCommand(SelectOtherCategory);
             }
         }
+        public ICommand NextStepCommand
+        {
+            get
+            {
+                return new RelayCommand( NextStep );
+            }
+        }
         #endregion
 
         #region Methods
@@ -150,7 +158,7 @@ namespace Joinup.ViewModels
 
             if (IsRestaurantSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.RESTAURANT;
                 IsRestaurantSelected = false;
             }
             else
@@ -164,7 +172,7 @@ namespace Joinup.ViewModels
         {
             if (IsTakeSomethingSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.TAKESOMETHING;
                 IsTakeSomethingSelected = false;
             }
             else
@@ -178,7 +186,7 @@ namespace Joinup.ViewModels
         {
             if (IsDoSportsSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.SPORT;
                 IsDoSportsSelected = false;
             }
             else
@@ -192,7 +200,7 @@ namespace Joinup.ViewModels
         {
             if (IsSpectaclesSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.SPECTACLE;
                 IsSpectaclesSelected = false;
             }
             else
@@ -206,7 +214,7 @@ namespace Joinup.ViewModels
         {
             if (IsLanguageExchangesSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.LANGUAGE;
                 IsLanguageExchangesSelected = false;
             }
             else
@@ -220,7 +228,7 @@ namespace Joinup.ViewModels
         {
             if (IsTravelSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.TRAVEL;
                 IsTravelSelected = false;
             }
             else
@@ -234,12 +242,11 @@ namespace Joinup.ViewModels
         {
             if (IsShoppingSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.SHOPPING;
                 IsShoppingSelected = false;
             }
             else
             {
-                DeselectAll();
                 IsShoppingSelected = true;
             }
         }
@@ -248,7 +255,7 @@ namespace Joinup.ViewModels
         {
             if (IsGoOutForDrinksSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.GOOUTFORDRINK;
                 IsGoOutForDrinksSelected = false;
             }
             else
@@ -262,7 +269,7 @@ namespace Joinup.ViewModels
         {
             if (IsOtherSelected)
             {
-                selectedCategory = 0;
+                selectedCategory = PlanType.OTHER;
                 IsOtherSelected = false;
             }
             else
@@ -274,7 +281,13 @@ namespace Joinup.ViewModels
 
         private void DeselectAll()
         {
+            selectedCategory = PlanType.UNDEFINED;
             IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
+        }
+
+        private void NextStep()
+        {
+
         }
         #endregion
     }
