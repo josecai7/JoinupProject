@@ -31,12 +31,6 @@
                 Margin="16,0,16,0"
                 VerticalOptions="CenterAndExpand">
 
-                <custom:FontIcon
-                    Icon="xamarin"
-                    IconColor="Red">
-                    
-                </custom:FontIcon>
-                
                 <Label
                     Text="¿Que te apetece hacer?"
                     TextColor="{StaticResource PrimaryColor}"
@@ -72,7 +66,8 @@
                     Grid.Row="0"                   
                     Selected="{Binding IsRestaurantSelected}"
                     TitleText="Ir de tapas"
-                    Icon="food.svg">
+                    Icon="silverware"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectRestaurantCategoryCommand}"
@@ -85,7 +80,8 @@
                     Grid.Row="0"                   
                     Selected="{Binding IsTakeSomethingSelected}"
                     TitleText="Tomar algo"
-                    Icon="food.svg">
+                    Icon="glass-mug"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectTakeSomethingCategoryCommand}"
@@ -98,7 +94,8 @@
                     Grid.Row="0"                   
                     Selected="{Binding IsDoSportsSelected}"
                     TitleText="Deportes"
-                    Icon="food.svg">
+                    Icon="soccer"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectDoSportsCategoryCommand}"
@@ -111,7 +108,8 @@
                     Grid.Row="1"                   
                     Selected="{Binding IsSpectaclesSelected}"
                     TitleText="Espectaculos"
-                    Icon="food.svg">
+                    Icon="ticket"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectSpectaclesCategoryCommand}"
@@ -124,7 +122,8 @@
                     Grid.Row="1"                   
                     Selected="{Binding IsLanguageExchangesSelected}"
                     TitleText="Intercambio de idiomas"
-                    Icon="food.svg">
+                    Icon="comment-multiple"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectLanguageExchangesCategoryCommand}"
@@ -137,7 +136,8 @@
                     Grid.Row="1"                   
                     Selected="{Binding IsTravelSelected}"
                     TitleText="Viajes"
-                    Icon="food.svg">
+                    Icon="airplane"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectTravelCategoryCommand}"
@@ -150,7 +150,8 @@
                     Grid.Row="2"                   
                     Selected="{Binding IsShoppingSelected}"
                     TitleText="Ir de compras"
-                    Icon="food.svg">
+                    Icon="shopping"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectShoppingCategoryCommand}"
@@ -163,7 +164,8 @@
                     Grid.Row="2"                   
                     Selected="{Binding IsGoOutForDrinksSelected}"
                     TitleText="Salir de copas"
-                    Icon="food.svg">
+                    Icon="glass-cocktail"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectGoOutForDrinksCategoryCommand}"
@@ -176,7 +178,8 @@
                     Grid.Row="2"                   
                     Selected="{Binding IsOtherSelected}"
                     TitleText="Otros"
-                    Icon="food.svg">
+                    Icon="account-multiple"
+                    IconSize="{StaticResource IconSize}">
                     <custom:ImageButton.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding SelectOtherCategoryCommand}"

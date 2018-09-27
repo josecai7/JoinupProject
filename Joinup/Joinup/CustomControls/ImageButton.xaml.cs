@@ -50,9 +50,29 @@ namespace Joinup.CustomControls
         private static void IconSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (ImageButton)bindable;
-            control.icon.Source = ImageSource.FromFile(newValue.ToString());
+            control.icon.Icon = newValue.ToString();
         }
-        
+
+        public static readonly BindableProperty IconSizeProperty = BindableProperty.Create(
+                         propertyName: "IconSize",
+                         returnType: typeof( double ),
+                         declaringType: typeof( ImageButton ),
+                         defaultValue: double.MinValue,
+                         defaultBindingMode: BindingMode.TwoWay,
+                         propertyChanged: IconSizePropertyChanged );
+
+        public double IconSize
+        {
+            get { return (double) base.GetValue( IconSizeProperty ); }
+            set { base.SetValue( IconSizeProperty, value ); }
+        }
+
+        private static void IconSizePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (ImageButton) bindable;
+            control.icon.IconSize = (double) newValue;
+        }
+
         public static readonly BindableProperty SelectedProperty = BindableProperty.Create(
                                                 propertyName: "Selected",
                                                 returnType: typeof(bool),
@@ -60,6 +80,7 @@ namespace Joinup.CustomControls
                                                 defaultValue: true,
                                                 defaultBindingMode: BindingMode.TwoWay,
                                                 propertyChanged: SelectedPropertyChanged);
+
 
         public bool Selected
         {
@@ -75,23 +96,14 @@ namespace Joinup.CustomControls
 
             if (isSelected)
             {
-                control.title.TextColor= ColorUtils.BackgroundColor;
+                control.icon.IconColor=control.title.TextColor= ColorUtils.BackgroundColor;
                 control.frameContainer.BackgroundColor = ColorUtils.PrimaryColor;
-                control.icon.ReplaceStringMap = new Dictionary<string, string>()
-                {
-                    { "#FILLCOLOR", ColorUtils.ToHex(ColorUtils.BackgroundColor)}
-                };
             }
             else 
             {
-                control.title.TextColor = ColorUtils.PrimaryColor;
+                control.icon.IconColor = control.title.TextColor = ColorUtils.PrimaryColor;
                 control.frameContainer.BackgroundColor = ColorUtils.BackgroundColor;
-                control.icon.ReplaceStringMap = new Dictionary<string, string>()
-                {
-                    { "#FILLCOLOR", ColorUtils.ToHex(ColorUtils.PrimaryColor)}
-                };
             }
-            control.icon.ReloadImage();
         }
 
         public ImageButton()

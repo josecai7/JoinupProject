@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Joinup.CustomControls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class FontIcon : ContentView
-	{
+    [XamlCompilation( XamlCompilationOptions.Compile )]
+    public partial class FontIcon : ContentView
+    {
         public static readonly BindableProperty IconProperty = BindableProperty.Create(
                                                  propertyName: "Icon",
                                                  returnType: typeof( string ),
@@ -32,11 +32,11 @@ namespace Joinup.CustomControls
             var control = (FontIcon) bindable;
             string iconName = newValue.ToString();
             IconUtils iconUtils = new IconUtils();
-            control.icon.Text = iconUtils.GetIcon(iconName);
+            control.icon.Text = iconUtils.GetIcon( iconName );
         }
 
         public static readonly BindableProperty IconColorProperty = BindableProperty.Create(
-                                         propertyName: "Icon",
+                                         propertyName: "IconColor",
                                          returnType: typeof( Color ),
                                          declaringType: typeof( FontIcon ),
                                          defaultValue: Color.Black,
@@ -45,14 +45,34 @@ namespace Joinup.CustomControls
 
         public Color IconColor
         {
-            get { return (Color)base.GetValue( IconColorProperty ); }
+            get { return (Color) base.GetValue( IconColorProperty ); }
             set { base.SetValue( IconColorProperty, value ); }
         }
 
         private static void IconColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var control = (FontIcon) bindable;
-            control.icon.TextColor = (Color)newValue;
+            control.icon.TextColor = (Color) newValue;
+        }
+
+        public static readonly BindableProperty IconSizeProperty = BindableProperty.Create(
+                                 propertyName: "IconSize",
+                                 returnType: typeof( double ),
+                                 declaringType: typeof( FontIcon ),
+                                 defaultValue: double.MinValue,
+                                 defaultBindingMode: BindingMode.TwoWay,
+                                 propertyChanged: IconSizePropertyChanged );
+
+        public double IconSize
+        {
+            get { return (double)base.GetValue( IconSizeProperty ); }
+            set { base.SetValue( IconSizeProperty, value ); }
+        }
+
+        private static void IconSizePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (FontIcon) bindable;
+            control.icon.FontSize = (double)newValue;
         }
         public FontIcon ()
 		{

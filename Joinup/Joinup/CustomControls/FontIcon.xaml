@@ -6,8 +6,7 @@
       <StackLayout>
             <Label
                 x:Name="icon"
-                Text=""
-                FontSize="Medium">
+                Text="">
                 <Label.FontFamily>
                     <OnPlatform x:TypeArguments="x:String" Android="materialdesignicons-webfont.ttf#Material Desingn Icons" iOS="Material Desingn Icons" WinPhone="Assets/materialdesignicons-webfont.ttf#Material Desingn Icons" />
                 </Label.FontFamily>
