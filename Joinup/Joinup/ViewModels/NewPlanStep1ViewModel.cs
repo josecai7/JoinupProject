@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
 using Joinup.Utils;
+using Plugin.Toasts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -147,7 +148,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return new RelayCommand( NextStep );
+                return new RelayCommand( NextStepAsync );
             }
         }
         #endregion
@@ -285,9 +286,17 @@ namespace Joinup.ViewModels
             IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
         }
 
-        private void NextStep()
+        private async void NextStepAsync()
         {
+            var notificator = DependencyService.Get<IToastNotificator>();
 
+            var options = new NotificationOptions()
+            {
+                Title = "Title",
+                Description = "Description"
+            };
+
+            var result = await notificator.Notify( options );
         }
         #endregion
     }

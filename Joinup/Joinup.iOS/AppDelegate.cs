@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Plugin.Toasts;
 using UIKit;
+using Xamarin.Forms;
 
 namespace Joinup.iOS
 {
@@ -24,6 +26,8 @@ namespace Joinup.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            DependencyService.Register<ToastNotification>(); // Register your dependency
+            ToastNotification.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
