@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Acr.UserDialogs;
+using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
 using Joinup.Utils;
 using Plugin.Toasts;
@@ -286,17 +287,14 @@ namespace Joinup.ViewModels
             IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
         }
 
-        private async void NextStepAsync()
+        private void NextStepAsync()
         {
-            var notificator = DependencyService.Get<IToastNotificator>();
+            var toastConfig = new ToastConfig( "Error" );
+            toastConfig.SetDuration( 3000 );
+            toastConfig.SetBackgroundColor( ColorUtils.ToColorDrawing(ColorUtils.ErrorColor));
+            toastConfig.Position = ToastPosition.Top;
 
-            var options = new NotificationOptions()
-            {
-                Title = "Title",
-                Description = "Description"
-            };
-
-            var result = await notificator.Notify( options );
+            UserDialogs.Instance.Toast( toastConfig );
         }
         #endregion
     }

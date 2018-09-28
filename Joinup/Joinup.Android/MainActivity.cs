@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Plugin.Toasts;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace Joinup.Droid
 {
@@ -19,6 +20,7 @@ namespace Joinup.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init( true );
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init( this );
+            UserDialogs.Init( this );
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
