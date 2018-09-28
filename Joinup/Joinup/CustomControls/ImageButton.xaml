@@ -18,9 +18,9 @@
             <Style x:Key="LabelButtonStyle"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontFamily"
-                        Value="{StaticResource RobotoRegular}" />
+                        Value="{StaticResource RobotoLight}" />
                 <Setter Property="FontSize"
-                        Value="Micro" />
+                        Value="Small" />
                 <Setter Property="TextColor"
                         Value="{StaticResource PrimaryColor}" />
                 <Setter Property="VerticalOptions"
@@ -37,6 +37,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="8" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <custom:FontIcon
@@ -49,7 +50,8 @@
             </custom:FontIcon>
             <Label
                 x:Name="title"
-                Grid.Row="1"
+                Grid.Row="2"
+                VerticalOptions="StartAndExpand"
                 Text="Hacer deporte"
                 Style="{StaticResource LabelButtonStyle}">
             </Label>

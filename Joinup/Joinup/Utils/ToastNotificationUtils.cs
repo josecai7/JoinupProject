@@ -1,4 +1,5 @@
-﻿using Plugin.Toasts;
+﻿using Acr.UserDialogs;
+using Plugin.Toasts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,20 +9,15 @@ namespace Joinup.Utils
 {
     public class ToastNotificationUtils
     {
-        public static async void ShowToastNotifications(string pTitle, string pSubtitle)
+        public static async void ShowToastNotifications(string pTitle, string pIcon,Color pBackgroundColor,ToastPosition pToastPosition=ToastPosition.Top,int pDuration=3000)
         {
-            var notificator = DependencyService.Get<IToastNotificator>();
+            var toastConfig = new ToastConfig(pTitle);
+            toastConfig.SetDuration(pDuration);
+            toastConfig.Icon = pIcon;
+            toastConfig.SetBackgroundColor(pBackgroundColor);
+            toastConfig.Position = pToastPosition;
 
-            var options = new NotificationOptions()
-            {
-                Title = "Title",
-                Description = "Description",
-                AndroidOptions=new AndroidOptions { HexColor="Black",}
-                
-                
-            };
-
-            var result = await notificator.Notify(  options );
+            UserDialogs.Instance.Toast(toastConfig);
         }
     }
 }
