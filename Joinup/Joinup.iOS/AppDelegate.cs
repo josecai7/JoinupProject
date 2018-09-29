@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Acr.UserDialogs;
 using Foundation;
 using Plugin.Toasts;
 using UIKit;
@@ -28,6 +28,7 @@ namespace Joinup.iOS
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init();
+            Xamarin.FormsMaps.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

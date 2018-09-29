@@ -21,6 +21,7 @@ namespace Joinup.Droid
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init( this );
             UserDialogs.Init( this );
+            Xamarin.FormsMaps.Init(this, bundle);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

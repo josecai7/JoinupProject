@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Joinup.Views.NewPlanStep2Page"
-             BackgroundColor="White"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              Title="Crea tu plan"
+             BackgroundColor="White"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Resources>
@@ -15,24 +16,96 @@
     <ContentPage.Content>
 
 
-            <StackLayout
-                Grid.Row="0"
-                Margin="16,0,16,0"
-                VerticalOptions="CenterAndExpand">
+        <Grid
+                  Margin="0,0,0,16"
+            BindingContext="{Binding NewPlanStep1}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                <Label
-                    Text="¿Que te apetece hacer?"
+            <Grid
+                Grid.Row="0"
+                Margin="16,32,16,32"
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout
+                    VerticalOptions="StartAndExpand"
+                    Grid.Row="0">
+                    <Label
+                    Text="Ponle un titulo atractivo a tu plan"
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoRegular}"
                     FontSize="Large">
-                </Label>
-                <Label
-                    Text="Selecciona que se hara en el plan que publicaras"
+                    </Label>
+                    <Label
+                    Text="Intenta que el titulo de tu plan sea descriptivo y atractivo"
+                    TextColor="{StaticResource PrimaryColor}"
+                    FontFamily="{StaticResource RobotoLight}"
+                    FontSize="Medium">
+                    </Label>
+                    <Editor
+                    MaxLength="50"
+                    AutoSize="TextChanges"
+                    TextColor="{StaticResource PrimaryColor}"
+                    FontFamily="{StaticResource RobotoRegular}"
+                    FontSize="Medium">
+                    </Editor>
+                    <Label
+                    Margin="0,32,0,0"
+                    Text="...¿Algo más?"
+                    TextColor="{StaticResource PrimaryColor}"
+                    FontFamily="{StaticResource RobotoRegular}"
+                    FontSize="Large">
+                    </Label>
+                    <Label
+                    Text="Explica que hareís durante la quedada y anima a la gente a apuntarse a tu plan."
                     TextColor="{StaticResource PrimaryTextColor}"
                     FontFamily="{StaticResource RobotoLight}"
-                    FontSize="Small">
-                </Label>
-            </StackLayout>
+                    FontSize="Medium">
+                    </Label>
+
+                    <Editor
+                    MaxLength="250"
+                    AutoSize="TextChanges"
+                    Placeholder=""
+                    TextColor="{StaticResource PrimaryColor}"
+                    FontFamily="{StaticResource RobotoRegular}"
+                    FontSize="Medium">
+                    </Editor>
+                </StackLayout>
+
+
+
+            </Grid>
+
+            <ProgressBar
+                Grid.Row="1"
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                Progress="0.0"
+                ProgressColor="{StaticResource PrimaryColor}">
+            </ProgressBar>
+
+            <Button
+                Grid.Row="2"
+                Command="{Binding NextStepCommand}"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Style="{StaticResource BaseButtonStyle}"
+                TextColor="White"
+                WidthRequest="150"
+                Text="Siguiente"
+                HorizontalOptions="Center"
+                VerticalOptions="End">
+
+
+            </Button>
+
+
+        </Grid>
 
 
     </ContentPage.Content>

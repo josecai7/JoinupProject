@@ -21,6 +21,7 @@ namespace Joinup.UWP
         {
             this.InitializeComponent();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            Xamarin.FormsMaps.Init("TOKEN_DE_AUTORIZACION");
 
             LoadApplication(new Joinup.App());
         }

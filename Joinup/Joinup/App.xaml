@@ -54,8 +54,8 @@
 
             <!-- COLORS -->
             <Color x:Key="BackgroundColor">#FFFFFF</Color>
-            
-            <Color x:Key="PrimaryColor">#008080</Color>
+
+            <Color x:Key="PrimaryColor">#247BA0</Color>
             <Color x:Key="PrimaryTextColor">#595959</Color>
             <Color x:Key="SecondaryTextColor">#A1A1A1</Color>
             <Color x:Key="ErrorColor">#B4656F</Color>
