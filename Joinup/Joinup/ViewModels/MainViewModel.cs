@@ -22,6 +22,8 @@ namespace Joinup.ViewModels
 
         public NewPlanStep2ViewModel NewPlanStep2 { get; set; }
 
+        public NewPlanStep3ViewModel NewPlanStep3 { get; set; }
+
         public ICommand NewPlanCommand
         {
             get
@@ -38,6 +40,7 @@ namespace Joinup.ViewModels
 
         public MainViewModel()
         {
+            instance = this;
             Plans = new PlansViewModel();         
         }
         #region Singleton

@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:custom="clr-namespace:Joinup.CustomControls"
-             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="Joinup.Views.NewPlanStep2Page"
+             x:Class="Joinup.Views.NewPlanStep3Page"
              BackgroundColor="White"
              Title="Crea tu plan"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
@@ -14,12 +11,12 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <ContentPage.Content>
         <Grid
-                  Margin="0,0,0,16"
-            BindingContext="{Binding NewPlanStep2}">
+            BindingContext="{Binding NewPlanStep3}"
+            BackgroundColor="Azure">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -31,53 +28,24 @@
                 VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackLayout
                     VerticalOptions="StartAndExpand"
                     Grid.Row="0">
                     <Label
-                    Text="Ponle un titulo atractivo a tu plan"
+                    Text="¿Donde quedais?"
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoRegular}"
                     FontSize="Large">
                     </Label>
                     <Label
-                    Text="Intenta que el titulo de tu plan sea descriptivo y atractivo"
+                    Text="Pulsa sobre el mapa para especificar el punto exacto donde llevareis a cabo vuestro divertido plan"
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoLight}"
                     FontSize="Medium">
                     </Label>
-                    <Editor
-                    MaxLength="50"
-                    AutoSize="TextChanges"
-                    Text="{Binding Title}"
-                    TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
-                    FontSize="Medium">
-                    </Editor>
-                    <Label
-                    Margin="0,32,0,0"
-                    Text="...¿Algo más?"
-                    TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
-                    FontSize="Large">
-                    </Label>
-                    <Label
-                    Text="Explica que hareís durante la quedada y anima a la gente a apuntarse a tu plan."
-                    TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoLight}"
-                    FontSize="Medium">
-                    </Label>
-
-                    <Editor
-                    MaxLength="250"
-                    AutoSize="TextChanges"
-                    Text="{Binding Description}"
-                    Placeholder=""
-                    TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
-                    FontSize="Medium">
-                    </Editor>
                 </StackLayout>
 
 
