@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms.Maps;
 
 namespace Joinup.ViewModels
 {
@@ -17,7 +18,9 @@ namespace Joinup.ViewModels
         private Plan plan;
         private string addressText;
         Prediction selectedItem=new Prediction();
+        bool suggestionBarVisible = true;
         ObservableCollection<Prediction> predictions = new ObservableCollection<Prediction>();
+        ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         #endregion
         #region Properties
         public string AddressText
@@ -32,6 +35,14 @@ namespace Joinup.ViewModels
                 TextChanged();
             }
         }
+        public ObservableCollection<Plan> Pins
+        {
+            get { return pins; }
+            set
+            {
+                SetValue( ref pins, value );
+            }
+        }
         public ObservableCollection<Prediction> Predictions
         {
             get
@@ -39,7 +50,7 @@ namespace Joinup.ViewModels
                 return predictions;
             }
             set
-            {
+            {              
                 SetValue(ref predictions, value);
             }
         }
@@ -50,9 +61,20 @@ namespace Joinup.ViewModels
                 return selectedItem;
             }
             set
-            {
+            {            
                 SetValue(ref selectedItem, value);
-                CogerCoordenadas();
+                PressOnAddress();
+            }
+        }
+        public bool SuggestionBarVisible
+        {
+            get
+            {
+                return suggestionBarVisible;
+            }
+            set
+            {
+                SetValue( ref suggestionBarVisible, value );
             }
         }
 
@@ -71,28 +93,47 @@ namespace Joinup.ViewModels
                 return new RelayCommand(TextChanged);
             }
         }
-
-        private async void TextChanged()
-        {
-            PlacesAutocomplete places = new PlacesAutocomplete("AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg");
-            Predictions predictions = await places.GetAutocomplete(AddressText);
-
-            Predictions = new ObservableCollection<Prediction>(predictions.predictions);
-        }
-        #endregion
-        #region Commands
         #endregion
         #region Methods
-        private async void CogerCoordenadas()
+        private async void TextChanged()
+        {
+            PlacesAutocomplete places = new PlacesAutocomplete( "AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg" );
+            Predictions predictions = await places.GetAutocomplete( AddressText );
+            Predictions = new ObservableCollection<Prediction>( predictions.predictions );
+
+            ShowHiddenSuggestionBar();
+        }
+        private async void PressOnAddress()
         {
             PlacesGeocode placesGeocode = new PlacesGeocode("AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg");
             if (SelectedItem != null)
             {
                 Geocode geocode = await placesGeocode.GetGeocode(SelectedItem.Description);
-                Debug.WriteLine("Hola" + geocode.results.FirstOrDefault().geometry.location.lat);
+                AddressText = SelectedItem.Description;
+
+                plan.Latitude= geocode.results.FirstOrDefault().geometry.location.lat;
+                plan.Longitude= geocode.results.FirstOrDefault().geometry.location.lng;
+
+
+                Pins = new ObservableCollection<Plan>();
+                Pins.Add( plan );
             }
-            
+
+            ShowHiddenSuggestionBar();
         }
+
+        private void ShowHiddenSuggestionBar()
+        {
+            if ( (SelectedItem != null && AddressText == SelectedItem.Description) || string.IsNullOrEmpty(AddressText))
+            {
+                SuggestionBarVisible = false;
+            }
+            else
+            {
+                SuggestionBarVisible = true;
+            }
+        }
+
         #endregion
     }
 }
