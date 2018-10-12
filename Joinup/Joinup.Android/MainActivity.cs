@@ -18,6 +18,7 @@ namespace Joinup.Droid
         protected override void OnCreate(Bundle bundle)
         {
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init( true );
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM1MjJAMzEzNjJlMzMyZTMwR2hlSDFiVHhxUDNWT2NNSSswUVBzRmxFUEV1R0lnaWxWWTNMRHlyeVpZdz0=");
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init( this );
             UserDialogs.Init( this );

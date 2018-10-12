@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Joinup.Views.NewPlanStep4Page"
+             xmlns:Syncfusion ="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             BackgroundColor="White"
+             Title="Crea tu plan"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content>
+        <Grid
+                  Margin="0,0,0,16"
+            BindingContext="{Binding NewPlanStep4}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                Grid.Row="0"
+                Margin="16,32,16,32"
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Label
+                        Grid.Row="0"
+                    Text="Selecciona la fecha en la que tendra lugar el evento"
+                    TextColor="{StaticResource PrimaryColor}"
+                    FontFamily="{StaticResource RobotoRegular}"
+                    FontSize="Large">
+                    </Label >
+
+                    <Syncfusion:SfCalendar
+                        Margin="0,16,0,16"
+                        Grid.Row="1"
+                        SelectionMode="RangeSelection"
+                        NavigationArrowThickness="2"
+                        NavigationButtonHeight="16"
+                        
+                        HeaderHeight="24"
+                        SelectedRange="{Binding SelectedRange,Mode=TwoWay}"
+                        MinDate="{Binding MinDate,Mode=TwoWay}">
+                        <Syncfusion:SfCalendar.MonthViewSettings>
+                            <Syncfusion:MonthViewSettings 
+                                BorderColor="Transparent"
+                                HeaderTextColor="{StaticResource PrimaryTextColor}"
+                                HeaderFontFamily="{StaticResource RobotoRegular}"
+                                HeaderFont="14"                                
+                                DateTextAlignment="Center"
+                                DayLabelTextAlignment="Center"
+                                DayHeaderTextColor="{StaticResource SecondaryTextColor}"
+                                DayHeaderFontFamily="{StaticResource RobotoLight}"
+                                DayHeaderFont="12"
+                                CurrentMonthTextColor="{StaticResource PrimaryColor}"
+                                PreviousMonthTextColor="{StaticResource TertiaryTextColor}"
+                                SelectedDayTextColor="White"
+                                DateSelectionColor="{StaticResource PrimaryColor}"
+                                DisabledBackgroundColor="Transparent"/>
+                            
+
+                        </Syncfusion:SfCalendar.MonthViewSettings>
+                    </Syncfusion:SfCalendar>
+
+                <TimePicker
+                        Grid.Row="2"
+                        BackgroundColor="Black">
+
+                </TimePicker>
+
+            </Grid>
+
+            <ProgressBar
+                Grid.Row="1"
+                VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                Progress="0.2"
+                ProgressColor="{StaticResource PrimaryColor}">
+            </ProgressBar>
+
+            <Button
+                Grid.Row="2"
+                Command="{Binding NextStepCommand}"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Style="{StaticResource BaseButtonStyle}"
+                TextColor="White"
+                WidthRequest="150"
+                Text="Siguiente"
+                HorizontalOptions="Center"
+                VerticalOptions="End">
+
+
+            </Button>
+
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

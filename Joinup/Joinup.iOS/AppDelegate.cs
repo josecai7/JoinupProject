@@ -4,6 +4,7 @@ using System.Linq;
 using Acr.UserDialogs;
 using Foundation;
 using Plugin.Toasts;
+using Syncfusion.SfCalendar.XForms.iOS;
 using UIKit;
 using Xamarin.Forms;
 
@@ -26,6 +27,8 @@ namespace Joinup.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM1MjJAMzEzNjJlMzMyZTMwR2hlSDFiVHhxUDNWT2NNSSswUVBzRmxFUEV1R0lnaWxWWTNMRHlyeVpZdz0=");
+            new SfCalendarRenderer();
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init();
             Xamarin.FormsMaps.Init();

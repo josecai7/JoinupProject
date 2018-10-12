@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GooglePlaces.Xamarin;
 using Joinup.Common.Models;
+using Joinup.Utils;
+using Joinup.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace Joinup.ViewModels
@@ -93,6 +96,13 @@ namespace Joinup.ViewModels
                 return new RelayCommand(TextChanged);
             }
         }
+        public ICommand NextStepCommand
+        {
+            get
+            {
+                return new RelayCommand(NextStepAsync);
+            }
+        }
         #endregion
         #region Methods
         private async void TextChanged()
@@ -134,6 +144,18 @@ namespace Joinup.ViewModels
             }
         }
 
+        private async void NextStepAsync()
+        {
+            if (plan.Latitude==0 || plan.Longitude==0 )
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ups...Recuerda especificar el lugar donde se llevara a cabo tu plan", "add.png", ColorUtils.ErrorColor);
+            }
+            else
+            {
+                MainViewModel.GetInstance().NewPlanStep4 = new NewPlanStep4ViewModel(plan);
+                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep4Page());
+            }
+        }
         #endregion
     }
 }
