@@ -25,6 +25,7 @@ namespace Joinup.ViewModels
         public NewPlanStep3ViewModel NewPlanStep3 { get; set; }
 
         public NewPlanStep4ViewModel NewPlanStep4 { get; set; }
+        public NewPlanStep5ViewModel NewPlanStep5 { get; set; }
 
         public ICommand NewPlanCommand
         {

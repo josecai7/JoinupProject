@@ -1,3 +1,4 @@
+using DLToolkit.Forms.Controls;
 using Joinup.Views;
 using System;
 using Xamarin.Forms;
@@ -11,8 +12,9 @@ namespace Joinup
 		public App ()
 		{
 			InitializeComponent();
+            FlowListView.Init();
 
-			MainPage = new NavigationPage(new PlansPage());
+            MainPage = new NavigationPage(new PlansPage());
 		}
 
 		protected override void OnStart ()

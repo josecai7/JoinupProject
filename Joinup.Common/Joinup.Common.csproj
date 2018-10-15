@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanType.cs" />
     <Compile Include="Models\Response.cs" />

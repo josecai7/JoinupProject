@@ -8,6 +8,6 @@ namespace Joinup.Backend.Models
 {
     public class LocalDataContext: DataContext
     {
-
+        public System.Data.Entity.DbSet<Joinup.Common.Models.Image> Images { get; set; }
     }
 }

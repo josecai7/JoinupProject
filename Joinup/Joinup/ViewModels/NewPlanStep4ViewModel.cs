@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
 using Joinup.Utils;
+using Joinup.Views;
 using Syncfusion.SfCalendar.XForms;
 using System;
 using System.Collections.Generic;
@@ -129,6 +130,9 @@ namespace Joinup.ViewModels
                 {
                     plan.PlanDate = dateFrom;
                     plan.EndPlanDate = dateTo;
+
+                    MainViewModel.GetInstance().NewPlanStep5 = new NewPlanStep5ViewModel( plan );
+                    await Application.Current.MainPage.Navigation.PushAsync( new NewPlanStep5Page() );
                 }
             }
         }
