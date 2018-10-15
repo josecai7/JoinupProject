@@ -47,7 +47,7 @@
                         SelectionMode="RangeSelection"
                         NavigationArrowThickness="2"
                         NavigationButtonHeight="16"
-                        
+                        EnableSwiping="True"
                         HeaderHeight="24"
                         SelectedRange="{Binding SelectedRange,Mode=TwoWay}"
                         MinDate="{Binding MinDate,Mode=TwoWay}">
