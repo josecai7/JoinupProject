@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Joinup.Views.NewPlanStep4Page"
+             xmlns:custom="clr-namespace:Joinup.CustomControls"
              xmlns:Syncfusion ="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              BackgroundColor="White"
              Title="Crea tu plan"
@@ -22,16 +23,15 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid
                 Grid.Row="0"
-                Margin="16,32,16,32"
                 VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Label
                         Grid.Row="0"
@@ -41,7 +41,7 @@
                     FontSize="Large">
                     </Label >
 
-                    <Syncfusion:SfCalendar
+                <Syncfusion:SfCalendar
                         Margin="0,16,0,16"
                         Grid.Row="1"
                         SelectionMode="RangeSelection"
@@ -51,8 +51,8 @@
                         HeaderHeight="24"
                         SelectedRange="{Binding SelectedRange,Mode=TwoWay}"
                         MinDate="{Binding MinDate,Mode=TwoWay}">
-                        <Syncfusion:SfCalendar.MonthViewSettings>
-                            <Syncfusion:MonthViewSettings 
+                    <Syncfusion:SfCalendar.MonthViewSettings>
+                        <Syncfusion:MonthViewSettings 
                                 BorderColor="Transparent"
                                 HeaderTextColor="{StaticResource PrimaryTextColor}"
                                 HeaderFontFamily="{StaticResource RobotoRegular}"
@@ -67,21 +67,124 @@
                                 SelectedDayTextColor="White"
                                 DateSelectionColor="{StaticResource PrimaryColor}"
                                 DisabledBackgroundColor="Transparent"/>
-                            
 
-                        </Syncfusion:SfCalendar.MonthViewSettings>
-                    </Syncfusion:SfCalendar>
 
-                <TimePicker
-                        Grid.Row="2"
-                        BackgroundColor="Black">
-
-                </TimePicker>
-
+                    </Syncfusion:SfCalendar.MonthViewSettings>
+                </Syncfusion:SfCalendar>
             </Grid>
 
-            <ProgressBar
+            <Grid
                 Grid.Row="1"
+                Margin="16,0,16,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TimePicker
+                    x:Name="TimepickerFrom"
+                    Grid.Column="0"
+                    Time="{Binding SelectedTimeFrom}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" >
+
+                </TimePicker>
+                <Frame
+                    Grid.Column="0"
+                    BorderColor="{StaticResource PrimaryColor}"
+                    CornerRadius="4"
+                    Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTimeFromCommand}" CommandParameter="{x:Reference TimepickerFrom}" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout
+                        Spacing="0">
+                        <Label
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoRegular}"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding DateFrom}">
+
+                        </Label>
+                        <Label
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoLight}"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Small"
+                            Text="a las">
+
+                        </Label>
+                        <Label
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoRegular}"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Medium"
+                            Text="{Binding TimeFrom}">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+
+                <custom:FontIcon
+                    Grid.Column="1"
+                    IconColor="{StaticResource PrimaryColor}"
+                    Icon="ray-start-arrow"
+                    IconSize="{StaticResource IconSize}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+                    
+                </custom:FontIcon>
+                <TimePicker
+                    x:Name="TimepickerTo"
+                    Grid.Column="2"
+                    Time="{Binding SelectedTimeTo}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" >
+
+                </TimePicker>
+                <Frame
+                    Grid.Column="2"
+                    BorderColor="{StaticResource PrimaryColor}"
+                    CornerRadius="4"
+                    Padding="0">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectedTimeFromCommand}" CommandParameter="{x:Reference TimepickerTo}" />
+                    </Frame.GestureRecognizers>
+                    <StackLayout
+                        Spacing="0">
+                        <Label
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoRegular}"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding DateTo}">
+
+                        </Label>
+                        <Label
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoLight}"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Small"
+                            Text="a las">
+
+                        </Label>
+                        <Label
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoRegular}"
+                            HorizontalTextAlignment="Center"
+                            FontSize="Medium"
+                            Text="{Binding TimeTo}">
+
+                        </Label>
+
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            
+            <ProgressBar
+                Grid.Row="2"
                 VerticalOptions="End"
                 HorizontalOptions="FillAndExpand"
                 Progress="0.2"
@@ -89,7 +192,7 @@
             </ProgressBar>
 
             <Button
-                Grid.Row="2"
+                Grid.Row="3"
                 Command="{Binding NextStepCommand}"
                 BackgroundColor="{StaticResource PrimaryColor}"
                 Style="{StaticResource BaseButtonStyle}"
