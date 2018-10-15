@@ -17,6 +17,7 @@
             <x:String x:Key="UrlAPI">https://joinupapi.azurewebsites.net</x:String>
             <x:String x:Key="UrlPrefix">/api</x:String>
             <x:String x:Key="UrlPlansController">/Plans</x:String>
+            <x:String x:Key="UrlImagesController">/Images</x:String>
 
 
             <!-- FONTS -->

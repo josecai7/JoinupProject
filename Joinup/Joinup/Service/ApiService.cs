@@ -12,6 +12,24 @@ namespace Joinup.Service
 {
     public class ApiService
     {
+        #region Singleton
+
+        private static ApiService instance;
+
+        public static ApiService GetInstance()
+        {
+            if (instance == null)
+            {
+                return new ApiService();
+            }
+            else
+            {
+                return instance;
+            }
+        }
+
+        #endregion
+
         public async Task<TokenResponse> GetToken(string urlBase, string username, string password)
         {
             try
@@ -140,5 +158,6 @@ namespace Joinup.Service
                 };
             }
         }
+
     }
 }
