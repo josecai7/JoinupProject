@@ -25,7 +25,7 @@ namespace Joinup.Common.Models
                 {
                     return "no_image";
                 }
-                return $"http://joinupbackend20180911113817.azurewebsites.net/{ImagePath.Substring( 1 )}";
+                return $"https://joinupapi.azurewebsites.net/{ImagePath.Substring( 1 )}";
             }
         }
     }

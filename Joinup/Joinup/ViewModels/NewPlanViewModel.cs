@@ -49,8 +49,8 @@ namespace Joinup.ViewModels
 
             var newplan = (Plan) response.Result;
 
-            var viewModel=PlansViewModel.GetInstance();
-            viewModel.PlanList.Add( newplan );
+            //var viewModel=PlansViewModel.GetInstance();
+            //viewModel.PlanList.Add( newplan );
 
 
             await Application.Current.MainPage.Navigation.PopAsync();
