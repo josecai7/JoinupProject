@@ -15,11 +15,11 @@ namespace Joinup.ViewModels
         #region Attributes
         private ApiService apiService;
 
-        private ObservableCollection<Common.Models.Image> planList;
+        private ObservableCollection<Plan> planList;
         #endregion
 
         #region Properties
-        public ObservableCollection<Common.Models.Image> PlanList
+        public ObservableCollection<Plan> PlanList
         {
             get
             {
@@ -91,9 +91,11 @@ namespace Joinup.ViewModels
             var connection = await apiService.CheckConnection();
             if ( connection.IsSuccess )
             {
-                //string url = Application.Current.Resources["UrlAPI"].ToString();
+                var url = Application.Current.Resources["UrlAPI"].ToString();
+                var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+                var controller = Application.Current.Resources["UrlImagesController"].ToString();
 
-                var response = await apiService.GetList<Common.Models.Image>( "http://joinupapi.azurewebsites.net/", "/api", "/Images" );
+                var response = await apiService.GetList<Plan>( url, prefix, controller );
 
                 if ( !response.IsSuccess )
                 {
@@ -101,8 +103,8 @@ namespace Joinup.ViewModels
                     return;
                 }
 
-                var list = (List<Common.Models.Image>) response.Result;
-                PlanList = new ObservableCollection<Common.Models.Image>( list );
+                var list = (List<Plan>) response.Result;
+                PlanList = new ObservableCollection<Plan>( list );
             }
             else
             {
