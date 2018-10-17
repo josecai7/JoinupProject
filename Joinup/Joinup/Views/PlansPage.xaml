@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="Joinup.Views.PlansPage"
              Title="Planes">
     <ContentPage.ToolbarItems>
@@ -9,38 +10,66 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
+            BackgroundColor="{StaticResource FormBackgroundColor}"
             BindingContext="{Binding Plans}">
             <ListView
                 HasUnevenRows="True"
                 ItemsSource="{Binding PlanList}"
                 IsRefreshing="{Binding IsRefreshing}"
                 IsPullToRefreshEnabled="True"
+                SeparatorVisibility="None"
                 RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <Frame                               
+                                BackgroundColor="White"
+                                CornerRadius="4" 
+                                Margin="8,4,8,4" 
+                                Padding="0" 
+                                IsClippedToBounds="True">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="180" />
+                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Frame CornerRadius="10" Grid.Row="0" Margin="0" Padding="0" IsClippedToBounds="True">
-                                    <Image Aspect="AspectFill" Source="{Binding ImageFullPath}" />
-                                </Frame>
 
-                                <Grid
-                                    Grid.Row="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                                    <ffimageloading:CachedImage 
+                                        BackgroundColor="AliceBlue"
+                                        Grid.Row="0"
+                                        Source="{Binding DefaultImageFullPath}"
+                                        Aspect="AspectFill" 
+                                        LoadingPlaceholder="no_image.png" 
+                                        ErrorPlaceholder="no_image.png" 
+                                        DownsampleToViewSize="true"
+                                        HeightRequest="180">
+                                    </ffimageloading:CachedImage>
+                                    <Grid
+                                    Grid.Row="1"
+                                        Margin="8,0,8,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
-                                    <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" />
-                                    <Label Grid.Row="1" Text="{Binding Description}" />
+                                            <Label 
+                                                Grid.Row="0" 
+                                                Margin="0,16,0,8"
+                                                Text="{Binding Name}"
+                                                TextColor="{StaticResource PrimaryTextColor}"
+                                                FontFamily="{StaticResource RobotoMedium}"
+                                                FontSize="Large"/>
 
-                                </Grid>
+                                            <Label Grid.Row="1" 
+                                                Text="{Binding Description}"
+                                                TextColor="{StaticResource SecondaryTextColor}"
+                                                FontFamily="{StaticResource RobotoMedium}"
+                                                FontSize="Small"/>
+
+                                    </Grid>
 
                             </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

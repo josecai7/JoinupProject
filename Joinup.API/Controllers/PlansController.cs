@@ -20,7 +20,14 @@ namespace Joinup.API.Controllers
         // GET: api/Plans
         public IQueryable<Plan> GetPlans()
         {
-            return db.Plans;
+            var plans = db.Plans;
+            foreach ( var plan in plans )
+            {
+                var images= db.Images.Where( item => item.EntityId == plan.PlanId);
+                plan.PlanImages = images.ToList();
+            }
+
+            return plans;
         }
 
         // GET: api/Plans/5

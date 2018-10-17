@@ -93,7 +93,7 @@ namespace Joinup.ViewModels
             {
                 var url = Application.Current.Resources["UrlAPI"].ToString();
                 var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-                var controller = Application.Current.Resources["UrlImagesController"].ToString();
+                var controller = Application.Current.Resources["UrlPlansController"].ToString();
 
                 var response = await apiService.GetList<Plan>( url, prefix, controller );
 

@@ -55,6 +55,7 @@
 
             <!-- COLORS -->
             <Color x:Key="BackgroundColor">#FFFFFF</Color>
+            <Color x:Key="FormBackgroundColor">#ECF0F1</Color>
 
             <Color x:Key="PrimaryColor">#457B9D</Color>
             <Color x:Key="PrimaryTextColor">#595959</Color>

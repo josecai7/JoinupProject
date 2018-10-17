@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,17 +24,22 @@ namespace Joinup.Common.Models
         public DateTime PlanDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime EndPlanDate { get; set; }
-        public string ImageFullPath
+
+        [NotMapped]
+        public string DefaultImageFullPath
         {
             get
             {
-                if (string.IsNullOrEmpty(ImagePath))
+                Image image = PlanImages.FirstOrDefault();
+                if (image==null)
                 {
                     return "no_image";
                 }
-                return $"http://joinupbackend20180911113817.azurewebsites.net/{ImagePath.Substring(1)}";
+                return image.ImageFullPath;
             }
         }
+        [NotMapped]
+        public List<Image> PlanImages { get; set; }
 
     }
 }
