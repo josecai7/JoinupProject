@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -30,12 +31,14 @@ namespace Joinup.Common.Models
         {
             get
             {
-                Image image = PlanImages.FirstOrDefault();
-                if (image==null)
+                string imagePath = "no_image";
+                if ( PlanImages != null && PlanImages.Count > 0 )
                 {
-                    return "no_image";
+                    Image image = PlanImages.FirstOrDefault();
+                    imagePath = image.ImageFullPath;
                 }
-                return image.ImageFullPath;
+
+                return imagePath;
             }
         }
         [NotMapped]

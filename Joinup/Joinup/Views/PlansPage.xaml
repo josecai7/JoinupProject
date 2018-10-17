@@ -25,7 +25,7 @@
                             <Frame                               
                                 BackgroundColor="White"
                                 CornerRadius="4" 
-                                Margin="8,4,8,4" 
+                                Margin="8" 
                                 Padding="0" 
                                 IsClippedToBounds="True">
                             <Grid>
@@ -44,29 +44,38 @@
                                         DownsampleToViewSize="true"
                                         HeightRequest="180">
                                     </ffimageloading:CachedImage>
-                                    <Grid
-                                    Grid.Row="1"
-                                        Margin="8,0,8,0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        BackgroundColor="White"
+                                        Spacing="0"
+                                        Padding="8,0,8,0">
 
-                                            <Label 
+                                        <Label 
                                                 Grid.Row="0" 
-                                                Margin="0,16,0,8"
+                                                Margin="0,8,0,0"
                                                 Text="{Binding Name}"
                                                 TextColor="{StaticResource PrimaryTextColor}"
-                                                FontFamily="{StaticResource RobotoMedium}"
+                                                FontFamily="{StaticResource RobotoRegular}"
                                                 FontSize="Large"/>
 
                                             <Label Grid.Row="1" 
                                                 Text="{Binding Description}"
                                                 TextColor="{StaticResource SecondaryTextColor}"
-                                                FontFamily="{StaticResource RobotoMedium}"
+                                                FontFamily="{StaticResource RobotoLight}"
+                                                FontSize="Small"/>
+                                        <BoxView
+                                            HorizontalOptions="Fill"
+                                            HeightRequest="1"
+                                            BackgroundColor="{StaticResource DividerColor}"
+                                            Margin="0,4,0,8"/>
+
+                                        <Label Grid.Row="1" 
+                                                Text="{Binding Description}"
+                                                TextColor="{StaticResource SecondaryTextColor}"
+                                                FontFamily="{StaticResource RobotoLight}"
                                                 FontSize="Small"/>
 
-                                    </Grid>
+                                    </StackLayout>
 
                             </Grid>
                             </Frame>

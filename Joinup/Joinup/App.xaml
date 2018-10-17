@@ -61,6 +61,9 @@
             <Color x:Key="PrimaryTextColor">#595959</Color>
             <Color x:Key="SecondaryTextColor">#A1A1A1</Color>
             <Color x:Key="TertiaryTextColor">#C9C9C9</Color>
+
+            <Color x:Key="DividerColor">#E5E5E5</Color>
+
             <Color x:Key="ErrorColor">#B4656F</Color>
             
 
