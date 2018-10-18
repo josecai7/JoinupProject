@@ -274,7 +274,7 @@
                         HeightRequest="50"
                         Padding="0"
                         HasShadow="true"
-                        OutlineColor="LightGray"                       
+                        OutlineColor="{StaticResource ShadowColor}"                       
                         >
 
                         <ctrls:ButtonFrame.HorizontalOptions>

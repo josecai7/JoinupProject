@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Acr.UserDialogs;
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using Plugin.Toasts;
 using Syncfusion.SfCalendar.XForms.iOS;
 using UIKit;
@@ -31,6 +32,7 @@ namespace Joinup.iOS
             new SfCalendarRenderer();
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init();
+            ImageCircleRenderer.Init();
             Xamarin.FormsMaps.Init();
             LoadApplication(new App());
 

@@ -9,6 +9,7 @@ using Android.OS;
 using Plugin.Toasts;
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace Joinup.Droid
 {
@@ -22,6 +23,7 @@ namespace Joinup.Droid
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init( this );
             UserDialogs.Init( this );
+            ImageCircleRenderer.Init();
             Xamarin.FormsMaps.Init(this, bundle);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

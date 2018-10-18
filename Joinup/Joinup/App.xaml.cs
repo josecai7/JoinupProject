@@ -1,4 +1,5 @@
 using DLToolkit.Forms.Controls;
+using Joinup.Utils;
 using Joinup.Views;
 using System;
 using Xamarin.Forms;
@@ -14,7 +15,8 @@ namespace Joinup
 			InitializeComponent();
             FlowListView.Init();
 
-            MainPage = new NavigationPage(new PlansPage());
+            MainPage = new NavigationPage( new PlansPage() )
+            { BarBackgroundColor = ColorUtils.PrimaryColor };
 		}
 
 		protected override void OnStart ()

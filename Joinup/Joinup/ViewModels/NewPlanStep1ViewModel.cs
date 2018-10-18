@@ -80,6 +80,9 @@ namespace Joinup.ViewModels
         #region Constructors
         public NewPlanStep1ViewModel()
         {
+            MessagingCenter.Subscribe<NewPlanStep1ViewModel, Plan>( this, "Hi", (sender, arg) => {
+                plan = arg;
+            } );
         }
         #endregion
 

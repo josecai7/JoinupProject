@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Infrastructure;
 using Joinup.Utils;
 using Joinup.Views;
 using System;
@@ -26,6 +27,7 @@ namespace Joinup.ViewModels
             }
             set
             {
+                Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "Hi", plan );
                 title = value;
                 SetValue(ref title, value);
             }
@@ -38,6 +40,7 @@ namespace Joinup.ViewModels
             }
             set
             {
+                Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "Hi", plan );
                 description = value;
                 SetValue(ref description, value);
             }
@@ -48,6 +51,8 @@ namespace Joinup.ViewModels
         public NewPlanStep2ViewModel(Plan pPlan)
         {
             plan = pPlan;
+
+            Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "Hi", plan );
         }
         #endregion
 

@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:custom="clr-namespace:Joinup.CustomControls"
              x:Class="Joinup.Views.PlansPage"
              Title="Planes">
     <ContentPage.ToolbarItems>
@@ -26,7 +28,9 @@
                                 BackgroundColor="White"
                                 CornerRadius="4" 
                                 Margin="8" 
-                                Padding="0" 
+                                Padding="0"
+                                HasShadow="true"
+                                OutlineColor="{StaticResource ShadowColor}"     
                                 IsClippedToBounds="True">
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -48,15 +52,14 @@
                                         Grid.Row="1"
                                         BackgroundColor="White"
                                         Spacing="0"
-                                        Padding="8,0,8,0">
+                                        Padding="8">
 
                                         <Label 
                                                 Grid.Row="0" 
-                                                Margin="0,8,0,0"
                                                 Text="{Binding Name}"
                                                 TextColor="{StaticResource PrimaryTextColor}"
                                                 FontFamily="{StaticResource RobotoRegular}"
-                                                FontSize="Large"/>
+                                                FontSize="Medium"/>
 
                                             <Label Grid.Row="1" 
                                                 Text="{Binding Description}"
@@ -69,11 +72,69 @@
                                             BackgroundColor="{StaticResource DividerColor}"
                                             Margin="0,4,0,8"/>
 
-                                        <Label Grid.Row="1" 
-                                                Text="{Binding Description}"
-                                                TextColor="{StaticResource SecondaryTextColor}"
-                                                FontFamily="{StaticResource RobotoLight}"
-                                                FontSize="Small"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <controls:CircleImage 
+                                                Grid.Column="0"
+                                                Source="no_image.png" 
+                                                HeightRequest="30"
+                                                WidthRequest="30"
+                                                Aspect="AspectFit"
+                                            />
+                                            <StackLayout
+                                                Grid.Column="1"
+                                                Orientation="Vertical"
+                                                Spacing="2">
+                                                <Label
+                                                    Text="Francisco Javier"
+                                                    TextColor="{StaticResource PrimaryTextColor}"
+                                                    FontFamily="{StaticResource RobotoRegular}"
+                                                    FontSize="Small"/>
+                                                <StackLayout                                                  
+                                                    Orientation="Horizontal">
+                                                    <custom:FontIcon
+                                                        IconColor="{StaticResource PrimaryColor}"
+                                                        Icon="map-marker-radius"
+                                                        IconSize="{StaticResource IconExtraSmallSize}"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center">
+                                                    </custom:FontIcon>
+                                                    <Label
+                                                    Text="3.2 km"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    FontFamily="{StaticResource RobotoLight}"
+                                                    FontSize="Micro"/>
+                                                    <custom:FontIcon
+                                                        IconColor="{StaticResource PrimaryColor}"
+                                                        Icon="account-group"
+                                                        IconSize="{StaticResource IconExtraSmallSize}"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center">
+                                                    </custom:FontIcon>
+                                                    <Label
+                                                    Text="4"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    FontFamily="{StaticResource RobotoLight}"
+                                                    FontSize="Micro"/>
+                                                    <custom:FontIcon
+                                                        IconColor="{StaticResource PrimaryColor}"
+                                                        Icon="message-text"
+                                                        IconSize="{StaticResource IconExtraSmallSize}"
+                                                        VerticalOptions="Center"
+                                                        HorizontalOptions="Center">
+                                                    </custom:FontIcon>
+                                                    <Label
+                                                    Text="4"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    FontFamily="{StaticResource RobotoLight}"
+                                                    FontSize="Micro"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </Grid>
 
                                     </StackLayout>
 

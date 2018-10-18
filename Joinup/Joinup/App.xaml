@@ -58,11 +58,12 @@
             <Color x:Key="FormBackgroundColor">#ECF0F1</Color>
 
             <Color x:Key="PrimaryColor">#457B9D</Color>
-            <Color x:Key="PrimaryTextColor">#595959</Color>
-            <Color x:Key="SecondaryTextColor">#A1A1A1</Color>
+            <Color x:Key="PrimaryTextColor">#2D2D2D</Color>
+            <Color x:Key="SecondaryTextColor">#7A7A7A</Color>
             <Color x:Key="TertiaryTextColor">#C9C9C9</Color>
 
             <Color x:Key="DividerColor">#E5E5E5</Color>
+            <Color x:Key="ShadowColor">#E5E5E5</Color>
 
             <Color x:Key="ErrorColor">#B4656F</Color>
             
