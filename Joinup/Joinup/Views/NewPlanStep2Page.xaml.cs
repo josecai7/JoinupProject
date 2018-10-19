@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Joinup.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Joinup.Views
 		public NewPlanStep2Page ()
 		{
 			InitializeComponent ();
-		}
+            ((MainViewModel) BindingContext).Initialize( this );
+        }
 	}
 }

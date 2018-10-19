@@ -27,7 +27,6 @@ namespace Joinup.ViewModels
             }
             set
             {
-                Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "Hi", plan );
                 title = value;
                 SetValue(ref title, value);
             }
@@ -40,7 +39,6 @@ namespace Joinup.ViewModels
             }
             set
             {
-                Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "Hi", plan );
                 description = value;
                 SetValue(ref description, value);
             }
@@ -51,8 +49,6 @@ namespace Joinup.ViewModels
         public NewPlanStep2ViewModel(Plan pPlan)
         {
             plan = pPlan;
-
-            Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "Hi", plan );
         }
         #endregion
 
@@ -81,6 +77,11 @@ namespace Joinup.ViewModels
                 MainViewModel.GetInstance().NewPlanStep3 = new NewPlanStep3ViewModel(plan);
                 await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep3Page());
             }
+        }
+        protected override void CurrentPageOnDisappearing(object sender, EventArgs eventArgs)
+        {
+            base.CurrentPageOnDisappearing( sender ,eventArgs);
+            Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "RefreshPlan", plan );
         }
         #endregion
     }

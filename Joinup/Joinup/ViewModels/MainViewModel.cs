@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Joinup.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel:BaseViewModel
     {
         public CommentsViewModel Comments { get; set; }
 
@@ -45,6 +45,11 @@ namespace Joinup.ViewModels
         {
             instance = this;
             Plans = new PlansViewModel();         
+        }
+
+        protected override void CurrentPageOnDisappearing(object sender, EventArgs eventArgs)
+        {
+            base.CurrentPageOnDisappearing( sender, eventArgs );
         }
         #region Singleton
         private static MainViewModel instance;
