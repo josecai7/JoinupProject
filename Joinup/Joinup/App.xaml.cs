@@ -1,7 +1,10 @@
 using DLToolkit.Forms.Controls;
+using Joinup.Navigation;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using Joinup.Views;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,18 +16,22 @@ namespace Joinup
 		public App ()
 		{
 			InitializeComponent();
-            FlowListView.Init();
-
-            MainPage = new NavigationPage( new PlansPage() )
-            { BarBackgroundColor = ColorUtils.PrimaryColor };
+            FlowListView.Init();          
 		}
 
-		protected override void OnStart ()
+		protected override async void OnStart ()
 		{
-			// Handle when your app starts
-		}
+            base.OnStart();
 
-		protected override void OnSleep ()
+            await InitNavigation();
+        }
+        private Task InitNavigation()
+        {
+            var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
+            return navigationService.InitializeAsync();
+        }
+
+        protected override void OnSleep ()
 		{
 			// Handle when your app sleeps
 		}

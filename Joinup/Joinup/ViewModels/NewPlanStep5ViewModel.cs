@@ -24,7 +24,10 @@ namespace Joinup.ViewModels
         public ObservableCollection<LocalImage> Images
         {
             get { return images; }
-            set { SetValue( ref images, value );  }
+            set
+            {
+                RaisePropertyChanged( "Images" );
+            }
         }
         #endregion
         #region Constructors

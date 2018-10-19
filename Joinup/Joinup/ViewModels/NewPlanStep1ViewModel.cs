@@ -33,56 +33,90 @@ namespace Joinup.ViewModels
         public bool IsRestaurantSelected
         {
             get { return this.isRestaurantSelected; }
-            set { this.SetValue(ref this.isRestaurantSelected, value); }
+            set
+            {
+                isRestaurantSelected = value;
+                RaisePropertyChanged( "IsRestaurantSelected" );
+            }
         }
         public bool IsTakeSomethingSelected
         {
             get { return this.isTakeSomethingSelected; }
-            set { this.SetValue(ref this.isTakeSomethingSelected, value); }
+            set
+            {
+                isTakeSomethingSelected = value;
+                RaisePropertyChanged( "IsTakeSomethingSelected" );
+            }
         }
         public bool IsDoSportsSelected
         {
             get { return this.isDoSportsSelected; }
-            set { this.SetValue(ref this.isDoSportsSelected, value); }
+            set
+            {
+                isDoSportsSelected = value;
+                RaisePropertyChanged( "IsDoSportsSelected" );
+            }
         }
         public bool IsSpectaclesSelected
         {
             get { return this.isSpectaclesSelected; }
-            set { this.SetValue(ref this.isSpectaclesSelected, value); }
+            set
+            {
+                isSpectaclesSelected = value;
+                RaisePropertyChanged( "IsSpectaclesSelected" );
+            }
         }
         public bool IsLanguageExchangesSelected
         {
             get { return this.isLanguageExchangesSelected; }
-            set { this.SetValue(ref this.isLanguageExchangesSelected, value); }
+            set
+            {
+                isLanguageExchangesSelected = value;
+                RaisePropertyChanged( "IsLanguageExchangesSelected" );
+            }
         }
         public bool IsTravelSelected
         {
             get { return this.isTravelSelected; }
-            set { this.SetValue(ref this.isTravelSelected, value); }
+            set
+            {
+                isTravelSelected = value;
+                RaisePropertyChanged( "IsTravelSelected" );
+            }
         }
         public bool IsShoppingSelected
         {
             get { return this.isShoppingSelected; }
-            set { this.SetValue(ref this.isShoppingSelected, value); }
+            set
+            {
+                isShoppingSelected = value;
+                RaisePropertyChanged( "IsShoppingSelected" );
+            }
         }
         public bool IsGoOutForDrinksSelected
         {
             get { return this.isGoOutForDrinksSelected; }
-            set { this.SetValue(ref this.isGoOutForDrinksSelected, value); }
+            set
+            {
+                isGoOutForDrinksSelected = value;
+                RaisePropertyChanged( "IsGoOutForDrinksSelected" );
+            }
         }
         public bool IsOtherSelected
         {
             get { return this.isOtherSelected; }
-            set { this.SetValue(ref this.isOtherSelected, value); }
+            set
+            {
+                isOtherSelected = value;
+                RaisePropertyChanged( "IsOtherSelected" );
+            }
         }
 
         #endregion
         #region Constructors
         public NewPlanStep1ViewModel()
         {
-            MessagingCenter.Subscribe<NewPlanStep1ViewModel, Plan>( this, "Hi", (sender, arg) => {
-                plan = arg;
-            } );
+
         }
         #endregion
 
@@ -302,7 +336,7 @@ namespace Joinup.ViewModels
             IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
         }
 
-        private async void NextStepAsync()
+        private void NextStepAsync()
         {
             if (selectedCategory == PlanType.UNDEFINED)
             {
@@ -313,8 +347,7 @@ namespace Joinup.ViewModels
                 plan = new Plan();
                 plan.PlanType = selectedCategory;
 
-                MainViewModel.GetInstance().NewPlanStep2 = new NewPlanStep2ViewModel(plan);
-                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep2Page());
+                NavigationService.NavigateToAsync<NewPlanStep1ViewModel>( plan );
             }
         }
         #endregion

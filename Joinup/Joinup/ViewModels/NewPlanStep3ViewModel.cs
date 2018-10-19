@@ -34,7 +34,7 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue(ref addressText, value);
+                RaisePropertyChanged( "SelectedItem" );
                 TextChanged();
             }
         }
@@ -43,7 +43,7 @@ namespace Joinup.ViewModels
             get { return pins; }
             set
             {
-                SetValue( ref pins, value );
+                RaisePropertyChanged( "Pins" );
             }
         }
         public ObservableCollection<Prediction> Predictions
@@ -53,8 +53,8 @@ namespace Joinup.ViewModels
                 return predictions;
             }
             set
-            {              
-                SetValue(ref predictions, value);
+            {
+                RaisePropertyChanged( "Predictions" );
             }
         }
         public Prediction SelectedItem
@@ -64,8 +64,8 @@ namespace Joinup.ViewModels
                 return selectedItem;
             }
             set
-            {            
-                SetValue(ref selectedItem, value);
+            {
+                RaisePropertyChanged( "SelectedItem" );
                 PressOnAddress();
             }
         }
@@ -77,7 +77,7 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue( ref suggestionBarVisible, value );
+                RaisePropertyChanged( "SuggestionBarVisible" );
             }
         }
 
@@ -152,8 +152,8 @@ namespace Joinup.ViewModels
             }
             else
             {
-                MainViewModel.GetInstance().NewPlanStep4 = new NewPlanStep4ViewModel(plan);
-                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep4Page());
+                /*MainViewModel.GetInstance().NewPlanStep4 = new NewPlanStep4ViewModel(plan);
+                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep4Page());*/
             }
         }
         #endregion

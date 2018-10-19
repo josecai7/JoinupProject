@@ -30,7 +30,7 @@ namespace Joinup.ViewModels
             get { return _selectrange; }
             set
             {
-                SetValue(ref _selectrange, value);
+                RaisePropertyChanged( "SelectedRange" );
                 DateFrom = _selectrange.StartDate.ToString( "dd-MM" );
                 DateTo = _selectrange.EndDate.ToString( "dd-MM" );
             }
@@ -40,7 +40,7 @@ namespace Joinup.ViewModels
             get { return _selectedTimeFrom; }
             set
             {
-                SetValue( ref _selectedTimeFrom, value );
+                RaisePropertyChanged( "SelectedTimeFrom" );
                 TimeFrom = _selectedTimeFrom.Hours.ToString()+": "+_selectedTimeFrom.Minutes.ToString();
             }
         }
@@ -49,34 +49,34 @@ namespace Joinup.ViewModels
             get { return _selectedTimeTo; }
             set
             {
-                SetValue( ref _selectedTimeTo, value );
+                RaisePropertyChanged( "SelectedTimeTo" );
                 TimeTo = _selectedTimeTo.Hours.ToString() + ": " + _selectedTimeTo.Minutes.ToString();
             }
         }
         public DateTime MinDate
         {
             get { return _minDate; }
-            set { SetValue(ref _minDate, value); }
+            set { RaisePropertyChanged( "MinDate" ); }
         }
         public string DateFrom
         {
             get { return string.IsNullOrEmpty(_dateFrom)?"-":_dateFrom; }
-            set { SetValue( ref _dateFrom, value ); }
+            set { RaisePropertyChanged( "IsRefreshing" ); }
         }
         public string TimeFrom
         {
             get { return string.IsNullOrEmpty( _timeFrom ) ? "-" : _timeFrom; }
-            set { SetValue( ref _timeFrom, value ); }
+            set { RaisePropertyChanged( "TimeFrom" ); }
         }
         public string DateTo
         {
             get { return string.IsNullOrEmpty( _dateTo ) ? "-" : _dateTo; }
-            set { SetValue( ref _dateTo, value ); }
+            set { RaisePropertyChanged( "DateTo" ); }
         }
         public string TimeTo
         {
             get { return string.IsNullOrEmpty( _timeTo ) ? "-" : _timeTo; }
-            set { SetValue( ref _timeTo, value ); }
+            set { RaisePropertyChanged( "TimeTo" ); }
         }
         #endregion
         #region Constructors
@@ -131,8 +131,8 @@ namespace Joinup.ViewModels
                     plan.PlanDate = dateFrom;
                     plan.EndPlanDate = dateTo;
 
-                    MainViewModel.GetInstance().NewPlanStep5 = new NewPlanStep5ViewModel( plan );
-                    await Application.Current.MainPage.Navigation.PushAsync( new NewPlanStep5Page() );
+                    /*MainViewModel.GetInstance().NewPlanStep5 = new NewPlanStep5ViewModel( plan );
+                    await Application.Current.MainPage.Navigation.PushAsync( new NewPlanStep5Page() );*/
                 }
             }
         }

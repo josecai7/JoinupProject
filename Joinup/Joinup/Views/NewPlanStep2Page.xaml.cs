@@ -16,7 +16,6 @@ namespace Joinup.Views
 		public NewPlanStep2Page ()
 		{
 			InitializeComponent ();
-            ((MainViewModel) BindingContext).Initialize( this );
         }
 	}
 }

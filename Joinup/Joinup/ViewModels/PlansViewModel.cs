@@ -27,7 +27,8 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue( ref planList, value );
+                planList = value;
+                RaisePropertyChanged( "PlanList" );
             }
         }
 
@@ -41,7 +42,8 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue( ref isRefreshing, value );
+                isRefreshing = value;
+                RaisePropertyChanged( "IsRefreshing" );
             }
         }
         #endregion
@@ -81,9 +83,20 @@ namespace Joinup.ViewModels
                 return new RelayCommand( LoadPlans );
             }
         }
+        public ICommand NewPlanCommand
+        {
+            get
+            {
+                return new RelayCommand( GoToNewPlan );
+            }
+        }
         #endregion
 
         #region Methods
+        private void GoToNewPlan()
+        {
+            NavigationService.NavigateToAsync<NewPlanStep1ViewModel>();
+        }
         private async void LoadPlans()
         {
             IsRefreshing = true;

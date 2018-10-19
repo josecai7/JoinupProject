@@ -28,7 +28,7 @@ namespace Joinup.ViewModels
             set
             {
                 title = value;
-                SetValue(ref title, value);
+                RaisePropertyChanged( "Title" );
             }
         }
         public string Description
@@ -40,7 +40,7 @@ namespace Joinup.ViewModels
             set
             {
                 description = value;
-                SetValue(ref description, value);
+                RaisePropertyChanged( "Description" );
             }
         }
 
@@ -73,15 +73,10 @@ namespace Joinup.ViewModels
             {
                 plan.Name = Title;
                 plan.Description = Description;
-
+                /*
                 MainViewModel.GetInstance().NewPlanStep3 = new NewPlanStep3ViewModel(plan);
-                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep3Page());
+                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep3Page());*/
             }
-        }
-        protected override void CurrentPageOnDisappearing(object sender, EventArgs eventArgs)
-        {
-            base.CurrentPageOnDisappearing( sender ,eventArgs);
-            Xamarin.Forms.MessagingCenter.Send( MainViewModel.GetInstance().NewPlanStep1, "RefreshPlan", plan );
         }
         #endregion
     }

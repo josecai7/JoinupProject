@@ -25,7 +25,7 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue(ref commentList, value);
+                RaisePropertyChanged( "CommentList" );
             }
         }
 
@@ -40,7 +40,7 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue( ref isRefreshing, value );
+                RaisePropertyChanged( "IsRefreshing" );
             }
         }
 

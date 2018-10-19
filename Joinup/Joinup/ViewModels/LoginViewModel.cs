@@ -26,7 +26,7 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue( ref email, value );
+                RaisePropertyChanged( "Email" );
             }
         }
         public string Password
@@ -37,7 +37,7 @@ namespace Joinup.ViewModels
             }
             set
             {
-                SetValue( ref password, value );
+                RaisePropertyChanged( "Password" );
             }
         }
         public bool IsRunning
