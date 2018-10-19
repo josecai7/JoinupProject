@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Joinup.CustomControls"
              x:Class="Joinup.Views.NewPlanStep2Page"
              BackgroundColor="White"
-             Title="Crea tu plan"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             Title="Crea tu plan">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,8 +14,8 @@
 
     <ContentPage.Content>
         <Grid
-                  Margin="0,0,0,16"
-            BindingContext="{Binding NewPlanStep2}">
+                  Margin="0,0,0,16"         
+            >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -47,7 +47,7 @@
                     <Editor
                     MaxLength="50"
                     AutoSize="TextChanges"
-                    Text="{Binding Title}"
+                    Text="{Binding Title, Mode=TwoWay}"
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoRegular}"
                     FontSize="Medium">
@@ -69,7 +69,7 @@
                     <Editor
                     MaxLength="250"
                     AutoSize="TextChanges"
-                    Text="{Binding Description}"
+                    Text="{Binding Description, Mode=TwoWay}"
                     Placeholder=""
                     TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoRegular}"

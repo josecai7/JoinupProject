@@ -14,9 +14,8 @@ namespace Joinup.Views.Main
     {
         public MainView ()
         {
+            SetValue(NavigationPage.HasNavigationBarProperty, false);
             InitializeComponent();
-
-            Children.Add( new NavigationPage( new PlansPage() ) );
         }
     }
 }

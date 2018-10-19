@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using Joinup.Views;
 using Plugin.Toasts;
 using System;
@@ -116,7 +117,10 @@ namespace Joinup.ViewModels
         #region Constructors
         public NewPlanStep1ViewModel()
         {
-
+            plan = new Plan();
+            MessagingCenter.Subscribe<NewPlanStep1ViewModel,Plan>(this, "UpdatePlan", (sender,arg) => {
+                plan = arg;
+            });
         }
         #endregion
 
@@ -343,11 +347,10 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una categoria", "add.png", ColorUtils.ErrorColor);
             }
             else
-            {
-                plan = new Plan();
+            {               
                 plan.PlanType = selectedCategory;
 
-                NavigationService.NavigateToAsync<NewPlanStep1ViewModel>( plan );
+                NavigationService.NavigateToAsync<NewPlanStep2ViewModel>( plan );
             }
         }
         #endregion

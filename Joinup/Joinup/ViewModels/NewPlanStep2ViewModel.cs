@@ -2,10 +2,12 @@
 using Joinup.Common.Models;
 using Joinup.Infrastructure;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using Joinup.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,19 +17,17 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private Plan plan;
-        private string title;
-        private string description;
         #endregion
         #region Properties
         public string Title
         {
             get
             {
-                return title ;
+                return plan.Name ;
             }
             set
             {
-                title = value;
+                plan.Name = value;
                 RaisePropertyChanged( "Title" );
             }
         }
@@ -35,20 +35,33 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return description;
+                return plan.Description;
             }
             set
             {
-                description = value;
+                plan.Description = value;
                 RaisePropertyChanged( "Description" );
             }
         }
 
         #endregion
         #region Constructors
-        public NewPlanStep2ViewModel(Plan pPlan)
+        public NewPlanStep2ViewModel()
         {
-            plan = pPlan;
+            plan = new Plan();
+        }
+        public override Task InitializeAsync(object navigationData)
+        {
+            plan = (Plan)navigationData;
+            RaisePropertyChanged("Title");
+            RaisePropertyChanged("Description");
+
+            return base.InitializeAsync(navigationData);
+        }
+        public override Task OnDissapearing()
+        {
+            MessagingCenter.Send(ViewModelLocator.Instance.Resolve<NewPlanStep1ViewModel>(), "UpdatePlan", plan);
+            return base.OnDissapearing();
         }
         #endregion
 
@@ -71,8 +84,6 @@ namespace Joinup.ViewModels
             }
             else
             {
-                plan.Name = Title;
-                plan.Description = Description;
                 /*
                 MainViewModel.GetInstance().NewPlanStep3 = new NewPlanStep3ViewModel(plan);
                 await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep3Page());*/

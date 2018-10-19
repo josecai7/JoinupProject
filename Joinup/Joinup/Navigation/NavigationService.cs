@@ -67,13 +67,13 @@ namespace Joinup.Navigation
 
             if ( page is MainView )
             {
-                CurrentApplication.MainPage = page;
+                CurrentApplication.MainPage = new NavigationPage(page);
             }
             else if ( CurrentApplication.MainPage is MainView )
             {
                 var mainPage = CurrentApplication.MainPage as MainView;
                 var navigationPage = mainPage.CurrentPage as NavigationPage;
-
+ 
                 if ( navigationPage != null )
                 {
                     await navigationPage.PushAsync( page );
@@ -81,13 +81,13 @@ namespace Joinup.Navigation
                 else
                 {
                     navigationPage = new NavigationPage( page );
-                    mainPage.CurrentPage = navigationPage;
+                    CurrentApplication.MainPage = navigationPage;
                 }
 
             }
             else
             {
-                var navigationPage = CurrentApplication.MainPage as CustomNavigationPage;
+                var navigationPage = CurrentApplication.MainPage as NavigationPage;
 
                 if ( navigationPage != null )
                 {
@@ -95,7 +95,7 @@ namespace Joinup.Navigation
                 }
                 else
                 {
-                    CurrentApplication.MainPage = new CustomNavigationPage( page );
+                    CurrentApplication.MainPage = new NavigationPage( page );
                 }
             }
         }
@@ -112,23 +112,27 @@ namespace Joinup.Navigation
 
         protected Page CreateAndBindPage(Type viewModelType, object parameter)
         {
-            Type pageType = GetPageTypeForViewModel( viewModelType );
+                Type pageType = GetPageTypeForViewModel(viewModelType);
 
-            if ( pageType == null )
-            {
-                throw new Exception( $"Mapping type for {viewModelType} is not a page" );
-            }
+                if (pageType == null)
+                {
+                    throw new Exception($"Mapping type for {viewModelType} is not a page");
+                }
 
-            Page page = Activator.CreateInstance( pageType ) as Page;
-            BaseViewModel viewModel = ViewModelLocator.Instance.Resolve( viewModelType ) as BaseViewModel;
-            page.BindingContext = viewModel;
+                Page page = Activator.CreateInstance(pageType) as Page;
+                BaseViewModel viewModel = ViewModelLocator.Instance.Resolve(viewModelType) as BaseViewModel;
+                page.BindingContext = viewModel;
 
-            page.Appearing += async (object sender, EventArgs e) =>
-            {
-                await viewModel.InitializeAsync( parameter );
-            };
-
-            return page;
+                page.Appearing += async (object sender, EventArgs e) =>
+                {
+                    await viewModel.InitializeAsync(parameter);
+                };
+                page.Disappearing += async (object sender, EventArgs e) =>
+                {
+                    await viewModel.OnDissapearing();
+                };
+                return page;
+            
         }
         private void CreatePageViewModelMappings()
         {

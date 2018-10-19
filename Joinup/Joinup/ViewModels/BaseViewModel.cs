@@ -23,6 +23,10 @@ namespace Joinup.ViewModels
         {
             return Task.FromResult( false );
         }
+        public virtual Task OnDissapearing()
+        {
+            return Task.FromResult(false);
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -32,5 +36,6 @@ namespace Joinup.ViewModels
             if ( handler != null )
                 handler( this, new PropertyChangedEventArgs( propertyName ) );
         }
+
     }
 }
