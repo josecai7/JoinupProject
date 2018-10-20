@@ -27,6 +27,7 @@ namespace Joinup.Common.Models
                 }
                 return $"https://joinupapi.azurewebsites.net/{ImagePath.Substring( 1 )}";
             }
+            set { }
         }
     }
 }

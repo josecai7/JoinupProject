@@ -44,8 +44,25 @@ namespace Joinup.ViewModels
         {
             plan = (Plan)navigationData;
 
+            Images = ConvertToLocalPlanList(plan.PlanImages);
+            RaisePropertyChanged("Images");
+
             return base.InitializeAsync(navigationData);
         }
+
+        private ObservableCollection<LocalImage> ConvertToLocalPlanList(List<Common.Models.Image> planImages)
+        {
+            ObservableCollection<LocalImage> localImages = new ObservableCollection<LocalImage>();
+
+            foreach (Common.Models.Image image in planImages)
+            {
+                LocalImage localImage = new LocalImage(image);
+                localImages.Add(localImage);
+            }
+
+            return localImages;
+        }
+
         public override Task OnDissapearing()
         {
             MessagingCenter.Send(ViewModelLocator.Instance.Resolve<NewPlanStep1ViewModel>(), "UpdatePlan", plan);
@@ -103,6 +120,7 @@ namespace Joinup.ViewModels
                 
 
                 Images.Add(localImage);
+                plan.PlanImages.Add(localImage);
 
             }     
         }
@@ -136,7 +154,32 @@ namespace Joinup.ViewModels
 
         public class LocalImage: Common.Models.Image
         {
-            public ImageSource ImageSource { get; set; }
+            public LocalImage() { }
+
+            public LocalImage(Common.Models.Image pImage)
+            {
+                ImageId = pImage.ImageId;
+                EntityId = pImage.EntityId;
+                ImagePath = pImage.ImagePath;
+                ImageArray = pImage.ImageArray;
+                ImageFullPath = pImage.ImageFullPath;
+            }
+
+            public  ImageSource ImageSource
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(ImageFullPath))
+                    {
+                        return ImageSource;
+                    }
+                    else
+                    {
+                        return ImageSource.FromUri(new Uri(ImageFullPath));
+                    }
+                }
+                set { }
+            }
 
             public Common.Models.Image ToImage()
             {

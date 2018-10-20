@@ -11,6 +11,10 @@ namespace Joinup.Common.Models
 {
     public class Plan
     {
+        public Plan()
+        {
+            PlanImages = new List<Image>();
+        }
         [Key]
         public int PlanId { get; set; }
         public string UserId { get; set; }
@@ -43,7 +47,10 @@ namespace Joinup.Common.Models
             }
         }
         [NotMapped]
-        public List<Image> PlanImages { get; set; }
+        public List<Image> PlanImages
+        {
+            get; set;
+        }
 
     }
 }
