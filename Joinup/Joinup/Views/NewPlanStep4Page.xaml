@@ -5,8 +5,7 @@
              xmlns:custom="clr-namespace:Joinup.CustomControls"
              xmlns:Syncfusion ="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              BackgroundColor="White"
-             Title="Crea tu plan"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             Title="Crea tu plan">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,8 +16,7 @@
     
     <ContentPage.Content>
         <Grid
-                  Margin="0,0,0,16"
-            BindingContext="{Binding NewPlanStep4}">
+                  Margin="0,0,0,16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />

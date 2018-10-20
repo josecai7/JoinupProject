@@ -118,6 +118,7 @@ namespace Joinup.ViewModels
         public NewPlanStep1ViewModel()
         {
             plan = new Plan();
+
             MessagingCenter.Subscribe<NewPlanStep1ViewModel,Plan>(this, "UpdatePlan", (sender,arg) => {
                 plan = arg;
             });

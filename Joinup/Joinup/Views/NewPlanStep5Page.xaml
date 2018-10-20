@@ -5,12 +5,10 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"   
              BackgroundColor="White"
-             Title="Crea tu plan"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             Title="Crea tu plan">
     <ContentPage.Content>
     <Grid
-            Margin="0,0,0,16"
-            BindingContext="{Binding NewPlanStep5}">
+            Margin="0,0,0,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -44,8 +42,6 @@
                                     Aspect="AspectFill"
                                     HeightRequest="100" 
                                     WidthRequest="100"
-                                    DownsampleHeight="100"
-                                    DownsampleWidth="100"
                                     LoadingPlaceholder="no_image.png"
 							        Source="{Binding ImageSource}"/>
                             </Frame>

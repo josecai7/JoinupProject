@@ -3,12 +3,14 @@ using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -31,9 +33,23 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Constructors
-        public NewPlanStep5ViewModel(Plan pPlan)
+        public NewPlanStep5ViewModel()
         {
-            plan = pPlan;           
+            plan = new Plan();
+            MessagingCenter.Subscribe<NewPlanStep1ViewModel, Plan>(this, "UpdatePlan", (sender, arg) => {
+                plan = arg;
+            });
+        }
+        public override Task InitializeAsync(object navigationData)
+        {
+            plan = (Plan)navigationData;
+
+            return base.InitializeAsync(navigationData);
+        }
+        public override Task OnDissapearing()
+        {
+            MessagingCenter.Send(ViewModelLocator.Instance.Resolve<NewPlanStep1ViewModel>(), "UpdatePlan", plan);
+            return base.OnDissapearing();
         }
         #endregion
         #region Commands
@@ -63,7 +79,11 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var file = await CrossMedia.Current.PickPhotoAsync();
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Joinup",
+                Name = DateTime.Now.ToString()
+            });
 
             if (file == null)
             {

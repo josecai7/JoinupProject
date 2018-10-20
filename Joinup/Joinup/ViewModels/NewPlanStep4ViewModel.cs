@@ -1,11 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using Joinup.Views;
 using Syncfusion.SfCalendar.XForms;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -16,74 +18,131 @@ namespace Joinup.ViewModels
         #region Attributes
         private Plan plan;
         SelectionRange _selectrange;
-        TimeSpan _selectedTimeFrom;
-        TimeSpan _selectedTimeTo;
         DateTime _minDate;
-        string _dateFrom;
-        string _timeFrom;
-        string _dateTo;
-        string _timeTo;
         #endregion
         #region Properties
         public SelectionRange SelectedRange
         {
-            get { return _selectrange; }
+            get
+            {
+                return _selectrange;
+            }
             set
             {
+                _selectrange = value;
+                plan.PlanDate = new DateTime(_selectrange.StartDate.Year, _selectrange.StartDate.Month, _selectrange.StartDate.Day, plan.PlanDate.TimeOfDay.Hours, plan.PlanDate.TimeOfDay.Minutes, plan.PlanDate.TimeOfDay.Seconds);
+                plan.EndPlanDate = new DateTime(_selectrange.EndDate.Year, _selectrange.EndDate.Month, _selectrange.EndDate.Day, plan.EndPlanDate.TimeOfDay.Hours, plan.EndPlanDate.TimeOfDay.Minutes, plan.EndPlanDate.TimeOfDay.Seconds);
                 RaisePropertyChanged( "SelectedRange" );
-                DateFrom = _selectrange.StartDate.ToString( "dd-MM" );
-                DateTo = _selectrange.EndDate.ToString( "dd-MM" );
+                RaisePropertyChanged("DateFrom");
+                RaisePropertyChanged("DateTo");               
+            }
+        }
+        public string DateFrom
+        {
+            get
+            {
+                return DateTimeUtils.FormatDate(plan.PlanDate);
+            }
+            set
+            {
+                RaisePropertyChanged("DateFrom");
+            }
+        }
+        public string DateTo
+        {
+            get
+            {
+                return DateTimeUtils.FormatDate(plan.EndPlanDate);
+            }
+            set
+            {
+                RaisePropertyChanged("DateTo");
             }
         }
         public TimeSpan SelectedTimeFrom
         {
-            get { return _selectedTimeFrom; }
+            get
+            {
+                return plan.PlanDate.TimeOfDay;
+            }
             set
             {
-                RaisePropertyChanged( "SelectedTimeFrom" );
-                TimeFrom = _selectedTimeFrom.Hours.ToString()+": "+_selectedTimeFrom.Minutes.ToString();
+                plan.PlanDate = new DateTime(plan.PlanDate.Year, plan.PlanDate.Month,plan.PlanDate.Day,value.Hours,value.Minutes,value.Seconds);
+                RaisePropertyChanged( "TimeFrom" );
             }
         }
         public TimeSpan SelectedTimeTo
         {
-            get { return _selectedTimeTo; }
+            get
+            {
+                return plan.EndPlanDate.TimeOfDay;
+            }
             set
             {
-                RaisePropertyChanged( "SelectedTimeTo" );
-                TimeTo = _selectedTimeTo.Hours.ToString() + ": " + _selectedTimeTo.Minutes.ToString();
+                plan.EndPlanDate = new DateTime(plan.EndPlanDate.Year, plan.EndPlanDate.Month, plan.EndPlanDate.Day, value.Hours, value.Minutes, value.Seconds);
+                RaisePropertyChanged("TimeTo");
             }
         }
         public DateTime MinDate
         {
-            get { return _minDate; }
-            set { RaisePropertyChanged( "MinDate" ); }
-        }
-        public string DateFrom
-        {
-            get { return string.IsNullOrEmpty(_dateFrom)?"-":_dateFrom; }
-            set { RaisePropertyChanged( "IsRefreshing" ); }
+            get
+            {
+                return _minDate;
+            }
+            set
+            {
+                _minDate = value;
+                RaisePropertyChanged( "MinDate" );
+            }
         }
         public string TimeFrom
         {
-            get { return string.IsNullOrEmpty( _timeFrom ) ? "-" : _timeFrom; }
-            set { RaisePropertyChanged( "TimeFrom" ); }
-        }
-        public string DateTo
-        {
-            get { return string.IsNullOrEmpty( _dateTo ) ? "-" : _dateTo; }
-            set { RaisePropertyChanged( "DateTo" ); }
+            get
+            {
+                return DateTimeUtils.FormatTime(plan.PlanDate);
+            }
+            set
+            {
+                RaisePropertyChanged("TimeFrom");
+            }
         }
         public string TimeTo
         {
-            get { return string.IsNullOrEmpty( _timeTo ) ? "-" : _timeTo; }
-            set { RaisePropertyChanged( "TimeTo" ); }
+            get
+            {
+                return DateTimeUtils.FormatTime(plan.EndPlanDate);
+            }
+            set
+            {
+                RaisePropertyChanged("TimeTo");
+            }
         }
         #endregion
         #region Constructors
-        public NewPlanStep4ViewModel(Plan pPlan)
+        public NewPlanStep4ViewModel()
         {
-            plan = pPlan;
+            plan = new Plan();
             MinDate = DateTime.Today;
+            MessagingCenter.Subscribe<NewPlanStep1ViewModel, Plan>(this, "UpdatePlan", (sender, arg) => {
+                plan = arg;
+            });
+        }
+        public override Task InitializeAsync(object navigationData)
+        {
+            plan = (Plan)navigationData;
+
+            _selectrange = new SelectionRange(plan.PlanDate, plan.EndPlanDate);
+
+            RaisePropertyChanged("SelectedRange");
+            RaisePropertyChanged("TimeFrom");
+            RaisePropertyChanged("TimeTo");
+
+            return base.InitializeAsync(navigationData);
+        }
+        public override Task OnDissapearing()
+        {
+            MessagingCenter.Send(ViewModelLocator.Instance.Resolve<NewPlanStep1ViewModel>(), "UpdatePlan", plan);
+            return base.OnDissapearing();
         }
         #endregion
         #region Commands
@@ -108,31 +167,25 @@ namespace Joinup.ViewModels
             var timepicker = (TimePicker) pTimepicker;
             timepicker.Focus();
         }
-        private async void NextStepAsync()
+        private  void NextStepAsync()
         {
-            if ( SelectedRange==null || SelectedRange.StartDate == DateTime.MinValue || SelectedRange.EndDate == DateTime.MinValue )
+            if (plan.PlanDate == DateTime.MinValue || plan.EndPlanDate == DateTime.MinValue )
             {
                 ToastNotificationUtils.ShowToastNotifications( "Debe especificar la fecha", "add.png", ColorUtils.ErrorColor );
             }
-            else if ( SelectedTimeFrom == TimeSpan.Zero || SelectedTimeTo == TimeSpan.Zero )
+            else if (plan.PlanDate.TimeOfDay == TimeSpan.Zero || plan.EndPlanDate.TimeOfDay == TimeSpan.Zero )
             {
                 ToastNotificationUtils.ShowToastNotifications( "Debe especificar la hora", "add.png", ColorUtils.ErrorColor );
             }
             else
             {
-                DateTime dateFrom = SelectedRange.StartDate + SelectedTimeFrom;
-                DateTime dateTo = SelectedRange.EndDate + SelectedTimeTo;
-                if ( dateTo < dateFrom )
+                if (plan.EndPlanDate < plan.PlanDate)
                 {
                     ToastNotificationUtils.ShowToastNotifications( "La fecha fin no puede ser superior a la hora inicio", "add.png", ColorUtils.ErrorColor );
                 }
                 else
                 {
-                    plan.PlanDate = dateFrom;
-                    plan.EndPlanDate = dateTo;
-
-                    /*MainViewModel.GetInstance().NewPlanStep5 = new NewPlanStep5ViewModel( plan );
-                    await Application.Current.MainPage.Navigation.PushAsync( new NewPlanStep5Page() );*/
+                    NavigationService.NavigateToAsync<NewPlanStep5ViewModel>(plan);
                 }
             }
         }

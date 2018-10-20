@@ -5,8 +5,7 @@
              x:Class="Joinup.Views.NewPlanStep3Page"
              xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
              BackgroundColor="White"
-             Title="Crea tu plan"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             Title="Crea tu plan">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,7 +14,6 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid
-            BindingContext="{Binding NewPlanStep3}"
             BackgroundColor="Azure">
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*" />

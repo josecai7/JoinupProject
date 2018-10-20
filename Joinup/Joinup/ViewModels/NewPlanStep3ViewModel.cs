@@ -2,6 +2,7 @@
 using GooglePlaces.Xamarin;
 using Joinup.Common.Models;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using Joinup.Views;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -19,8 +21,7 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private Plan plan;
-        private string addressText;
-        Prediction selectedItem=new Prediction();
+        Prediction selectedItem = null;
         bool suggestionBarVisible = true;
         ObservableCollection<Prediction> predictions = new ObservableCollection<Prediction>();
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
@@ -30,11 +31,12 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return addressText;
+                return plan.Address;
             }
             set
             {
-                RaisePropertyChanged( "SelectedItem" );
+                plan.Address = value;
+                RaisePropertyChanged("AddressText");
                 TextChanged();
             }
         }
@@ -43,6 +45,7 @@ namespace Joinup.ViewModels
             get { return pins; }
             set
             {
+                pins = value;
                 RaisePropertyChanged( "Pins" );
             }
         }
@@ -54,6 +57,7 @@ namespace Joinup.ViewModels
             }
             set
             {
+                predictions = value;
                 RaisePropertyChanged( "Predictions" );
             }
         }
@@ -65,6 +69,7 @@ namespace Joinup.ViewModels
             }
             set
             {
+                selectedItem = value;
                 RaisePropertyChanged( "SelectedItem" );
                 PressOnAddress();
             }
@@ -77,15 +82,38 @@ namespace Joinup.ViewModels
             }
             set
             {
+                suggestionBarVisible = value;
                 RaisePropertyChanged( "SuggestionBarVisible" );
             }
         }
 
         #endregion
         #region Constructors
-        public NewPlanStep3ViewModel(Plan pPlan)
+        public NewPlanStep3ViewModel()
         {
-            plan = pPlan;
+            plan = new Plan();
+            MessagingCenter.Subscribe<NewPlanStep1ViewModel, Plan>(this, "UpdatePlan", (sender, arg) => {
+                plan = arg;
+            });
+        }
+        public override Task InitializeAsync(object navigationData)
+        {
+            plan = (Plan)navigationData;
+            if (plan.Latitude != Double.NaN && plan.Longitude != Double.NaN)
+            {
+                Pins = new ObservableCollection<Plan>();
+                Pins.Add(plan);
+            }
+            RaisePropertyChanged("Pins");
+            RaisePropertyChanged("AddressText");
+            RaisePropertyChanged("SugestionBarVisible");
+
+            return base.InitializeAsync(navigationData);
+        }
+        public override Task OnDissapearing()
+        {
+            MessagingCenter.Send(ViewModelLocator.Instance.Resolve<NewPlanStep1ViewModel>(), "UpdatePlan", plan);
+            return base.OnDissapearing();
         }
         #endregion
         #region Commands
@@ -144,7 +172,7 @@ namespace Joinup.ViewModels
             }
         }
 
-        private async void NextStepAsync()
+        private void NextStepAsync()
         {
             if (plan.Latitude==0 || plan.Longitude==0 )
             {
@@ -152,8 +180,7 @@ namespace Joinup.ViewModels
             }
             else
             {
-                /*MainViewModel.GetInstance().NewPlanStep4 = new NewPlanStep4ViewModel(plan);
-                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep4Page());*/
+                NavigationService.NavigateToAsync<NewPlanStep4ViewModel>(plan);
             }
         }
         #endregion

@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
-using Joinup.Infrastructure;
 using Joinup.Utils;
 using Joinup.ViewModels.Base;
 using Joinup.Views;
@@ -76,7 +75,7 @@ namespace Joinup.ViewModels
         #endregion
 
         #region Methods
-        private async void NextStepAsync()
+        private void NextStepAsync()
         {
             if (string.IsNullOrEmpty(Title))
             {
@@ -84,9 +83,7 @@ namespace Joinup.ViewModels
             }
             else
             {
-                /*
-                MainViewModel.GetInstance().NewPlanStep3 = new NewPlanStep3ViewModel(plan);
-                await Application.Current.MainPage.Navigation.PushAsync(new NewPlanStep3Page());*/
+                NavigationService.NavigateToAsync<NewPlanStep3ViewModel>(plan);
             }
         }
         #endregion

@@ -112,6 +112,8 @@ namespace Joinup.Navigation
 
         protected Page CreateAndBindPage(Type viewModelType, object parameter)
         {
+            try
+            {
                 Type pageType = GetPageTypeForViewModel(viewModelType);
 
                 if (pageType == null)
@@ -132,6 +134,12 @@ namespace Joinup.Navigation
                     await viewModel.OnDissapearing();
                 };
                 return page;
+            }
+            catch (Exception exc)
+            {
+                return null;
+            }
+               
             
         }
         private void CreatePageViewModelMappings()

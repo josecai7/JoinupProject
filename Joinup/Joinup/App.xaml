@@ -5,12 +5,9 @@
              xmlns:infra="clr-namespace:Joinup.Infrastructure"
              x:Class="Joinup.App">
 	<Application.Resources>
-    
+
 
         <ResourceDictionary>
-
-            <!-- Locator -->
-            <infra:InstanceLocator x:Key="Locator"/>
 
 
             <!-- Parameters -->
