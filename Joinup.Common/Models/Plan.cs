@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Joinup.Common.Models
 {
@@ -32,6 +33,7 @@ namespace Joinup.Common.Models
         public DateTime EndPlanDate { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public string DefaultImageFullPath
         {
             get
@@ -46,7 +48,7 @@ namespace Joinup.Common.Models
                 return imagePath;
             }
         }
-        [NotMapped]
+        [NotMapped]       
         public List<Image> PlanImages
         {
             get; set;

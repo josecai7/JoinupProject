@@ -9,6 +9,7 @@ using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -121,7 +122,7 @@ namespace Joinup.ViewModels
                 
 
                 Images.Add(localImage);
-                plan.PlanImages.Add(localImage);
+                plan.PlanImages.Add(localImage.ToImage());
 
             }     
         }
@@ -165,6 +166,8 @@ namespace Joinup.ViewModels
                 ImagePath = pImage.ImagePath;
                 ImageArray = pImage.ImageArray;
                 ImageFullPath = pImage.ImageFullPath;
+                Stream stream = new MemoryStream(pImage.ImageArray);
+                ImageSource = ImageSource.FromStream(() => { return stream; });
             }
 
             public  ImageSource ImageSource
