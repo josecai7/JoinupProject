@@ -28,6 +28,7 @@ namespace Joinup.ViewModels
             get { return images; }
             set
             {
+                images = value;
                 RaisePropertyChanged( "Images" );
             }
         }
@@ -154,6 +155,7 @@ namespace Joinup.ViewModels
 
         public class LocalImage: Common.Models.Image
         {
+            private ImageSource imagesource;
             public LocalImage() { }
 
             public LocalImage(Common.Models.Image pImage)
@@ -169,16 +171,16 @@ namespace Joinup.ViewModels
             {
                 get
                 {
-                    if (string.IsNullOrEmpty(ImageFullPath))
+                    if (string.IsNullOrEmpty(ImageFullPath) || string.Equals("no_image",ImageFullPath))
                     {
-                        return ImageSource;
+                        return imagesource;
                     }
                     else
                     {
                         return ImageSource.FromUri(new Uri(ImageFullPath));
                     }
                 }
-                set { }
+                set { imagesource = value; }
             }
 
             public Common.Models.Image ToImage()
