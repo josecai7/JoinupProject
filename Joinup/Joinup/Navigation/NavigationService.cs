@@ -15,6 +15,7 @@ namespace Joinup.Navigation
     {
         private IDictionary<Type, Type> viewModelRouting = new Dictionary<Type, Type>()
         {
+            { typeof(RegisterViewModel), typeof(RegisterPage) },
             { typeof(PlansViewModel), typeof(PlansPage) },
             { typeof(NewPlanStep1ViewModel), typeof(NewPlanStep1Page) },
             { typeof(NewPlanStep2ViewModel), typeof(NewPlanStep2Page) },
@@ -43,7 +44,7 @@ namespace Joinup.Navigation
 
         public Task InitializeAsync()
         {
-            return NavigateToAsync<MainViewModel>();
+            return NavigateToAsync<RegisterViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
@@ -150,6 +151,7 @@ namespace Joinup.Navigation
             _mappings.Add( typeof( NewPlanStep3ViewModel ), typeof( NewPlanStep3Page ) );
             _mappings.Add( typeof( NewPlanStep4ViewModel ), typeof( NewPlanStep4Page ) );
             _mappings.Add( typeof( NewPlanStep5ViewModel ), typeof( NewPlanStep5Page ) );
+            _mappings.Add(typeof(RegisterViewModel), typeof(RegisterPage));
             _mappings.Add( typeof( MainViewModel ), typeof( MainView ) );
         }
 
