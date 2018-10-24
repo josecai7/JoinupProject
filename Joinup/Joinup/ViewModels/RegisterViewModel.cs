@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Service;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +14,7 @@ namespace Joinup.ViewModels
     public class RegisterViewModel:BaseViewModel
     {
         #region Attributes
+        private MediaFile file;
         private ImageSource imagesource;
         private string name;
         private string surname;
@@ -108,9 +112,38 @@ namespace Joinup.ViewModels
         #endregion
         #region Methods
 
-        private void Register()
+        private async void Register()
         {
-            
+            if (!RegexHelper.IsValidEmail(Email))
+            {
+
+            }
+            else
+            {
+                //ver si hay internet
+
+                byte[] imageArray = null;
+
+                if (imagesource != null)
+                {
+                    imageArray = FilesHelper.ReadFully(file.GetStream());
+                }
+
+                var userRequest = new UserRequest();
+                userRequest.Name = Name;
+                userRequest.Surname = Surname;
+                userRequest.Email = Email;
+                userRequest.Password = Password;
+                userRequest.ImageArray = imageArray;
+
+                var url = Application.Current.Resources["UrlAPI"].ToString();
+                var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+                var controller = Application.Current.Resources["UrlUsersController"].ToString();
+
+                var response = await ApiService.GetInstance().Post<UserRequest>(url, prefix, controller, userRequest);
+
+                var newuser = (UserRequest)response.Result;
+            }
         }
         #endregion
     }
