@@ -237,11 +237,13 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UsersHelper.cs" />
     <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -260,6 +262,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\no_image.png" />
+    <Content Include="Content\Users\no_image.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
