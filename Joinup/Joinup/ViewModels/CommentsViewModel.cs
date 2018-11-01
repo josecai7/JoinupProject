@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Service;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ namespace Joinup.ViewModels
             {
                 //string url = Application.Current.Resources["UrlAPI"].ToString();
 
-                var response = await apiService.GetList<Comment>("http://joinupapi.azurewebsites.net/", "/api", "/Comments" );
+                var response = await apiService.GetList<Comment>("http://joinupapi.azurewebsites.net/", "/api", "/Comments", Settings.TokenType, Settings.AccessToken);
 
                 if ( !response.IsSuccess )
                 {

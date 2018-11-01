@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Service;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Joinup.ViewModels
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlPlansController"].ToString();
-            var response = await apiService.Post<Plan>(url,prefix,controller,plan);
+            var response = await apiService.Post<Plan>(url,prefix,controller,plan, Settings.TokenType, Settings.AccessToken);
 
             var newplan = (Plan) response.Result;
 

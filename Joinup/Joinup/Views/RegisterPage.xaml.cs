@@ -14,7 +14,7 @@ namespace Joinup.Views
 	{
 		public RegisterPage ()
 		{
-			InitializeComponent ();
+            InitializeComponent ();
 		}
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Service;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,17 +28,19 @@ namespace Joinup.ViewModels
             }
             set
             {
+                email = value;
                 RaisePropertyChanged( "Email" );
             }
         }
         public string Password
         {
             get
-            {
+            {              
                 return password;
             }
             set
             {
+                password = value;
                 RaisePropertyChanged( "Password" );
             }
         }
@@ -49,6 +53,7 @@ namespace Joinup.ViewModels
             set
             {
                 isRunning = value;
+                RaisePropertyChanged("IsRunning");
             }
         }
         #endregion
@@ -56,6 +61,8 @@ namespace Joinup.ViewModels
         public LoginViewModel()
         {
             apiService = new ApiService();
+            Email = "jasoljim71@gmail.com";
+            Password = "lugubre14";
         }
         #endregion
         #region Commands
@@ -67,35 +74,62 @@ namespace Joinup.ViewModels
             }
         }
 
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        }
+        #endregion
+
+        #region Methods
         private async void Login()
         {
+            
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlUsersController"].ToString();
+
             var connection = await apiService.CheckConnection();
 
-            if ( !connection.IsSuccess )
+            if (!connection.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert( "No hay conexion a internet", "Aceptar", "Cancelar" );
+                await Application.Current.MainPage.DisplayAlert("No hay conexion a internet", "Aceptar", "Cancelar");
             }
-            if ( string.IsNullOrEmpty( Email ) )
+            if (string.IsNullOrEmpty(Email))
             {
-                await Application.Current.MainPage.DisplayAlert( "Email vacia", "Aceptar", "Cancelar" );
+                await Application.Current.MainPage.DisplayAlert("Email vacia", "Aceptar", "Cancelar");
                 return;
             }
-            if ( string.IsNullOrEmpty( Password ) )
+            if (string.IsNullOrEmpty(Password))
             {
-                await Application.Current.MainPage.DisplayAlert( "Contraseña vacia", "Aceptar", "Cancelar" );
+                await Application.Current.MainPage.DisplayAlert("Contraseña vacia", "Aceptar", "Cancelar");
                 return;
             }
 
-            var token = await apiService.GetToken("http://joinupapi.azurewebsites.net/", Email, Password );
+            var token = await apiService.GetToken(url, Email, Password);
 
-            if ( token == null || string.IsNullOrEmpty( token.AccessToken ) )
+            if (token == null || string.IsNullOrEmpty(token.AccessToken))
             {
                 Password = string.Empty;
                 Email = string.Empty;
-                await Application.Current.MainPage.DisplayAlert( "Usuario o contraseña incorrectos", "Aceptar", "Cancelar" );
+                await Application.Current.MainPage.DisplayAlert("Usuario o contraseña incorrectos", "Aceptar", "Cancelar");
                 return;
             }
 
+            var response = await this.apiService.GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
+            if (response.IsSuccess)
+            {
+                var userASP = (MyUserASP)response.Result;
+                Settings.UserASP = JsonConvert.SerializeObject(userASP);
+            }
+
+            NavigationService.NavigateToAsync<MainViewModel>();
+        }
+        private void Register()
+        {          
+            NavigationService.NavigateToAsync<RegisterViewModel>();
         }
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿using Joinup.API.Helpers;
 using Joinup.Common.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,7 @@ using System.Web.Http.Description;
 
 namespace Joinup.API.Controllers
 {
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         public IHttpActionResult PostUser(UserRequest pUserRequest)
@@ -43,6 +45,31 @@ namespace Joinup.API.Controllers
 
             return BadRequest(answer.Message);
         }
-        
+
+        [HttpPost]
+        [Route("GetUser")]
+        public IHttpActionResult GetUser(JObject form)
+        {
+            try
+            {
+                var email = string.Empty;
+                dynamic jsonObject = form;
+                try
+                {
+                    email = jsonObject.Email.Value;
+                }
+                catch
+                {
+                    BadRequest("Incorrect call");
+                }
+                var user = UsersHelper.GetUserASP(email);
+                return Ok(user);
+            }
+            catch (Exception exc)
+            {
+                return BadRequest(exc.Message);
+            }
+        }
+
     }
 }

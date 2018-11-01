@@ -48,8 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Claim.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\GetUserRequest.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\MyUserASP.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanType.cs" />
     <Compile Include="Models\Response.cs" />

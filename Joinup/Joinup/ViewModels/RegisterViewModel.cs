@@ -2,6 +2,8 @@
 using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
+using Joinup.Utils;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -96,11 +98,19 @@ namespace Joinup.ViewModels
             }
         }
         #endregion
+
         #region Constructors
         public RegisterViewModel()
         { }
         #endregion
         #region Commands
+        public ICommand AddImageCommand
+        {
+            get
+            {
+                return new RelayCommand(AddImage);
+            }
+        }
         public ICommand RegisterCommand
         {
             get
@@ -110,8 +120,34 @@ namespace Joinup.ViewModels
         }
 
         #endregion
+
         #region Methods
 
+        private async void AddImage()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                ToastNotificationUtils.ShowToastNotifications("Camara no disponible", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+
+            file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Joinup",
+                Name = DateTime.Now.ToString()
+            });
+
+            if (file != null)
+            {
+                this.ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = this.file.GetStream();
+                    return stream;
+                });
+            }
+        }
         private async void Register()
         {
             if (!RegexHelper.IsValidEmail(Email))
@@ -124,7 +160,7 @@ namespace Joinup.ViewModels
 
                 byte[] imageArray = null;
 
-                if (imagesource != null)
+                if (file != null)
                 {
                     imageArray = FilesHelper.ReadFully(file.GetStream());
                 }
@@ -140,7 +176,7 @@ namespace Joinup.ViewModels
                 var prefix = Application.Current.Resources["UrlPrefix"].ToString();
                 var controller = Application.Current.Resources["UrlUsersController"].ToString();
 
-                var response = await ApiService.GetInstance().Post<UserRequest>(url, prefix, controller, userRequest);
+                var response = await ApiService.GetInstance().Post<UserRequest>(url, prefix, controller, userRequest, Settings.TokenType, Settings.AccessToken);
 
                 var newuser = (UserRequest)response.Result;
             }

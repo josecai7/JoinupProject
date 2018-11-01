@@ -134,7 +134,7 @@ namespace Joinup.ViewModels
             var controller = Application.Current.Resources["UrlPlansController"].ToString();
 
 
-            var response = await ApiService.GetInstance().Post<Plan>(url, prefix, controller, plan);
+            var response = await ApiService.GetInstance().Post<Plan>(url, prefix, controller, plan,Settings.TokenType,Settings.AccessToken);
             var newplan = (Plan)response.Result;
 
             SaveImages(newplan.PlanId);
@@ -150,7 +150,7 @@ namespace Joinup.ViewModels
             {
                 Common.Models.Image image = localImage.ToImage();
                 image.EntityId = pPlanId;
-                var response = await ApiService.GetInstance().Post<Common.Models.Image>(url, prefix, controller, image);
+                var response = await ApiService.GetInstance().Post<Common.Models.Image>(url, prefix, controller, image, Settings.TokenType, Settings.AccessToken);
             }
         }
         #endregion

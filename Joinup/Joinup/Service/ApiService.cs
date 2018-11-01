@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,7 +55,6 @@ namespace Joinup.Service
                 return null;
             }
         } 
-
         public async Task<Response> CheckConnection()
         {
             if ( !CrossConnectivity.Current.IsConnected )
@@ -83,13 +83,57 @@ namespace Joinup.Service
             };
 
         }
-        public async Task<Response> GetList<T>(string urlBase,string prefix,string controller)
+
+        public async Task<Response> GetUser(string urlBase, string prefix, string controller, string email, string tokenType, string accessToken)
+        {
+            try
+            {
+                GetUserRequest getUserRequest = new GetUserRequest();
+                getUserRequest.Email = email;
+
+                var request = JsonConvert.SerializeObject(getUserRequest);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                var url = $"{prefix}{controller}";
+                var response = await client.PostAsync(url, content);
+                var answer = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+
+                var user = JsonConvert.DeserializeObject<MyUserASP>(answer);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = user,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
+        public async Task<Response> GetList<T>(string pUrlBase,string pPrefix,string pController, string pTokenType, string pAccessToken)
         {
             try
             {
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(urlBase);
-                var url = $"{prefix}{controller}";
+                client.BaseAddress = new Uri(pUrlBase);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(pTokenType, pAccessToken);
+                var url = $"{pPrefix}{pController}";
 
                 var response = await client.GetAsync(url);
 
@@ -121,8 +165,7 @@ namespace Joinup.Service
                 };
             }
         }
-
-        public async Task<Response> Post<T>(string urlBase, string prefix, string controller, T model)
+        public async Task<Response> Post<T>(string urlBase, string prefix, string controller, T model, string pTokenType, string pAccessToken)
         {
             try
             {
@@ -130,6 +173,7 @@ namespace Joinup.Service
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(urlBase);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(pTokenType, pAccessToken);
                 var url = $"{prefix}{controller}";
                 var response = await client.PostAsync(url, content);
                 var answer = await response.Content.ReadAsStringAsync();

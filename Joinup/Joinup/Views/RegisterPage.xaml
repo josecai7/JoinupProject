@@ -13,8 +13,12 @@
                                     Aspect="AspectFill"
                                     HeightRequest="100" 
                                     WidthRequest="100"
-                                    LoadingPlaceholder="no_image.png"
-							        Source="{Binding ImageSource}"/>
+                                    LoadingPlaceholder="no_image.png"                    
+							        Source="{Binding ImageSource}">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddImageCommand}" />
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
             </Frame>
             <Label 
                 Text="Nombre">

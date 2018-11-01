@@ -42,11 +42,11 @@ namespace Joinup.API.Helpers
                 if ( result.Succeeded )
                 {
                     var newUserASP = userManager.FindByEmail(userRequest.Email);
-                    userManager.AddClaim( newUserASP.Id, new Claim( ClaimTypes.GivenName, userRequest.Name ) );
-                    userManager.AddClaim( newUserASP.Id, new Claim( ClaimTypes.Name, userRequest.Surname ) );
+                    userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.GivenName, userRequest.Name ) );
+                    userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.Name, userRequest.Surname ) );
                     if ( !string.IsNullOrEmpty( userRequest.ImagePath ) )
                     {
-                        userManager.AddClaim( newUserASP.Id, new Claim( ClaimTypes.Uri, userRequest.ImagePath ) );
+                        userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.Uri, userRequest.ImagePath ) );
                     }
 
                     return new Response
@@ -74,6 +74,13 @@ namespace Joinup.API.Helpers
                     Message = exc.Message.ToString()
                 };
             }
+        }
+
+        internal static object GetUserASP(string pEmail)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
+            var userASP = userManager.FindByEmail(pEmail);
+            return userASP;
         }
 
         public void Dispose()

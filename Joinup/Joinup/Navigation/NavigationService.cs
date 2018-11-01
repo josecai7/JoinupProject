@@ -15,6 +15,7 @@ namespace Joinup.Navigation
     {
         private IDictionary<Type, Type> viewModelRouting = new Dictionary<Type, Type>()
         {
+            { typeof(LoginViewModel), typeof(LoginPage) },
             { typeof(RegisterViewModel), typeof(RegisterPage) },
             { typeof(PlansViewModel), typeof(PlansPage) },
             { typeof(NewPlanStep1ViewModel), typeof(NewPlanStep1Page) },
@@ -44,7 +45,7 @@ namespace Joinup.Navigation
 
         public Task InitializeAsync()
         {
-            return NavigateToAsync<RegisterViewModel>();
+            return NavigateToAsync<LoginViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
@@ -145,14 +146,15 @@ namespace Joinup.Navigation
         }
         private void CreatePageViewModelMappings()
         {
+            _mappings.Add(typeof(MainViewModel), typeof(MainView));
+            _mappings.Add(typeof(LoginViewModel), typeof(LoginPage));
+            _mappings.Add(typeof(RegisterViewModel), typeof(RegisterPage));
             _mappings.Add( typeof( PlansViewModel ), typeof( PlansPage ) );
             _mappings.Add( typeof( NewPlanStep1ViewModel ), typeof( NewPlanStep1Page ) );
             _mappings.Add( typeof( NewPlanStep2ViewModel ), typeof( NewPlanStep2Page ) );
             _mappings.Add( typeof( NewPlanStep3ViewModel ), typeof( NewPlanStep3Page ) );
             _mappings.Add( typeof( NewPlanStep4ViewModel ), typeof( NewPlanStep4Page ) );
             _mappings.Add( typeof( NewPlanStep5ViewModel ), typeof( NewPlanStep5Page ) );
-            _mappings.Add(typeof(RegisterViewModel), typeof(RegisterPage));
-            _mappings.Add( typeof( MainViewModel ), typeof( MainView ) );
         }
 
         public async Task NavigateBackAsync()
