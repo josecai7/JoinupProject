@@ -1,344 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:Joinup.Effects;assembly=Joinup"
-             xmlns:ctrls="clr-namespace:Joinup.Controls;assembly=Joinup"
-             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="Joinup.Views.LoginPage">
+             xmlns:customEntry="clr-namespace:Joinup.Controls"
+             x:Class="Joinup.Views.LoginPage"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             BackgroundColor="{StaticResource PrimaryColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <xamanimation:StoryBoard 
-                x:Key="SignButtonsInitialAnimation"    
-                Target="{x:Reference SignButtons}">
-                <xamanimation:FadeToAnimation Opacity="1" Duration="250" />
-            </xamanimation:StoryBoard>
-
-            <xamanimation:StoryBoard 
-                x:Key="LogoAnimation"    
-                Target="{x:Reference Logo}">
-                <xamanimation:TranslateToAnimation TranslateY="-200" Duration="0" />
-                <xamanimation:TranslateToAnimation TranslateY="0" Easing="SinInOut" Duration="2000" />
-            </xamanimation:StoryBoard>
-
-            <Style x:Key="HeaderTextStyle" 
-                   TargetType="Label"
-                   BasedOn="{StaticResource PoppinsRegularLabelStyle}">
-                <Setter Property="TextColor" 
-                        Value="{StaticResource WhiteColor}" />
-                <Setter Property="HorizontalOptions" 
-                        Value="FillAndExpand" />
-                <Setter Property="FontSize" 
-                        Value="{StaticResource LittleSize}" />
-                <Setter Property="Margin" >
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="5, 0, 0, 0" />
-                            <On Platform="iOS" Value="0, 8, 0, 0" />
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="ForgotPwdLabelStyle"
-                   TargetType="{x:Type Label}"
-                   BasedOn="{StaticResource PoppinsRegularLabelStyle}">
-                <Setter Property="TextColor"
-                        Value="{StaticResource WhiteColor}" />
-                <Setter Property="HorizontalOptions"
-                        Value="End" />
-                <Setter Property="FontSize"
-                        Value="{StaticResource LittleSize}" />
-                <Setter Property="Margin" >
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="Android" Value="0, -3, 5, 0" />
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="SignUpPanelStyle"
-                   TargetType="{x:Type StackLayout}">
-                <Setter Property="Orientation"
-                        Value="Horizontal" />
-                <Setter Property="HorizontalOptions"
-                        Value="Center" />
-                <Setter Property="VerticalOptions"
-                        Value="End" />
-                <Setter Property="Margin"
-                        Value="0, 0, 0, 36" />
-            </Style>
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Triggers>
-        <EventTrigger Event="Appearing">
-            <xamanimation:BeginAnimation   
-                Animation="{StaticResource SignButtonsInitialAnimation}" />
-            <xamanimation:BeginAnimation   
-                Animation="{StaticResource LogoAnimation}" />
-        </EventTrigger>
-    </ContentPage.Triggers>
-
     <ContentPage.Content>
-        <Grid>
-            <Grid 
-                RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*" />
-                    <RowDefinition Height="4*" />
-                </Grid.RowDefinitions>
+        <Grid
+            Margin="32,0,32,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Row="0"
+                Source="logo.svg"
+                Aspect="AspectFit" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            </ffimageloadingsvg:SvgCachedImage>
+            
+            <StackLayout
+                Grid.Row="1">
 
-                <!-- Top image (Row 0)-->
-                <ffimageloading:CachedImage 
-                    Grid.Row="0"
-                    Aspect="AspectFill">
-                    <ffimageloading:CachedImage.Source>
-                        <OnPlatform x:TypeArguments="ImageSource">
-                            <On Platform="Android, iOS" Value="Portada" />
-                            <On Platform="UWP" Value="Assets/Portada.jpg" />
-                        </OnPlatform>
-                    </ffimageloading:CachedImage.Source>
-                </ffimageloading:CachedImage>
+                <customEntry:FloatingLabelEntry
+                    Text="{Binding Email}"
+                    AccentColor="White"
+                    Placeholder="Email"/>
 
-                <!-- Sign in form (Row 0) -->
-                <Grid
-                    Margin="38, 38, 38, 60"
-                    RowSpacing="0"
-                    VerticalOptions="Fill"
-                    Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="18" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="18" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="24" />
-                    </Grid.RowDefinitions>
-                    <Grid
-                        Grid.Row="0">
-                        <Image
-                            x:Name="Logo">
-                            <Image.Source>
-                                <OnPlatform x:TypeArguments="ImageSource">
-                                    <On Platform="Android, iOS" Value="Portada2" />
-                                    <On Platform="UWP" Value="Assets/Portada2.jpg" />
-                                </OnPlatform>
-                            </Image.Source>
-                            <Image.HeightRequest>
-                                <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                    Desktop="70"
-                                    Tablet="70"
-                                    Phone="50"/>
-                            </Image.HeightRequest>
-                            <Image.VerticalOptions>
-                                <OnIdiom
-                                    x:TypeArguments="LayoutOptions" 
-                                    Desktop="Center"
-                                    Tablet="Center"
-                                    Phone="Center"/>
-                            </Image.VerticalOptions>
-                        </Image>
-                    </Grid>
-                    <Label 
-                        Grid.Row="1"
-                        Text="Username"
-                        TextColor="Black"
-                        Style="{StaticResource HeaderTextStyle}">
-                        <Label.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center"
-                                Tablet="Center"
-                                Phone="FillAndExpand"/>
-                        </Label.HorizontalOptions>
-                        <Label.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350"
-                                Tablet="320"/>
-                        </Label.WidthRequest>
-                    </Label>
-                    <ctrls:ExtendedEntry 
-                        Grid.Row="2"
-                        Placeholder="Email"
-                        Text="{Binding Email, Mode=TwoWay}">
-                        <ctrls:ExtendedEntry.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center"
-                                Tablet="Center"
-                                Phone="FillAndExpand" />
-                        </ctrls:ExtendedEntry.HorizontalOptions>
-                        <ctrls:ExtendedEntry.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350"
-                                Tablet="320"/>
-                        </ctrls:ExtendedEntry.WidthRequest>
-                    </ctrls:ExtendedEntry>
-                    <Label 
-                        Grid.Row="3"
-                        Text="Password"
-                        TextColor="Orange"
-                        Style="{StaticResource HeaderTextStyle}">
-                        <Label.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center"
-                                Tablet="Center"
-                                Phone="FillAndExpand" />
-                        </Label.HorizontalOptions>
-                        <Label.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350"
-                                Tablet="320"/>
-                        </Label.WidthRequest>
-                    </Label>
-                    <ctrls:ExtendedEntry
-                        Grid.Row="4"
-                        IsPassword="True"                  
-                        Placeholder="Password"
-                        Text="{Binding Password, Mode=TwoWay}">
-                        <ctrls:ExtendedEntry.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center"
-                                Tablet="Center"
-                                Phone="FillAndExpand"/>
-                        </ctrls:ExtendedEntry.HorizontalOptions>
-                        <ctrls:ExtendedEntry.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350"
-                                Tablet="320"/>
-                        </ctrls:ExtendedEntry.WidthRequest>
-                    </ctrls:ExtendedEntry>
-                    <Grid
-                        Grid.Row="5">
-                        <Grid.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center"
-                                Tablet="Center"
-                                Phone="FillAndExpand" />
-                        </Grid.HorizontalOptions>
-                        <Grid.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350" 
-                                Tablet="320"/>
-                        </Grid.WidthRequest>
-                        <Label 
-                            Text="Forgot password"
-                            Style="{StaticResource ForgotPwdLabelStyle}">
-                            <Label.Effects>
-                                <effects:UnderlineTextEffect />
-                            </Label.Effects>
-                        </Label>
-                    </Grid>
-                </Grid>
+                <customEntry:FloatingLabelEntry
+                    Text="{Binding Password}"
+                    AccentColor="White"
+                    IsPassword="True"
+                    Placeholder="Contraseña"
+                    Margin="0,32,0,0"/>
 
-                <!-- Sign in buttons -->
-                <StackLayout  
-                    x:Name="SignButtons"
-                    Grid.Row="1"    
-                    Opacity="0"
-                    Margin="38, -25, 38, 0">
-                    <StackLayout.Spacing>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android" Value="1" />
-                            <On Platform="iOS, UWP" Value="8" />
-                        </OnPlatform>
-                    </StackLayout.Spacing>
-                    <ctrls:ButtonFrame
-                        HeightRequest="50"
-                        Padding="0"
-                        HasShadow="true"
-                        OutlineColor="{StaticResource ShadowColor}"                       
-                        >
-
-                        <ctrls:ButtonFrame.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center" 
-                                Tablet="Center"
-                                Phone="FillAndExpand"  />
-                        </ctrls:ButtonFrame.HorizontalOptions>
-                        <ctrls:ButtonFrame.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350"                                    
-                                Tablet="320"/>
-                        </ctrls:ButtonFrame.WidthRequest>
-                        <Button    
-                            Text="Login"
-                            Command="{Binding DoLoginCommand}"
-                            BackgroundColor="{StaticResource WhiteColor}"
-                            TextColor="{StaticResource OrangeColor}" />
-                    </ctrls:ButtonFrame> 
-                    <Label 
-                        Text="or"
-                        HorizontalOptions="Center"
-                        TextColor="{StaticResource BlackTextColor}"
-                        FontFamily="{StaticResource PoppinsRegular}"
-                        FontSize="{StaticResource MediumSize}"/>
-
-                    <ctrls:ButtonFrame
-                        HeightRequest="50"
-                        Padding="0"
-                        HasShadow="true"
-                        OutlineColor="LightGray"    >
-                        <ctrls:ButtonFrame.HorizontalOptions>
-                            <OnIdiom
-                                x:TypeArguments="LayoutOptions" 
-                                Desktop="Center" 
-                                Tablet="Center"
-                                Phone="FillAndExpand"  />
-                        </ctrls:ButtonFrame.HorizontalOptions>
-                        <ctrls:ButtonFrame.WidthRequest>
-                            <OnIdiom
-                                x:TypeArguments="x:Double" 
-                                Desktop="350"
-                                Tablet="320"/>
-                        </ctrls:ButtonFrame.WidthRequest>
-                        <Button   
-                            Text="Registrarse"
-                            Command="{Binding RegisterCommand}"
-                            BackgroundColor="{StaticResource BlueColor}"
-                            TextColor="{StaticResource WhiteColor}" />
-                    </ctrls:ButtonFrame> 
-                    <StackLayout
-                        Orientation="Horizontal"                      
-                        HorizontalOptions="Center"
-                        VerticalOptions="FillAndExpand">
-                        <Label
-                            Text="¿Aún no tienes cuenta?"
-                            TextColor="{StaticResource BlackColor}"
-                            VerticalOptions="Center">
-
-                        </Label>
-                        <Label
-                            Text="Sign up"
-                            TextColor="{StaticResource OrangeColor}"
-                            VerticalOptions="Center">
-
-                        </Label>
-                    </StackLayout>
-                </StackLayout>
-            </Grid>
+                <Frame
+                    HasShadow="True"
+                    OutlineColor="{StaticResource ShadowColor}"  
+                    Margin="2,24,2,0"
+                    Padding="0">
+                    <Button                
+                    TextColor="White"
+                    FontFamily="{StaticResource RobotoMedium}"
+                    FontSize="{StaticResource LargeSize}"
+                    BackgroundColor="{StaticResource DarkPrimaryColor}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="LOGIN"
+                    Command="{Binding DoLoginCommand}"
+                    />
 
 
-            <ActivityIndicator 
-                Color="{StaticResource AccentColor}"
-                IsRunning="{Binding IsBusy}" 
-                IsVisible="{Binding IsBusy}" />
+                </Frame>
+
+
+                <Label
+                    Margin="0,20,0,0"
+                    Text="¿Aún no registrado? Registrate"    
+                    HorizontalTextAlignment="Center"
+                    FontSize="{StaticResource MediumSize}" 
+                    FontFamily="{StaticResource RobotoRegular}"
+                    TextColor="{StaticResource PlaceHolderColor}"
+                    >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            
         </Grid>
     </ContentPage.Content>
     

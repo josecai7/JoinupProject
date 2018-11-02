@@ -14,7 +14,6 @@ namespace Joinup.ViewModels
     public class LoginViewModel:BaseViewModel
     {
         #region Attributes
-        private ApiService apiService;
         private bool isRunning;
         private string email;
         private string password;
@@ -60,9 +59,7 @@ namespace Joinup.ViewModels
         #region Constructors
         public LoginViewModel()
         {
-            apiService = new ApiService();
-            Email = "jasoljim71@gmail.com";
-            Password = "lugubre14";
+
         }
         #endregion
         #region Commands
@@ -91,7 +88,7 @@ namespace Joinup.ViewModels
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlUsersController"].ToString();
 
-            var connection = await apiService.CheckConnection();
+            var connection = await ApiService.GetInstance().CheckConnection();
 
             if (!connection.IsSuccess)
             {
@@ -108,7 +105,7 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var token = await apiService.GetToken(url, Email, Password);
+            var token = await ApiService.GetInstance().GetToken(url, Email, Password);
 
             if (token == null || string.IsNullOrEmpty(token.AccessToken))
             {
@@ -118,7 +115,7 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var response = await this.apiService.GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
+            var response = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
             if (response.IsSuccess)
             {
                 var userASP = (MyUserASP)response.Result;

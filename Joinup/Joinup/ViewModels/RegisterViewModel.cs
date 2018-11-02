@@ -3,6 +3,7 @@ using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
 using Joinup.Utils;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -150,21 +151,41 @@ namespace Joinup.ViewModels
         }
         private async void Register()
         {
-            if (!RegexHelper.IsValidEmail(Email))
-            {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlUsersController"].ToString();
 
+            var connection = await ApiService.GetInstance().CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                ToastNotificationUtils.ShowToastNotifications("No hay conexion a internet", "",Color.IndianRed);
+                return;
+            }
+            else if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Surname))
+            {
+                ToastNotificationUtils.ShowToastNotifications("Nombre incorrecto", "", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                return;
+            }
+            else if (!RegexHelper.IsValidEmail(Email) || string.IsNullOrEmpty(Email))
+            {
+                ToastNotificationUtils.ShowToastNotifications("Email incorrecto", "", Color.IndianRed);
+                return;
+            }
+            else if (Password.Length < 6)
+            {
+                ToastNotificationUtils.ShowToastNotifications("La contraseña debe tener al menos 6 caracteres", "", Color.IndianRed);
+                return;
             }
             else
             {
-                //ver si hay internet
-
+                
                 byte[] imageArray = null;
 
                 if (file != null)
                 {
                     imageArray = FilesHelper.ReadFully(file.GetStream());
                 }
-
                 var userRequest = new UserRequest();
                 userRequest.Name = Name;
                 userRequest.Surname = Surname;
@@ -172,14 +193,44 @@ namespace Joinup.ViewModels
                 userRequest.Password = Password;
                 userRequest.ImageArray = imageArray;
 
-                var url = Application.Current.Resources["UrlAPI"].ToString();
-                var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-                var controller = Application.Current.Resources["UrlUsersController"].ToString();
+                var postUserResponse = await ApiService.GetInstance().Post<UserRequest>(url, prefix, controller, userRequest);
 
-                var response = await ApiService.GetInstance().Post<UserRequest>(url, prefix, controller, userRequest, Settings.TokenType, Settings.AccessToken);
+                if (postUserResponse.IsSuccess)
+                {
+                    var token = await ApiService.GetInstance().GetToken(url, Email, Password);
 
-                var newuser = (UserRequest)response.Result;
+                    if (token == null || string.IsNullOrEmpty(token.AccessToken))
+                    {
+                        ShowErrorMessage("Error al obtener el token. Contacte con el administrador del sistema");
+                        return;
+                    }
+
+
+                    Settings.TokenType = token.TokenType;
+                    Settings.AccessToken = token.AccessToken;
+                    var getUserResponse = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, Settings.TokenType, token.AccessToken);
+                    if (getUserResponse.IsSuccess)
+                    {
+                        var userASP = (MyUserASP)getUserResponse.Result;
+                        Settings.UserASP = JsonConvert.SerializeObject(userASP);
+                        NavigationService.NavigateToAsync<MainViewModel>();
+                    }
+                    else
+                    {
+                        ShowErrorMessage("Error al obtener el usuario. Contacte con el administrador del sistema");
+                    }
+
+                }
+                else
+                {
+                    ShowErrorMessage(postUserResponse.Message);
+                }
             }
+        }
+
+        private void ShowErrorMessage(string pMessage)
+        {
+            ToastNotificationUtils.ShowToastNotifications(pMessage, "", Color.IndianRed);
         }
         #endregion
     }

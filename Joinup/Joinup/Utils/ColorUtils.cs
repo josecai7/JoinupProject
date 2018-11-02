@@ -7,6 +7,7 @@ namespace Joinup.Utils
 {
     public class ColorUtils
     {
+        public static Color PlaceHolderColor { get { return (Color)Application.Current.Resources["PlaceHolderColor"]; } }
         public static Color PrimaryColor { get { return (Color)Application.Current.Resources["PrimaryColor"]; } }
         public static Color PrimaryTextColor { get { return (Color) Application.Current.Resources["PrimaryTextColor"]; } }
         public static Color BackgroundColor { get { return (Color)Application.Current.Resources["BackgroundColor"]; } }

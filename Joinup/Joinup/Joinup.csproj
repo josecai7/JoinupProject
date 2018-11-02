@@ -29,12 +29,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Controls\FloatingLabelEntry.xaml.cs">
+      <DependentUpon>FloatingLabelEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\NewPlanPage.xaml.cs">
       <DependentUpon>NewPlanPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Controls\BorderLessEntry.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\FloatingLabelEntry.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="CustomControls\FontIcon.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
