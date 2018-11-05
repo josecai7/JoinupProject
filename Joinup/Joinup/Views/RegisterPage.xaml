@@ -1,69 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customEntry="clr-namespace:Joinup.Controls"
+             x:Class="Joinup.Views.RegisterPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="Joinup.Views.RegisterPage">
+             BackgroundColor="{StaticResource PrimaryColor}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Frame
-                CornerRadius="4"
-                HeightRequest="100"
-                Padding="0">
+        <Grid>
+            <Grid
+            Margin="32,0,32,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
                 <ffimageloading:CachedImage 
-                                    Aspect="AspectFill"
-                                    HeightRequest="100" 
-                                    WidthRequest="100"
-                                    LoadingPlaceholder="no_image.png"                    
-							        Source="{Binding ImageSource}">
-                    <ffimageloading:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddImageCommand}" />
-                    </ffimageloading:CachedImage.GestureRecognizers>
+                Grid.Row="0"
+                Source="Add_Image.png"
+                LoadingPlaceholder="Add_Image.png" 
+                ErrorPlaceholder="Add_Image.png" 
+                Aspect="AspectFit" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                HeightRequest="120"
+                WidthRequest="120">
                 </ffimageloading:CachedImage>
-            </Frame>
-            <Label 
-                Text="Nombre">
-                
-            </Label>
-            <Entry 
-                Text="{Binding Name}">
 
-            </Entry>
-            <Label 
-                Text="Surname">
+                <StackLayout
+                Grid.Row="1">
 
-            </Label>
-            <Entry Text="{Binding Surname}">
+                    <customEntry:FloatingLabelEntry
+                    Text="{Binding Name}"
+                    AccentColor="White"
+                    Placeholder="Nombre"/>
+                    
+                    <customEntry:FloatingLabelEntry
+                    Text="{Binding Surname}"
+                    AccentColor="White"
+                    Placeholder="Apellidos"
+                    Margin="0,32,0,0"/>
 
-            </Entry>
-            <Label 
-                Text="Email">
+                    <customEntry:FloatingLabelEntry
+                    Text="{Binding Email}"
+                    AccentColor="White"
+                    Placeholder="Email"
+                    Margin="0,32,0,0"/>
 
-            </Label>
-            <Entry Text="{Binding Email}">
+                    <customEntry:FloatingLabelEntry
+                    Text="{Binding Password}"
+                    AccentColor="White"
+                    IsPassword="True"
+                    Placeholder="Contraseña"
+                    Margin="0,32,0,0"/>
 
-            </Entry>
-            <Label 
-                Text="Contraseña">
+                    <Frame
+                    HasShadow="True"
+                    OutlineColor="{StaticResource ShadowColor}"  
+                    Margin="2,24,2,0"
+                    Padding="0">
+                        <Button                
+                    TextColor="White"
+                    FontFamily="{StaticResource RobotoMedium}"
+                    FontSize="{StaticResource LargeSize}"
+                    BackgroundColor="{StaticResource DarkPrimaryColor}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Registrarme"
+                    Command="{Binding RegisterCommand}"
+                    />
 
-            </Label>
-            <Entry 
-                Text="{Binding Password}">
+                    </Frame>
+                </StackLayout>
 
-            </Entry>
-            <Label 
-                Text="Confirmar contraseña">
-
-            </Label>
-            <Entry 
-                Text="{Binding ConfirmPassword}">
-
-            </Entry>
-
-            <Button 
-                Text="Registrar"
-                Command="{Binding RegisterCommand}">
-                
-            </Button>
-        </StackLayout>
+            </Grid>
+            <ActivityIndicator 
+                IsRunning="{Binding IsRunning}" 
+                Color="White"
+                WidthRequest="50"
+                HeightRequest="50"
+                VerticalOptions="End" 
+                Margin="0,0,0,32"
+                HorizontalOptions="Center" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

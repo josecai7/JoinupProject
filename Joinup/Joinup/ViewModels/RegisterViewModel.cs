@@ -23,7 +23,7 @@ namespace Joinup.ViewModels
         private string surname;
         private string email;
         private string password;
-        private string confirmPassword;
+        private bool isRunning;
         #endregion
         #region Properties
         public ImageSource ImageSource
@@ -86,23 +86,25 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Password");
             }
         }
-        public string ConfirmPassword
+        public bool IsRunning
         {
             get
             {
-                return confirmPassword;
+                return isRunning;
             }
             set
             {
-                confirmPassword = value;
-                RaisePropertyChanged("ConfirmPassword");
+                isRunning = value;
+                RaisePropertyChanged("IsRunning");
             }
         }
         #endregion
 
         #region Constructors
         public RegisterViewModel()
-        { }
+        {
+            ImageSource = "Add_Image.png";
+        }
         #endregion
         #region Commands
         public ICommand AddImageCommand
@@ -179,7 +181,7 @@ namespace Joinup.ViewModels
             }
             else
             {
-                
+                IsRunning = true;   
                 byte[] imageArray = null;
 
                 if (file != null)
@@ -202,6 +204,7 @@ namespace Joinup.ViewModels
                     if (token == null || string.IsNullOrEmpty(token.AccessToken))
                     {
                         ShowErrorMessage("Error al obtener el token. Contacte con el administrador del sistema");
+                        IsRunning = false;
                         return;
                     }
 
@@ -213,16 +216,19 @@ namespace Joinup.ViewModels
                     {
                         var userASP = (MyUserASP)getUserResponse.Result;
                         Settings.UserASP = JsonConvert.SerializeObject(userASP);
+                        IsRunning = false;
                         NavigationService.NavigateToAsync<MainViewModel>();
                     }
                     else
                     {
+                        IsRunning = false;
                         ShowErrorMessage("Error al obtener el usuario. Contacte con el administrador del sistema");
                     }
 
                 }
                 else
                 {
+                    IsRunning = false;
                     ShowErrorMessage(postUserResponse.Message);
                 }
             }

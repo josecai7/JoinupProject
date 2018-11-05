@@ -2,6 +2,7 @@
 using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
+using Joinup.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -92,37 +93,59 @@ namespace Joinup.ViewModels
 
             if (!connection.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("No hay conexion a internet", "Aceptar", "Cancelar");
-            }
-            if (string.IsNullOrEmpty(Email))
-            {
-                await Application.Current.MainPage.DisplayAlert("Email vacia", "Aceptar", "Cancelar");
+                ToastNotificationUtils.ShowToastNotifications("No hay conexion a internet", "add.png", Color.IndianRed);
                 return;
             }
-            if (string.IsNullOrEmpty(Password))
+            else if (string.IsNullOrEmpty(Email))
             {
-                await Application.Current.MainPage.DisplayAlert("Contraseña vacia", "Aceptar", "Cancelar");
+                ToastNotificationUtils.ShowToastNotifications("Email no puede estar vacio", "add.png", Color.IndianRed,Acr.UserDialogs.ToastPosition.Bottom);
                 return;
             }
-
-            var token = await ApiService.GetInstance().GetToken(url, Email, Password);
-
-            if (token == null || string.IsNullOrEmpty(token.AccessToken))
+            else if (string.IsNullOrEmpty(Password))
             {
-                Password = string.Empty;
-                Email = string.Empty;
-                await Application.Current.MainPage.DisplayAlert("Usuario o contraseña incorrectos", "Aceptar", "Cancelar");
+                ToastNotificationUtils.ShowToastNotifications("Introduzca una contraseña", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
                 return;
             }
-
-            var response = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
-            if (response.IsSuccess)
+            else if (Password.Length<6)
             {
-                var userASP = (MyUserASP)response.Result;
-                Settings.UserASP = JsonConvert.SerializeObject(userASP);
+                ToastNotificationUtils.ShowToastNotifications("La contraseña debe tener al menos 6 caracteres", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                return;
             }
+            else
+            {
+                IsRunning = true;
 
-            NavigationService.NavigateToAsync<MainViewModel>();
+                var token = await ApiService.GetInstance().GetToken(url, Email, Password);
+
+                if (token == null || string.IsNullOrEmpty(token.AccessToken))
+                {
+                    Password = string.Empty;
+                    Email = string.Empty;
+                    ToastNotificationUtils.ShowToastNotifications("Usuario o contraseña incorrectos", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                    IsRunning = false;
+                    return;
+                }
+                else
+                {
+                    Settings.AccessToken = token.AccessToken;
+                    Settings.TokenType = token.TokenType;
+
+                    var response = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
+                    if (response.IsSuccess)
+                    {
+                        var userASP = (MyUserASP)response.Result;
+                        Settings.UserASP = JsonConvert.SerializeObject(userASP);
+                        IsRunning = false;
+                        NavigationService.NavigateToAsync<MainViewModel>();
+                    }
+                    else
+                    {
+                        ToastNotificationUtils.ShowToastNotifications("Algo fué mal. Contacte con el administrador del sistema.", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                        IsRunning = false;
+                        return;
+                    }
+                }
+            }
         }
         private void Register()
         {          
