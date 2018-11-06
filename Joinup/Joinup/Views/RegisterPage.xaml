@@ -11,16 +11,37 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
+   
+    
+    <NavigationPage.TitleView>
+        <StackLayout 
+            Orientation="Horizontal" 
+            VerticalOptions="Center" 
+            HorizontalOptions="FillAndExpand" 
+            Spacing="10">
+
+            <Label 
+                Text="{StaticResource AppName}" 
+                FontSize="{StaticResource ExtraBigSize}" 
+                FontFamily="{StaticResource MageHand}"
+                TextColor="White" 
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="FillAndExpand"
+                VerticalTextAlignment="Center" />
+
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <Grid>
-            <Grid
+    <Grid>
+        <Grid
             Margin="32,0,32,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="7*"/>
-                </Grid.RowDefinitions>
-                <ffimageloading:CachedImage 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            
+            <ffimageloading:CachedImage 
                 Grid.Row="0"
                 Source="Add_Image.png"
                 LoadingPlaceholder="Add_Image.png" 
@@ -30,55 +51,80 @@
                 HorizontalOptions="Center"
                 HeightRequest="120"
                 WidthRequest="120">
-                </ffimageloading:CachedImage>
+            </ffimageloading:CachedImage>
 
-                <StackLayout
+            <StackLayout
                 Grid.Row="1">
 
-                    <customEntry:FloatingLabelEntry
-                    Text="{Binding Name}"
-                    AccentColor="White"
-                    Placeholder="Nombre"/>
-                    
-                    <customEntry:FloatingLabelEntry
-                    Text="{Binding Surname}"
-                    AccentColor="White"
-                    Placeholder="Apellidos"
-                    Margin="0,32,0,0"/>
+                <customEntry:IconEntry
+                        Text="{Binding Name}"
+                        IconSource="account"
+                        IconColor="White"
+                        AccentColor="White"
+                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        Placeholder="Nombre"/>
 
-                    <customEntry:FloatingLabelEntry
+                <customEntry:IconEntry
+                        Text="{Binding Surname}"
+                        IconSource="account"
+                        IconColor="White"
+                        AccentColor="White"
+                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        Placeholder="Apellidos"/>
+                
+                <customEntry:IconEntry
                     Text="{Binding Email}"
+                    IconSource="email"
+                    IconColor="White"
                     AccentColor="White"
-                    Placeholder="Email"
-                    Margin="0,32,0,0"/>
+                    Keyboard="Email"
+                    PlaceholderColor="{StaticResource PlaceholderColor}"
+                    Placeholder="Email"/>
 
-                    <customEntry:FloatingLabelEntry
+                <customEntry:IconEntry
                     Text="{Binding Password}"
+                    IconSource="lock"
+                    IconColor="White"
                     AccentColor="White"
                     IsPassword="True"
-                    Placeholder="Contraseña"
-                    Margin="0,32,0,0"/>
+                    PlaceholderColor="{StaticResource PlaceholderColor}"
+                    Placeholder="Contraseña"/>
 
-                    <Frame
+                <Frame
                     HasShadow="True"
                     OutlineColor="{StaticResource ShadowColor}"  
-                    Margin="2,24,2,0"
+                    Margin="24,24,24,0"
                     Padding="0">
-                        <Button                
-                    TextColor="White"
+                    <Button                
+                    TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoMedium}"
                     FontSize="{StaticResource LargeSize}"
-                    BackgroundColor="{StaticResource DarkPrimaryColor}"
+                    BackgroundColor="White"
                     HorizontalOptions="FillAndExpand"
-                    Text="Registrarme"
-                    Command="{Binding RegisterCommand}"
+                    Text="Registrame"
+                    Command="{Binding DoRegisterCommand}"
                     />
 
-                    </Frame>
-                </StackLayout>
 
-            </Grid>
-            <ActivityIndicator 
+                </Frame>
+
+
+                <Label
+                    Margin="0,20,0,0"
+                    Text="¿Tienes ya una cuenta? Entra"    
+                    HorizontalTextAlignment="Center"
+                    FontSize="{StaticResource MediumSize}" 
+                    FontFamily="{StaticResource RobotoRegular}"
+                    TextColor="{StaticResource PlaceholderColor}"
+                    >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+        </Grid>
+        <ActivityIndicator 
                 IsRunning="{Binding IsRunning}" 
                 Color="White"
                 WidthRequest="50"
@@ -86,6 +132,6 @@
                 VerticalOptions="End" 
                 Margin="0,0,0,32"
                 HorizontalOptions="Center" />
-        </Grid>
-    </ContentPage.Content>
+    </Grid>
+</ContentPage.Content>
 </ContentPage>

@@ -12,7 +12,7 @@
             <Label x:Name="HiddenLabel" 
                    FontSize="{StaticResource MidMediumSize}" 
                    FontFamily="{StaticResource RobotoRegular}"
-                   TextColor="{StaticResource PlaceHolderColor}"
+                   TextColor="{StaticResource PlaceholderColor}"
                    IsVisible="False" 
                    Margin="0"/>
             
@@ -22,10 +22,10 @@
                 TextColor="White"                
                 FontSize="{StaticResource LargeSize}" 
                 FontFamily="{StaticResource RobotoRegular}"
-                PlaceholderColor="{StaticResource PlaceHolderColor}"/>
+                PlaceholderColor="{StaticResource PlaceholderColor}"/>
             
-            <BoxView x:Name="BottomBorder" BackgroundColor="{StaticResource PlaceHolderColor}"  Grid.Row="1" HeightRequest="1" Margin="0" HorizontalOptions="FillAndExpand"/>
-            <BoxView x:Name="HiddenBottomBorder" BackgroundColor="{StaticResource PlaceHolderColor}" Grid.Row="1" HeightRequest="1" Margin="0" WidthRequest="0" HorizontalOptions="Center"/>
+            <BoxView x:Name="BottomBorder" BackgroundColor="{StaticResource PlaceholderColor}"  Grid.Row="1" HeightRequest="1" Margin="0" HorizontalOptions="FillAndExpand"/>
+            <BoxView x:Name="HiddenBottomBorder" BackgroundColor="{StaticResource PlaceholderColor}" Grid.Row="1" HeightRequest="1" Margin="0" WidthRequest="0" HorizontalOptions="Center"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

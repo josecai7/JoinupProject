@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Joinup.Controls"
+             xmlns:custom="clr-namespace:Joinup.CustomControls"
+             x:Class="Joinup.Controls.IconEntry">
+    <ContentView.Content>
+        <Grid ColumnSpacing="24" Margin="0,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+                Spacing="0">
+                <custom:FontIcon
+                    x:Name="Icon"
+                    Grid.Row="0"
+                    IconSize="{StaticResource IconBigSize}"
+                    HorizontalOptions="Start" 
+                    VerticalOptions="Center"/>
+                <local:BorderLessEntry 
+                    x:Name="EntryField" 
+                    Margin="8,0,0,0"
+                    Text="{Binding Text, Mode=TwoWay}" 
+                    TextColor="White"                
+                    FontSize="{StaticResource LargeSize}" 
+                    FontFamily="{StaticResource RobotoRegular}"
+                    PlaceholderColor="{StaticResource PlaceholderColor}"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="End"/>
+            </StackLayout>
+
+            <BoxView x:Name="BottomBorder" BackgroundColor="{StaticResource PlaceholderColor}"  Grid.Row="1" HeightRequest="1" Margin="0" HorizontalOptions="FillAndExpand"/>
+            <BoxView x:Name="HiddenBottomBorder" BackgroundColor="{StaticResource PlaceholderColor}" Grid.Row="1" HeightRequest="1" Margin="0" WidthRequest="0" HorizontalOptions="Center"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

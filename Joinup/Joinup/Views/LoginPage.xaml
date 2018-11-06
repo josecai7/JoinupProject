@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customEntry="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.LoginPage"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="{StaticResource PrimaryColor}">
 
     <ContentPage.Resources>
@@ -25,38 +24,44 @@
                     Margin="0,0,0,0"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
-                    Text="Joinup"    
+                    Text="{StaticResource AppName}"    
                     HorizontalTextAlignment="Center"
-                    FontSize="{StaticResource HugeSize}" 
-                    FontFamily="{StaticResource CasualRegular}"
+                    FontSize="{StaticResource LogoTextSize}" 
+                    FontFamily="{StaticResource MageHand}"
                     TextColor="White"
                     />
 
                 <StackLayout
                 Grid.Row="1">
 
-                    <customEntry:FloatingLabelEntry
-                    Text="{Binding Email}"
-                    AccentColor="White"
-                    Placeholder="Email"/>
+                    <customEntry:IconEntry
+                        Text="{Binding Email}"
+                        IconSource="email"
+                        IconColor="White"
+                        AccentColor="White"
+                        Keyboard="Email"
+                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        Placeholder="Email"/>
 
-                    <customEntry:FloatingLabelEntry
-                    Text="{Binding Password}"
-                    AccentColor="White"
-                    IsPassword="True"
-                    Placeholder="Contraseña"
-                    Margin="0,32,0,0"/>
+                    <customEntry:IconEntry
+                        Text="{Binding Password}"
+                        IconSource="lock"
+                        IconColor="White"
+                        AccentColor="White"
+                        IsPassword="True"
+                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        Placeholder="Contraseña"/>
 
                     <Frame
                     HasShadow="True"
                     OutlineColor="{StaticResource ShadowColor}"  
-                    Margin="2,24,2,0"
+                    Margin="24,24,24,0"
                     Padding="0">
                         <Button                
-                    TextColor="White"
+                    TextColor="{StaticResource PrimaryColor}"
                     FontFamily="{StaticResource RobotoMedium}"
                     FontSize="{StaticResource LargeSize}"
-                    BackgroundColor="{StaticResource DarkPrimaryColor}"
+                    BackgroundColor="White"
                     HorizontalOptions="FillAndExpand"
                     Text="Entrar"
                     Command="{Binding DoLoginCommand}"
@@ -72,7 +77,7 @@
                     HorizontalTextAlignment="Center"
                     FontSize="{StaticResource MediumSize}" 
                     FontFamily="{StaticResource RobotoRegular}"
-                    TextColor="{StaticResource PlaceHolderColor}"
+                    TextColor="{StaticResource PlaceholderColor}"
                     >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
@@ -92,3 +97,4 @@
         </Grid>
     </ContentPage.Content>
 </ContentPage>
+    

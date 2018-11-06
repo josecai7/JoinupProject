@@ -1,7 +1,8 @@
-﻿using Joinup.ViewModels;
+﻿using Joinup.Controls;
+using Joinup.Utils;
+using Joinup.ViewModels;
 using Joinup.ViewModels.Base;
 using Joinup.Views;
-using Joinup.Views.Base;
 using Joinup.Views.Main;
 using System;
 using System.Collections.Generic;
@@ -69,7 +70,10 @@ namespace Joinup.Navigation
 
             if ( page is MainView )
             {
-                CurrentApplication.MainPage = new NavigationPage(page);
+                CurrentApplication.MainPage = new NavigationPage( page )
+                {
+                    BarBackgroundColor = ColorUtils.PrimaryColor,
+                };
             }
             else if ( CurrentApplication.MainPage is MainView )
             {
@@ -82,7 +86,10 @@ namespace Joinup.Navigation
                 }
                 else
                 {
-                    navigationPage = new NavigationPage( page );
+                    navigationPage = new NavigationPage( page )
+                    {
+                        BarBackgroundColor = ColorUtils.PrimaryColor,
+                    };
                     CurrentApplication.MainPage = navigationPage;
                 }
 
@@ -97,7 +104,11 @@ namespace Joinup.Navigation
                 }
                 else
                 {
-                    CurrentApplication.MainPage = new NavigationPage( page );
+                    CurrentApplication.MainPage = new NavigationPage( page )
+                    {
+                        BarBackgroundColor = ColorUtils.PrimaryColor,
+                    };
+                    ;
                 }
             }
         }

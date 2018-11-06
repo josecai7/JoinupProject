@@ -116,7 +116,7 @@ namespace Joinup.Controls
             };
             EntryField.Unfocused += async (s, a) =>
             {
-                HiddenLabel.TextColor = ColorUtils.PlaceHolderColor;
+                HiddenLabel.TextColor = ColorUtils.PlaceholderColor;
                 if (string.IsNullOrEmpty(EntryField.Text))
                 {
                     // animate both at the same time
