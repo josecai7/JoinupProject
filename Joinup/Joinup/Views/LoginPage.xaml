@@ -20,15 +20,17 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="7*"/>
                 </Grid.RowDefinitions>
-                <ffimageloading:CachedImage 
-                Grid.Row="0"
-                Source="logo.png"
-                Aspect="AspectFit" 
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                HeightRequest="120"
-                WidthRequest="240">
-                </ffimageloading:CachedImage>
+                <Label
+                    Grid.Row="0"
+                    Margin="0,0,0,0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Text="Joinup"    
+                    HorizontalTextAlignment="Center"
+                    FontSize="{StaticResource HugeSize}" 
+                    FontFamily="{StaticResource CasualRegular}"
+                    TextColor="White"
+                    />
 
                 <StackLayout
                 Grid.Row="1">
@@ -56,7 +58,7 @@
                     FontSize="{StaticResource LargeSize}"
                     BackgroundColor="{StaticResource DarkPrimaryColor}"
                     HorizontalOptions="FillAndExpand"
-                    Text="LOGIN"
+                    Text="Entrar"
                     Command="{Binding DoLoginCommand}"
                     />
 
