@@ -103,7 +103,7 @@ namespace Joinup.ViewModels
         #region Constructors
         public RegisterViewModel()
         {
-            ImageSource = "Add_Image.png";
+            ImageSource = "no_image.png";
         }
         #endregion
         #region Commands
@@ -130,25 +130,52 @@ namespace Joinup.ViewModels
         {
             await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "¿Desde donde desea tomar la imagen?",
+                "Cancelar",
+                null,
+                "Galeria",
+                "Camara" );
+
+            if ( source == "Cancelar" )
             {
-                ToastNotificationUtils.ShowToastNotifications("Camara no disponible", "add.png", ColorUtils.ErrorColor);
+                file = null;
                 return;
             }
 
-            file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            if ( source == "Camara" )
             {
-                Directory = "Joinup",
-                Name = DateTime.Now.ToString()
-            });
+                if (!CrossMedia.Current.IsTakePhotoSupported )
+                {
+                    ToastNotificationUtils.ShowToastNotifications( "Galeria no disponible", "add.png", ColorUtils.ErrorColor );
+                    return;
+                }
 
-            if (file != null)
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Joinup",
+                        Name = DateTime.Now.ToString()
+                    }
+                );
+            }
+            else
             {
-                this.ImageSource = ImageSource.FromStream(() =>
+                if ( !CrossMedia.Current.IsTakePhotoSupported )
+                {
+                    ToastNotificationUtils.ShowToastNotifications( "Camara no disponible", "add.png", ColorUtils.ErrorColor );
+                    return;
+                }
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if ( this.file != null )
+            {
+                this.ImageSource = ImageSource.FromStream( () =>
                 {
                     var stream = this.file.GetStream();
                     return stream;
-                });
+                } );
             }
         }
         private async void Register()

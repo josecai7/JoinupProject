@@ -4,6 +4,7 @@
              xmlns:customEntry="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.RegisterPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              BackgroundColor="{StaticResource PrimaryColor}">
 
     <ContentPage.Resources>
@@ -40,18 +41,22 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
-            
+
             <ffimageloading:CachedImage 
                 Grid.Row="0"
-                Source="Add_Image.png"
-                LoadingPlaceholder="Add_Image.png" 
-                ErrorPlaceholder="Add_Image.png" 
+                Source="{Binding ImageSource}"
                 Aspect="AspectFit" 
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 HeightRequest="120"
                 WidthRequest="120">
-            </ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:CircleTransformation/>
+                    </ffimageloading:CachedImage.Transformations>
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
 
             <StackLayout
                 Grid.Row="1">

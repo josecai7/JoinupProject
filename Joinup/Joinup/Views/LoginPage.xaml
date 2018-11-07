@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customEntry="clr-namespace:Joinup.Controls"
-             x:Class="Joinup.Views.LoginPage"
-             BackgroundColor="{StaticResource PrimaryColor}">
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="Joinup.Views.LoginPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,6 +14,13 @@
 
     <ContentPage.Content>
         <Grid>
+            <ffimageloading:CachedImage 
+                Source="fondo3.jpg"
+                Aspect="AspectFill" 
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill">
+            </ffimageloading:CachedImage>
+            
             <Grid
             Margin="32,0,32,0">
                 <Grid.RowDefinitions>
