@@ -22,5 +22,17 @@ namespace Joinup.Common.Models
         public int AccessFailedCount { get; set; }
         public string Id { get; set; }
         public string UserName { get; set; }
+
+        public string UserImage
+        {
+            get
+            {
+                if (Claims.Count>=3)
+                {
+                    return $"https://joinupapi.azurewebsites.net/{Claims[2].ClaimValue.Substring(1)}";
+                }
+                return "no_image.png";
+            }
+        }
     }
 }

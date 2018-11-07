@@ -42,11 +42,11 @@ namespace Joinup.API.Helpers
                 if ( result.Succeeded )
                 {
                     var newUserASP = userManager.FindByEmail(userRequest.Email);
-                    userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.GivenName, userRequest.Name ) );
-                    userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.Name, userRequest.Surname ) );
+                    userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.GivenName, userRequest.Name ,"Name") );
+                    userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.Name, userRequest.Surname ,"Surname") );
                     if ( !string.IsNullOrEmpty( userRequest.ImagePath ) )
                     {
-                        userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.Uri, userRequest.ImagePath ) );
+                        userManager.AddClaim( newUserASP.Id, new System.Security.Claims.Claim( ClaimTypes.Uri, userRequest.ImagePath ,"ImagePath") );
                     }
 
                     return new Response
@@ -80,6 +80,12 @@ namespace Joinup.API.Helpers
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
             var userASP = userManager.FindByEmail(pEmail);
+            return userASP;
+        }
+        internal static object GetUserASPById(string pId)
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
+            var userASP = userManager.FindById(pId);
             return userASP;
         }
 

@@ -5,6 +5,7 @@ using Joinup.Models;
 using Joinup.Service;
 using Joinup.Utils;
 using Joinup.ViewModels.Base;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -133,6 +134,8 @@ namespace Joinup.ViewModels
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlPlansController"].ToString();
 
+            MyUserASP user = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
+            plan.UserId = user.Id;
 
             var response = await ApiService.GetInstance().Post<Plan>(url, prefix, controller, plan,Settings.TokenType,Settings.AccessToken);
             var newplan = (Plan)response.Result;

@@ -53,6 +53,11 @@ namespace Joinup.Common.Models
         {
             get; set;
         }
+        [NotMapped]
+        public MyUserASP User
+        {
+            get; set;
+        }
 
     }
 }

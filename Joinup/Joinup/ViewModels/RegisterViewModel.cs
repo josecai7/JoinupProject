@@ -114,7 +114,7 @@ namespace Joinup.ViewModels
                 return new RelayCommand(AddImage);
             }
         }
-        public ICommand RegisterCommand
+        public ICommand DoRegisterCommand
         {
             get
             {

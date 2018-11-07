@@ -15,7 +15,7 @@
     <ContentPage.Content>
         <Grid>
             <ffimageloading:CachedImage 
-                Source="fondo3.jpg"
+                Source="fondo2.jpg"
                 Aspect="AspectFill" 
                 VerticalOptions="Fill"
                 HorizontalOptions="Fill">

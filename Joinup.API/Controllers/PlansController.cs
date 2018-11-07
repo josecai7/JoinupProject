@@ -8,8 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Joinup.API.Helpers;
 using Joinup.Common.Models;
 using Joinup.Domain.Models;
+using Newtonsoft.Json;
 
 namespace Joinup.API.Controllers
 {
@@ -25,6 +27,9 @@ namespace Joinup.API.Controllers
             {
                 var images= db.Images.Where( item => item.EntityId == plan.PlanId);
                 plan.PlanImages = images.ToList();
+                var user = UsersHelper.GetUserASPById(plan.UserId);
+                var userserialized=JsonConvert.SerializeObject(user);
+                plan.User = JsonConvert.DeserializeObject<MyUserASP>(userserialized);
             }
 
             return plans;
