@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"            	
+             xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             x:Class="Joinup.Views.PlanPage">
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <cv:CarouselView ItemsSource="{Binding Plan.PlanImages}">
+                    <cv:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ffimageloading:CachedImage 
+                                        BackgroundColor="AliceBlue"
+                                        Grid.Row="0"
+                                        Source="{Binding ImageFullPath}"
+                                        Aspect="AspectFill" 
+                                        HeightRequest="230"/>
+                            </Grid>
+                        </DataTemplate>
+                    </cv:CarouselView.ItemTemplate>
+                </cv:CarouselView>
+
+
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

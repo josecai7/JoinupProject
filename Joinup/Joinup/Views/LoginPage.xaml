@@ -6,12 +6,6 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.LoginPage">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
         <Grid>
             <ffimageloading:CachedImage 

@@ -19,6 +19,7 @@ namespace Joinup.Navigation
             { typeof(LoginViewModel), typeof(LoginPage) },
             { typeof(RegisterViewModel), typeof(RegisterPage) },
             { typeof(PlansViewModel), typeof(PlansPage) },
+            { typeof(PlanViewModel), typeof(PlanPage) },
             { typeof(NewPlanStep1ViewModel), typeof(NewPlanStep1Page) },
             { typeof(NewPlanStep2ViewModel), typeof(NewPlanStep2Page) },
             { typeof(NewPlanStep3ViewModel), typeof(NewPlanStep3Page) },
@@ -161,6 +162,7 @@ namespace Joinup.Navigation
             _mappings.Add(typeof(LoginViewModel), typeof(LoginPage));
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterPage));
             _mappings.Add( typeof( PlansViewModel ), typeof( PlansPage ) );
+            _mappings.Add(typeof(PlanViewModel), typeof(PlanPage));
             _mappings.Add( typeof( NewPlanStep1ViewModel ), typeof( NewPlanStep1Page ) );
             _mappings.Add( typeof( NewPlanStep2ViewModel ), typeof( NewPlanStep2Page ) );
             _mappings.Add( typeof( NewPlanStep3ViewModel ), typeof( NewPlanStep3Page ) );

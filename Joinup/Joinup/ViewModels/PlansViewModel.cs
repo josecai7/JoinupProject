@@ -15,7 +15,6 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private ApiService apiService;
-
         private ObservableCollection<Plan> planList;
         #endregion
 
@@ -89,6 +88,16 @@ namespace Joinup.ViewModels
             get
             {
                 return new RelayCommand( GoToNewPlan );
+            }
+        }
+        public ICommand ClickOnPlan
+        {
+            get
+            {
+                return new Command((item) =>
+                {
+                    NavigationService.NavigateToAsync<PlanViewModel>((Plan)item);
+                });
             }
         }
         #endregion
