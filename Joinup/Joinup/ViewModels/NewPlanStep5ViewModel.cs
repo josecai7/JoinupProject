@@ -28,7 +28,10 @@ namespace Joinup.ViewModels
         #region Properties
         public ObservableCollection<LocalImage> Images
         {
-            get { return images; }
+            get
+            {
+                return images;
+            }
             set
             {
                 images = value;
@@ -48,24 +51,9 @@ namespace Joinup.ViewModels
         {
             plan = (Plan)navigationData;
 
-            Images = ConvertToLocalPlanList(plan.PlanImages);
-            RaisePropertyChanged("Images");
-
             return base.InitializeAsync(navigationData);
         }
 
-        private ObservableCollection<LocalImage> ConvertToLocalPlanList(List<Common.Models.Image> planImages)
-        {
-            ObservableCollection<LocalImage> localImages = new ObservableCollection<LocalImage>();
-
-            foreach (Common.Models.Image image in planImages)
-            {
-                LocalImage localImage = new LocalImage(image);
-                localImages.Add(localImage);
-            }
-
-            return localImages;
-        }
 
         public override Task OnDissapearing()
         {
@@ -92,41 +80,64 @@ namespace Joinup.ViewModels
         #region Methods
         private async void AddImage()
         {
+            MediaFile file;
+
             await CrossMedia.Current.Initialize();
 
-            if ( !CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported )
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "¿Desde donde desea tomar la imagen?",
+                "Cancelar",
+                null,
+                "Galeria",
+                "Camara");
+
+            if (source == "Cancelar")
             {
-                ToastNotificationUtils.ShowToastNotifications( "Camara no disponible", "add.png", ColorUtils.ErrorColor );
                 return;
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            if (source == "Camara")
             {
-                Directory = "Joinup",
-                Name = DateTime.Now.ToString()
-            });
+                if (!CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    ToastNotificationUtils.ShowToastNotifications("Galeria no disponible", "add.png", ColorUtils.ErrorColor);
+                    return;
+                }
 
-            if (file == null)
-            {
-                return;
+                file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Joinup",
+                        Name = DateTime.Now.ToString()
+                    }
+                );
             }
             else
             {
-                ImageSource imageSource = ImageSource.FromStream(()=>
+                if (!CrossMedia.Current.IsTakePhotoSupported)
                 {
-                    return file.GetStream();
+                    ToastNotificationUtils.ShowToastNotifications("Camara no disponible", "add.png", ColorUtils.ErrorColor);
+                    return;
+                }
+                file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (file != null)
+            {               
+                ImageSource imageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
                 });
 
-
                 LocalImage localImage = new LocalImage();
-                localImage.ImageArray = FilesHelper.ReadFully(file.GetStream());
+                localImage.ImageMedia = file;
                 localImage.ImageSource = imageSource;
-                
+                localImage.ImageArray = FilesHelper.ReadFully(file.GetStream());
 
                 Images.Add(localImage);
-                plan.PlanImages.Add(localImage.ToImage());
-
-            }     
+                RaisePropertyChanged("Images");
+            }
         }
         private async void NextStepAsync()
         {
@@ -149,7 +160,7 @@ namespace Joinup.ViewModels
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlImagesController"].ToString();
 
-            foreach (LocalImage localImage in images)
+            foreach (LocalImage localImage in Images)
             {
                 Common.Models.Image image = localImage.ToImage();
                 image.EntityId = pPlanId;

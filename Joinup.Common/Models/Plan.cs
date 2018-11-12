@@ -51,8 +51,18 @@ namespace Joinup.Common.Models
         [NotMapped]       
         public List<Image> PlanImages
         {
-            get; set;
+            get
+            {
+                return _planImages;
+            }
+            set
+            {
+                _planImages = value;
+            }
         }
+        [NonSerialized]
+        private List<Image> _planImages;
+
         [NotMapped]
         public MyUserASP User
         {

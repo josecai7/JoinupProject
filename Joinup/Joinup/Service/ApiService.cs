@@ -95,6 +95,7 @@ namespace Joinup.Service
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
 
                 var client = new HttpClient();
+                client.MaxResponseContentBufferSize = long.MaxValue;
                 client.BaseAddress = new Uri(urlBase);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                 var url = $"{prefix}{controller}";
@@ -172,6 +173,7 @@ namespace Joinup.Service
                 var request = JsonConvert.SerializeObject(model);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
+                client.MaxResponseContentBufferSize = long.MaxValue;
                 client.BaseAddress = new Uri(urlBase);
                 var url = $"{prefix}{controller}";
                 var response = await client.PostAsync(url, content);
@@ -208,6 +210,7 @@ namespace Joinup.Service
                 var request = JsonConvert.SerializeObject(model);
                 var content = new StringContent(request, Encoding.UTF8, "application/json");
                 var client = new HttpClient();
+                client.MaxResponseContentBufferSize = long.MaxValue;
                 client.BaseAddress = new Uri(urlBase);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(pTokenType, pAccessToken);
                 var url = $"{prefix}{controller}";
