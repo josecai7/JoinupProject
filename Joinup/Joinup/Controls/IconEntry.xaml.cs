@@ -35,7 +35,6 @@ namespace Joinup.Controls
             var matEntry = (IconEntry) bindable;
             matEntry.EntryField.PlaceholderColor = (Color) newval;
         } );
-
         public static BindableProperty IsPasswordProperty = BindableProperty.Create( nameof( IsPassword ), typeof( bool ), typeof( IconEntry ), defaultValue: false, propertyChanged: (bindable, oldVal, newVal) =>
         {
             var matEntry = (IconEntry) bindable;
@@ -69,7 +68,6 @@ namespace Joinup.Controls
                 SetValue( KeyboardProperty, value );
             }
         }
-
         public bool IsPassword
         {
             get
@@ -81,7 +79,6 @@ namespace Joinup.Controls
                 SetValue( IsPasswordProperty, value );
             }
         }
-
         public string Text
         {
             get

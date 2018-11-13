@@ -64,7 +64,7 @@
             <Color x:Key="FormBackgroundColor">#ECF0F1</Color>
 
             <Color x:Key="DarkPrimaryColor">#CC4141</Color>
-            <Color x:Key="PrimaryColor">#3291C9</Color>
+            <Color x:Key="PrimaryColor">#1BCCA0</Color>
             <Color x:Key="PrimaryTextColor">#2D2D2D</Color>
             <Color x:Key="SecondaryTextColor">#7A7A7A</Color>
             <Color x:Key="TertiaryTextColor">#C9C9C9</Color>

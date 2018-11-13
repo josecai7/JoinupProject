@@ -1,72 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:customEntry="clr-namespace:Joinup.Controls"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="Joinup.Views.LoginPage">
+             xmlns:customControls="clr-namespace:Joinup.Controls"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Joinup.Views.LoginPage"
+             BackgroundColor="{StaticResource PrimaryColor}">
 
     <ContentPage.Content>
         <Grid>
-            <ffimageloading:CachedImage 
-                Source="fondo2.jpg"
-                Aspect="AspectFill" 
-                VerticalOptions="Fill"
-                HorizontalOptions="Fill">
-            </ffimageloading:CachedImage>
-            
+
             <Grid
             Margin="32,0,32,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="7*"/>
                 </Grid.RowDefinitions>
-                <Label
+                
+                <ffimageloadingsvg:SvgCachedImage 
                     Grid.Row="0"
-                    Margin="0,0,0,0"
-                    VerticalOptions="Center"
+                    VerticalOptions="End"
                     HorizontalOptions="Center"
-                    Text="{StaticResource AppName}"    
-                    HorizontalTextAlignment="Center"
-                    FontSize="{StaticResource LogoTextSize}" 
-                    FontFamily="{StaticResource MageHand}"
-                    TextColor="White"
-                    />
+                    WidthRequest="150" 
+                    HeightRequest="125" 
+                    Source="logo.svg"/>
 
                 <StackLayout
                 Grid.Row="1">
 
-                    <customEntry:IconEntry
+                    <customControls:IconEntry
                         Text="{Binding Email}"
-                        IconSource="email"
+                        IconSource="email-outline"
                         IconColor="White"
                         AccentColor="White"
                         Keyboard="Email"
-                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        PlaceholderColor="White"
                         Placeholder="Email"/>
 
-                    <customEntry:IconEntry
+                    <customControls:IconEntry
                         Text="{Binding Password}"
-                        IconSource="lock"
+                        IconSource="lock-outline"
                         IconColor="White"
                         AccentColor="White"
                         IsPassword="True"
                         PlaceholderColor="{StaticResource PlaceholderColor}"
-                        Placeholder="Contraseña"/>
+                        Placeholder="Contraseña"
+                        Margin="0,8,0,0"/>
+
+                    <customControls:CheckBar 
+                        Checked="False"
+                        TextColor="White"
+                        CheckColor="White"   
+                        Text="Recordarme"
+                        Margin="0,16,0,0" />
 
                     <Frame
-                    HasShadow="True"
-                    OutlineColor="{StaticResource ShadowColor}"  
-                    Margin="24,24,24,0"
-                    Padding="0">
+                        HasShadow="True"
+                        OutlineColor="{StaticResource ShadowColor}"  
+                        Margin="24,24,24,0"
+                        HeightRequest="32"
+                        CornerRadius="24"
+                        Padding="0">
                         <Button                
-                    TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoMedium}"
-                    FontSize="{StaticResource LargeSize}"
-                    BackgroundColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Entrar"
-                    Command="{Binding DoLoginCommand}"
+                            TextColor="{StaticResource PrimaryColor}"
+                            FontFamily="{StaticResource RobotoMedium}"
+                            FontSize="{StaticResource LargeSize}"
+                            BackgroundColor="White"
+                            HorizontalOptions="FillAndExpand"
+                            CornerRadius="24"
+                            Text="Entrar"
+                            Command="{Binding DoLoginCommand}"
                     />
 
 

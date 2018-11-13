@@ -124,7 +124,6 @@ namespace Joinup.ViewModels
             });
         }
         #endregion
-
         #region Commands
         public ICommand SelectRestaurantCategoryCommand
         {
@@ -197,7 +196,6 @@ namespace Joinup.ViewModels
             }
         }
         #endregion
-
         #region Methods
         private void SelectRestaurantCategory()
         {

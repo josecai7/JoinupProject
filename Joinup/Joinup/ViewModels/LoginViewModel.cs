@@ -81,7 +81,6 @@ namespace Joinup.ViewModels
             }
         }
         #endregion
-
         #region Methods
         private async void Login()
         {

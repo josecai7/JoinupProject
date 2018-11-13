@@ -182,6 +182,9 @@
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>3.2.0.839982</Version>
     </PackageReference>
+    <PackageReference Include="XLabs.Forms">
+      <Version>2.0.5782</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Joinup\Joinup.csproj">
