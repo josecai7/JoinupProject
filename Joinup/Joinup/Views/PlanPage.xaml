@@ -6,13 +6,18 @@
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.Content>
         <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
-            <StackLayout>
-                <cv:CarouselView ItemsSource="{Binding Plan.PlanImages}">
+            <StackLayout
+                Orientation="Vertical">
+                <cv:CarouselView 
+                    ItemsSource="{Binding Plan.PlanImages}"
+                    HeightRequest="230"
+                    VerticalOptions="Start"
+                    BackgroundColor="AliceBlue">
                     <cv:CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="230"/>
                                 </Grid.RowDefinitions>
                                 <ffimageloading:CachedImage 
                                         BackgroundColor="AliceBlue"
@@ -24,7 +29,25 @@
                         </DataTemplate>
                     </cv:CarouselView.ItemTemplate>
                 </cv:CarouselView>
+                <StackLayout
+                    Orientation="Vertical"
+                    Margin="16,6,16,0">
+                    <Label
+                        Text="{Binding Plan.Name}"
+                        Style="{StaticResource TitleFont}"
+                        TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Label
+                        Text="{Binding PlanType}"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                    <BoxView
+                        HeightRequest="1"
+                        Margin="0,6,0,4"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource DividerColor}"/>
 
+
+                </StackLayout>
 
         </StackLayout>
         </ScrollView>

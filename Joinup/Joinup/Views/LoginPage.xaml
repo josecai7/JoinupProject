@@ -30,17 +30,17 @@
                     <customControls:IconEntry
                         Text="{Binding Email}"
                         IconSource="email-outline"
-                        IconColor="White"
-                        AccentColor="White"
+                        IconColor="{StaticResource WhiteColor}"
+                        AccentColor="{StaticResource WhiteColor}"
                         Keyboard="Email"
-                        PlaceholderColor="White"
+                        PlaceholderColor="{StaticResource WhiteColor}"
                         Placeholder="Email"/>
 
                     <customControls:IconEntry
                         Text="{Binding Password}"
                         IconSource="lock-outline"
-                        IconColor="White"
-                        AccentColor="White"
+                        IconColor="{StaticResource WhiteColor}"
+                        AccentColor="{StaticResource WhiteColor}"
                         IsPassword="True"
                         PlaceholderColor="{StaticResource PlaceholderColor}"
                         Placeholder="Contraseña"
@@ -48,51 +48,60 @@
 
                     <customControls:CheckBar 
                         Checked="False"
-                        TextColor="White"
-                        CheckColor="White"   
+                        TextColor="{StaticResource WhiteColor}"
+                        CheckColor="{StaticResource WhiteColor}"
                         Text="Recordarme"
                         Margin="0,16,0,0" />
 
                     <Frame
                         HasShadow="True"
                         OutlineColor="{StaticResource ShadowColor}"  
-                        Margin="24,24,24,0"
-                        HeightRequest="32"
+                        Margin="0,40,0,0"
+                        HeightRequest="40"
                         CornerRadius="24"
                         Padding="0">
                         <Button                
                             TextColor="{StaticResource PrimaryColor}"
                             FontFamily="{StaticResource RobotoMedium}"
-                            FontSize="{StaticResource LargeSize}"
-                            BackgroundColor="White"
+                            FontSize="{StaticResource MediumSize}"
+                            BackgroundColor="{StaticResource WhiteColor}"
                             HorizontalOptions="FillAndExpand"
-                            CornerRadius="24"
+                            CornerRadius="32"
                             Text="Entrar"
-                            Command="{Binding DoLoginCommand}"
-                    />
-
-
+                            Command="{Binding DoLoginCommand}"/>
                     </Frame>
-
-
                     <Label
-                    Margin="0,20,0,0"
-                    Text="¿Aún no registrado? Registrate"    
-                    HorizontalTextAlignment="Center"
-                    FontSize="{StaticResource MediumSize}" 
-                    FontFamily="{StaticResource RobotoRegular}"
-                    TextColor="{StaticResource PlaceholderColor}"
-                    >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
-                        </Label.GestureRecognizers>
+                        Text="o"
+                        Margin="0,16,0,16"
+                        TextColor="{StaticResource WhiteColor}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource RobotoLight}"
+                        FontSize="{StaticResource MidMediumSize}">
                     </Label>
+                    <Frame
+                        HasShadow="False"
+                        OutlineColor="{StaticResource ShadowColor}"  
+                        HeightRequest="40"
+                        CornerRadius="24"
+                        Padding="0">
+                        <Button                
+                            BorderWidth="1"
+                            BorderColor="{StaticResource WhiteColor}"
+                            TextColor="{StaticResource WhiteColor}"
+                            FontFamily="{StaticResource RobotoMedium}"
+                            FontSize="{StaticResource MediumSize}"
+                            BackgroundColor="{StaticResource PrimaryColor}"
+                            HorizontalOptions="FillAndExpand"
+                            CornerRadius="32"
+                            Text="Registrarse"
+                            Command="{Binding RegisterCommand}"/>
+                    </Frame>
                 </StackLayout>
 
             </Grid>
             <ActivityIndicator 
                 IsRunning="{Binding IsRunning}" 
-                Color="White"
+                Color="{StaticResource WhiteColor}"
                 WidthRequest="50"
                 HeightRequest="50"
                 VerticalOptions="End" 

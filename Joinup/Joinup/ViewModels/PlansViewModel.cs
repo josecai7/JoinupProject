@@ -96,7 +96,15 @@ namespace Joinup.ViewModels
             {
                 return new Command((item) =>
                 {
-                    NavigationService.NavigateToAsync<PlanViewModel>((Plan)item);
+                    try
+                    {
+                            NavigationService.NavigateToAsync<PlanViewModel>((Plan)item);
+                    }
+                    catch (Exception exc)
+                    {
+
+                    }
+                    
                 });
             }
         }
@@ -105,7 +113,14 @@ namespace Joinup.ViewModels
         #region Methods
         private void GoToNewPlan()
         {
-            NavigationService.NavigateToAsync<NewPlanStep1ViewModel>();
+            try
+            {
+                NavigationService.NavigateToAsync<NewPlanStep1ViewModel>();
+            }
+            catch (Exception exc)
+            {
+
+            }
         }
         private async void LoadPlans()
         {

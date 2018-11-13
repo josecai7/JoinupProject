@@ -1,4 +1,5 @@
 ﻿using Joinup.Common.Models;
+using Joinup.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,11 +25,18 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public string PlanType
+        {
+            get
+            {
+                return TextFormatterHelper.GetCategoryName(plan.PlanType);
+            }
+        }
         #endregion
         #region Constructors
         public PlanViewModel()
         {
-
+            plan = new Plan();
         }
         public override Task InitializeAsync(object navigationData)
         {
@@ -37,6 +45,7 @@ namespace Joinup.ViewModels
             if (parameter != null)
             {
                 Plan = parameter;
+                RaisePropertyChanged("PlanType");
             }
 
             return base.InitializeAsync(navigationData);
