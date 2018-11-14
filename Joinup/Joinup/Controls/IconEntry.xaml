@@ -28,7 +28,7 @@
                     Text="{Binding Text, Mode=TwoWay}" 
                     TextColor="White"                
                     FontSize="{StaticResource LargeSize}" 
-                    FontFamily="{StaticResource RobotoLight}"
+                    FontFamily="{StaticResource FontLight}"
                     PlaceholderColor="{StaticResource PlaceholderColor}"
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="End"/>

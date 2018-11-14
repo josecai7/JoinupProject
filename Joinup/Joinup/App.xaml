@@ -19,29 +19,31 @@
 
 
             <!-- FONTS -->
-            <OnPlatform x:Key="RobotoBold"
+            <OnPlatform x:Key="FontBold"
                         x:TypeArguments="x:String"
-                        iOS="Roboto-Bold"
-                        Android="Roboto-Bold.ttf#Roboto"
-                        WinPhone="/Assets/Fonts/Roboto-Bold.ttf#Roboto"/>
+                        iOS="Monserrat-Bold"
+                        Android="Montserrat-Bold.ttf#Montserrat"/>
+            <OnPlatform x:Key="FontSemiBold"
+                        x:TypeArguments="x:String"
+                        iOS="Monserrat-SemiBold"
+                        Android="Montserrat-SemiBold.ttf#Montserrat"/>
 
-            <OnPlatform x:Key="RobotoLight"
+            <OnPlatform x:Key="FontLight"
                         x:TypeArguments="x:String"
-                        iOS="Roboto-Light"
-                        Android="Roboto-Light.ttf#Roboto"
-                        WinPhone="/Assets/Fonts/Roboto-Light.ttf#Roboto" />
+                        iOS="Monserrat-Light"
+                        Android="Montserrat-Light.ttf#Montserrat"/>
 
-            <OnPlatform x:Key="RobotoMedium"
+            <OnPlatform x:Key="FontMedium"
                         x:TypeArguments="x:String"
-                        iOS="Roboto-Medium"
-                        Android="Roboto-Medium.ttf#Roboto"
-                        WinPhone="/Assets/Fonts/Roboto-Medium.ttf#Roboto" />
+                        iOS="Monserrat-Medium"
+                        Android="Montserrat-Medium.ttf#Montserrat"/>
 
-            <OnPlatform x:Key="RobotoRegular"
+            <OnPlatform x:Key="FontRegular"
                         x:TypeArguments="x:String"
-                        iOS="Roboto-Regular"
-                        Android="Roboto-Regular.ttf#Roboto"
-                        WinPhone="/Assets/Fonts/Roboto-Regular.ttf#Roboto"/>
+                        iOS="Monserrat-Regular"
+                        Android="Montserrat-Regular.ttf#Montserrat"/>
+            
+            
             <OnPlatform x:Key="CasualRegular"
                         x:TypeArguments="x:String"
                         iOS="Casual-Regular"
@@ -72,7 +74,8 @@
             
             <Color x:Key="PlaceholderColor">#F2F2F2</Color>
 
-            <Color x:Key="DividerColor">#E0E0E0</Color>
+            <Color x:Key="DividerColor">#EAEAEA</Color>
+            <Color x:Key="DividerLightColor">#F2F2F2</Color>
             <Color x:Key="ShadowColor">#E5E5E5</Color>
 
             <Color x:Key="ErrorColor">#B4656F</Color>
@@ -101,7 +104,7 @@
                 <Setter Property="FontSize"
                         Value="Small" />
                 <Setter Property="FontFamily"
-                        Value="{StaticResource RobotoRegular}" />
+                        Value="{StaticResource FontRegular}" />
                 
             </Style>
 
@@ -237,15 +240,23 @@
             <Style x:Key="TitleFont"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontFamily"
-                 Value="{StaticResource RobotoMedium}" />
+                 Value="{StaticResource FontBold}" />
                 <Setter Property="FontSize"
-                 Value="{StaticResource LargerSize}" />
+                 Value="{StaticResource BigSize}" />
             </Style>
             
             <Style x:Key="SubtitleFont"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontFamily"
-                 Value="{StaticResource RobotoMedium}" />
+                 Value="{StaticResource FontSemiBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource MidMediumSize}" />
+            </Style>
+
+            <Style x:Key="TitleElementFont"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontSemiBold}" />
                 <Setter Property="FontSize"
                  Value="{StaticResource MidMediumSize}" />
             </Style>

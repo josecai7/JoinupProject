@@ -30,13 +30,13 @@
                 <Label
                     Text="¿Que te apetece hacer?"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Large">
                 </Label>
                 <Label
                     Text="Selecciona que se hara en el plan que publicaras"
                     TextColor="{StaticResource PrimaryTextColor}"
-                    FontFamily="{StaticResource RobotoLight}"
+                    FontFamily="{StaticResource FontLight}"
                     FontSize="Small">
                 </Label>
             </StackLayout>

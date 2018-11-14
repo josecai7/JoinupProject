@@ -17,7 +17,7 @@
                 <Label
                     x:Name="Label"
                     FontSize="{StaticResource MidMediumSize}" 
-                    FontFamily="{StaticResource RobotoLight}"
+                    FontFamily="{StaticResource FontLight}"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="StartAndExpand" />
             </StackLayout>

@@ -35,7 +35,7 @@
                         Grid.Row="0"
                     Text="Selecciona la fecha en la que tendra lugar el evento"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Large">
                     </Label >
 
@@ -53,12 +53,12 @@
                         <Syncfusion:MonthViewSettings 
                                 BorderColor="Transparent"
                                 HeaderTextColor="{StaticResource PrimaryTextColor}"
-                                HeaderFontFamily="{StaticResource RobotoRegular}"
+                                HeaderFontFamily="{StaticResource FontRegular}"
                                 HeaderFont="14"                                
                                 DateTextAlignment="Center"
                                 DayLabelTextAlignment="Center"
                                 DayHeaderTextColor="{StaticResource SecondaryTextColor}"
-                                DayHeaderFontFamily="{StaticResource RobotoLight}"
+                                DayHeaderFontFamily="{StaticResource FontLight}"
                                 DayHeaderFont="12"
                                 CurrentMonthTextColor="{StaticResource PrimaryColor}"
                                 PreviousMonthTextColor="{StaticResource TertiaryTextColor}"
@@ -99,7 +99,7 @@
                         Spacing="0">
                         <Label
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoRegular}"
+                            FontFamily="{StaticResource FontRegular}"
                             FontSize="Medium"
                             HorizontalTextAlignment="Center"
                             Text="{Binding DateFrom}">
@@ -107,7 +107,7 @@
                         </Label>
                         <Label
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoLight}"
+                            FontFamily="{StaticResource FontLight}"
                             HorizontalTextAlignment="Center"
                             FontSize="Small"
                             Text="a las">
@@ -115,7 +115,7 @@
                         </Label>
                         <Label
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoRegular}"
+                            FontFamily="{StaticResource FontRegular}"
                             HorizontalTextAlignment="Center"
                             FontSize="Medium"
                             Text="{Binding TimeFrom}">
@@ -154,7 +154,7 @@
                         Spacing="0">
                         <Label
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoRegular}"
+                            FontFamily="{StaticResource FontRegular}"
                             FontSize="Medium"
                             HorizontalTextAlignment="Center"
                             Text="{Binding DateTo}">
@@ -162,7 +162,7 @@
                         </Label>
                         <Label
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoLight}"
+                            FontFamily="{StaticResource FontLight}"
                             HorizontalTextAlignment="Center"
                             FontSize="Small"
                             Text="a las">
@@ -170,7 +170,7 @@
                         </Label>
                         <Label
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoRegular}"
+                            FontFamily="{StaticResource FontRegular}"
                             HorizontalTextAlignment="Center"
                             FontSize="Medium"
                             Text="{Binding TimeTo}">

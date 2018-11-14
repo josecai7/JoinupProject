@@ -18,7 +18,7 @@
             <Style x:Key="LabelButtonStyle"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontFamily"
-                        Value="{StaticResource RobotoLight}" />
+                        Value="{StaticResource FontLight}" />
                 <Setter Property="FontSize"
                         Value="Small" />
                 <Setter Property="TextColor"

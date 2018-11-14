@@ -35,13 +35,13 @@
                     <Label
                     Text="Ponle un titulo atractivo a tu plan"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Large">
                     </Label>
                     <Label
                     Text="Intenta que el titulo de tu plan sea descriptivo y atractivo"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoLight}"
+                    FontFamily="{StaticResource FontLight}"
                     FontSize="Medium">
                     </Label>
                     <Editor
@@ -49,20 +49,20 @@
                     AutoSize="TextChanges"
                     Text="{Binding Title, Mode=TwoWay}"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Medium">
                     </Editor>
                     <Label
                     Margin="0,32,0,0"
                     Text="...¿Algo más?"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Large">
                     </Label>
                     <Label
                     Text="Explica que hareís durante la quedada y anima a la gente a apuntarse a tu plan."
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoLight}"
+                    FontFamily="{StaticResource FontLight}"
                     FontSize="Medium">
                     </Label>
 
@@ -72,7 +72,7 @@
                     Text="{Binding Description, Mode=TwoWay}"
                     Placeholder=""
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Medium">
                     </Editor>
                 </StackLayout>

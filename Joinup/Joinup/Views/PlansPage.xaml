@@ -64,13 +64,13 @@
                                                 Grid.Row="0" 
                                                 Text="{Binding Name}"
                                                 TextColor="{StaticResource PrimaryTextColor}"
-                                                FontFamily="{StaticResource RobotoRegular}"
+                                                FontFamily="{StaticResource FontRegular}"
                                                 FontSize="Medium"/>
 
                                             <Label Grid.Row="1" 
                                                 Text="{Binding Description}"
                                                 TextColor="{StaticResource SecondaryTextColor}"
-                                                FontFamily="{StaticResource RobotoLight}"
+                                                FontFamily="{StaticResource FontLight}"
                                                 FontSize="Small"/>
                                         <BoxView
                                             HorizontalOptions="Fill"
@@ -100,7 +100,7 @@
                                                 <Label
                                                     Text="Francisco Javier"
                                                     TextColor="{StaticResource PrimaryTextColor}"
-                                                    FontFamily="{StaticResource RobotoRegular}"
+                                                    FontFamily="{StaticResource FontRegular}"
                                                     FontSize="Small"/>
                                                 <StackLayout                                                  
                                                     Orientation="Horizontal">
@@ -114,7 +114,7 @@
                                                     <Label
                                                     Text="3.2 km"
                                                     TextColor="{StaticResource SecondaryTextColor}"
-                                                    FontFamily="{StaticResource RobotoLight}"
+                                                    FontFamily="{StaticResource FontLight}"
                                                     FontSize="Micro"/>
                                                     <custom:FontIcon
                                                         IconColor="{StaticResource PrimaryColor}"
@@ -126,7 +126,7 @@
                                                     <Label
                                                     Text="4"
                                                     TextColor="{StaticResource SecondaryTextColor}"
-                                                    FontFamily="{StaticResource RobotoLight}"
+                                                    FontFamily="{StaticResource FontLight}"
                                                     FontSize="Micro"/>
                                                     <custom:FontIcon
                                                         IconColor="{StaticResource PrimaryColor}"
@@ -138,7 +138,7 @@
                                                     <Label
                                                     Text="4"
                                                     TextColor="{StaticResource SecondaryTextColor}"
-                                                    FontFamily="{StaticResource RobotoLight}"
+                                                    FontFamily="{StaticResource FontLight}"
                                                     FontSize="Micro"/>
                                                 </StackLayout>
 

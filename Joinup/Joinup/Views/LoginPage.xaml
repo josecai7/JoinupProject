@@ -62,7 +62,7 @@
                         Padding="0">
                         <Button                
                             TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource RobotoMedium}"
+                            FontFamily="{StaticResource FontMedium}"
                             FontSize="{StaticResource MediumSize}"
                             BackgroundColor="{StaticResource WhiteColor}"
                             HorizontalOptions="FillAndExpand"
@@ -75,7 +75,7 @@
                         Margin="0,16,0,16"
                         TextColor="{StaticResource WhiteColor}"
                         HorizontalOptions="Center"
-                        FontFamily="{StaticResource RobotoLight}"
+                        FontFamily="{StaticResource FontLight}"
                         FontSize="{StaticResource MidMediumSize}">
                     </Label>
                     <Frame
@@ -88,7 +88,7 @@
                             BorderWidth="1"
                             BorderColor="{StaticResource WhiteColor}"
                             TextColor="{StaticResource WhiteColor}"
-                            FontFamily="{StaticResource RobotoMedium}"
+                            FontFamily="{StaticResource FontMedium}"
                             FontSize="{StaticResource MediumSize}"
                             BackgroundColor="{StaticResource PrimaryColor}"
                             HorizontalOptions="FillAndExpand"

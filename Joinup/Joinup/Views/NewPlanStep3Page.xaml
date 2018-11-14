@@ -36,13 +36,13 @@
                 <Label
                     Text="¿Donde quedais?"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoRegular}"
+                    FontFamily="{StaticResource FontRegular}"
                     FontSize="Large">
                 </Label>
                 <Label
                     Text="Pulsa sobre el mapa para especificar el punto exacto donde llevareis a cabo vuestro divertido plan"
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource RobotoLight}"
+                    FontFamily="{StaticResource FontLight}"
                     FontSize="Medium">
                 </Label>
                 <Entry

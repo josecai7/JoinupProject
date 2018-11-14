@@ -11,7 +11,7 @@
             </Grid.RowDefinitions>
             <Label x:Name="HiddenLabel" 
                    FontSize="{StaticResource MidMediumSize}" 
-                   FontFamily="{StaticResource RobotoRegular}"
+                   FontFamily="{StaticResource FontRegular}"
                    TextColor="{StaticResource PlaceholderColor}"
                    IsVisible="False" 
                    Margin="0"/>
@@ -21,7 +21,7 @@
                 Text="{Binding Text, Mode=TwoWay}" 
                 TextColor="White"                
                 FontSize="{StaticResource LargeSize}" 
-                FontFamily="{StaticResource RobotoRegular}"
+                FontFamily="{StaticResource FontRegular}"
                 PlaceholderColor="{StaticResource PlaceholderColor}"/>
             
             <BoxView x:Name="BottomBorder" BackgroundColor="{StaticResource PlaceholderColor}"  Grid.Row="1" HeightRequest="1" Margin="0" HorizontalOptions="FillAndExpand"/>
