@@ -248,12 +248,34 @@
             <Style x:Key="SubtitleFont"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontFamily"
+                 Value="{StaticResource FontBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource MidMediumSize}" />
+            </Style>
+
+            <Style x:Key="HeaderElementFont"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource LittleSize}" />
+            </Style>
+            <Style x:Key="TitleElementFont"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource BigSize}" />
+            </Style>
+            <Style x:Key="SubtitleElementFont"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
                  Value="{StaticResource FontSemiBold}" />
                 <Setter Property="FontSize"
                  Value="{StaticResource MidMediumSize}" />
             </Style>
 
-            <Style x:Key="TitleElementFont"
+            <Style x:Key="TitleSectionFont"
                    TargetType="{x:Type Label}">
                 <Setter Property="FontFamily"
                  Value="{StaticResource FontSemiBold}" />

@@ -105,17 +105,26 @@ namespace Joinup.Common.Models
 
         [NotMapped]
         [JsonIgnore]
+        public string FormattedDateTime
+        {
+            get
+            {
+                return DateTimeHelper.GetCompletedPlanDate( PlanDate , EndPlanDate );
+            }
+        }
+        [NotMapped]
+        [JsonIgnore]
         public string FormattedDate
         {
             get
             {
                 if ( PlanDate.Date == EndPlanDate.Date )
                 {
-                    return DateTimeHelper.GetFormattedDayMonth(PlanDate);
+                    return DateTimeHelper.GetFormattedDayMonth( PlanDate );
                 }
                 else
                 {
-                    return DateTimeHelper.GetFormattedDayMonth( PlanDate )+" - "+DateTimeHelper.GetFormattedDayMonth( EndPlanDate );
+                    return DateTimeHelper.GetFormattedDayMonth( PlanDate ) + " - " + DateTimeHelper.GetFormattedDayMonth( EndPlanDate );
                 }
             }
         }

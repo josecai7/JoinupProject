@@ -6,6 +6,8 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"            	
              xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.Content>
@@ -76,13 +78,13 @@
                             Grid.Column="1"
                             Grid.Row="0"
                             Text="{Binding Plan.User.Name}"
-                            Style="{StaticResource TitleElementFont}"
+                            Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
                         <Label
                             Grid.Column="1"
                             Grid.Row="1"
                             Text="Owned"
-                            Style="{StaticResource TitleElementFont}"
+                            Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
                     </Grid>
 
@@ -115,19 +117,19 @@
                             Grid.Column="1"
                             Grid.Row="0"
                             Text="{Binding Plan.FormattedDate}"
-                            Style="{StaticResource TitleElementFont}"
+                            Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
                         <Label
                             Grid.Column="1"
                             Grid.Row="1"
                             Text="{Binding Plan.FormattedHour}"
-                            Style="{StaticResource TitleElementFont}"
+                            Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
                         <Label
                             Grid.Column="1"
                             Grid.Row="2"
                             Text="Add to Calendar"
-                            Style="{StaticResource TitleElementFont}"
+                            Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
                     </Grid>
 
@@ -160,7 +162,7 @@
                             Grid.Column="1"
                             Grid.Row="0"
                             Text="13 personas van a ir"
-                            Style="{StaticResource TitleElementFont}"
+                            Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
 
                         <flv:FlowListView 
@@ -193,9 +195,54 @@
                     <!-- Description -->
                     <Label
                         Text="{Binding Plan.Description}"
-                        Style="{StaticResource TitleElementFont}"
+                        Style="{StaticResource TitleSectionFont}"
                         TextColor="{StaticResource SecondaryTextColor}"/>
-                    
+
+                    <controls:SeparatorLine
+                        Margin="0,16,0,16"/>
+
+                    <!-- Map and Address -->
+                    <Grid
+                        RowSpacing="16"
+                        ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <customcontrols:FontIcon
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            IconColor="{StaticResource TertiaryTextColor}"
+                            Icon="map-marker-outline"
+                            IconSize="{StaticResource IconBigSize}"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center">
+                        </customcontrols:FontIcon>
+                        <Label
+                            VerticalOptions="Center"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="{Binding Plan.Address}"
+                            Style="{StaticResource TitleSectionFont}"
+                            TextColor="{StaticResource SecondaryTextColor}"/>
+
+                        <maps:Map
+                            x:Name="MyMap"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"
+                            HeightRequest="150">
+                            <maps:Map.Behaviors>
+                                <behaviors:MapBehavior 
+                                ItemsSource="{Binding Pins}" />
+                            </maps:Map.Behaviors>
+                        </maps:Map>
+
+                    </Grid>
+
                 </StackLayout>
 
         </StackLayout>

@@ -7,14 +7,15 @@
              xmlns:custom="clr-namespace:Joinup.CustomControls"
              xmlns:controls="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.PlansPage"
+             BackgroundColor="{StaticResource WhiteColor}"
+             Icon="ic_magnify.png"
              Title="Planes">
     <ContentPage.BindingContext>
         <viewModels:PlansViewModel/>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="{StaticResource FormBackgroundColor}">
+        <StackLayout>
             <Button 
                 Text="Nuevo Plan"
                 Command="{Binding NewPlanCommand}"/>
@@ -30,125 +31,38 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame                               
-                                BackgroundColor="White"
-                                CornerRadius="4" 
-                                Margin="8" 
-                                Padding="0"
-                                HasShadow="true"
-                                OutlineColor="{StaticResource ShadowColor}"     
-                                IsClippedToBounds="True">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-
-                                    <ffimageloading:CachedImage 
-                                        BackgroundColor="AliceBlue"
-                                        Grid.Row="0"
-                                        Source="{Binding DefaultImageFullPath}"
-                                        Aspect="AspectFill" 
-                                        LoadingPlaceholder="no_image.png" 
-                                        ErrorPlaceholder="no_image.png" 
-                                        DownsampleToViewSize="true"
-                                        HeightRequest="180">
+                            <StackLayout
+                                Spacing="0"
+                                Padding="16">
+                                <Frame
+                                    Padding="0"
+                                    Margin="0,0,0,8"
+                                    CornerRadius="6">
+                                    <ffimageloading:CachedImage    
+                                    BackgroundColor="AliceBlue"
+                                    Source="{Binding DefaultImageFullPath}"
+                                    Aspect="AspectFill" 
+                                    LoadingPlaceholder="no_image.png" 
+                                    ErrorPlaceholder="no_image.png" 
+                                    DownsampleToViewSize="true"
+                                    HeightRequest="220">
                                     </ffimageloading:CachedImage>
-                                    <StackLayout
-                                        Grid.Row="1"
-                                        BackgroundColor="White"
-                                        Spacing="0"
-                                        Padding="8">
+                                </Frame>
+                                <Label 
+                                    Text="{Binding FormattedDateTime}"
+                                    Style="{StaticResource SubtitleFont}"
+                                    TextColor="{StaticResource TertiaryTextColor}"/>
 
-                                        <Label 
-                                                Grid.Row="0" 
-                                                Text="{Binding Name}"
-                                                TextColor="{StaticResource PrimaryTextColor}"
-                                                FontFamily="{StaticResource FontRegular}"
-                                                FontSize="Medium"/>
+                                <Label 
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource SecondaryTextColor}"
+                                    Style="{StaticResource TitleElementFont}"/>
 
-                                            <Label Grid.Row="1" 
-                                                Text="{Binding Description}"
-                                                TextColor="{StaticResource SecondaryTextColor}"
-                                                FontFamily="{StaticResource FontLight}"
-                                                FontSize="Small"/>
-                                        <BoxView
-                                            HorizontalOptions="Fill"
-                                            HeightRequest="1"
-                                            BackgroundColor="{StaticResource DividerColor}"
-                                            Margin="0,4,0,8"/>
-
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <ffimageloading:CachedImage 
-                                                Grid.Row="0"
-                                                Source="{Binding User.UserImage}"
-                                                Aspect="AspectFill"    
-                                                HeightRequest="30"
-                                                WidthRequest="30">
-                                                <ffimageloading:CachedImage.Transformations>
-                                                    <fftransformations:CircleTransformation/>
-                                                </ffimageloading:CachedImage.Transformations>
-                                            </ffimageloading:CachedImage>
-                                            <StackLayout
-                                                Grid.Column="1"
-                                                Orientation="Vertical"
-                                                Spacing="2">
-                                                <Label
-                                                    Text="Francisco Javier"
-                                                    TextColor="{StaticResource PrimaryTextColor}"
-                                                    FontFamily="{StaticResource FontRegular}"
-                                                    FontSize="Small"/>
-                                                <StackLayout                                                  
-                                                    Orientation="Horizontal">
-                                                    <custom:FontIcon
-                                                        IconColor="{StaticResource PrimaryColor}"
-                                                        Icon="map-marker-radius"
-                                                        IconSize="{StaticResource IconExtraSmallSize}"
-                                                        VerticalOptions="Center"
-                                                        HorizontalOptions="Center">
-                                                    </custom:FontIcon>
-                                                    <Label
-                                                    Text="3.2 km"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    FontFamily="{StaticResource FontLight}"
-                                                    FontSize="Micro"/>
-                                                    <custom:FontIcon
-                                                        IconColor="{StaticResource PrimaryColor}"
-                                                        Icon="account-group"
-                                                        IconSize="{StaticResource IconExtraSmallSize}"
-                                                        VerticalOptions="Center"
-                                                        HorizontalOptions="Center">
-                                                    </custom:FontIcon>
-                                                    <Label
-                                                    Text="4"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    FontFamily="{StaticResource FontLight}"
-                                                    FontSize="Micro"/>
-                                                    <custom:FontIcon
-                                                        IconColor="{StaticResource PrimaryColor}"
-                                                        Icon="message-text"
-                                                        IconSize="{StaticResource IconExtraSmallSize}"
-                                                        VerticalOptions="Center"
-                                                        HorizontalOptions="Center">
-                                                    </custom:FontIcon>
-                                                    <Label
-                                                    Text="4"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    FontFamily="{StaticResource FontLight}"
-                                                    FontSize="Micro"/>
-                                                </StackLayout>
-
-                                            </StackLayout>
-                                        </Grid>
-
-                                    </StackLayout>
-
-                            </Grid>
-                            </Frame>
+                                <Label Grid.Row="1" 
+                                    Text="{Binding Address}"
+                                    TextColor="{StaticResource SecondaryTextColor}"
+                                    Style="{StaticResource SubtitleElementFont}"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

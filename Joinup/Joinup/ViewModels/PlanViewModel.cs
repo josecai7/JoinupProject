@@ -2,6 +2,7 @@
 using Joinup.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private Plan plan;
+        ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         #endregion
         #region Properties
         public Plan Plan
@@ -23,6 +25,15 @@ namespace Joinup.ViewModels
             {
                 plan = value;
                 RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<Plan> Pins
+        {
+            get { return pins; }
+            set
+            {
+                pins = value;
+                RaisePropertyChanged( "Pins" );
             }
         }
         #endregion
@@ -38,7 +49,11 @@ namespace Joinup.ViewModels
             if (parameter != null)
             {
                 Plan = parameter;
-                RaisePropertyChanged("PlanType");
+                if ( plan.Latitude != Double.NaN && plan.Longitude != Double.NaN )
+                {
+                    Pins = new ObservableCollection<Plan>();
+                    Pins.Add( plan );
+                }
             }
 
             return base.InitializeAsync(navigationData);
