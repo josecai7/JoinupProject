@@ -25,13 +25,6 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public string PlanType
-        {
-            get
-            {
-                return TextFormatterHelper.GetCategoryName(plan.PlanType);
-            }
-        }
         #endregion
         #region Constructors
         public PlanViewModel()

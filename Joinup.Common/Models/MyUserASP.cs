@@ -22,14 +22,35 @@ namespace Joinup.Common.Models
         public int AccessFailedCount { get; set; }
         public string Id { get; set; }
         public string UserName { get; set; }
-
+        public string Name
+        {
+            get
+            {
+                if ( Claims.Count >= 1 )
+                {
+                    return Claims[0].ClaimValue;
+                }
+                return "Sin nombre";
+            }
+        }
+        public string Surname
+        {
+            get
+            {
+                if ( Claims.Count >= 2 )
+                {
+                    return Claims[1].ClaimValue;
+                }
+                return "Sin apellido";
+            }
+        }
         public string UserImage
         {
             get
             {
-                if (Claims.Count>=3)
+                if ( Claims.Count >= 3 )
                 {
-                    return $"https://joinupapi.azurewebsites.net/{Claims[2].ClaimValue.Substring(1)}";
+                    return $"https://joinupapi.azurewebsites.net/{Claims[2].ClaimValue.Substring( 1 )}";
                 }
                 return "no_image.png";
             }

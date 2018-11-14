@@ -202,13 +202,13 @@ namespace Joinup.ViewModels
 
             if (IsRestaurantSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsRestaurantSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.RESTAURANT;
+                selectedCategory = PLANTYPE.RESTAURANT;
                 IsRestaurantSelected = true;
             }
         }
@@ -217,13 +217,13 @@ namespace Joinup.ViewModels
         {
             if (IsTakeSomethingSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsTakeSomethingSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.TAKESOMETHING;
+                selectedCategory = PLANTYPE.TAKESOMETHING;
                 IsTakeSomethingSelected = true;
             }
         }
@@ -232,13 +232,13 @@ namespace Joinup.ViewModels
         {
             if (IsDoSportsSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsDoSportsSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.SPORT;
+                selectedCategory = PLANTYPE.SPORT;
                 IsDoSportsSelected = true;
             }
         }
@@ -247,13 +247,13 @@ namespace Joinup.ViewModels
         {
             if (IsSpectaclesSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsSpectaclesSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.SPECTACLE;
+                selectedCategory = PLANTYPE.SPECTACLE;
                 IsSpectaclesSelected = true;
             }
         }
@@ -262,13 +262,13 @@ namespace Joinup.ViewModels
         {
             if (IsLanguageExchangesSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsLanguageExchangesSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.LANGUAGE;
+                selectedCategory = PLANTYPE.LANGUAGE;
                 IsLanguageExchangesSelected = true;
             }
         }
@@ -277,13 +277,13 @@ namespace Joinup.ViewModels
         {
             if (IsTravelSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsTravelSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.TRAVEL;
+                selectedCategory = PLANTYPE.TRAVEL;
                 IsTravelSelected = true;
             }
         }
@@ -292,13 +292,13 @@ namespace Joinup.ViewModels
         {
             if (IsShoppingSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsShoppingSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.SHOPPING;
+                selectedCategory = PLANTYPE.SHOPPING;
                 IsShoppingSelected = true;
             }
         }
@@ -307,13 +307,13 @@ namespace Joinup.ViewModels
         {
             if (IsGoOutForDrinksSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsGoOutForDrinksSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.GOOUTFORDRINK;
+                selectedCategory = PLANTYPE.GOOUTFORDRINK;
                 IsGoOutForDrinksSelected = true;
             }
         }
@@ -322,26 +322,26 @@ namespace Joinup.ViewModels
         {
             if (IsOtherSelected)
             {
-                selectedCategory = PlanType.UNDEFINED;
+                selectedCategory = PLANTYPE.UNDEFINED;
                 IsOtherSelected = false;
             }
             else
             {
                 DeselectAll();
-                selectedCategory = PlanType.OTHER;
+                selectedCategory = PLANTYPE.OTHER;
                 IsOtherSelected = true;
             }
         }
 
         private void DeselectAll()
         {
-            selectedCategory = PlanType.UNDEFINED;
+            selectedCategory = PLANTYPE.UNDEFINED;
             IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
         }
 
         private void NextStepAsync()
         {
-            if (selectedCategory == PlanType.UNDEFINED)
+            if (selectedCategory == PLANTYPE.UNDEFINED)
             {
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una categoria", "add.png", ColorUtils.ErrorColor);
             }

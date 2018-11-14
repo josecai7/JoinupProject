@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Joinup.Common.Models
 {
-    public class PlanType
+    public class PLANTYPE
     {
         public const int UNDEFINED = 0;
         public const int RESTAURANT= 1;

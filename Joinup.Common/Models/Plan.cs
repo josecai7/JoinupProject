@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Joinup.Common.Helpers;
 
 namespace Joinup.Common.Models
 {
@@ -67,6 +68,72 @@ namespace Joinup.Common.Models
         public MyUserASP User
         {
             get; set;
+        }
+
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedPlanType
+        {
+            get
+            {
+                    switch ( PlanType )
+                    {
+                        case PLANTYPE.RESTAURANT:
+                            return "Comida y bebida";
+                        case PLANTYPE.SHOPPING:
+                            return "Tiendas y compras";
+                        case PLANTYPE.LANGUAGE:
+                            return "Intercambio de idiomas";
+                        case PLANTYPE.GOOUTFORDRINK:
+                            return "Bares y ocio nocturno";
+                        case PLANTYPE.OTHER:
+                            return "Ocio y diversion";
+                        case PLANTYPE.SPECTACLE:
+                            return "Cine y espectaculos";
+                        case PLANTYPE.TAKESOMETHING:
+                            return "Tomar algo";
+                        case PLANTYPE.TRAVEL:
+                            return "Viajes y excursiones";
+                        case PLANTYPE.SPORT:
+                            return "Ejercicio físico y deporte";
+                        default:
+                            return "Categoria no definida";
+                    }
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedDate
+        {
+            get
+            {
+                if ( PlanDate.Date == EndPlanDate.Date )
+                {
+                    return DateTimeHelper.GetFormattedDayMonth(PlanDate);
+                }
+                else
+                {
+                    return DateTimeHelper.GetFormattedDayMonth( PlanDate )+" - "+DateTimeHelper.GetFormattedDayMonth( EndPlanDate );
+                }
+            }
+        }
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedHour
+        {
+            get
+            {
+                if ( PlanDate == EndPlanDate )
+                {
+                    return DateTimeHelper.GetFormattedHour( PlanDate );
+                }
+                else
+                {
+                    return DateTimeHelper.GetFormattedHour( PlanDate ) + " - " + DateTimeHelper.GetFormattedHour( EndPlanDate );
+                }
+            }
         }
 
     }

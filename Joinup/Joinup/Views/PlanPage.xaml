@@ -37,12 +37,14 @@
                     Spacing="0"
                     Orientation="Vertical"
                     Margin="16,8,16,0">
+
+                    <!-- Title and type -->
                     <Label
                         Text="{Binding Plan.Name}"
                         Style="{StaticResource TitleFont}"
                         TextColor="{StaticResource SecondaryTextColor}"/>
                     <Label
-                        Text="{Binding PlanType}"
+                        Text="{Binding Plan.FormattedPlanType}"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource TertiaryTextColor}"/>
 
@@ -64,7 +66,7 @@
                         <ffimageloading:CachedImage 
                             Grid.RowSpan="2"
                             Grid.Column="0"
-                            Source="{Binding Plan.DefaultImageFullPath}"
+                            Source="{Binding Plan.User.UserImage}"
                             Aspect="AspectFit">
                             <ffimageloading:CachedImage.Transformations>
                                 <fftransformations:CircleTransformation/>
@@ -73,7 +75,7 @@
                         <Label
                             Grid.Column="1"
                             Grid.Row="0"
-                            Text="Hosted by Catherine"
+                            Text="{Binding Plan.User.Name}"
                             Style="{StaticResource TitleElementFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
                         <Label
@@ -112,13 +114,13 @@
                         <Label
                             Grid.Column="1"
                             Grid.Row="0"
-                            Text="8 Septiembre - 9 Septiembre"
+                            Text="{Binding Plan.FormattedDate}"
                             Style="{StaticResource TitleElementFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
                         <Label
                             Grid.Column="1"
                             Grid.Row="1"
-                            Text="22:00 - 23:00"
+                            Text="{Binding Plan.FormattedHour}"
                             Style="{StaticResource TitleElementFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
                         <Label
@@ -188,8 +190,9 @@
                     <controls:SeparatorLine
                         Margin="0,16,0,16"/>
 
+                    <!-- Description -->
                     <Label
-                        Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic "
+                        Text="{Binding Plan.Description}"
                         Style="{StaticResource TitleElementFont}"
                         TextColor="{StaticResource SecondaryTextColor}"/>
                     
