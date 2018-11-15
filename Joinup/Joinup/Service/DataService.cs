@@ -1,0 +1,70 @@
+﻿using Joinup.Common.Models;
+using Joinup.Helpers;
+using Joinup.Models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+namespace Joinup.Service
+{
+    public class DataService
+    {
+        #region Singleton
+
+        private static DataService instance;
+
+        public static DataService GetInstance()
+        {
+            if (instance == null)
+            {
+                return new DataService();
+            }
+            else
+            {
+                return instance;
+            }
+        }
+        #endregion
+        public async Task<Response> SavePlan(Plan pPlan)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlPlansController"].ToString();
+
+            //Save plan
+            var response = await ApiService.GetInstance().Post<Plan>(url, prefix, controller, pPlan, Settings.TokenType, Settings.AccessToken);
+
+            if (response.IsSuccess)
+            {
+                Plan plan = (Plan)response.Result;
+                foreach (Common.Models.Image image in pPlan.PlanImages)
+                {
+                    image.EntityId = plan.PlanId;
+                    var imageResponse = await SaveImage(image);
+                    if (!imageResponse.IsSuccess)
+                    {
+                        return response;
+                    }
+                }
+            }
+            
+            return response;
+        }
+        public async Task<Response> SaveImage(Common.Models.Image pImage)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlImagesController"].ToString();
+
+            //Save plan
+            var response = await ApiService.GetInstance().Post<Common.Models.Image>(url, prefix, controller, pImage, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
+
+
+
+    }
+}

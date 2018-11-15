@@ -177,5 +177,14 @@ namespace Joinup.Navigation
                 await CurrentApplication.MainPage.Navigation.PopAsync();
             }
         }
+        public async Task NavigateToRootAsync()
+        {
+            var navigationPage = CurrentApplication.MainPage as NavigationPage;
+
+            if (navigationPage != null)
+            {
+                await navigationPage.PopToRootAsync();
+            }
+        }
     }
 }

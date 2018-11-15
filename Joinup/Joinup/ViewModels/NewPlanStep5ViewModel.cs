@@ -23,6 +23,7 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private Plan plan;
+        private bool isRunning;
         private ObservableCollection<LocalImage> images=new ObservableCollection<LocalImage>();
         #endregion
         #region Properties
@@ -36,6 +37,18 @@ namespace Joinup.ViewModels
             {
                 images = value;
                 RaisePropertyChanged( "Images" );
+            }
+        }
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                RaisePropertyChanged("IsRunning");
             }
         }
         #endregion
@@ -141,30 +154,25 @@ namespace Joinup.ViewModels
         }
         private async void NextStepAsync()
         {
-            var url = Application.Current.Resources["UrlAPI"].ToString();
-            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-            var controller = Application.Current.Resources["UrlPlansController"].ToString();
-
-            MyUserASP user = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
-            plan.UserId = user.Id;
-
-            var response = await ApiService.GetInstance().Post<Plan>(url, prefix, controller, plan,Settings.TokenType,Settings.AccessToken);
-            var newplan = (Plan)response.Result;
-
-            SaveImages(newplan.PlanId);
-        }
-
-        private async void SaveImages(int pPlanId)
-        {
-            var url = Application.Current.Resources["UrlAPI"].ToString();
-            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-            var controller = Application.Current.Resources["UrlImagesController"].ToString();
+            IsRunning = true;
+            plan.UserId = LoggedUser.Id;
 
             foreach (LocalImage localImage in Images)
             {
                 Common.Models.Image image = localImage.ToImage();
-                image.EntityId = pPlanId;
-                var response = await ApiService.GetInstance().Post<Common.Models.Image>(url, prefix, controller, image, Settings.TokenType, Settings.AccessToken);
+                plan.PlanImages.Add(image);
+            }
+
+            var response=await DataService.GetInstance().SavePlan(plan);
+
+            IsRunning = false;
+            if (!response.IsSuccess)
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
+            }
+            else
+            {
+                await NavigationService.NavigateToRootAsync();
             }
         }
         #endregion

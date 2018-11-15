@@ -17,5 +17,7 @@ namespace Joinup.Navigation
         Task NavigateToAsync(Type viewModelType);
 
         Task NavigateBackAsync();
+
+        Task NavigateToRootAsync();
     }
 }

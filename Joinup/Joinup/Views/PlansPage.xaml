@@ -38,6 +38,9 @@
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         HeightRequest="{StaticResource MediumImageCircle}">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
                     </ffimageloading:CachedImage>
                     <controls:CustomSearchBar
                         Grid.Column="1"
@@ -50,7 +53,7 @@
                     <custom:FontIcon
                         Grid.Column="2"
                         IconColor="{StaticResource WhiteColor}"
-                        Icon="plus-circle-outline"
+                        Icon="plus"
                         IconSize="{StaticResource IconExtraBigSize}"
                         VerticalOptions="Center"
                         HorizontalOptions="Center">

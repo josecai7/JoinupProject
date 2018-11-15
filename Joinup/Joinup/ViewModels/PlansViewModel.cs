@@ -68,7 +68,6 @@ namespace Joinup.ViewModels
         {
             instance = this;
             apiService = new ApiService();
-            LoadUser();
             LoadPlans();
         }
         #endregion
@@ -137,10 +136,6 @@ namespace Joinup.ViewModels
             {
 
             }
-        }
-        private async void LoadUser()
-        {
-            LoggedUser = JsonConvert.DeserializeObject<MyUserASP>( Settings.UserASP );
         }
         private async void LoadPlans()
         {

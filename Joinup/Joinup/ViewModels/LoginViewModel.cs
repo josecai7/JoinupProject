@@ -60,8 +60,8 @@ namespace Joinup.ViewModels
         #region Constructors
         public LoginViewModel()
         {
-            Email = "jasoljim71@gmail.com";
-            Password = "lugubre14";
+            Email = "anarosalomas@gmail.com";
+            Password = "Lugubre14";
         }
         #endregion
         #region Commands
@@ -133,8 +133,8 @@ namespace Joinup.ViewModels
                     var response = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
                     if (response.IsSuccess)
                     {
-                        var userASP = (MyUserASP)response.Result;
-                        Settings.UserASP = JsonConvert.SerializeObject(userASP);
+                        LoggedUser = (MyUserASP)response.Result;
+                        Settings.UserASP = JsonConvert.SerializeObject(LoggedUser);
                         IsRunning = false;
                         NavigationService.NavigateToAsync<MainViewModel>();
                     }

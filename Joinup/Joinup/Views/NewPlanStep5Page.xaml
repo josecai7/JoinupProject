@@ -4,69 +4,71 @@
              x:Class="Joinup.Views.NewPlanStep5Page"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"   
+             xmlns:custom="clr-namespace:Joinup.Controls"
              BackgroundColor="White"
              Title="Crea tu plan">
     <ContentPage.Content>
-    <Grid
+        <Grid>
+            <Grid
             Margin="0,0,0,16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <StackLayout
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackLayout
             Grid.Row="0">
-            <flv:FlowListView 
+                    <flv:FlowListView 
                 SeparatorVisibility="None" 
                 HasUnevenRows="true"
 			    FlowColumnMinWidth="108" 
                 FlowItemsSource="{Binding Images}">
 
-                <flv:FlowListView.FlowColumnTemplate>
-                    <DataTemplate>
-                        <Grid Padding="4">
+                        <flv:FlowListView.FlowColumnTemplate>
+                            <DataTemplate>
+                                <Grid Padding="4">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                            <Frame
+                                    <Frame
                                 CornerRadius="4"
                                 HeightRequest="100"
                                 Padding="0">
-                                <ffimageloading:CachedImage 
+                                        <ffimageloading:CachedImage 
                                     Aspect="AspectFill"
                                     HeightRequest="100" 
                                     WidthRequest="100"
                                     LoadingPlaceholder="no_image.png"
 							        Source="{Binding ImageSource}"/>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </flv:FlowListView.FlowColumnTemplate>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </flv:FlowListView.FlowColumnTemplate>
 
-            </flv:FlowListView>
+                    </flv:FlowListView>
 
-            <Button
+                    <Button
                 Text="Añadir imagen"
                 Command="{Binding AddImageCommand}">
 
-            </Button>
-        </StackLayout>
+                    </Button>
+                </StackLayout>
 
-        <ProgressBar
+                <ProgressBar
                 Grid.Row="1"
                 VerticalOptions="End"
                 HorizontalOptions="FillAndExpand"
                 Progress="0.2"
                 ProgressColor="{StaticResource PrimaryColor}">
-        </ProgressBar>
+                </ProgressBar>
 
-        <Button
+                <Button
                 Grid.Row="2"
                 Command="{Binding NextStepCommand}"
                 BackgroundColor="{StaticResource PrimaryColor}"
@@ -78,11 +80,20 @@
                 VerticalOptions="End">
 
 
-        </Button>
+                </Button>
 
 
-    </Grid>
+            </Grid>
+            <custom:CustomActivityIndicator
+                IsVisible="{Binding IsRunning}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+        </Grid>
+
+        
 
 
-</ContentPage.Content>
+
+
+    </ContentPage.Content>
 </ContentPage>

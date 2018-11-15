@@ -26,7 +26,6 @@
                                     <RowDefinition Height="230"/>
                                 </Grid.RowDefinitions>
                                 <ffimageloading:CachedImage 
-                                        BackgroundColor="AliceBlue"
                                         Grid.Row="0"
                                         Source="{Binding ImageFullPath}"
                                         Aspect="AspectFill" 
