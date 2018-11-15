@@ -136,7 +136,12 @@
                       WinPhone="36"/>
 
 
-
+            <!-- IMAGE CIRCLE SIZE -->
+            <OnPlatform x:Key="MediumImageCircle"
+                      x:TypeArguments="x:Double"
+                      iOS="36"
+                      Android="36"/>
+            
 
             <OnPlatform x:Key="PoppinsBold"
                         x:TypeArguments="x:String"

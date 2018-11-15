@@ -16,9 +16,50 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Button 
-                Text="Nuevo Plan"
-                Command="{Binding NewPlanCommand}"/>
+            <Grid
+                Padding="16,8,16,8"
+                HeightRequest="96"
+                BackgroundColor="{StaticResource PrimaryColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48" />
+                    <RowDefinition Height="48" />
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ffimageloading:CachedImage 
+                        Grid.Column="0"
+                        Source="no_image.png"
+                        Aspect="AspectFill" 
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        HeightRequest="{StaticResource MediumImageCircle}">
+                    </ffimageloading:CachedImage>
+                    <SearchBar
+                        Grid.Column="1"
+                        VerticalOptions="Center"
+                        HeightRequest="40"
+                        TextColor="{StaticResource WhiteColor}"
+                        HorizontalOptions="Center"
+                        BackgroundColor="{StaticResource DarkPrimaryColor}"/>
+                    <custom:FontIcon
+                        Grid.Column="2"
+                        IconColor="{StaticResource WhiteColor}"
+                        Icon="plus-circle-outline"
+                        IconSize="{StaticResource IconExtraBigSize}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center">
+                        <custom:FontIcon.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NewPlanCommand}"/>
+                        </custom:FontIcon.GestureRecognizers>
+                    </custom:FontIcon>
+
+                </Grid>
+            </Grid>
             <controls:CustomListView
                 HasUnevenRows="True"
                 ItemsSource="{Binding PlanList}"
