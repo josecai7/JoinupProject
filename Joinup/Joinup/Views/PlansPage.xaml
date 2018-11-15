@@ -33,19 +33,20 @@
                     </Grid.ColumnDefinitions>
                     <ffimageloading:CachedImage 
                         Grid.Column="0"
-                        Source="no_image.png"
+                        Source="{Binding LoggedUser.UserImage}"
                         Aspect="AspectFill" 
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                         HeightRequest="{StaticResource MediumImageCircle}">
                     </ffimageloading:CachedImage>
-                    <SearchBar
+                    <controls:CustomSearchBar
                         Grid.Column="1"
+                        Margin="8,0,8,0"
+                        HorizontalOptions="Fill"
                         VerticalOptions="Center"
                         HeightRequest="40"
-                        TextColor="{StaticResource WhiteColor}"
-                        HorizontalOptions="Center"
-                        BackgroundColor="{StaticResource DarkPrimaryColor}"/>
+                        Text="{Binding SearchText}"
+                        Placeholder="Buscar"/>
                     <custom:FontIcon
                         Grid.Column="2"
                         IconColor="{StaticResource WhiteColor}"

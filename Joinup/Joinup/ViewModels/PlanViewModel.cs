@@ -45,7 +45,6 @@ namespace Joinup.ViewModels
         public override Task InitializeAsync(object navigationData)
         {
             var parameter = navigationData as Plan;
-
             if (parameter != null)
             {
                 Plan = parameter;

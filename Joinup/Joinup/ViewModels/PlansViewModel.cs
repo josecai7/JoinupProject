@@ -2,6 +2,7 @@
 using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,8 @@ namespace Joinup.ViewModels
         #region Attributes
         private ApiService apiService;
         private ObservableCollection<Plan> planList;
+        private string searchText;
+        private bool isRefreshing;
         #endregion
 
         #region Properties
@@ -32,7 +35,19 @@ namespace Joinup.ViewModels
             }
         }
 
-        private bool isRefreshing;
+        
+        public string SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+            set
+            {
+                searchText = value;
+                RaisePropertyChanged( "SearchText" );
+            }
+        }
 
         public bool IsRefreshing
         {
@@ -53,6 +68,7 @@ namespace Joinup.ViewModels
         {
             instance = this;
             apiService = new ApiService();
+            LoadUser();
             LoadPlans();
         }
         #endregion
@@ -121,6 +137,10 @@ namespace Joinup.ViewModels
             {
 
             }
+        }
+        private async void LoadUser()
+        {
+            LoggedUser = JsonConvert.DeserializeObject<MyUserASP>( Settings.UserASP );
         }
         private async void LoadPlans()
         {

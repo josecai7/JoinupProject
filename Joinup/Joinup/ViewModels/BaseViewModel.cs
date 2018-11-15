@@ -1,4 +1,5 @@
-﻿using Joinup.Navigation;
+﻿using Joinup.Common.Models;
+using Joinup.Navigation;
 using Joinup.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,20 @@ namespace Joinup.ViewModels
     public class BaseViewModel:INotifyPropertyChanged
     {
         protected readonly INavigationService NavigationService;
+
+        private static MyUserASP loggedUser;
+        public MyUserASP LoggedUser
+        {
+            get
+            {
+                return loggedUser;
+            }
+            set
+            {
+                loggedUser = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public BaseViewModel()
         {
