@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Joinup.Views"
-             x:Class="Joinup.Views.Main.MainView"
-             BarBackgroundColor="{StaticResource WhiteColor}">
+<controls:CustomTabbedPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Joinup.Controls"
+    xmlns:pages="clr-namespace:Joinup.Views"
+    x:Class="Joinup.Views.Main.MainView">
   <!--Pages can be added as references or inline-->
 
-    <TabbedPage.Children>
-        <pages:PlansPage />
-    </TabbedPage.Children>
-</TabbedPage>
+    <pages:PlansPage Icon="ic_magnify"/>
+    <pages:PlansPage Icon="ic_magnify"/>
+    <pages:PlansPage Icon="ic_magnify"/>
+    
+</controls:CustomTabbedPage>

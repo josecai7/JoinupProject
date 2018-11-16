@@ -4556,6 +4556,9 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0a0031
 			public const int highlighted_text_material_light = 2131361841;
 			
+			// aapt resource value: 0x7f0a007c
+			public const int icon_tab = 2131361916;
+			
 			// aapt resource value: 0x7f0a005e
 			public const int launcher_background = 2131361886;
 			
@@ -4652,11 +4655,11 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0a004d
 			public const int switch_thumb_disabled_material_light = 2131361869;
 			
-			// aapt resource value: 0x7f0a007c
-			public const int switch_thumb_material_dark = 2131361916;
-			
 			// aapt resource value: 0x7f0a007d
-			public const int switch_thumb_material_light = 2131361917;
+			public const int switch_thumb_material_dark = 2131361917;
+			
+			// aapt resource value: 0x7f0a007e
+			public const int switch_thumb_material_light = 2131361918;
 			
 			// aapt resource value: 0x7f0a004e
 			public const int switch_thumb_normal_material_dark = 2131361870;

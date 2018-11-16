@@ -6,10 +6,8 @@
              xmlns:viewModels="clr-namespace:Joinup.ViewModels"
              xmlns:custom="clr-namespace:Joinup.CustomControls"
              xmlns:controls="clr-namespace:Joinup.Controls"
-             x:Class="Joinup.Views.PlansPage"
-             BackgroundColor="{StaticResource WhiteColor}"
-             Icon="ic_magnify.png"
-             Title="Planes">
+             x:Class="Joinup.Views.PlansPage">
+    
     <ContentPage.BindingContext>
         <viewModels:PlansViewModel/>
     </ContentPage.BindingContext>
