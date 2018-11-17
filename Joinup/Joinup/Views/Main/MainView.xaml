@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<controls:CustomTabbedPage
+<TabbedPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Joinup.Controls"
@@ -7,8 +7,8 @@
     x:Class="Joinup.Views.Main.MainView">
   <!--Pages can be added as references or inline-->
 
-    <pages:PlansPage Icon="ic_magnify"/>
-    <pages:PlansPage Icon="ic_magnify"/>
-    <pages:PlansPage Icon="ic_magnify"/>
+    <pages:PlansPage Icon="ic_home" Title="Inicio"/>
+    <pages:PlansPage Icon="ic_eye" Title="Explorar"/>
+    <pages:PlansPage Icon="ic_account" Title="Perfil"/>
     
-</controls:CustomTabbedPage>
+</TabbedPage>

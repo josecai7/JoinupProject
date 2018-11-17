@@ -7,5 +7,7 @@
     android:background="?attr/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:tabIndicatorColor="@android:color/white"
+	app:tabTextColor="#98473E"
+	app:tabSelectedTextColor="#98473E"
     app:tabGravity="fill"
     app:tabMode="fixed" />

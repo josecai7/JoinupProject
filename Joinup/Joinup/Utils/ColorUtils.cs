@@ -10,6 +10,7 @@ namespace Joinup.Utils
         public static Color PlaceholderColor { get { return (Color)Application.Current.Resources["PlaceholderColor"]; } }
         public static Color PrimaryColor { get { return (Color)Application.Current.Resources["PrimaryColor"]; } }
         public static Color PrimaryTextColor { get { return (Color) Application.Current.Resources["PrimaryTextColor"]; } }
+        public static Color SecondaryTextColor { get { return (Color)Application.Current.Resources["SecondaryTextColor"]; } }
         public static Color BackgroundColor { get { return (Color)Application.Current.Resources["BackgroundColor"]; } }
 
         public static Color ErrorColor { get { return (Color) Application.Current.Resources["ErrorColor"]; } }

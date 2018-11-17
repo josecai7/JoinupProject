@@ -11,99 +11,107 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.Content>
-        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
-            <StackLayout
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <ScrollView 
+                Grid.Row="0"
+                Orientation="Vertical" 
+                VerticalOptions="FillAndExpand">
+                <StackLayout
                 Orientation="Vertical">
-                <cv:CarouselView 
+                    <cv:CarouselView 
                     ItemsSource="{Binding Plan.PlanImages}"
                     HeightRequest="230"
                     VerticalOptions="Start"
                     BackgroundColor="AliceBlue">
-                    <cv:CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="230"/>
-                                </Grid.RowDefinitions>
-                                <ffimageloading:CachedImage 
+                        <cv:CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="230"/>
+                                    </Grid.RowDefinitions>
+                                    <ffimageloading:CachedImage 
                                         Grid.Row="0"
                                         Source="{Binding ImageFullPath}"
                                         Aspect="AspectFill" 
                                         HeightRequest="230"/>
-                            </Grid>
-                        </DataTemplate>
-                    </cv:CarouselView.ItemTemplate>
-                </cv:CarouselView>
-                <StackLayout
+                                </Grid>
+                            </DataTemplate>
+                        </cv:CarouselView.ItemTemplate>
+                    </cv:CarouselView>
+                    <StackLayout
                     Spacing="0"
                     Orientation="Vertical"
                     Margin="16,8,16,0">
 
-                    <!-- Title and type -->
-                    <Label
+                        <!-- Title and type -->
+                        <Label
                         Text="{Binding Plan.Name}"
                         Style="{StaticResource TitleFont}"
                         TextColor="{StaticResource SecondaryTextColor}"/>
-                    <Label
+                        <Label
                         Text="{Binding Plan.FormattedPlanType}"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource TertiaryTextColor}"/>
 
-                    <controls:SeparatorLine
+                        <controls:SeparatorLine
                         Margin="0,16,0,16"/>
 
-                    <!-- Organizer -->
-                    <Grid
+                        <!-- Organizer -->
+                        <Grid
                         RowSpacing="0"
                         ColumnSpacing="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="45"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <ffimageloading:CachedImage 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage 
                             Grid.RowSpan="2"
                             Grid.Column="0"
                             Source="{Binding Plan.User.UserImage}"
                             Aspect="AspectFit">
-                            <ffimageloading:CachedImage.Transformations>
-                                <fftransformations:CircleTransformation/>
-                            </ffimageloading:CachedImage.Transformations>
-                        </ffimageloading:CachedImage>
-                        <Label
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation/>
+                                </ffimageloading:CachedImage.Transformations>
+                            </ffimageloading:CachedImage>
+                            <Label
                             Grid.Column="1"
                             Grid.Row="0"
                             Text="{Binding Plan.User.Name}"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
-                        <Label
+                            <Label
                             Grid.Column="1"
                             Grid.Row="1"
                             Text="Owned"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
-                    </Grid>
+                        </Grid>
 
-                    <controls:SeparatorLine
+                        <controls:SeparatorLine
                         Margin="0,16,0,16"/>
-                    
-                    <!-- Date and time -->
-                    <Grid
+
+                        <!-- Date and time -->
+                        <Grid
                         RowSpacing="0"
                         ColumnSpacing="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <customcontrols:FontIcon
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <customcontrols:FontIcon
                             Grid.Column="0"
                             Grid.RowSpan="3"
                             IconColor="{StaticResource TertiaryTextColor}"
@@ -111,43 +119,43 @@
                             IconSize="{StaticResource IconBigSize}"
                             VerticalOptions="Start"
                             HorizontalOptions="Center">
-                        </customcontrols:FontIcon>
-                        <Label
+                            </customcontrols:FontIcon>
+                            <Label
                             Grid.Column="1"
                             Grid.Row="0"
                             Text="{Binding Plan.FormattedDate}"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
-                        <Label
+                            <Label
                             Grid.Column="1"
                             Grid.Row="1"
                             Text="{Binding Plan.FormattedHour}"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
-                        <Label
+                            <Label
                             Grid.Column="1"
                             Grid.Row="2"
                             Text="Add to Calendar"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
-                    </Grid>
+                        </Grid>
 
-                    <controls:SeparatorLine
+                        <controls:SeparatorLine
                         Margin="0,16,0,16"/>
 
-                    <!-- Assistants -->
-                    <Grid
+                        <!-- Assistants -->
+                        <Grid
                         RowSpacing="0"
                         ColumnSpacing="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <customcontrols:FontIcon
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <customcontrols:FontIcon
                             Grid.Column="0"
                             Grid.Row="0"
                             IconColor="{StaticResource TertiaryTextColor}"
@@ -155,8 +163,8 @@
                             IconSize="{StaticResource IconBigSize}"
                             VerticalOptions="Start"
                             HorizontalOptions="Center">
-                        </customcontrols:FontIcon>
-                        <Label
+                            </customcontrols:FontIcon>
+                            <Label
                             VerticalOptions="Center"
                             Grid.Column="1"
                             Grid.Row="0"
@@ -164,7 +172,7 @@
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
 
-                        <flv:FlowListView 
+                            <flv:FlowListView 
                             Grid.ColumnSpan="2"
                             Grid.Row="1"
                             SeparatorVisibility="None" 
@@ -172,47 +180,47 @@
 			                FlowColumnMinWidth="45" 
                             FlowItemsSource="{Binding Images}">
 
-                            <flv:FlowListView.FlowColumnTemplate>
-                                <DataTemplate>
-                                    <ffimageloading:CachedImage 
+                                <flv:FlowListView.FlowColumnTemplate>
+                                    <DataTemplate>
+                                        <ffimageloading:CachedImage 
                                         Source="{Binding Plan.DefaultImageFullPath}"
-                                        Aspect="AspectFit"> 
-                                        <ffimageloading:CachedImage.Transformations>
-                                            <fftransformations:CircleTransformation/>
-                                        </ffimageloading:CachedImage.Transformations>
-                                    </ffimageloading:CachedImage>
-                                </DataTemplate>
-                            </flv:FlowListView.FlowColumnTemplate>
+                                        Aspect="AspectFit">
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:CircleTransformation/>
+                                            </ffimageloading:CachedImage.Transformations>
+                                        </ffimageloading:CachedImage>
+                                    </DataTemplate>
+                                </flv:FlowListView.FlowColumnTemplate>
 
-                        </flv:FlowListView>
+                            </flv:FlowListView>
 
-                    </Grid>
+                        </Grid>
 
-                    <controls:SeparatorLine
+                        <controls:SeparatorLine
                         Margin="0,16,0,16"/>
 
-                    <!-- Description -->
-                    <Label
+                        <!-- Description -->
+                        <Label
                         Text="{Binding Plan.Description}"
                         Style="{StaticResource TitleSectionFont}"
                         TextColor="{StaticResource SecondaryTextColor}"/>
 
-                    <controls:SeparatorLine
+                        <controls:SeparatorLine
                         Margin="0,16,0,16"/>
 
-                    <!-- Map and Address -->
-                    <Grid
+                        <!-- Map and Address -->
+                        <Grid
                         RowSpacing="16"
                         ColumnSpacing="10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <customcontrols:FontIcon
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <customcontrols:FontIcon
                             Grid.Column="0"
                             Grid.Row="0"
                             IconColor="{StaticResource TertiaryTextColor}"
@@ -220,8 +228,8 @@
                             IconSize="{StaticResource IconBigSize}"
                             VerticalOptions="Start"
                             HorizontalOptions="Center">
-                        </customcontrols:FontIcon>
-                        <Label
+                            </customcontrols:FontIcon>
+                            <Label
                             VerticalOptions="Center"
                             Grid.Column="1"
                             Grid.Row="0"
@@ -229,22 +237,33 @@
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
 
-                        <maps:Map
+                            <maps:Map
                             x:Name="MyMap"
                             Grid.ColumnSpan="2"
                             Grid.Row="1"
                             HeightRequest="150">
-                            <maps:Map.Behaviors>
-                                <behaviors:MapBehavior 
+                                <maps:Map.Behaviors>
+                                    <behaviors:MapBehavior 
                                 ItemsSource="{Binding Pins}" />
-                            </maps:Map.Behaviors>
-                        </maps:Map>
+                                </maps:Map.Behaviors>
+                            </maps:Map>
 
-                    </Grid>
+                        </Grid>
+
+                    </StackLayout>
 
                 </StackLayout>
+            </ScrollView>
+            <Button
+                Grid.Row="1"
+                HeightRequest="{StaticResource TouchSize}"
+                Text="Me apunto"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                Style="{StaticResource SubtitleFont}"
+                TextColor="{StaticResource WhiteColor}"/>
 
-        </StackLayout>
-        </ScrollView>
+
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>
