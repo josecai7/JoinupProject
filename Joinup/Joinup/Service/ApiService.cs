@@ -1,4 +1,5 @@
 ﻿using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
@@ -83,7 +84,6 @@ namespace Joinup.Service
             };
 
         }
-
         public async Task<Response> GetUser(string urlBase, string prefix, string controller, string email, string tokenType, string accessToken)
         {
             try
@@ -126,7 +126,6 @@ namespace Joinup.Service
                 };
             }
         }
-
         public async Task<Response> GetList<T>(string pUrlBase,string pPrefix,string pController, string pTokenType, string pAccessToken)
         {
             try
@@ -230,6 +229,74 @@ namespace Joinup.Service
                 {
                     IsSuccess = true,
                     Result = obj,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
+        public async Task<Response> Delete(string urlBase, string prefix, string controller, int id)
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = $"{prefix}{controller}/{id}";
+                var response = await client.DeleteAsync(url);
+                var answer = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+
+                return new Response
+                {
+                    IsSuccess = true,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
+        public async Task<Response> Delete(string urlBase, string prefix, string controller, int id,
+            string tokenType, string accessToken)
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                var url = $"{prefix}{controller}/{id}";
+                var response = await client.DeleteAsync(url);
+                var answer = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+
+                return new Response
+                {
+                    IsSuccess = true,
                 };
             }
             catch (Exception ex)

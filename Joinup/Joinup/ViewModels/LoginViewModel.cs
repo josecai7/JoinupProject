@@ -60,8 +60,6 @@ namespace Joinup.ViewModels
         #region Constructors
         public LoginViewModel()
         {
-            Email = "anarosalomas@gmail.com";
-            Password = "Lugubre14";
         }
         #endregion
         #region Commands

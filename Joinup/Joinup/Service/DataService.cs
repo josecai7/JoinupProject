@@ -1,4 +1,5 @@
 ﻿using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Joinup.Helpers;
 using Joinup.Models;
 using System;
@@ -27,6 +28,36 @@ namespace Joinup.Service
             }
         }
         #endregion
+        public async Task<Response> JoinAPlan(int pPlanId, string pUserId)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlMeetsController"].ToString();
+
+            Meet meet = new Meet();
+            meet.PlanId = pPlanId;
+            meet.UserId = pUserId;
+
+            //Save meet
+            var response = await ApiService.GetInstance().Post<Meet>(url, prefix, controller, meet, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
+        public async Task<Response> UnJoinAPlan(int pPlanId, string pUserId)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = "/Meets/DeleteMeet";
+
+            Meet meet = new Meet();
+            meet.PlanId = pPlanId;
+            meet.UserId = pUserId;
+
+            //Delete meet
+            var response = await ApiService.GetInstance().Post<Meet>(url, prefix, controller, meet, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
         public async Task<Response> SavePlan(Plan pPlan)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();

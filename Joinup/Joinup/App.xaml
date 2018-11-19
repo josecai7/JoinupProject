@@ -14,6 +14,7 @@
             <x:String x:Key="UrlAPI">https://joinupapi.azurewebsites.net</x:String>
             <x:String x:Key="UrlPrefix">/api</x:String>
             <x:String x:Key="UrlUsersController">/Users</x:String>
+            <x:String x:Key="UrlMeetsController">/Meets</x:String>
             <x:String x:Key="UrlPlansController">/Plans</x:String>
             <x:String x:Key="UrlImagesController">/Images</x:String>
 
@@ -286,6 +287,46 @@
                  Value="{StaticResource FontSemiBold}" />
                 <Setter Property="FontSize"
                  Value="{StaticResource MidMediumSize}" />
+            </Style>
+
+
+            <!-- BUTTON STYLES -->
+
+            <Style x:Key="UnSelectedButton"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontSemiBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource MidMediumSize}" />
+                <Setter Property="BorderColor"
+                 Value="{StaticResource SecondaryTextColor}" />
+                <Setter Property="BorderWidth"
+                 Value="1" />
+                <Setter Property="BackgroundColor"
+                 Value="{StaticResource WhiteColor}" />
+                <Setter Property="TextColor"
+                 Value="{StaticResource SecondaryTextColor}" />
+                <Setter Property="Text"
+                 Value="¡ME APUNTO!" />
+            </Style>
+
+            <Style x:Key="SelectedButton"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontSemiBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource MidMediumSize}" />
+                <Setter Property="BorderColor"
+                 Value="{StaticResource PrimaryColor}" />
+                <Setter Property="BorderWidth"
+                 Value="1" />
+                <Setter Property="BackgroundColor"
+                 Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor"
+                 Value="{StaticResource WhiteColor}" />
+                <Setter Property="Text"
+                Value="ASISTIRÉ" />
+                 
             </Style>
 
         </ResourceDictionary>

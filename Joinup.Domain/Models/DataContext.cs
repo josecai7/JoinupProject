@@ -19,5 +19,7 @@ namespace Joinup.Domain.Models
         public System.Data.Entity.DbSet<Joinup.Common.Models.Plan> Plans { get; set; }
 
         public System.Data.Entity.DbSet<Joinup.Common.Models.Image> Images { get; set; }
+
+        public System.Data.Entity.DbSet<Joinup.Common.Models.DatabaseModels.Meet> Meets { get; set; }
     }
 }

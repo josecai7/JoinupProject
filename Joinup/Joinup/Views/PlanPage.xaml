@@ -90,7 +90,7 @@
                             <Label
                             Grid.Column="1"
                             Grid.Row="1"
-                            Text="Owned"
+                            Text="Ha publicado este plan"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
                         </Grid>
@@ -135,7 +135,7 @@
                             <Label
                             Grid.Column="1"
                             Grid.Row="2"
-                            Text="Add to Calendar"
+                            Text="Agregar al calendario"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
                         </Grid>
@@ -145,7 +145,7 @@
 
                         <!-- Assistants -->
                         <Grid
-                        RowSpacing="0"
+                        RowSpacing="16"
                         ColumnSpacing="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -168,26 +168,31 @@
                             VerticalOptions="Center"
                             Grid.Column="1"
                             Grid.Row="0"
-                            Text="13 personas van a ir"
+                            Text="{Binding Plan.FormattedAssistantUsers}"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
 
                             <flv:FlowListView 
-                            Grid.ColumnSpan="2"
-                            Grid.Row="1"
-                            SeparatorVisibility="None" 
-                            HasUnevenRows="true"
-			                FlowColumnMinWidth="45" 
-                            FlowItemsSource="{Binding Images}">
+                                Grid.ColumnSpan="2"
+                                Grid.Row="1"
+                                HeightRequest="45"  
+                                IsPullToRefreshEnabled="False"
+                                SeparatorVisibility="None" 
+                                HasUnevenRows="true"
+			                    FlowColumnMinWidth="45" 
+                                RowHeight="45"
+                                FlowItemsSource="{Binding Assistants}">
 
                                 <flv:FlowListView.FlowColumnTemplate>
                                     <DataTemplate>
                                         <ffimageloading:CachedImage 
-                                        Source="{Binding Plan.DefaultImageFullPath}"
-                                        Aspect="AspectFit">
-                                            <ffimageloading:CachedImage.Transformations>
-                                                <fftransformations:CircleTransformation/>
-                                            </ffimageloading:CachedImage.Transformations>
+                                            HeightRequest="45"
+                                            Margin="3,0,3,0"
+                                            Source="{Binding UserImage}"
+                                            Aspect="AspectFit">
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <fftransformations:CircleTransformation/>
+                                                </ffimageloading:CachedImage.Transformations>
                                         </ffimageloading:CachedImage>
                                     </DataTemplate>
                                 </flv:FlowListView.FlowColumnTemplate>
@@ -255,12 +260,10 @@
                 </StackLayout>
             </ScrollView>
             <Button
+                Command="{Binding JoinCommand}"
                 Grid.Row="1"
                 HeightRequest="{StaticResource TouchSize}"
-                Text="Me apunto"
-                BackgroundColor="{StaticResource PrimaryColor}"
-                Style="{StaticResource SubtitleFont}"
-                TextColor="{StaticResource WhiteColor}"/>
+                Style="{Binding ButtonStyle}"/>
 
 
         </Grid>

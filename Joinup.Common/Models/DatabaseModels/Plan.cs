@@ -16,6 +16,7 @@ namespace Joinup.Common.Models
         public Plan()
         {
             PlanImages = new List<Image>();
+            AssistantUsers = new List<MyUserASP>();
         }
         [Key]
         public int PlanId { get; set; }
@@ -65,6 +66,12 @@ namespace Joinup.Common.Models
         private List<Image> _planImages;
 
         [NotMapped]
+        public List<MyUserASP> AssistantUsers
+        {
+            get; set;
+        }
+
+        [NotMapped]
         public MyUserASP User
         {
             get; set;
@@ -110,6 +117,23 @@ namespace Joinup.Common.Models
             get
             {
                 return DateTimeHelper.GetCompletedPlanDate( PlanDate , EndPlanDate );
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedAssistantUsers
+        {
+            get
+            {
+                if (AssistantUsers.Count >= 1)
+                {
+                    return AssistantUsers.Count + " Personas van a ir";
+                }
+                else
+                {
+                    return "Aun no hay nadie apuntado. Sé el primero.";
+                }
             }
         }
         [NotMapped]
