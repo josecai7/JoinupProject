@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Joinup.API.Helpers;
 using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Joinup.Domain.Models;
 using Newtonsoft.Json;
 

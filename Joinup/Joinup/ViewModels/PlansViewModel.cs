@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,7 +16,6 @@ namespace Joinup.ViewModels
     public class PlansViewModel : BaseViewModel
     {
         #region Attributes
-        private ApiService apiService;
         private ObservableCollection<Plan> planList;
         private string searchText;
         private bool isRefreshing;
@@ -26,7 +26,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return planList;
+                return new ObservableCollection<Plan>( planList.OrderBy( x => x.PlanDate ) );
             }
             set
             {
@@ -66,27 +66,17 @@ namespace Joinup.ViewModels
         #region Constructors
         public PlansViewModel()
         {
-            instance = this;
-            apiService = new ApiService();
+            planList = new ObservableCollection<Plan>();
+
+            MessagingCenter.Subscribe<PlansViewModel>( this, "AddNewPlan", (sender) => {
+                LoadPlans();
+            } );
+
             LoadPlans();
         }
         #endregion
 
         #region Singleton
-
-        private static PlansViewModel instance;
-
-        public static PlansViewModel GetInstance()
-        {
-            if ( instance == null )
-            {
-                return new PlansViewModel();
-            }
-            else
-            {
-                return instance;
-            }
-        }
 
         #endregion
 
@@ -141,18 +131,19 @@ namespace Joinup.ViewModels
         {
             IsRefreshing = true;
 
-            var connection = await apiService.CheckConnection();
+            var connection = await ApiService.GetInstance().CheckConnection();
             if ( connection.IsSuccess )
             {
                 var url = Application.Current.Resources["UrlAPI"].ToString();
                 var prefix = Application.Current.Resources["UrlPrefix"].ToString();
                 var controller = Application.Current.Resources["UrlPlansController"].ToString();
 
-                var response = await apiService.GetList<Plan>( url, prefix, controller, Settings.TokenType, Settings.AccessToken);
+                var response = await ApiService.GetInstance().GetList<Plan>( url, prefix, controller, Settings.TokenType, Settings.AccessToken);
 
                 if ( !response.IsSuccess )
                 {
                     await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
+                    IsRefreshing = false;
                     return;
                 }
 
@@ -162,6 +153,7 @@ namespace Joinup.ViewModels
             else
             {
                 await Application.Current.MainPage.DisplayAlert( "Revisa tu conexión a internet", "Aceptar", "Cancelar" );
+                IsRefreshing = false;
                 return;
             }
 

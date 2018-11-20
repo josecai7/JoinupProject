@@ -165,15 +165,32 @@ namespace Joinup.ViewModels
 
             var response=await DataService.GetInstance().SavePlan(plan);
 
-            IsRunning = false;
+            
+
             if (!response.IsSuccess)
             {
                 ToastNotificationUtils.ShowToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
             }
             else
             {
-                await NavigationService.NavigateToRootAsync();
+                Plan plan = (Plan)response.Result;
+
+                var responseJoin = await DataService.GetInstance().JoinAPlan( plan.PlanId,LoggedUser.Id );
+
+                if ( !responseJoin.IsSuccess )
+                {
+                    ToastNotificationUtils.ShowToastNotifications( "Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed );
+                }
+                else
+                {
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan" );
+
+                    await NavigationService.NavigateToRootAsync();
+                }
+                
             }
+
+            IsRunning = false;
         }
         #endregion
     }
