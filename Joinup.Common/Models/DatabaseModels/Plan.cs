@@ -77,7 +77,6 @@ namespace Joinup.Common.Models
             get; set;
         }
 
-
         [NotMapped]
         [JsonIgnore]
         public string FormattedPlanType
@@ -166,6 +165,36 @@ namespace Joinup.Common.Models
                 {
                     return DateTimeHelper.GetFormattedHour( PlanDate ) + " - " + DateTimeHelper.GetFormattedHour( EndPlanDate );
                 }
+            }
+        }
+        public double GetProgress(int pActualStep)
+        {
+            return (double)pActualStep / (double)GetStepsByCategory();
+        }
+        protected int GetStepsByCategory()
+        {
+            switch ( PlanType )
+            {
+                case PLANTYPE.RESTAURANT:
+                    return 5;
+                case PLANTYPE.SHOPPING:
+                    return 5;
+                case PLANTYPE.LANGUAGE:
+                    return 5;
+                case PLANTYPE.GOOUTFORDRINK:
+                    return 5;
+                case PLANTYPE.OTHER:
+                    return 5;
+                case PLANTYPE.SPECTACLE:
+                    return 5;
+                case PLANTYPE.TAKESOMETHING:
+                    return 5;
+                case PLANTYPE.TRAVEL:
+                    return 5;
+                case PLANTYPE.SPORT:
+                    return 5;
+                default:
+                    return 5;
             }
         }
 

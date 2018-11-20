@@ -64,7 +64,7 @@
                 Grid.Row="1"
                 VerticalOptions="End"
                 HorizontalOptions="FillAndExpand"
-                Progress="0.2"
+                Progress="{Binding Progress}"
                 ProgressColor="{StaticResource PrimaryColor}">
                 </ProgressBar>
 

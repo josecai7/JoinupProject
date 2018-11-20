@@ -27,6 +27,13 @@ namespace Joinup.ViewModels
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         #endregion
         #region Properties
+        public double Progress
+        {
+            get
+            {
+                return plan.GetProgress( 3 );
+            }
+        }
         public string AddressText
         {
             get

@@ -21,6 +21,13 @@ namespace Joinup.ViewModels
         DateTime _minDate;
         #endregion
         #region Properties
+        public double Progress
+        {
+            get
+            {
+                return plan.GetProgress( 4 );
+            }
+        }
         public SelectionRange SelectedRange
         {
             get

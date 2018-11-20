@@ -27,6 +27,13 @@ namespace Joinup.ViewModels
         private ObservableCollection<LocalImage> images=new ObservableCollection<LocalImage>();
         #endregion
         #region Properties
+        public double Progress
+        {
+            get
+            {
+                return plan.GetProgress( 5 );
+            }
+        }
         public ObservableCollection<LocalImage> Images
         {
             get
