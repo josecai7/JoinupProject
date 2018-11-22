@@ -71,10 +71,7 @@ namespace Joinup.Navigation
 
             if ( page is MainView )
             {
-                CurrentApplication.MainPage = new NavigationPage( page )
-                {
-                    BarBackgroundColor = ColorUtils.PrimaryColor,
-                };
+                CurrentApplication.MainPage = new CustomNavigationPage(page);
             }
             else if ( CurrentApplication.MainPage is MainView )
             {
@@ -109,7 +106,6 @@ namespace Joinup.Navigation
                     {
                         BarBackgroundColor = ColorUtils.PrimaryColor,
                     };
-                    ;
                 }
             }
         }

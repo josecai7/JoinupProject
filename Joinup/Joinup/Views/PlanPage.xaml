@@ -11,7 +11,8 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid
+            Margin="0,-40,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
