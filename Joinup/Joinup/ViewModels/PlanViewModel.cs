@@ -64,6 +64,13 @@ namespace Joinup.ViewModels
                 }
             }
         }
+        public bool IsEditable
+        {
+            get
+            {
+                return plan.UserId==LoggedUser.Id;
+            }
+        }
         #endregion
         #region Constructors
         public PlanViewModel()
@@ -84,6 +91,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("ButtonStyle");
                 RaisePropertyChanged("Assistants");
+                RaisePropertyChanged("IsEditable");
             }
 
             return base.InitializeAsync(navigationData);
@@ -95,6 +103,22 @@ namespace Joinup.ViewModels
             get
             {
                 return new RelayCommand(JoinUnJoinPlan);
+            }
+        }
+
+        public ICommand CancelPlanCommand
+        {
+            get
+            {
+                return new RelayCommand(CancelPlan);
+            }
+        }
+
+        public ICommand EditPlanCommand
+        {
+            get
+            {
+                return new RelayCommand(EditPlan);
             }
         }
 
@@ -145,6 +169,45 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
+            }
+        }
+        private async void EditPlan()
+        {
+
+        }
+        private async void CancelPlan()
+        {
+            if (Plan.AssistantUsers.Count > 1)
+            {
+                var source = await Application.Current.MainPage.DisplayActionSheet(
+                    "Hay usuarios que asistirán a tu plan. ¿Estás seguro de eliminarlo?",
+                    "Cancelar",
+                    null,
+                    "Aceptar");
+                if (source == "Cancelar")
+                {
+                    return;
+                }
+                else if (source == "Aceptar")
+                {
+                    //Cancelar el plan
+                }
+            }
+            else
+            {
+                var source = await Application.Current.MainPage.DisplayActionSheet(
+                    "¿Estás seguro de eliminar tu plan?",
+                    "Cancelar",
+                    null,
+                    "Aceptar");
+                if (source == "Cancelar")
+                {
+                    return;
+                }
+                else if (source == "Aceptar")
+                {
+                    //Cancelar el plan
+                }
             }
         }
 
