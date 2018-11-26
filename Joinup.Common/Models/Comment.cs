@@ -12,6 +12,7 @@ namespace Joinup.Common.Models
         [Key]
         public string CommentId { get; set; }
         public string UserId { get; set; }
+        public string UserDisplayName { get; set; }
         public string PlanId { get; set; }
         public string CommentText { get; set; }
         public DateTime CommentDate { get; set; }

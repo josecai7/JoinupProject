@@ -14,8 +14,6 @@ namespace Joinup.Domain.Models
 
         }
 
-        public System.Data.Entity.DbSet<Joinup.Common.Models.Comment> Comments { get; set; }
-
         public System.Data.Entity.DbSet<Joinup.Common.Models.Plan> Plans { get; set; }
 
         public System.Data.Entity.DbSet<Joinup.Common.Models.Image> Images { get; set; }
