@@ -83,6 +83,22 @@ namespace Joinup.Service
             
             return response;
         }
+        public async Task<Response> Cancel(Plan pPlan)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlPlansController"].ToString();
+
+            //Save plan
+            var response = await ApiService.GetInstance().Delete(url, prefix, controller, pPlan.PlanId, Settings.TokenType, Settings.AccessToken);
+
+            if (response.IsSuccess)
+            {
+                //Revisar eliminacion en cascada
+            }
+
+            return response;
+        }
         public async Task<Response> SaveImage(Common.Models.Image pImage)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();

@@ -9,6 +9,6 @@
 
     <pages:PlansPage Icon="ic_home" Title="Inicio"/>
     <pages:PlansPage Icon="ic_eye" Title="Explorar"/>
-    <pages:PlansPage Icon="ic_account" Title="Perfil"/>
+    <pages:ProfilePage Icon="ic_account" Title="Perfil"/>
     
 </TabbedPage>

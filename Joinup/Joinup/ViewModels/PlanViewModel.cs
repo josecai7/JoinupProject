@@ -206,7 +206,7 @@ namespace Joinup.ViewModels
                 }
                 else if (source == "Aceptar")
                 {
-                    //Cancelar el plan
+                    //DataService.GetInstance().CancelPlan();
                 }
             }
         }

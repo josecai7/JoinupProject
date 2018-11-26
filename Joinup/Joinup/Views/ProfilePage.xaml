@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Joinup.ViewModels"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="Joinup.Views.ProfilePage">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:ProfileViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <xamanimation:StoryBoard 
+                x:Key="PlansAnimation"    
+                Target="{x:Reference PlansPanel}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="600" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+
+            <xamanimation:StoryBoard 
+                x:Key="Tab2Animation"    
+                Target="{x:Reference Tab2Panel}">
+                <xamanimation:FadeToAnimation  Opacity="0" Duration="0" />
+                <xamanimation:TranslateToAnimation TranslateX="600" Duration="0" />
+                <xamanimation:FadeToAnimation Opacity="1" Duration="150" />
+                <xamanimation:TranslateToAnimation TranslateX="0" Easing="SpringOut" Duration="200" />
+            </xamanimation:StoryBoard>
+
+            <Style x:Key="TabTextStyle" 
+                   TargetType="Label"
+                   BasedOn="{StaticResource SubtitleElementFont}">
+                <Setter Property="TextColor" 
+                        Value="{StaticResource BlackTextColor}" />
+                <Setter Property="FontSize" 
+                        Value="{StaticResource MidMediumSize}" />
+                <Setter Property="HorizontalTextAlignment" 
+                        Value="Center" />
+                <Setter Property="HorizontalOptions" 
+                        Value="Center" />
+                <Setter Property="VerticalOptions" 
+                        Value="Center" />
+                <Setter Property="Margin" 
+                        Value="8, 0" />
+            </Style>
+
+            <Style x:Key="AmbientTextStyle" 
+                   TargetType="Label"
+                   BasedOn="{StaticResource TabTextStyle}">
+                <Setter Property="HorizontalTextAlignment" 
+                        Value="Start" />
+                <Setter Property="HorizontalOptions" 
+                        Value="Start" />
+                <Setter Property="Margin" 
+                        Value="12, 2, 0, 0" />
+            </Style>
+
+            <Color x:Key="TabSeparatorColor">#F4F5F5</Color>
+
+            <Style x:Key="TabSeparatorStyle" 
+                   TargetType="Label">
+                <Setter Property="BackgroundColor" 
+                        Value="{StaticResource TabSeparatorColor}" />
+                <Setter Property="HeightRequest" 
+                        Value="1" />
+                <Setter Property="VerticalOptions" 
+                        Value="End" />
+            </Style>
+
+            <Style x:Key="SelectedTabStyle" 
+                   TargetType="Label">
+                <Setter Property="BackgroundColor" 
+                        Value="{StaticResource PrimaryColor}" />
+                <Setter Property="HeightRequest" 
+                        Value="2" />
+                <Setter Property="VerticalOptions" 
+                        Value="End" />
+                <Setter Property="Margin" 
+                        Value="12, 1" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="AUTO" />
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+                <!--  header background  -->
+                <Image Aspect="AspectFill" Source="HeaderBackground.png" />
+                <Image Aspect="Fill" Margin="0,-1,0,-1" Source="CurvedMask.png" VerticalOptions="End" HeightRequest="30"/>
+
+                <!--  profile image  -->
+                <Frame
+                    Padding="2"
+                    BackgroundColor="{StaticResource BackgroundColor}"
+                    CornerRadius="50"
+                    HeightRequest="100"
+                    VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    TranslationY="50"
+                    WidthRequest="100">
+                    <ffimageloading:CachedImage 
+                    Source="{Binding LoggedUser.UserImage}">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+                </Frame>
+
+                <!--  Profile Name  -->
+                <StackLayout 
+                    Grid.Row="1" Padding="0,50,0,00" 
+                    HorizontalOptions="Center">
+                    <Label  
+                        Text="{Binding LoggedUser.Name}" 
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Label 
+                        Margin="0,-5"  
+                        Text="Hipster Coffee Drinker" 
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                </StackLayout>
+
+
+                <Grid 
+                    Grid.Row="2" 
+                    Margin="0,30,0,0"
+                    BackgroundColor="{StaticResource WhiteColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="62" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                            Grid.Column="0"
+                            Grid.Row="0">
+                        <Label   
+                                Text="Planes"  
+                                Style="{StaticResource TabTextStyle}">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
+                                    <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Grid 
+                                Style="{StaticResource TabSeparatorStyle}"/>
+                        <Grid   
+                                IsVisible="{Binding PlansTab}"
+                                Style="{StaticResource SelectedTabStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                    Command="{Binding PlansCommand}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid
+                            Grid.Column="1"  
+                            Grid.Row="0">
+                        <Label
+                                Text="Planes 2" 
+                                Style="{StaticResource TabTextStyle}">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Tab2}" Value="true" >
+                                    <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <Grid 
+                                Style="{StaticResource TabSeparatorStyle}"/>
+                        <Grid  
+                                IsVisible="{Binding Tab2}"
+                                Style="{StaticResource SelectedTabStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding Tab2Command}" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <Grid
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1">
+                        <Grid  
+                                x:Name="PlansPanel"
+                                IsVisible="{Binding PlansTab}"
+                                Opacity="0">
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                                    <Trigger.EnterActions>
+                                        <xamanimation:BeginAnimation
+                                                Animation="{StaticResource PlansAnimation}" />
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </Grid.Triggers>
+                            <Label Text="panel 1"/>
+                        </Grid>
+                        <Grid
+                                x:Name="Tab2Panel"
+                                Margin="0, 5, 0, 0"
+                                IsVisible="{Binding Tab2}"
+                                HorizontalOptions="Fill"
+                                VerticalOptions="Start"
+                                Opacity="0">
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                                    <Trigger.EnterActions>
+                                        <xamanimation:BeginAnimation
+                                                Animation="{StaticResource Tab2Animation}" />
+                                    </Trigger.EnterActions>
+                                </Trigger>
+                            </Grid.Triggers>
+                            <Label Text="panel 2"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
