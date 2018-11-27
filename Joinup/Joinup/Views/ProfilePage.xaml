@@ -91,21 +91,20 @@
 
 
     <ContentPage.Content>
-        <ScrollView>
-            <Grid ColumnSpacing="0" RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
-                    <RowDefinition Height="AUTO" />
-                    <RowDefinition Height="*" />
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="*" />
 
-                </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-                <!--  header background  -->
-                <Image Aspect="AspectFill" Source="HeaderBackground.png" />
-                <Image Aspect="Fill" Margin="0,-1,0,-1" Source="CurvedMask.png" VerticalOptions="End" HeightRequest="30"/>
+            <!--  header background  -->
+            <Image Aspect="AspectFill" Source="HeaderBackground.png" />
+            <Image Aspect="Fill" Margin="0,-1,0,-1" Source="CurvedMask.png" VerticalOptions="End" HeightRequest="30"/>
 
-                <!--  profile image  -->
-                <Frame
+            <!--  profile image  -->
+            <Frame
                     Padding="2"
                     BackgroundColor="{StaticResource BackgroundColor}"
                     CornerRadius="50"
@@ -114,113 +113,113 @@
                     HorizontalOptions="Center"
                     TranslationY="50"
                     WidthRequest="100">
-                    <ffimageloading:CachedImage 
+                <ffimageloading:CachedImage 
                     Source="{Binding User.UserImage}">
-                        <ffimageloading:CachedImage.Transformations>
-                            <fftransformations:CircleTransformation/>
-                        </ffimageloading:CachedImage.Transformations>
-                        <ffimageloading:CachedImage.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
-                        </ffimageloading:CachedImage.GestureRecognizers>
-                    </ffimageloading:CachedImage>
-                </Frame>
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:CircleTransformation/>
+                    </ffimageloading:CachedImage.Transformations>
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
+            </Frame>
 
-                <!--  Profile Name  -->
-                <StackLayout 
+            <!--  Profile Name  -->
+            <StackLayout 
                     Grid.Row="1" Padding="0,50,0,00" 
                     HorizontalOptions="Center">
-                    <Label  
+                <Label  
                         Text="{Binding User.Name}" 
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource PrimaryTextColor}"/>
-                    <Label 
+                <Label 
                         Margin="0,-5"  
                         Text="Hipster Coffee Drinker" 
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource TertiaryTextColor}"/>
-                </StackLayout>
+            </StackLayout>
 
 
-                <Grid 
+            <Grid 
                     Grid.Row="2" 
                     ColumnSpacing="0"
                     Margin="0,30,0,0"
                     BackgroundColor="{StaticResource WhiteColor}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid
                             Grid.Column="1"
                             Grid.Row="0">
-                        <Label   
+                    <Label   
                                 Text="Planes"  
                                 Style="{StaticResource TabTextStyle}">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
-                                    <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                        <Grid 
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
+                                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Grid 
                                 Style="{StaticResource TabSeparatorStyle}"/>
-                        <Grid   
+                    <Grid   
                                 IsVisible="{Binding PlansTab}"
                                 Style="{StaticResource SelectedTabStyle}"/>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer 
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer 
                                     Command="{Binding PlansCommand}" />
-                        </Grid.GestureRecognizers>
-                    </Grid>
-                    
-                    <Grid
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Grid
                             Grid.Column="0"  
                             Grid.Row="0">
-                        <Label
+                    <Label
                                 Text="Información" 
                                 Style="{StaticResource TabTextStyle}">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding Tab2}" Value="true" >
-                                    <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                        <Grid 
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Tab2}" Value="true" >
+                                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Grid 
                                 Style="{StaticResource TabSeparatorStyle}"/>
-                        <Grid  
+                    <Grid  
                                 IsVisible="{Binding Tab2}"
                                 Style="{StaticResource SelectedTabStyle}"/>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer 
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer 
                                 Command="{Binding Tab2Command}" />
-                        </Grid.GestureRecognizers>
-                    </Grid>
-                    
-                    <Grid
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Grid
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             Grid.Row="1">
-                        
-                        
-                        <Grid  
+
+
+                    <Grid  
                                 x:Name="PlansPanel"
                                 IsVisible="{Binding PlansTab}"
                                 Opacity="0">
-                            <Grid.Triggers>
-                                <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
-                                    <Trigger.EnterActions>
-                                        <xamanimation:BeginAnimation
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                                <Trigger.EnterActions>
+                                    <xamanimation:BeginAnimation
                                                 Animation="{StaticResource PlansAnimation}" />
-                                    </Trigger.EnterActions>
-                                </Trigger>
-                            </Grid.Triggers>
-                            <controls:CustomListView
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Grid.Triggers>
+                        <controls:CustomListView
                                 HasUnevenRows="True"
                                 ItemsSource="{Binding PlanList}"
                                 IsRefreshing="{Binding IsRefreshing}"
@@ -228,17 +227,17 @@
                                 SeparatorVisibility="None"
                                 RefreshCommand="{Binding RefreshCommand}">
 
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout
                                                 Spacing="0"
                                                 Padding="16">
-                                                <Frame
+                                            <Frame
                                                     Padding="0"
                                                     Margin="0,0,0,8"
-                                                    CornerRadius="6">           
-                                                    <ffimageloading:CachedImage    
+                                                    CornerRadius="6">
+                                                <ffimageloading:CachedImage    
                                                         BackgroundColor="AliceBlue"
                                                         Source="{Binding DefaultImageFullPath}"
                                                         Aspect="AspectFill" 
@@ -246,47 +245,46 @@
                                                         ErrorPlaceholder="no_image.png" 
                                                         DownsampleToViewSize="true"
                                                         HeightRequest="220">
-                                                    </ffimageloading:CachedImage>
-                                                </Frame>
-                                                <Label 
+                                                </ffimageloading:CachedImage>
+                                            </Frame>
+                                            <Label 
                                                     Text="{Binding FormattedDateTime}"
                                                     Style="{StaticResource SubtitleFont}"
                                                     TextColor="{StaticResource TertiaryTextColor}"/>
-                                                <Label 
+                                            <Label 
                                                     Text="{Binding Name}"
                                                     TextColor="{StaticResource SecondaryTextColor}"
-                                                    Style="{StaticResource TitleElementFont}"/> 
-                                                <Label Grid.Row="1" 
+                                                    Style="{StaticResource TitleElementFont}"/>
+                                            <Label Grid.Row="1" 
                                                     Text="{Binding Address}"
                                                     TextColor="{StaticResource SecondaryTextColor}"
                                                     Style="{StaticResource SubtitleElementFont}"/>
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </controls:CustomListView>
-                        </Grid>
-                                        
-                        <Grid
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </controls:CustomListView>
+                    </Grid>
+
+                    <Grid
                                 x:Name="Tab2Panel"
                                 Margin="0, 5, 0, 0"
                                 IsVisible="{Binding Tab2}"
                                 HorizontalOptions="Fill"
                                 VerticalOptions="Start"
                                 Opacity="0">
-                            <Grid.Triggers>
-                                <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
-                                    <Trigger.EnterActions>
-                                        <xamanimation:BeginAnimation
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid" Property="Grid.IsVisible" Value="True">
+                                <Trigger.EnterActions>
+                                    <xamanimation:BeginAnimation
                                                 Animation="{StaticResource Tab2Animation}" />
-                                    </Trigger.EnterActions>
-                                </Trigger>
-                            </Grid.Triggers>
-                            <Label Text="panel 2"/>
-                        </Grid>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Grid.Triggers>
+                        <Label Text="panel 2"/>
                     </Grid>
                 </Grid>
             </Grid>
-        </ScrollView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

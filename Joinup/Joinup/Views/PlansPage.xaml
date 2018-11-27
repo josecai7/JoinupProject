@@ -25,7 +25,7 @@
                 <Grid
                     Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="36" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
@@ -64,7 +64,7 @@
             </Grid>
             <controls:CustomListView
                 HasUnevenRows="True"
-                ItemsSource="{Binding PlanList}"
+                ItemsSource="{Binding FilteredPlanList}"
                 IsRefreshing="{Binding IsRefreshing}"
                 ItemClickCommand="{Binding ClickOnPlan}"
                 IsPullToRefreshEnabled="True"

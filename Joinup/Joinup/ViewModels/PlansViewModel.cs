@@ -17,22 +17,25 @@ namespace Joinup.ViewModels
     public class PlansViewModel : BaseViewModel
     {
         #region Attributes
+        private Dictionary<string,string> filters=new Dictionary<string, string>();
+
         private ObservableCollection<Plan> planList;
+        private ObservableCollection<Plan> filteredList;
         private string searchText;
         private bool isRefreshing;
         #endregion
 
         #region Properties
-        public ObservableCollection<Plan> PlanList
+        public ObservableCollection<Plan> FilteredPlanList
         {
             get
             {
-                return new ObservableCollection<Plan>( planList.OrderBy( x => x.PlanDate ) );
+                return new ObservableCollection<Plan>( filteredList.OrderBy( x => x.PlanDate ) );
             }
             set
             {
-                planList = value;
-                RaisePropertyChanged( "PlanList" );
+                filteredList = value;
+                RaisePropertyChanged( "FilteredPlanList" );
             }
         }
 
@@ -47,6 +50,7 @@ namespace Joinup.ViewModels
             {
                 searchText = value;
                 RaisePropertyChanged( "SearchText" );
+                ApplyFilters();
             }
         }
 
@@ -68,6 +72,7 @@ namespace Joinup.ViewModels
         public PlansViewModel()
         {
             planList = new ObservableCollection<Plan>();
+            filteredList = new ObservableCollection<Plan>();
 
             MessagingCenter.Subscribe<PlansViewModel>( this, "AddNewPlan", (sender) => {
                 LoadPlans();
@@ -149,7 +154,8 @@ namespace Joinup.ViewModels
                 }
 
                 var list = (List<Plan>) response.Result;
-                PlanList = new ObservableCollection<Plan>( list );
+                FilteredPlanList = new ObservableCollection<Plan>( list );
+                planList = new ObservableCollection<Plan>( list );
             }
             else
             {
@@ -159,6 +165,17 @@ namespace Joinup.ViewModels
             }
 
             IsRefreshing = false;
+        }
+
+        private void ApplyFilters()
+        {
+            List<Plan> filteredList = new List<Plan>( planList );
+            if ( !string.IsNullOrEmpty( searchText ) )
+            {
+                filteredList.RemoveAll( item => !item.Name.ToLower().Contains( searchText.ToLower() ) );
+            }
+
+            FilteredPlanList = new ObservableCollection<Plan>( filteredList );
         }
         #endregion
     }
