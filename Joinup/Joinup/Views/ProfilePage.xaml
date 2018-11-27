@@ -6,6 +6,7 @@
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
              xmlns:controls="clr-namespace:Joinup.Controls"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             BackgroundColor="{StaticResource WhiteColor}"
              x:Class="Joinup.Views.ProfilePage">
 
 
@@ -80,11 +81,9 @@
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource PrimaryColor}" />
                 <Setter Property="HeightRequest" 
-                        Value="2" />
+                        Value="3" />
                 <Setter Property="VerticalOptions" 
                         Value="End" />
-                <Setter Property="Margin" 
-                        Value="12, 1" />
             </Style>
 
         </ResourceDictionary>
@@ -146,6 +145,7 @@
 
                 <Grid 
                     Grid.Row="2" 
+                    ColumnSpacing="0"
                     Margin="0,30,0,0"
                     BackgroundColor="{StaticResource WhiteColor}">
                     <Grid.ColumnDefinitions>
@@ -153,17 +153,17 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="62" />
+                        <RowDefinition Height="50" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid
-                            Grid.Column="0"
+                            Grid.Column="1"
                             Grid.Row="0">
                         <Label   
                                 Text="Planes"  
                                 Style="{StaticResource TabTextStyle}">
                             <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding PastPlanList}" Value="true" >
+                                <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
                                     <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                                 </DataTrigger>
                             </Label.Triggers>
@@ -178,11 +178,12 @@
                                     Command="{Binding PlansCommand}" />
                         </Grid.GestureRecognizers>
                     </Grid>
+                    
                     <Grid
-                            Grid.Column="1"  
+                            Grid.Column="0"  
                             Grid.Row="0">
                         <Label
-                                Text="Planes 2" 
+                                Text="Información" 
                                 Style="{StaticResource TabTextStyle}">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label" Binding="{Binding Tab2}" Value="true" >
@@ -200,6 +201,7 @@
                                 Command="{Binding Tab2Command}" />
                         </Grid.GestureRecognizers>
                     </Grid>
+                    
                     <Grid
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
@@ -264,8 +266,7 @@
                                 </ListView.ItemTemplate>
                             </controls:CustomListView>
                         </Grid>
-                        
-                        
+                                        
                         <Grid
                                 x:Name="Tab2Panel"
                                 Margin="0, 5, 0, 0"
