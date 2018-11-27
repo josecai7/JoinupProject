@@ -178,32 +178,28 @@
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
 
-                            <flv:FlowListView 
+                            <ScrollView Orientation="Horizontal" 
                                 Grid.ColumnSpan="2"
                                 Grid.Row="1"
-                                HeightRequest="45"  
-                                IsPullToRefreshEnabled="False"
-                                SeparatorVisibility="None" 
-                                HasUnevenRows="true"
-			                    FlowColumnMinWidth="45" 
-                                RowHeight="45"
-                                FlowItemsSource="{Binding Assistants}">
-
-                                <flv:FlowListView.FlowColumnTemplate>
-                                    <DataTemplate>
-                                        <ffimageloading:CachedImage 
+                                HeightRequest="45">
+                                <controls:ExtendedFlexLayout 
+                                    ItemsSource="{Binding Assistants}"
+                                    HeightRequest="45">
+                                    <controls:ExtendedFlexLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <ffimageloading:CachedImage 
                                             HeightRequest="45"
-                                            Margin="3,0,3,0"
+                                            Margin="4,0,4,0"
                                             Source="{Binding UserImage}"
                                             Aspect="AspectFit">
                                                 <ffimageloading:CachedImage.Transformations>
                                                     <fftransformations:CircleTransformation/>
                                                 </ffimageloading:CachedImage.Transformations>
-                                        </ffimageloading:CachedImage>
-                                    </DataTemplate>
-                                </flv:FlowListView.FlowColumnTemplate>
-
-                            </flv:FlowListView>
+                                            </ffimageloading:CachedImage>
+                                        </DataTemplate>
+                                    </controls:ExtendedFlexLayout.ItemTemplate>
+                                </controls:ExtendedFlexLayout>
+                            </ScrollView>
 
                         </Grid>
 
