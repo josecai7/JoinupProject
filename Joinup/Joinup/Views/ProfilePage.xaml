@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:Joinup.ViewModels"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
+             xmlns:controls="clr-namespace:Joinup.Controls"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.ProfilePage">
 
@@ -115,7 +116,7 @@
                     TranslationY="50"
                     WidthRequest="100">
                     <ffimageloading:CachedImage 
-                    Source="{Binding LoggedUser.UserImage}">
+                    Source="{Binding User.UserImage}">
                         <ffimageloading:CachedImage.Transformations>
                             <fftransformations:CircleTransformation/>
                         </ffimageloading:CachedImage.Transformations>
@@ -130,7 +131,7 @@
                     Grid.Row="1" Padding="0,50,0,00" 
                     HorizontalOptions="Center">
                     <Label  
-                        Text="{Binding LoggedUser.Name}" 
+                        Text="{Binding User.Name}" 
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource PrimaryTextColor}"/>
@@ -162,7 +163,7 @@
                                 Text="Planes"  
                                 Style="{StaticResource TabTextStyle}">
                             <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
+                                <DataTrigger TargetType="Label" Binding="{Binding PastPlanList}" Value="true" >
                                     <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                                 </DataTrigger>
                             </Label.Triggers>
@@ -203,6 +204,8 @@
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             Grid.Row="1">
+                        
+                        
                         <Grid  
                                 x:Name="PlansPanel"
                                 IsVisible="{Binding PlansTab}"
@@ -215,8 +218,54 @@
                                     </Trigger.EnterActions>
                                 </Trigger>
                             </Grid.Triggers>
-                            <Label Text="panel 1"/>
+                            <controls:CustomListView
+                                HasUnevenRows="True"
+                                ItemsSource="{Binding PlanList}"
+                                IsRefreshing="{Binding IsRefreshing}"
+                                IsPullToRefreshEnabled="True"
+                                SeparatorVisibility="None"
+                                RefreshCommand="{Binding RefreshCommand}">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout
+                                                Spacing="0"
+                                                Padding="16">
+                                                <Frame
+                                                    Padding="0"
+                                                    Margin="0,0,0,8"
+                                                    CornerRadius="6">           
+                                                    <ffimageloading:CachedImage    
+                                                        BackgroundColor="AliceBlue"
+                                                        Source="{Binding DefaultImageFullPath}"
+                                                        Aspect="AspectFill" 
+                                                        LoadingPlaceholder="no_image.png" 
+                                                        ErrorPlaceholder="no_image.png" 
+                                                        DownsampleToViewSize="true"
+                                                        HeightRequest="220">
+                                                    </ffimageloading:CachedImage>
+                                                </Frame>
+                                                <Label 
+                                                    Text="{Binding FormattedDateTime}"
+                                                    Style="{StaticResource SubtitleFont}"
+                                                    TextColor="{StaticResource TertiaryTextColor}"/>
+                                                <Label 
+                                                    Text="{Binding Name}"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    Style="{StaticResource TitleElementFont}"/> 
+                                                <Label Grid.Row="1" 
+                                                    Text="{Binding Address}"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    Style="{StaticResource SubtitleElementFont}"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </controls:CustomListView>
                         </Grid>
+                        
+                        
                         <Grid
                                 x:Name="Tab2Panel"
                                 Margin="0, 5, 0, 0"
