@@ -93,7 +93,7 @@
     <ContentPage.Content>
         <Grid ColumnSpacing="0" RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
+                <RowDefinition Height="150" />
                 <RowDefinition Height="AUTO" />
                 <RowDefinition Height="*" />
 
