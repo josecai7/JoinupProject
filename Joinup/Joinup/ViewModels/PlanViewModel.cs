@@ -98,6 +98,14 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
+        public ICommand HostProfileCommand
+        {
+            get
+            {
+                return new RelayCommand( GoToHostProfile );
+            }
+        }
+
         public ICommand JoinCommand
         {
             get
@@ -124,7 +132,10 @@ namespace Joinup.ViewModels
 
         #endregion
         #region Methods
-
+        private void GoToHostProfile()
+        {
+            NavigationService.NavigateToAsync<ProfileViewModel>( plan.User );
+        }
         private void JoinUnJoinPlan()
         {
             if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
@@ -138,7 +149,6 @@ namespace Joinup.ViewModels
 
 
         }
-
         private async void JoinPlan()
         {
             var response = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id);

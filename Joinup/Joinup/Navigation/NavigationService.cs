@@ -94,7 +94,7 @@ namespace Joinup.Navigation
             }
             else
             {
-                var navigationPage = CurrentApplication.MainPage as NavigationPage;
+                var navigationPage = CurrentApplication.MainPage as CustomNavigationPage;
 
                 if ( navigationPage != null )
                 {

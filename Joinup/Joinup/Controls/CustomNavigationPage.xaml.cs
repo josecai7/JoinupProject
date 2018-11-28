@@ -26,8 +26,8 @@ namespace Joinup.Controls
 
         protected override void OnSizeAllocated(double width, double height)
         {
-            if (!IgnoreLayoutChange)
-                base.OnSizeAllocated(width, height);
+                if ( !IgnoreLayoutChange )
+                    base.OnSizeAllocated( width, height );
         }
     }
 }

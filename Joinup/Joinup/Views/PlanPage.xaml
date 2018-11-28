@@ -22,12 +22,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
+
+            <!--  Plan container  -->
             <ScrollView 
                 Grid.Row="0"
                 Orientation="Vertical" 
                 VerticalOptions="FillAndExpand">
                 <StackLayout
                 Orientation="Vertical">
+                    <!--  Carrousel images  -->
                     <cv:CarouselView 
                     ItemsSource="{Binding Plan.PlanImages}"
                     HeightRequest="230"
@@ -48,6 +51,8 @@
                             </DataTemplate>
                         </cv:CarouselView.ItemTemplate>
                     </cv:CarouselView>
+                    
+                    
                     <StackLayout
                     Spacing="0"
                     Orientation="Vertical"
@@ -79,13 +84,17 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <ffimageloading:CachedImage 
-                            Grid.RowSpan="2"
-                            Grid.Column="0"
-                            Source="{Binding Plan.User.UserImage}"
-                            Aspect="AspectFit">
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Source="{Binding Plan.User.UserImage}"
+                                Aspect="AspectFit">
                                 <ffimageloading:CachedImage.Transformations>
                                     <fftransformations:CircleTransformation/>
                                 </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer                                        
+                                        Command="{Binding HostProfileCommand}"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
                             </ffimageloading:CachedImage>
                             <Label
                             Grid.Column="1"
@@ -261,6 +270,8 @@
 
                 </StackLayout>
             </ScrollView>
+
+            <!--  Bottom Button  -->
             <Button
                 Command="{Binding JoinCommand}"
                 Grid.Row="1"
