@@ -64,11 +64,18 @@ namespace Joinup.ViewModels
                 }
             }
         }
-        public bool IsEditable
+        public bool IsHost
         {
             get
             {
                 return plan.UserId==LoggedUser.Id;
+            }
+        }
+        public bool IsNotHost
+        {
+            get
+            {
+                return plan.UserId != LoggedUser.Id;
             }
         }
         #endregion
@@ -91,7 +98,8 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("ButtonStyle");
                 RaisePropertyChanged("Assistants");
-                RaisePropertyChanged("IsEditable");
+                RaisePropertyChanged( "IsHost" );
+                RaisePropertyChanged( "IsNotHost" );
             }
 
             return base.InitializeAsync(navigationData);

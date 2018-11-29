@@ -11,8 +11,8 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.ToolbarItems>
-        <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsEditable}" Command="{Binding EditPlanCommand}"/>
-        <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsEditable}"  Command="{Binding CancelPlanCommand}"/>
+        <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsHost}" Command="{Binding EditPlanCommand}"/>
+        <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsHost}"  Command="{Binding CancelPlanCommand}"/>
         <ToolbarItem />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -83,12 +83,13 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            
+
                             <ffimageloading:CachedImage 
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
                                 Source="{Binding Plan.User.UserImage}"
-                                Aspect="AspectFit">
+                                Aspect="AspectFit"
+                                IsEnabled="{Binding IsNotHost}">
                                 <ffimageloading:CachedImage.Transformations>
                                     <fftransformations:CircleTransformation/>
                                 </ffimageloading:CachedImage.Transformations>
@@ -97,6 +98,7 @@
                                         Command="{Binding HostProfileCommand}"/>
                                 </ffimageloading:CachedImage.GestureRecognizers>
                             </ffimageloading:CachedImage>
+
 
                             <Frame
                                 Grid.RowSpan="2"
