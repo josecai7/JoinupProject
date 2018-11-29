@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -84,6 +85,14 @@ namespace Joinup.ViewModels
             user = LoggedUser;
             LoadPlans();
             SetPlansTab();
+        }
+
+        public override Task InitializeAsync(object navigationData)
+        {
+            User = (MyUserASP) navigationData;
+            LoadPlans();
+
+            return base.InitializeAsync( navigationData );
         }
         #endregion
         #region Commands

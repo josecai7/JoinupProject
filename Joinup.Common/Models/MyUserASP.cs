@@ -55,5 +55,10 @@ namespace Joinup.Common.Models
                 return "no_image.png";
             }
         }
+        public bool IsHost
+        {
+            get;
+            set;
+        }
     }
 }

@@ -83,6 +83,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
+                            
                             <ffimageloading:CachedImage 
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
@@ -96,6 +97,29 @@
                                         Command="{Binding HostProfileCommand}"/>
                                 </ffimageloading:CachedImage.GestureRecognizers>
                             </ffimageloading:CachedImage>
+
+                            <Frame
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                Padding="0"
+                                HeightRequest="18"
+                                WidthRequest="18"
+                                VerticalOptions="End"
+                                HorizontalOptions="End"
+                                CornerRadius="9"
+                                BackgroundColor="{StaticResource PrimaryColor}">
+                                <Label
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="A"
+                                    Style="{StaticResource ParagraphFont}"
+                                    TextColor="{StaticResource WhiteColor}">
+                                    
+                                </Label>
+                            </Frame>
+                            
                             <Label
                             Grid.Column="1"
                             Grid.Row="0"
@@ -196,15 +220,38 @@
                                     HeightRequest="45">
                                     <controls:ExtendedFlexLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <ffimageloading:CachedImage 
-                                            HeightRequest="45"
-                                            Margin="4,0,4,0"
-                                            Source="{Binding UserImage}"
-                                            Aspect="AspectFit">
-                                                <ffimageloading:CachedImage.Transformations>
-                                                    <fftransformations:CircleTransformation/>
-                                                </ffimageloading:CachedImage.Transformations>
-                                            </ffimageloading:CachedImage>
+                                            <Grid>
+                                                <ffimageloading:CachedImage 
+                                                    HeightRequest="45"
+                                                    Margin="4,0,4,0"
+                                                    Source="{Binding UserImage}"
+                                                    Aspect="AspectFit">
+                                                    <ffimageloading:CachedImage.Transformations>
+                                                        <fftransformations:CircleTransformation/>
+                                                    </ffimageloading:CachedImage.Transformations>
+                                                </ffimageloading:CachedImage>
+
+                                                <Frame              
+                                                    IsVisible="{Binding IsHost}"
+                                                    Padding="0"
+                                                    HeightRequest="18"
+                                                    WidthRequest="18"
+                                                    VerticalOptions="End"
+                                                    HorizontalOptions="End"
+                                                    CornerRadius="9"
+                                                    BackgroundColor="{StaticResource PrimaryColor}">
+                                                    <Label
+                                                        HorizontalTextAlignment="Center"
+                                                        VerticalTextAlignment="Center"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Text="A"
+                                                        Style="{StaticResource ParagraphFont}"
+                                                        TextColor="{StaticResource WhiteColor}">
+                                                    </Label>
+                                                </Frame>
+                                            </Grid>
+
                                         </DataTemplate>
                                     </controls:ExtendedFlexLayout.ItemTemplate>
                                 </controls:ExtendedFlexLayout>

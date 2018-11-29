@@ -20,6 +20,7 @@ namespace Joinup.Navigation
             { typeof(RegisterViewModel), typeof(RegisterPage) },
             { typeof(PlansViewModel), typeof(PlansPage) },
             { typeof(PlanViewModel), typeof(PlanPage) },
+            { typeof(ProfileViewModel), typeof(ProfilePage) },
             { typeof(NewPlanStep1ViewModel), typeof(NewPlanStep1Page) },
             { typeof(NewPlanStep2ViewModel), typeof(NewPlanStep2Page) },
             { typeof(NewPlanStep3ViewModel), typeof(NewPlanStep3Page) },
@@ -76,7 +77,7 @@ namespace Joinup.Navigation
             else if ( CurrentApplication.MainPage is MainView )
             {
                 var mainPage = CurrentApplication.MainPage as MainView;
-                var navigationPage = mainPage.CurrentPage as NavigationPage;
+                var navigationPage = mainPage.CurrentPage as CustomNavigationPage;
  
                 if ( navigationPage != null )
                 {
@@ -84,7 +85,7 @@ namespace Joinup.Navigation
                 }
                 else
                 {
-                    navigationPage = new NavigationPage( page )
+                    navigationPage = new CustomNavigationPage( page )
                     {
                         BarBackgroundColor = ColorUtils.PrimaryColor,
                     };
@@ -102,7 +103,7 @@ namespace Joinup.Navigation
                 }
                 else
                 {
-                    CurrentApplication.MainPage = new NavigationPage( page )
+                    CurrentApplication.MainPage = new CustomNavigationPage( page )
                     {
                         BarBackgroundColor = ColorUtils.PrimaryColor,
                     };
@@ -159,6 +160,7 @@ namespace Joinup.Navigation
             _mappings.Add(typeof(RegisterViewModel), typeof(RegisterPage));
             _mappings.Add( typeof( PlansViewModel ), typeof( PlansPage ) );
             _mappings.Add(typeof(PlanViewModel), typeof(PlanPage));
+            _mappings.Add( typeof( ProfileViewModel ), typeof( ProfilePage ) );
             _mappings.Add( typeof( NewPlanStep1ViewModel ), typeof( NewPlanStep1Page ) );
             _mappings.Add( typeof( NewPlanStep2ViewModel ), typeof( NewPlanStep2Page ) );
             _mappings.Add( typeof( NewPlanStep3ViewModel ), typeof( NewPlanStep3Page ) );

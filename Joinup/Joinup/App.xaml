@@ -289,6 +289,14 @@
                  Value="{StaticResource MidMediumSize}" />
             </Style>
 
+            <Style x:Key="ParagraphFont"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontMedium}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource LittleSize}" />
+            </Style>
+
 
             <!-- BUTTON STYLES -->
 

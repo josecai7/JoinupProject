@@ -38,6 +38,7 @@ namespace Joinup.API.Controllers
                     var assistant = UsersHelper.GetUserASPById(meet.UserId);
                     var assistantserialized = JsonConvert.SerializeObject(assistant);
                     var assistantdesserialized = JsonConvert.DeserializeObject<MyUserASP>(assistantserialized);
+                    assistantdesserialized.IsHost = plan.UserId == meet.UserId;
                     plan.AssistantUsers.Add(assistantdesserialized);
                 }
 

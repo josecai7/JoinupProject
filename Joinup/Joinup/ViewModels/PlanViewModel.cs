@@ -134,7 +134,7 @@ namespace Joinup.ViewModels
         #region Methods
         private void GoToHostProfile()
         {
-            NavigationService.NavigateToAsync<ProfileViewModel>( plan.User );
+            NavigationService.NavigateToAsync<ProfileViewModel>(plan.User);
         }
         private void JoinUnJoinPlan()
         {
