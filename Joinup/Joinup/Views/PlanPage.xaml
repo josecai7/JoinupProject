@@ -87,6 +87,8 @@
                             <ffimageloading:CachedImage 
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
+                                HeightRequest="45"
+                                WidthRequest="45"
                                 Source="{Binding Plan.User.UserImage}"
                                 Aspect="AspectFit"
                                 IsEnabled="{Binding IsNotHost}">
@@ -225,6 +227,7 @@
                                             <Grid>
                                                 <ffimageloading:CachedImage 
                                                     HeightRequest="45"
+                                                    WidthRequest="45"
                                                     Margin="4,0,4,0"
                                                     Source="{Binding UserImage}"
                                                     Aspect="AspectFit">
