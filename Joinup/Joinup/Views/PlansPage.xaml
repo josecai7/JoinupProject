@@ -6,6 +6,7 @@
              xmlns:viewModels="clr-namespace:Joinup.ViewModels"
              xmlns:custom="clr-namespace:Joinup.CustomControls"
              xmlns:controls="clr-namespace:Joinup.Controls"
+             BackgroundColor="{StaticResource WhiteColor}"
              x:Class="Joinup.Views.PlansPage">
     
     <ContentPage.BindingContext>
@@ -101,10 +102,36 @@
                                     TextColor="{StaticResource SecondaryTextColor}"
                                     Style="{StaticResource TitleElementFont}"/>
 
-                                <Label Grid.Row="1" 
+                                <Label
                                     Text="{Binding Address}"
                                     TextColor="{StaticResource SecondaryTextColor}"
                                     Style="{StaticResource SubtitleElementFont}"/>
+
+                                <controls:ExtendedFlexLayout                                     
+                                    Margin="0,8,0,0"
+                                    ItemsSource="{Binding ResumeAssistantUsers}"
+                                    HeightRequest="24">
+                                    <controls:ExtendedFlexLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame
+                                                Margin="0,0,-4,0"
+                                                Padding="0.7"
+                                                BackgroundColor="{StaticResource BackgroundColor}"
+                                                CornerRadius="12"
+                                                HeightRequest="24"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                WidthRequest="24">
+                                                <ffimageloading:CachedImage 
+                                                    Source="{Binding UserImage}">
+                                                    <ffimageloading:CachedImage.Transformations>
+                                                        <fftransformations:CircleTransformation/>
+                                                    </ffimageloading:CachedImage.Transformations>
+                                                </ffimageloading:CachedImage>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </controls:ExtendedFlexLayout.ItemTemplate>
+                                </controls:ExtendedFlexLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

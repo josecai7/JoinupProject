@@ -70,6 +70,14 @@ namespace Joinup.Common.Models
         {
             get; set;
         }
+        [NotMapped]
+        public List<MyUserASP> ResumeAssistantUsers
+        {
+            get
+            {
+                return AssistantUsers.GetRange( 0, Math.Min(AssistantUsers.Count,4) );
+            }
+        }
 
         [NotMapped]
         public MyUserASP User
