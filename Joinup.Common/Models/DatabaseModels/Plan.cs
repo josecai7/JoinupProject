@@ -75,7 +75,7 @@ namespace Joinup.Common.Models
         {
             get
             {
-                return AssistantUsers.GetRange( 0, Math.Min(AssistantUsers.Count,4) );
+                return AssistantUsers.GetRange( 0, Math.Min(AssistantUsers.Count,5) );
             }
         }
 
