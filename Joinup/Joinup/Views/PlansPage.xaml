@@ -14,7 +14,8 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout
+            Spacing="0">
             <Grid
                 Padding="16,8,16,8"
                 HeightRequest="96"
@@ -62,6 +63,42 @@
                     </custom:FontIcon>
 
                 </Grid>
+                <ScrollView
+                    Orientation="Horizontal"
+                    Grid.Row="1"              
+                    HorizontalScrollBarVisibility="Never"                    
+                    Margin="0,8,0,8">
+                    <FlexLayout>
+                        <controls:SwitchButton
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Cerca"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterNearActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Hoy"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterTodayActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Idiomas"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterLanguageActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Deportes"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterSportActive}"/>
+
+                    </FlexLayout>
+                </ScrollView>
             </Grid>
             <controls:CustomListView
                 HasUnevenRows="True"
@@ -107,13 +144,17 @@
                                     TextColor="{StaticResource SecondaryTextColor}"
                                     Style="{StaticResource SubtitleElementFont}"/>
 
-                                <controls:ExtendedFlexLayout                                     
+                                <StackLayout
+                                    Orientation="Horizontal"
                                     Margin="0,8,0,0"
+                                    HeightRequest="24"
+                                    Spacing="8">
+                                    <controls:ExtendedFlexLayout                                     
                                     ItemsSource="{Binding ResumeAssistantUsers}"
                                     HeightRequest="24">
-                                    <controls:ExtendedFlexLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Frame
+                                        <controls:ExtendedFlexLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame
                                                 Margin="0,0,-4,0"
                                                 Padding="0.7"
                                                 BackgroundColor="{StaticResource BackgroundColor}"
@@ -122,21 +163,30 @@
                                                 VerticalOptions="Center"
                                                 HorizontalOptions="Center"
                                                 WidthRequest="24">
-                                                <ffimageloading:CachedImage 
+                                                    <ffimageloading:CachedImage 
                                                     Source="{Binding UserImage}">
-                                                    <ffimageloading:CachedImage.Transformations>
-                                                        <fftransformations:CircleTransformation/>
-                                                    </ffimageloading:CachedImage.Transformations>
-                                                </ffimageloading:CachedImage>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </controls:ExtendedFlexLayout.ItemTemplate>
-                                </controls:ExtendedFlexLayout>
+                                                        <ffimageloading:CachedImage.Transformations>
+                                                            <fftransformations:CircleTransformation/>
+                                                        </ffimageloading:CachedImage.Transformations>
+                                                    </ffimageloading:CachedImage>
+                                                </Frame>
+                                            </DataTemplate>
+                                        </controls:ExtendedFlexLayout.ItemTemplate>
+                                    </controls:ExtendedFlexLayout>
+                                    <Label 
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding FormattedAssistantUsers}"
+                                        Style="{StaticResource HeaderElementFont}"
+                                        TextColor="{StaticResource TertiaryTextColor}"/>
+                                </StackLayout>
+                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </controls:CustomListView>
+            <controls:SeparatorLine/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

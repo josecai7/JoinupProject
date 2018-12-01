@@ -133,13 +133,21 @@ namespace Joinup.Common.Models
         {
             get
             {
-                if (AssistantUsers.Count >= 1)
+                if (AssistantUsers.Count == 0)
                 {
-                    return AssistantUsers.Count + " Personas van a ir";
+                    return "Aun no hay nadie apuntado. Sé el primero.";                    
+                }
+                else if (AssistantUsers.Count == 1)
+                {
+                    return AssistantUsers.FirstOrDefault().Name + " va a ir";
+                }
+                else if (AssistantUsers.Count == 2)
+                {
+                    return AssistantUsers.FirstOrDefault().Name + " y " + (AssistantUsers.Count - 1) + " amigo van a ir";
                 }
                 else
                 {
-                    return "Aun no hay nadie apuntado. Sé el primero.";
+                    return AssistantUsers.FirstOrDefault().Name + " y " + (AssistantUsers.Count - 1) + " amigos van a ir";
                 }
             }
         }

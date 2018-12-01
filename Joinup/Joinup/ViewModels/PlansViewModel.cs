@@ -23,6 +23,10 @@ namespace Joinup.ViewModels
         private ObservableCollection<Plan> filteredList;
         private string searchText;
         private bool isRefreshing;
+        private bool isFilterNearActive;
+        private bool isFilterTodayActive;
+        private bool isFilterLanguageActive;
+        private bool isFilterSportActive;
         #endregion
 
         #region Properties
@@ -54,6 +58,59 @@ namespace Joinup.ViewModels
             }
         }
 
+        public bool IsFilterNearActive
+        {
+            get
+            {
+                return isFilterNearActive;
+            }
+            set
+            {
+                isFilterNearActive = value;
+                RaisePropertyChanged("IsFilterNearActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterTodayActive
+        {
+            get
+            {
+                return isFilterTodayActive;
+            }
+            set
+            {
+                isFilterTodayActive = value;
+                RaisePropertyChanged("IsFilterTodayActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterLanguageActive
+        {
+            get
+            {
+                return isFilterLanguageActive;
+            }
+            set
+            {
+                isFilterLanguageActive = value;
+                RaisePropertyChanged("IsFilterLanguageActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterSportActive
+        {
+            get
+            {
+                return isFilterSportActive;
+            }
+            set
+            {
+                isFilterSportActive = value;
+                RaisePropertyChanged("IsFilterSportActive");
+                ApplyFilters();
+            }
+        }
+
         public bool IsRefreshing
         {
             get
@@ -64,6 +121,14 @@ namespace Joinup.ViewModels
             {
                 isRefreshing = value;
                 RaisePropertyChanged( "IsRefreshing" );
+            }
+        }
+
+        public double ThirdScreenSize
+        {
+            get
+            {
+                return (Application.Current.MainPage.Width-40)/3;
             }
         }
         #endregion
@@ -153,9 +218,10 @@ namespace Joinup.ViewModels
                     return;
                 }
 
-                var list = (List<Plan>) response.Result;
-                FilteredPlanList = new ObservableCollection<Plan>( list );
-                planList = new ObservableCollection<Plan>( list );
+                List<Plan> list = (List<Plan>) response.Result;
+                list = list.Where(item => item.PlanDate >= DateTime.Now).ToList();
+                FilteredPlanList = new ObservableCollection<Plan>(list);
+                planList = new ObservableCollection<Plan>(list);
             }
             else
             {
@@ -169,10 +235,27 @@ namespace Joinup.ViewModels
 
         private void ApplyFilters()
         {
-            List<Plan> filteredList = new List<Plan>( planList );
+            List<Plan> filteredList = new List<Plan>();
             if ( !string.IsNullOrEmpty( searchText ) )
             {
-                filteredList.RemoveAll( item => !item.Name.ToLower().Contains( searchText.ToLower() ) );
+                filteredList.AddRange(planList.Where(item=>item.Name.ToLower().Contains(searchText.ToLower())));
+            }
+
+            if (IsFilterNearActive)
+            {
+
+            }
+            if (IsFilterLanguageActive)
+            {
+
+            }
+            if (IsFilterSportActive)
+            {
+
+            }
+            if (IsFilterTodayActive)
+            {
+
             }
 
             FilteredPlanList = new ObservableCollection<Plan>( filteredList );

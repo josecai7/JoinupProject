@@ -75,6 +75,7 @@
 
             <Color x:Key="PlaceholderColor">#F2F2F2</Color>
 
+            <Color x:Key="SelectableBackgroundColor">#45DAD8</Color>
             <Color x:Key="DividerColor">#EAEAEA</Color>
             <Color x:Key="DividerLightColor">#F2F2F2</Color>
             <Color x:Key="ShadowColor">#E5E5E5</Color>

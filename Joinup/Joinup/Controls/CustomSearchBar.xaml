@@ -8,7 +8,7 @@
         <Frame
             CornerRadius="4"
             HasShadow="True"
-            BackgroundColor="#45DAD8"
+            BackgroundColor="{StaticResource SelectableBackgroundColor}"
             Padding="8,2,8,2">
             <Grid
                 VerticalOptions="Center">
