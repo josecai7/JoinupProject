@@ -17,22 +17,35 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private MyUserASP user;
-        private ObservableCollection<Plan> planList;
+        private ObservableCollection<Plan> publishedPlanList;
+        private ObservableCollection<Plan> assistPlanList;
         private bool plansTab;
         private bool tab2;
         private bool isRefreshing;
         #endregion
         #region Properties
-        public ObservableCollection<Plan> PlanList
+        public ObservableCollection<Plan> AssistPlanList
         {
             get
             {
-                return new ObservableCollection<Plan>( planList.OrderBy( x => x.PlanDate ) );
+                return new ObservableCollection<Plan>( assistPlanList.OrderBy( x => x.PlanDate ) );
             }
             set
             {
-                planList = value;
-                RaisePropertyChanged( "PlanList" );
+                assistPlanList = value;
+                RaisePropertyChanged( "AssistPlanList" );
+            }
+        }
+        public ObservableCollection<Plan> PublishedPlanList
+        {
+            get
+            {
+                return new ObservableCollection<Plan>( publishedPlanList.OrderBy( x => x.PlanDate ) );
+            }
+            set
+            {
+                publishedPlanList = value;
+                RaisePropertyChanged( "PublishedPlanList" );
             }
         }
         public bool IsRefreshing
@@ -81,7 +94,8 @@ namespace Joinup.ViewModels
         #region Constructors
         public ProfileViewModel()
         {
-            planList = new ObservableCollection<Plan>();
+            publishedPlanList = new ObservableCollection<Plan>();
+            assistPlanList = new ObservableCollection<Plan>();
             user = LoggedUser;
             LoadPlans();
             SetPlansTab();
@@ -137,7 +151,8 @@ namespace Joinup.ViewModels
                 }
 
                 var list = (List<Plan>) response.Result;
-                PlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId == User.Id) );
+                PublishedPlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId == User.Id) );
+                AssistPlanList = new ObservableCollection<Plan>( list.Where( item => item.AssistantUsers.Find(user=> user.Id==LoggedUser.Id)!=null ) );
             }
             else
             {

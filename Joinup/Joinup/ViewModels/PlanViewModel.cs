@@ -54,13 +54,20 @@ namespace Joinup.ViewModels
         {
             get
             {
-                if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
+                if ( IsHost )
                 {
-                    return Application.Current.Resources["UnSelectedButton"] as Style;
+                    return Application.Current.Resources["CancelPlanButton"] as Style;
                 }
                 else
                 {
-                    return Application.Current.Resources["SelectedButton"] as Style;
+                    if ( plan.AssistantUsers.Find( assistant => assistant.Id == LoggedUser.Id ) == null )
+                    {
+                        return Application.Current.Resources["JoinButton"] as Style;
+                    }
+                    else
+                    {
+                        return Application.Current.Resources["UnJoinButton"] as Style;
+                    }
                 }
             }
         }
@@ -76,6 +83,13 @@ namespace Joinup.ViewModels
             get
             {
                 return plan.UserId != LoggedUser.Id;
+            }
+        }
+        public bool IsPlanAvaliable
+        {
+            get
+            {
+                return plan.PlanDate > DateTime.Now;
             }
         }
         #endregion
@@ -114,11 +128,11 @@ namespace Joinup.ViewModels
             }
         }
 
-        public ICommand JoinCommand
+        public ICommand ButtonCommand
         {
             get
             {
-                return new RelayCommand(JoinUnJoinPlan);
+                return new RelayCommand(ClickOnButton);
             }
         }
 
@@ -143,6 +157,24 @@ namespace Joinup.ViewModels
         private void GoToHostProfile()
         {
             NavigationService.NavigateToAsync<ProfileViewModel>(plan.User);
+        }
+        private void ClickOnButton()
+        {
+            if ( IsHost )
+            {
+                CancelPlan();
+            }
+            else
+            {
+                if ( plan.AssistantUsers.Find( assistant => assistant.Id == LoggedUser.Id ) == null )
+                {
+                    JoinPlan();
+                }
+                else
+                {
+                    UnJoinPlan();
+                }
+            }
         }
         private void JoinUnJoinPlan()
         {

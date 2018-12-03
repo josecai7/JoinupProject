@@ -159,7 +159,7 @@
                             Grid.Column="1"
                             Grid.Row="0">
                     <Label   
-                                Text="Planes"  
+                                Text="Asistirás"  
                                 Style="{StaticResource TabTextStyle}">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
@@ -182,7 +182,7 @@
                             Grid.Column="0"  
                             Grid.Row="0">
                     <Label
-                                Text="Información" 
+                                Text="Publicados" 
                                 Style="{StaticResource TabTextStyle}">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding Tab2}" Value="true" >
@@ -221,7 +221,7 @@
                         </Grid.Triggers>
                         <controls:CustomListView
                                 HasUnevenRows="True"
-                                ItemsSource="{Binding PlanList}"
+                                ItemsSource="{Binding AssistPlanList}"
                                 IsRefreshing="{Binding IsRefreshing}"
                                 IsPullToRefreshEnabled="True"
                                 SeparatorVisibility="None"
@@ -281,7 +281,51 @@
                                 </Trigger.EnterActions>
                             </Trigger>
                         </Grid.Triggers>
-                        <Label Text="panel 2"/>
+                        <controls:CustomListView
+                                HasUnevenRows="True"
+                                ItemsSource="{Binding PublishedPlanList}"
+                                IsRefreshing="{Binding IsRefreshing}"
+                                IsPullToRefreshEnabled="True"
+                                SeparatorVisibility="None"
+                                RefreshCommand="{Binding RefreshCommand}">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout
+                                                Spacing="0"
+                                                Padding="16">
+                                            <Frame
+                                                    Padding="0"
+                                                    Margin="0,0,0,8"
+                                                    CornerRadius="6">
+                                                <ffimageloading:CachedImage    
+                                                        BackgroundColor="AliceBlue"
+                                                        Source="{Binding DefaultImageFullPath}"
+                                                        Aspect="AspectFill" 
+                                                        LoadingPlaceholder="no_image.png" 
+                                                        ErrorPlaceholder="no_image.png" 
+                                                        DownsampleToViewSize="true"
+                                                        HeightRequest="220">
+                                                </ffimageloading:CachedImage>
+                                            </Frame>
+                                            <Label 
+                                                    Text="{Binding FormattedDateTime}"
+                                                    Style="{StaticResource SubtitleFont}"
+                                                    TextColor="{StaticResource TertiaryTextColor}"/>
+                                            <Label 
+                                                    Text="{Binding Name}"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    Style="{StaticResource TitleElementFont}"/>
+                                            <Label Grid.Row="1" 
+                                                    Text="{Binding Address}"
+                                                    TextColor="{StaticResource SecondaryTextColor}"
+                                                    Style="{StaticResource SubtitleElementFont}"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </controls:CustomListView>
                     </Grid>
                 </Grid>
             </Grid>

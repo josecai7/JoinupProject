@@ -80,7 +80,7 @@
             <Color x:Key="DividerLightColor">#F2F2F2</Color>
             <Color x:Key="ShadowColor">#E5E5E5</Color>
 
-            <Color x:Key="ErrorColor">#B4656F</Color>
+            <Color x:Key="ErrorColor">#FF5E5B</Color>
             
 
 
@@ -302,7 +302,25 @@
 
             <!-- BUTTON STYLES -->
 
-            <Style x:Key="UnSelectedButton"
+            <Style x:Key="CancelPlanButton"
+                   TargetType="{x:Type Button}">
+                <Setter Property="FontFamily"
+                 Value="{StaticResource FontSemiBold}" />
+                <Setter Property="FontSize"
+                 Value="{StaticResource MidMediumSize}" />
+                <Setter Property="BorderColor"
+                 Value="{StaticResource SecondaryTextColor}" />
+                <Setter Property="BorderWidth"
+                 Value="1" />
+                <Setter Property="BackgroundColor"
+                 Value="{StaticResource WhiteColor}" />
+                <Setter Property="TextColor"
+                 Value="{StaticResource ErrorColor}" />
+                <Setter Property="Text"
+                 Value="CANCELAR PLAN" />
+            </Style>
+
+            <Style x:Key="JoinButton"
                    TargetType="{x:Type Button}">
                 <Setter Property="FontFamily"
                  Value="{StaticResource FontSemiBold}" />
@@ -320,7 +338,7 @@
                  Value="¡ME APUNTO!" />
             </Style>
 
-            <Style x:Key="SelectedButton"
+            <Style x:Key="UnJoinButton"
                    TargetType="{x:Type Button}">
                 <Setter Property="FontFamily"
                  Value="{StaticResource FontSemiBold}" />

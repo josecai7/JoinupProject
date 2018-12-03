@@ -12,7 +12,6 @@
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.ToolbarItems>
         <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsHost}" Command="{Binding EditPlanCommand}"/>
-        <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsHost}"  Command="{Binding CancelPlanCommand}"/>
         <ToolbarItem />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -20,7 +19,7 @@
             Margin="0,-40,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="40"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
             <!--  Plan container  -->
@@ -325,7 +324,8 @@
 
             <!--  Bottom Button  -->
             <Button
-                Command="{Binding JoinCommand}"
+                IsVisible="{Binding IsPlanAvaliable}"
+                Command="{Binding ButtonCommand}"
                 Grid.Row="1"
                 HeightRequest="{StaticResource TouchSize}"
                 Style="{Binding ButtonStyle}"/>
