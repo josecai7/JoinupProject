@@ -1,12 +1,17 @@
-﻿using Joinup.Common.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
 using Joinup.Navigation;
+using Joinup.Service;
 using Joinup.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Joinup.ViewModels
@@ -27,6 +32,68 @@ namespace Joinup.ViewModels
                 loggedUser = value;
                 RaisePropertyChanged();
             }
+        }
+
+        protected static ObservableCollection<Plan> plans=new ObservableCollection<Plan>();
+        public ObservableCollection<Plan> Plans
+        {
+            get
+            {
+                return new ObservableCollection<Plan>( plans.OrderBy( x => x.PlanDate ) );
+            }
+            set
+            {
+                plans = value;
+                RaisePropertyChanged( "Plans" );
+            }
+        }
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                isRefreshing = value;
+                RaisePropertyChanged(  );
+            }
+        }
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand( LoadPlans );
+            }
+        }
+        protected async void LoadPlans()
+        {
+            IsRefreshing = true;
+
+            var connection = await ApiService.GetInstance().CheckConnection();
+            if ( connection.IsSuccess )
+            {
+                var response = await DataService.GetInstance().GetPlans();
+
+                if ( !response.IsSuccess )
+                {
+                    await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
+                    IsRefreshing = false;
+                    return;
+                }
+
+                var list = (List<Plan>) response.Result;
+                Plans = new ObservableCollection<Plan>(list);
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert( "Revisa tu conexión a internet", "Aceptar", "Cancelar" );
+                IsRefreshing = false;
+                return;
+            }
+
+            IsRefreshing = false;
         }
 
         public BaseViewModel()

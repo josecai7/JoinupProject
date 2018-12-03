@@ -17,47 +17,23 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private MyUserASP user;
-        private ObservableCollection<Plan> publishedPlanList;
-        private ObservableCollection<Plan> assistPlanList;
         private bool plansTab;
         private bool tab2;
-        private bool isRefreshing;
         #endregion
         #region Properties
         public ObservableCollection<Plan> AssistPlanList
         {
             get
             {
-                return new ObservableCollection<Plan>( assistPlanList.OrderBy( x => x.PlanDate ) );
-            }
-            set
-            {
-                assistPlanList = value;
-                RaisePropertyChanged( "AssistPlanList" );
+                return new ObservableCollection<Plan>( plans.Where( item => item.UserId == User.Id ).OrderBy( x => x.PlanDate ) );
             }
         }
         public ObservableCollection<Plan> PublishedPlanList
         {
             get
             {
-                return new ObservableCollection<Plan>( publishedPlanList.OrderBy( x => x.PlanDate ) );
-            }
-            set
-            {
-                publishedPlanList = value;
-                RaisePropertyChanged( "PublishedPlanList" );
-            }
-        }
-        public bool IsRefreshing
-        {
-            get
-            {
-                return isRefreshing;
-            }
-            set
-            {
-                isRefreshing = value;
-                RaisePropertyChanged( "IsRefreshing" );
+                
+                return new ObservableCollection<Plan>( plans.Where( item => item.AssistantUsers.Find( user => user.Id == LoggedUser.Id ) != null ).OrderBy( x => x.PlanDate ) );
             }
         }
         public bool PlansTab
@@ -94,29 +70,18 @@ namespace Joinup.ViewModels
         #region Constructors
         public ProfileViewModel()
         {
-            publishedPlanList = new ObservableCollection<Plan>();
-            assistPlanList = new ObservableCollection<Plan>();
             user = LoggedUser;
-            LoadPlans();
             SetPlansTab();
         }
 
         public override Task InitializeAsync(object navigationData)
         {
             User = (MyUserASP) navigationData;
-            LoadPlans();
 
             return base.InitializeAsync( navigationData );
         }
         #endregion
         #region Commands
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                return new RelayCommand( LoadPlans );
-            }
-        }
         public ICommand PlansCommand
         {
             get
@@ -134,35 +99,6 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Methods
-        private async void LoadPlans()
-        {
-            IsRefreshing = true;
-
-            var connection = await ApiService.GetInstance().CheckConnection();
-            if ( connection.IsSuccess )
-            {
-                var response = await DataService.GetInstance().GetPlans();
-
-                if ( !response.IsSuccess )
-                {
-                    await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
-                    IsRefreshing = false;
-                    return;
-                }
-
-                var list = (List<Plan>) response.Result;
-                PublishedPlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId == User.Id) );
-                AssistPlanList = new ObservableCollection<Plan>( list.Where( item => item.AssistantUsers.Find(user=> user.Id==LoggedUser.Id)!=null ) );
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert( "Revisa tu conexión a internet", "Aceptar", "Cancelar" );
-                IsRefreshing = false;
-                return;
-            }
-
-            IsRefreshing = false;
-        }
 
         private void SetPlansTab()
         {
