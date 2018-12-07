@@ -19,6 +19,7 @@ namespace Joinup.ViewModels
         #region Attributes
         private Dictionary<string,string> filters=new Dictionary<string, string>();
 
+        private ObservableCollection<Plan> planList;
         private ObservableCollection<Plan> filteredList;
         private string searchText;
         private bool isRefreshing;
@@ -110,6 +111,19 @@ namespace Joinup.ViewModels
             }
         }
 
+        public bool IsRefreshing
+        {
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                isRefreshing = value;
+                RaisePropertyChanged( "IsRefreshing" );
+            }
+        }
+
         public double ThirdScreenSize
         {
             get
@@ -122,6 +136,7 @@ namespace Joinup.ViewModels
         #region Constructors
         public PlansViewModel()
         {
+            planList = new ObservableCollection<Plan>();
             filteredList = new ObservableCollection<Plan>();
 
             MessagingCenter.Subscribe<PlansViewModel>( this, "AddNewPlan", (sender) => {
@@ -137,7 +152,13 @@ namespace Joinup.ViewModels
         #endregion
 
         #region Commands
-
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand( LoadPlans );
+            }
+        }
         public ICommand NewPlanCommand
         {
             get
@@ -177,13 +198,47 @@ namespace Joinup.ViewModels
 
             }
         }
+        private async void LoadPlans()
+        {
+            IsRefreshing = true;
+
+            var connection = await ApiService.GetInstance().CheckConnection();
+            if ( connection.IsSuccess )
+            {
+                var url = Application.Current.Resources["UrlAPI"].ToString();
+                var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+                var controller = Application.Current.Resources["UrlPlansController"].ToString();
+
+                var response = await ApiService.GetInstance().GetList<Plan>( url, prefix, controller, Settings.TokenType, Settings.AccessToken);
+
+                if ( !response.IsSuccess )
+                {
+                    await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
+                    IsRefreshing = false;
+                    return;
+                }
+
+                List<Plan> list = (List<Plan>) response.Result;
+                list = list.Where(item => item.PlanDate >= DateTime.Now).ToList();
+                FilteredPlanList = new ObservableCollection<Plan>(list);
+                planList = new ObservableCollection<Plan>(list);
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert( "Revisa tu conexión a internet", "Aceptar", "Cancelar" );
+                IsRefreshing = false;
+                return;
+            }
+
+            IsRefreshing = false;
+        }
 
         private void ApplyFilters()
         {
             List<Plan> filteredList = new List<Plan>();
             if ( !string.IsNullOrEmpty( searchText ) )
             {
-                filteredList.AddRange(plans.Where(item=>item.Name.ToLower().Contains(searchText.ToLower())));
+                filteredList.AddRange(planList.Where(item=>item.Name.ToLower().Contains(searchText.ToLower())));
             }
 
             if (IsFilterNearActive)

@@ -8,6 +8,6 @@
   <!--Pages can be added as references or inline-->
 
     <pages:PlansPage Icon="ic_home" Title="Inicio"/>
-    <pages:ProfilePage Icon="ic_account" Title="Perfil"/> 
-
+    <pages:ProfilePage Icon="ic_account" Title="Perfil"/>
+    
 </TabbedPage>
