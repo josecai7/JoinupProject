@@ -177,6 +177,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
       <Version>16.3.0.21</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
+      <Version>16.3.0.36</Version>
+    </PackageReference>
     <PackageReference Include="Toasts.Forms.Plugin">
       <Version>3.3.2</Version>
     </PackageReference>

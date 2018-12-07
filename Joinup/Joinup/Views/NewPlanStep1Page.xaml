@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:Joinup.Controls"
              xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              x:Class="Joinup.Views.NewPlanStep1Page"
              BackgroundColor="White"
              Title="Crea tu plan">
@@ -152,6 +153,15 @@
                             ItemsSource="{Binding Pins}" />
                     </maps:Map.Behaviors>
                 </maps:Map>
+                <Label
+                    Margin="16,8,16,0"
+                    Text="Maximo de asistentes"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <numeric:SfNumericUpDown  
+                    Margin="16,4,16,0"                
+                    BorderColor="Transparent"
+                    Value="5"/>
 
 
             </StackLayout>
