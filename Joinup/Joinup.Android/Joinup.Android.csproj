@@ -111,7 +111,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\BorderLessDatePickerRenderer.cs" />
+    <Compile Include="Renderers\BorderLessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderLessEntryRenderer.cs" />
+    <Compile Include="Renderers\BorderLessPickerRenderer.cs" />
+    <Compile Include="Renderers\BorderLessTimePickerRenderer.cs" />
     <Compile Include="Renderers\CustomNavigationRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

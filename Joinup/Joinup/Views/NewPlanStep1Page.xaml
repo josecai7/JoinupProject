@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:custom="clr-namespace:Joinup.CustomControls"
+             xmlns:controls="clr-namespace:Joinup.Controls"
+             xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="Joinup.Views.NewPlanStep1Page"
              BackgroundColor="White"
              Title="Crea tu plan">
@@ -13,202 +15,147 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid
-                  Margin="0,0,0,16">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="6*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
+        <ScrollView
+            Margin="0,70,0,16">
             <StackLayout
-                Grid.Row="0"
-                Margin="16,0,16,0"
-                VerticalOptions="CenterAndExpand">
+                Orientation="Vertical">
+                <Label
+                    Margin="16,0,16,0"
+                    Text="Categoría"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    Padding="8"
+                    CornerRadius="4"
+                    Margin="16,4,16,0"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                    <controls:BorderLessPicker
+                        Title="Tipo de plan"
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding SelectedCategory}"
+                        ItemDisplayBinding="{Binding Name}"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                </Frame>
 
                 <Label
-                    Text="¿Que te apetece hacer?"
-                    TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource FontRegular}"
-                    FontSize="Large">
-                </Label>
+                    Margin="16,8,16,0"
+                    Text="Título del plan"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    Padding="8"
+                    CornerRadius="4"
+                    Margin="16,4,16,0"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                    <controls:BorderLessEditor
+                        Text="{Binding Title}"
+                        Placeholder="Pon un título claro, corto y descriptivo"
+                        MaxLength="40"
+                        AutoSize="TextChanges"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                </Frame>
                 <Label
-                    Text="Selecciona que se hara en el plan que publicaras"
-                    TextColor="{StaticResource PrimaryTextColor}"
-                    FontFamily="{StaticResource FontLight}"
-                    FontSize="Small">
-                </Label>
+                    Margin="16,8,16,0"
+                    Text="Descripción del plan"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    Padding="8"
+                    CornerRadius="4"
+                    Margin="16,4,16,0"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                    <controls:BorderLessEditor
+                        Text="{Binding Subtitle}"
+                        Placeholder="Decribe en detalle tu plan. Cuanta mas información proporciones, mejor."
+                        MaxLength="200"
+                        HeightRequest="100"
+                        AutoSize="TextChanges"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                </Frame>
+                <Label
+                    Margin="16,8,16,0"
+                    Text="Inicio del plan"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="16,4,16,0">
+                    <Frame
+                        Padding="8"
+                        CornerRadius="4"
+                        HasShadow="False"
+                        BorderColor="{StaticResource TertiaryTextColor}"
+                        HorizontalOptions="FillAndExpand">
+                        <controls:BorderLessDatePicker
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                    </Frame>
+                    <Frame
+                        Padding="8"
+                        CornerRadius="4"
+                        HasShadow="False"
+                        BorderColor="{StaticResource TertiaryTextColor}"
+                        HorizontalOptions="FillAndExpand">
+                        <controls:BorderLessTimePicker
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                    </Frame>
+                </StackLayout>
+                <Label
+                    Margin="16,8,16,0"
+                    Text="Fin del plan"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="16,4,16,0">
+                    <Frame
+                        Padding="8"
+                        CornerRadius="4"
+                        HasShadow="False"
+                        BorderColor="{StaticResource TertiaryTextColor}"
+                        HorizontalOptions="FillAndExpand">
+                        <controls:BorderLessDatePicker
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                    </Frame>
+                    <Frame
+                        Padding="8"
+                        CornerRadius="4"
+                        HasShadow="False"
+                        BorderColor="{StaticResource TertiaryTextColor}"
+                        HorizontalOptions="FillAndExpand">
+                        <controls:BorderLessTimePicker
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                    </Frame>
+                </StackLayout>
+
+                <Label
+                    Margin="16,8,16,0"
+                    Text="Localización"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                
+                <maps:Map
+                    Margin="16,4,16,0"
+                    x:Name="MyMap"
+                    HeightRequest="200">
+                    <maps:Map.Behaviors>
+                        <behaviors:MapBehavior 
+                            ItemsSource="{Binding Pins}" />
+                    </maps:Map.Behaviors>
+                </maps:Map>
+
+
             </StackLayout>
+        </ScrollView>
 
-            <Grid Grid.Row="1" 
-                  BackgroundColor="Transparent"
-                  Margin="16,0,16,0"
-                  ColumnSpacing="8"
-                  VerticalOptions="CenterAndExpand"
-                  RowSpacing="8">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <custom:ImageButton
-                    Grid.Column="0"
-                    Grid.Row="0"                   
-                    Selected="{Binding IsRestaurantSelected}"
-                    TitleText="Ir de tapas"
-                    Icon="silverware-fork-knife"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectRestaurantCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="1"
-                    Grid.Row="0"                   
-                    Selected="{Binding IsTakeSomethingSelected}"
-                    TitleText="Tomar algo"
-                    Icon="glass-mug"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectTakeSomethingCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="2"
-                    Grid.Row="0"                   
-                    Selected="{Binding IsDoSportsSelected}"
-                    TitleText="Deportes"
-                    Icon="soccer"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectDoSportsCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="0"
-                    Grid.Row="1"                   
-                    Selected="{Binding IsSpectaclesSelected}"
-                    TitleText="Espectaculos"
-                    Icon="ticket"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectSpectaclesCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="1"
-                    Grid.Row="1"                   
-                    Selected="{Binding IsLanguageExchangesSelected}"
-                    TitleText="Intercambio de idiomas"
-                    Icon="comment-multiple"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectLanguageExchangesCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="2"
-                    Grid.Row="1"                   
-                    Selected="{Binding IsTravelSelected}"
-                    TitleText="Viajes"
-                    Icon="airplane"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectTravelCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="0"
-                    Grid.Row="2"                   
-                    Selected="{Binding IsShoppingSelected}"
-                    TitleText="Ir de compras"
-                    Icon="shopping"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectShoppingCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="1"
-                    Grid.Row="2"                   
-                    Selected="{Binding IsGoOutForDrinksSelected}"
-                    TitleText="Salir de copas"
-                    Icon="glass-cocktail"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectGoOutForDrinksCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-                <custom:ImageButton
-                    Grid.Column="2"
-                    Grid.Row="2"                   
-                    Selected="{Binding IsOtherSelected}"
-                    TitleText="Otros"
-                    Icon="account-multiple"
-                    IconSize="{StaticResource IconBigSize}">
-                    <custom:ImageButton.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding SelectOtherCategoryCommand}"
-                   />
-                    </custom:ImageButton.GestureRecognizers>
-                </custom:ImageButton>
-
-            </Grid>
-
-            <ProgressBar
-                Grid.Row="2"
-                VerticalOptions="End"
-                HorizontalOptions="FillAndExpand"
-                Progress="0.0"
-                ProgressColor="{StaticResource PrimaryColor}">
-            </ProgressBar>
-            
-                <Button
-                Grid.Row="3"
-                Command="{Binding NextStepCommand}"
-                BackgroundColor="{StaticResource PrimaryColor}"
-                Style="{StaticResource BaseButtonStyle}"
-                TextColor="White"
-                WidthRequest="150"
-                Text="Siguiente"
-                HorizontalOptions="Center"
-                VerticalOptions="End">
-
-
-                </Button>
-
-
-        </Grid>
 </ContentPage.Content>
 </ContentPage>

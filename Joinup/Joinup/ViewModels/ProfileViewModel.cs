@@ -98,7 +98,7 @@ namespace Joinup.ViewModels
             assistPlanList = new ObservableCollection<Plan>();
             user = LoggedUser;
             LoadPlans();
-            SetPlansTab();
+            SetTab2();
         }
 
         public override Task InitializeAsync(object navigationData)

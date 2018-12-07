@@ -18,13 +18,6 @@ namespace Joinup.ViewModels
         private Plan plan;
         #endregion
         #region Properties
-        public double Progress
-        {
-            get
-            {
-                return plan.GetProgress(2);
-            }
-        }
         public string Title
         {
             get

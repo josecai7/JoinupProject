@@ -1,4 +1,5 @@
-﻿using Joinup.ViewModels;
+﻿using Joinup.Utils;
+using Joinup.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace Joinup.Views
 		public NewPlanStep1Page ()
 		{
             InitializeComponent();
+
+            ((NavigationPage) Application.Current.MainPage).BarBackgroundColor = ColorUtils.PrimaryColor;
         }
     }
 }

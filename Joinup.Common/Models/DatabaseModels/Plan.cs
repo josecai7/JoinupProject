@@ -93,24 +93,20 @@ namespace Joinup.Common.Models
             {
                     switch ( PlanType )
                     {
-                        case PLANTYPE.RESTAURANT:
+                        case PLANTYPE.FOODANDDRINK:
                             return "Comida y bebida";
-                        case PLANTYPE.SHOPPING:
-                            return "Tiendas y compras";
+                        case PLANTYPE.SPECTACLES:
+                            return "Conciertos y espectaculos";
+                        case PLANTYPE.SPORT:
+                            return "Deportes";
                         case PLANTYPE.LANGUAGE:
                             return "Intercambio de idiomas";
-                        case PLANTYPE.GOOUTFORDRINK:
-                            return "Bares y ocio nocturno";
-                        case PLANTYPE.OTHER:
-                            return "Ocio y diversion";
-                        case PLANTYPE.SPECTACLE:
-                            return "Cine y espectaculos";
-                        case PLANTYPE.TAKESOMETHING:
-                            return "Tomar algo";
                         case PLANTYPE.TRAVEL:
-                            return "Viajes y excursiones";
-                        case PLANTYPE.SPORT:
-                            return "Ejercicio físico y deporte";
+                            return "Viajes";
+                        case PLANTYPE.SHOPPING:
+                        return "Ir de compras";
+                        case PLANTYPE.OTHER:
+                            return "Otros";
                         default:
                             return "Categoria no definida";
                     }
@@ -181,36 +177,6 @@ namespace Joinup.Common.Models
                 {
                     return DateTimeHelper.GetFormattedHour( PlanDate ) + " - " + DateTimeHelper.GetFormattedHour( EndPlanDate );
                 }
-            }
-        }
-        public double GetProgress(int pActualStep)
-        {
-            return (double)pActualStep / (double)GetStepsByCategory();
-        }
-        protected int GetStepsByCategory()
-        {
-            switch ( PlanType )
-            {
-                case PLANTYPE.RESTAURANT:
-                    return 5;
-                case PLANTYPE.SHOPPING:
-                    return 5;
-                case PLANTYPE.LANGUAGE:
-                    return 5;
-                case PLANTYPE.GOOUTFORDRINK:
-                    return 5;
-                case PLANTYPE.OTHER:
-                    return 5;
-                case PLANTYPE.SPECTACLE:
-                    return 5;
-                case PLANTYPE.TAKESOMETHING:
-                    return 5;
-                case PLANTYPE.TRAVEL:
-                    return 5;
-                case PLANTYPE.SPORT:
-                    return 5;
-                default:
-                    return 5;
             }
         }
 

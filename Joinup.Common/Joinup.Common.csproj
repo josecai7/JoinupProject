@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Claim.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DatabaseModels\Meet.cs" />

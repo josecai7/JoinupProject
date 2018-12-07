@@ -18,99 +18,70 @@ namespace Joinup.ViewModels
         #region Attributes
 
         private Plan plan;
-        private int selectedCategory = 0;
+        private Category selectedCategory;
 
-        private bool isRestaurantSelected;
-        private bool isTakeSomethingSelected;
-        private bool isDoSportsSelected;
-        private bool isSpectaclesSelected;
-        private bool isLanguageExchangesSelected;
-        private bool isTravelSelected;
-        private bool isShoppingSelected;
-        private bool isGoOutForDrinksSelected;
-        private bool isOtherSelected;
         #endregion
         #region Properties
-        public bool IsRestaurantSelected
+        public List<Category> Categories
         {
-            get { return this.isRestaurantSelected; }
-            set
+            get
             {
-                isRestaurantSelected = value;
-                RaisePropertyChanged( "IsRestaurantSelected" );
+                return GetCategories();
             }
         }
-        public bool IsTakeSomethingSelected
+        public Category SelectedCategory
         {
-            get { return this.isTakeSomethingSelected; }
+            get
+            {
+                return selectedCategory;
+            }
             set
             {
-                isTakeSomethingSelected = value;
-                RaisePropertyChanged( "IsTakeSomethingSelected" );
+                selectedCategory = value;
+                RaisePropertyChanged( "SelectedCategory" );
             }
         }
-        public bool IsDoSportsSelected
+
+        private List<Category> GetCategories()
         {
-            get { return this.isDoSportsSelected; }
-            set
+            List<Category> categories = new List<Category>();
+            categories.Add( new Category()
             {
-                isDoSportsSelected = value;
-                RaisePropertyChanged( "IsDoSportsSelected" );
-            }
-        }
-        public bool IsSpectaclesSelected
-        {
-            get { return this.isSpectaclesSelected; }
-            set
+                Id = PLANTYPE.FOODANDDRINK,
+                Name = "Comida y bebida"
+            } );
+            categories.Add( new Category()
             {
-                isSpectaclesSelected = value;
-                RaisePropertyChanged( "IsSpectaclesSelected" );
-            }
-        }
-        public bool IsLanguageExchangesSelected
-        {
-            get { return this.isLanguageExchangesSelected; }
-            set
+                Id = PLANTYPE.SPECTACLES,
+                Name = "Conciertos y espectaculos"
+            } );
+            categories.Add( new Category()
             {
-                isLanguageExchangesSelected = value;
-                RaisePropertyChanged( "IsLanguageExchangesSelected" );
-            }
-        }
-        public bool IsTravelSelected
-        {
-            get { return this.isTravelSelected; }
-            set
+                Id = PLANTYPE.SPORT,
+                Name = "Deportes"
+            } );
+            categories.Add( new Category()
             {
-                isTravelSelected = value;
-                RaisePropertyChanged( "IsTravelSelected" );
-            }
-        }
-        public bool IsShoppingSelected
-        {
-            get { return this.isShoppingSelected; }
-            set
+                Id = PLANTYPE.LANGUAGE,
+                Name = "Intercambio de idiomas"
+            } );
+            categories.Add( new Category()
             {
-                isShoppingSelected = value;
-                RaisePropertyChanged( "IsShoppingSelected" );
-            }
-        }
-        public bool IsGoOutForDrinksSelected
-        {
-            get { return this.isGoOutForDrinksSelected; }
-            set
+                Id = PLANTYPE.TRAVEL,
+                Name = "Viajes"
+            } );
+            categories.Add( new Category()
             {
-                isGoOutForDrinksSelected = value;
-                RaisePropertyChanged( "IsGoOutForDrinksSelected" );
-            }
-        }
-        public bool IsOtherSelected
-        {
-            get { return this.isOtherSelected; }
-            set
+                Id = PLANTYPE.SHOPPING,
+                Name = "Ir de compras"
+            } );
+            categories.Add( new Category()
             {
-                isOtherSelected = value;
-                RaisePropertyChanged( "IsOtherSelected" );
-            }
+                Id = PLANTYPE.OTHER,
+                Name = "Otros"
+            } );
+
+            return categories;
         }
 
         #endregion
@@ -125,69 +96,7 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
-        public ICommand SelectRestaurantCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectRestaurantCategory);
-            }
-        }
-        public ICommand SelectTakeSomethingCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectTakeSomethingCategory);
-            }
-        }
-        public ICommand SelectDoSportsCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectDoSportsCategory);
-            }
-        }
-        public ICommand SelectSpectaclesCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectSpectaclesCategory);
-            }
-        }
-        public ICommand SelectLanguageExchangesCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectLanguageExchangesCategory);
-            }
-        }
-        public ICommand SelectTravelCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectTravelCategory);
-            }
-        }
-        public ICommand SelectShoppingCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectShoppingCategory);
-            }
-        }
-        public ICommand SelectGoOutForDrinksCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectGoOutForDrinksCategory);
-            }
-        }
-        public ICommand SelectOtherCategoryCommand
-        {
-            get
-            {
-                return new RelayCommand(SelectOtherCategory);
-            }
-        }
+        
         public ICommand NextStepCommand
         {
             get
@@ -197,157 +106,16 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Methods
-        private void SelectRestaurantCategory()
-        {
-
-            if (IsRestaurantSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsRestaurantSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.RESTAURANT;
-                IsRestaurantSelected = true;
-            }
-        }
-
-        private void SelectTakeSomethingCategory()
-        {
-            if (IsTakeSomethingSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsTakeSomethingSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.TAKESOMETHING;
-                IsTakeSomethingSelected = true;
-            }
-        }
-
-        private void SelectDoSportsCategory()
-        {
-            if (IsDoSportsSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsDoSportsSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.SPORT;
-                IsDoSportsSelected = true;
-            }
-        }
-
-        private void SelectSpectaclesCategory()
-        {
-            if (IsSpectaclesSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsSpectaclesSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.SPECTACLE;
-                IsSpectaclesSelected = true;
-            }
-        }
-
-        private void SelectLanguageExchangesCategory()
-        {
-            if (IsLanguageExchangesSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsLanguageExchangesSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.LANGUAGE;
-                IsLanguageExchangesSelected = true;
-            }
-        }
-
-        private void SelectTravelCategory()
-        {
-            if (IsTravelSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsTravelSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.TRAVEL;
-                IsTravelSelected = true;
-            }
-        }
-
-        private void SelectShoppingCategory()
-        {
-            if (IsShoppingSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsShoppingSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.SHOPPING;
-                IsShoppingSelected = true;
-            }
-        }
-
-        private void SelectGoOutForDrinksCategory()
-        {
-            if (IsGoOutForDrinksSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsGoOutForDrinksSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.GOOUTFORDRINK;
-                IsGoOutForDrinksSelected = true;
-            }
-        }
-
-        private void SelectOtherCategory()
-        {
-            if (IsOtherSelected)
-            {
-                selectedCategory = PLANTYPE.UNDEFINED;
-                IsOtherSelected = false;
-            }
-            else
-            {
-                DeselectAll();
-                selectedCategory = PLANTYPE.OTHER;
-                IsOtherSelected = true;
-            }
-        }
-
-        private void DeselectAll()
-        {
-            selectedCategory = PLANTYPE.UNDEFINED;
-            IsRestaurantSelected = IsTakeSomethingSelected=IsDoSportsSelected=IsSpectaclesSelected=IsLanguageExchangesSelected=IsTravelSelected=IsShoppingSelected=IsGoOutForDrinksSelected=IsOtherSelected= false;
-        }
 
         private void NextStepAsync()
         {
-            if (selectedCategory == PLANTYPE.UNDEFINED)
+            if (selectedCategory == null)
             {
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una categoria", "add.png", ColorUtils.ErrorColor);
             }
             else
             {               
-                plan.PlanType = selectedCategory;
+                plan.PlanType = selectedCategory.Id;
 
                 NavigationService.NavigateToAsync<NewPlanStep2ViewModel>( plan );
             }

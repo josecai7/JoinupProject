@@ -91,6 +91,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\BorderLessDatePickerRenderer.cs" />
+    <Compile Include="Renderers\BorderLessEditorRenderer.cs" />
+    <Compile Include="Renderers\BorderLessPickerRenderer.cs" />
+    <Compile Include="Renderers\BorderLessTimePickerRenderer.cs" />
     <Compile Include="Renderers\CustomNavigationRenderer.cs" />
     <Compile Include="Renderers\BorderLessEntryRenderer.cs" />
     <None Include="Entitlements.plist" />
