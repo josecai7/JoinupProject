@@ -7,13 +7,13 @@ namespace Joinup.Backend.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Cabio : IMigrationMetadata
+    public sealed partial class Migracion11 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Cabio));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migracion11));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811260909348_Cabio "; }
+            get { return "201812112256484_Migracion11"; }
         }
         
         string IMigrationMetadata.Source

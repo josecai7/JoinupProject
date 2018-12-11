@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Joinup.Common.Models
+namespace Joinup.Common.Models.DatabaseModels
 {
     public class Comment
     {

@@ -7,13 +7,13 @@ namespace Joinup.Backend.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Reiniciodetodo : IMigrationMetadata
+    public sealed partial class Migracion12 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Reiniciodetodo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migracion12));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809240942516_Reinicio de todo"; }
+            get { return "201812112307438_Migracion12"; }
         }
         
         string IMigrationMetadata.Source

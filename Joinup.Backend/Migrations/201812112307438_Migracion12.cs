@@ -3,7 +3,7 @@ namespace Joinup.Backend.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Reiniciodetodo : DbMigration
+    public partial class Migracion12 : DbMigration
     {
         public override void Up()
         {
@@ -11,6 +11,7 @@ namespace Joinup.Backend.Migrations
         
         public override void Down()
         {
+            
         }
     }
 }
