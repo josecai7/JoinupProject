@@ -6,6 +6,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             xmlns:custom="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.NewPlanStep1Page"
              BackgroundColor="White"
              Title="Crea tu plan">
@@ -17,6 +18,9 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
+        <Grid>
+            
+
         <ScrollView
             Margin="0,70,0,16">
             <StackLayout
@@ -96,6 +100,7 @@
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessDatePicker
                             Date="{Binding PlanDate}"
+                            Format="D"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                     </Frame>
@@ -106,6 +111,7 @@
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessTimePicker
+                            Format="HH:mm"
                             Time="{Binding PlanTime}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
@@ -126,6 +132,7 @@
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessDatePicker
+                            Format="D"
                             Date="{Binding EndPlanDate}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
@@ -138,6 +145,7 @@
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessTimePicker
                             Time="{Binding EndPlanTime}"
+                            Format="HH:mm"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                     </Frame>
@@ -156,7 +164,12 @@
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}"
                     HorizontalOptions="FillAndExpand">
-                    <autocomplete:SfAutoComplete                                     
+                    <autocomplete:SfAutoComplete       
+                        x:Name="autocomplete"
+                        SuggestionMode="Custom"
+                        MinimumPrefixCharacters="3"
+                        IgnoreDiacritic="True"
+                        NoResultsFoundText="No hay resultados"
                         Watermark="Lugar donde se desarrollará el evento"
                         WatermarkColor="{StaticResource TertiaryTextColor}"
                         TextColor="{StaticResource TertiaryTextColor}"                  
@@ -184,13 +197,52 @@
                     Text="Maximo de asistentes"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <numeric:SfNumericUpDown  
-                    Margin="16,4,16,0"                
-                    BorderColor="Transparent"
-                    Value="5"/>
+                <Frame
+                    Margin="16,4,16,0"   
+                    Padding="0"
+                    CornerRadius="4"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}"
+                    HorizontalOptions="FillAndExpand">
+                    <numeric:SfNumericUpDown  
+                        Margin="16,4,16,0"                
+                        BorderColor="White"
+                        TextColor="{StaticResource TertiaryTextColor}" 
+                        Value="5"/>
+                </Frame>
 
+                <Grid
+                  Margin="16,8,16,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Grid.Column="0"
+                        Command="{Binding CreatePlanCommand}"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Style="{StaticResource BaseButtonStyle}"
+                        TextColor="White"
+                        Text="Crear plan"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                    <Button
+                        Grid.Column="2"
+                        Command="{Binding CreatePlanCommand}"
+                        BackgroundColor="{StaticResource PrimaryColor}"
+                        Style="{StaticResource BaseButtonStyle}"
+                        TextColor="White"
+                        Text="Previsualizar"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"/>
+                </Grid>
             </StackLayout>
         </ScrollView>
-
+            <custom:CustomActivityIndicator
+                IsVisible="{Binding IsRunning}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+        </Grid>
 </ContentPage.Content>
 </ContentPage>

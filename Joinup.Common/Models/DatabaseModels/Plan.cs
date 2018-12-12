@@ -30,7 +30,8 @@ namespace Joinup.Common.Models
         public double Longitude { get; set; }
         public int MaxParticipants { get; set; }
         [DataType(DataType.Date)]
-        public DateTime PlanDate { get; set; }
+        public DateTime PlanDate
+        { get; set; }
         [DataType(DataType.Date)]
         public DateTime EndPlanDate { get; set; }
 

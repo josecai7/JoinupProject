@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GooglePlaces.Xamarin;
 using Joinup.Common.Models;
+using Joinup.Service;
 using Joinup.Utils;
 using Joinup.ViewModels.Base;
 using Joinup.Views;
@@ -19,7 +20,7 @@ namespace Joinup.ViewModels
     public class NewPlanStep1ViewModel:BaseViewModel
     {
         #region Attributes
-
+        private bool isRunning;
         private Plan plan;
         string locationText;
         Prediction selectedLocation;
@@ -29,7 +30,18 @@ namespace Joinup.ViewModels
 
         #endregion
         #region Properties
-
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                RaisePropertyChanged("IsRunning");
+            }
+        }
         public Category SelectedCategory
         {
             get
@@ -172,6 +184,7 @@ namespace Joinup.ViewModels
             set
             {
                 locationText = value;
+                Pins = new ObservableCollection<Plan>();
                 LoadPredictions(locationText);
                 RaisePropertyChanged("LocationText");
             }
@@ -216,18 +229,17 @@ namespace Joinup.ViewModels
         {
             plan = new Plan();
 
-            MessagingCenter.Subscribe<NewPlanStep1ViewModel,Plan>(this, "UpdatePlan", (sender,arg) => {
-                plan = arg;
-            });
+            plan.PlanDate = DateTime.Now;
+            plan.EndPlanDate = DateTime.Now;
         }
         #endregion
         #region Commands
         
-        public ICommand NextStepCommand
+        public ICommand CreatePlanCommand
         {
             get
             {
-                return new RelayCommand( NextStepAsync );
+                return new RelayCommand( CreatePlan );
             }
         }
         #endregion
@@ -248,6 +260,7 @@ namespace Joinup.ViewModels
 
                 plan.Latitude = geocode.results.FirstOrDefault().geometry.location.lat;
                 plan.Longitude = geocode.results.FirstOrDefault().geometry.location.lng;
+                plan.Address= geocode.results.FirstOrDefault().formatted_address;
 
 
                 Pins = new ObservableCollection<Plan>();
@@ -262,18 +275,73 @@ namespace Joinup.ViewModels
                 Pins = new ObservableCollection<Plan>();
             }
         }
-        private void NextStepAsync()
+        private void CreatePlan()
         {
             if (selectedCategory == null)
             {
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una categoria", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+            if (string.IsNullOrEmpty(Name))
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ups...Debes ponerle nombre a tu plan", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+            if (SelectedLocation==null)
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una ubicación para tu plan", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+            if (string.IsNullOrEmpty(Name))
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ups...Debes ponerle nombre a tu plan", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+            if (PlanDate == DateTime.MinValue)
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ups...Debes establecer una fecha de inicio para tu plan", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+            if (EndPlanDate == DateTime.MinValue)
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ups...Debes establecer una fecha de fin para tu plan", "add.png", ColorUtils.ErrorColor);
+                return;
+            }
+            SavePlan();
+            plan.UserId = LoggedUser.Id;
+        }
+
+        private async void SavePlan()
+        {
+            IsRunning = true;
+            plan.UserId = LoggedUser.Id;
+
+            var response = await DataService.GetInstance().SavePlan(plan);
+
+            if (!response.IsSuccess)
+            {
+                ToastNotificationUtils.ShowToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
             }
             else
             {
-                plan.PlanType = selectedCategory.Id;
+                Plan plan = (Plan)response.Result;
 
-                NavigationService.NavigateToAsync<NewPlanStep2ViewModel>(plan);
+                var responseJoin = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id);
+
+                if (!responseJoin.IsSuccess)
+                {
+                    ToastNotificationUtils.ShowToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
+                }
+                else
+                {
+                    MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan");
+
+                    await NavigationService.NavigateToRootAsync();
+                }
+
             }
+
+            IsRunning = false;
         }
         #endregion
     }
