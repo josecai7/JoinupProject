@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
+using GooglePlaces.Xamarin;
 using Joinup.Common.Models;
 using Joinup.Utils;
 using Joinup.ViewModels.Base;
@@ -7,6 +8,8 @@ using Joinup.Views;
 using Plugin.Toasts;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -18,17 +21,15 @@ namespace Joinup.ViewModels
         #region Attributes
 
         private Plan plan;
+        string locationText;
+        Prediction selectedLocation;
+        List<Prediction> predictions = new List<Prediction>();
+        ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         private Category selectedCategory;
 
         #endregion
         #region Properties
-        public List<Category> Categories
-        {
-            get
-            {
-                return GetCategories();
-            }
-        }
+
         public Category SelectedCategory
         {
             get
@@ -38,52 +39,177 @@ namespace Joinup.ViewModels
             set
             {
                 selectedCategory = value;
-                RaisePropertyChanged( "SelectedCategory" );
+                plan.PlanType = selectedCategory.Id;
+                RaisePropertyChanged("SelectedCategory");
             }
         }
-
+        public List<Category> Categories
+        {
+            get
+            {
+                return GetCategories();
+            }
+        }
         private List<Category> GetCategories()
         {
             List<Category> categories = new List<Category>();
-            categories.Add( new Category()
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.FOODANDDRINK,
                 Name = "Comida y bebida"
-            } );
-            categories.Add( new Category()
+            });
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.SPECTACLES,
                 Name = "Conciertos y espectaculos"
-            } );
-            categories.Add( new Category()
+            });
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.SPORT,
                 Name = "Deportes"
-            } );
-            categories.Add( new Category()
+            });
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.LANGUAGE,
                 Name = "Intercambio de idiomas"
-            } );
-            categories.Add( new Category()
+            });
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.TRAVEL,
                 Name = "Viajes"
-            } );
-            categories.Add( new Category()
+            });
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.SHOPPING,
                 Name = "Ir de compras"
-            } );
-            categories.Add( new Category()
+            });
+            categories.Add(new Category()
             {
                 Id = PLANTYPE.OTHER,
                 Name = "Otros"
-            } );
+            });
 
             return categories;
         }
-
+        public string Name
+        {
+            get
+            {
+                return plan.Name;
+            }
+            set
+            {
+                plan.Name = value;
+                RaisePropertyChanged("Name");
+            }
+        }
+        public string Description
+        {
+            get
+            {
+                return plan.Description;
+            }
+            set
+            {
+                plan.Description = value;
+                RaisePropertyChanged("Description");
+            }
+        }
+        public DateTime PlanDate
+        {
+            get
+            {
+                return plan.PlanDate;
+            }
+            set
+            {
+                plan.PlanDate = value;
+                RaisePropertyChanged("PlanDate");
+            }
+        }
+        public TimeSpan PlanTime
+        {
+            get
+            {
+                return plan.PlanDate.TimeOfDay;
+            }
+            set
+            {
+                plan.PlanDate = plan.PlanDate.Date+(value);
+                RaisePropertyChanged("PlanTime");
+            }
+        }
+        public DateTime EndPlanDate
+        {
+            get
+            {
+                return plan.EndPlanDate;
+            }
+            set
+            {
+                plan.EndPlanDate = value;
+                RaisePropertyChanged("EndPlanDate");
+            }
+        }
+        public TimeSpan EndPlanTime
+        {
+            get
+            {
+                return plan.EndPlanDate.TimeOfDay;
+            }
+            set
+            {
+                plan.EndPlanDate = plan.EndPlanDate.Date + (value);
+                RaisePropertyChanged("EndPlanTime");
+            }
+        }
+        public string LocationText
+        {
+            get
+            {
+                return locationText;
+            }
+            set
+            {
+                locationText = value;
+                LoadPredictions(locationText);
+                RaisePropertyChanged("LocationText");
+            }
+        }
+        public Prediction SelectedLocation
+        {
+            get
+            {
+                return selectedLocation;
+            }
+            set
+            {
+                selectedLocation = value;
+                SelectLocation();
+                RaisePropertyChanged("SelectedLocation");
+            }
+        }
+        public List<Prediction> Predictions
+        {
+            get
+            {
+                return predictions;
+            }
+            set
+            {
+                predictions = value;
+                RaisePropertyChanged("Predictions");
+            }
+        }
+        public ObservableCollection<Plan> Pins
+        {
+            get { return pins; }
+            set
+            {
+                pins = value;
+                RaisePropertyChanged("Pins");
+            }
+        }
         #endregion
         #region Constructors
         public NewPlanStep1ViewModel()
@@ -107,6 +233,35 @@ namespace Joinup.ViewModels
         #endregion
         #region Methods
 
+        private async void LoadPredictions(string pLocationText)
+        {
+            PlacesAutocomplete places = new PlacesAutocomplete("AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg");
+            Predictions predictions = await places.GetAutocomplete(pLocationText);
+            Predictions = predictions.predictions;
+        }
+        private async void SelectLocation()
+        {
+            if (SelectedLocation != null)
+            {
+                PlacesGeocode placesGeocode = new PlacesGeocode("AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg");
+                Geocode geocode = await placesGeocode.GetGeocode(SelectedLocation.Description);
+
+                plan.Latitude = geocode.results.FirstOrDefault().geometry.location.lat;
+                plan.Longitude = geocode.results.FirstOrDefault().geometry.location.lng;
+
+
+                Pins = new ObservableCollection<Plan>();
+                Pins.Add(plan);
+            }
+            else
+            {
+                plan.Address = null;
+                plan.Latitude = Double.NaN;
+                plan.Longitude = Double.NaN;
+
+                Pins = new ObservableCollection<Plan>();
+            }
+        }
         private void NextStepAsync()
         {
             if (selectedCategory == null)
@@ -114,10 +269,10 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una categoria", "add.png", ColorUtils.ErrorColor);
             }
             else
-            {               
+            {
                 plan.PlanType = selectedCategory.Id;
 
-                NavigationService.NavigateToAsync<NewPlanStep2ViewModel>( plan );
+                NavigationService.NavigateToAsync<NewPlanStep2ViewModel>(plan);
             }
         }
         #endregion

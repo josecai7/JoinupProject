@@ -58,8 +58,8 @@ namespace Joinup.Behaviors
                 var pin = new Pin
                 {
                     Type = PinType.SearchResult,
-                    Position = new Position( x.Latitude, x.Longitude ),
-                    Label = x.Name
+                    Position = new Position(x.Latitude, x.Longitude),
+                    Label = x.Name == null ? "Nombre de plan por definir":x.Name,
                 };
 
                 return pin;

@@ -5,6 +5,7 @@
              xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
              x:Class="Joinup.Views.NewPlanStep1Page"
              BackgroundColor="White"
              Title="Crea tu plan">
@@ -52,7 +53,7 @@
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}">
                     <controls:BorderLessEditor
-                        Text="{Binding Title}"
+                        Text="{Binding Name}"
                         Placeholder="Pon un título claro, corto y descriptivo"
                         MaxLength="40"
                         AutoSize="TextChanges"
@@ -71,7 +72,7 @@
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}">
                     <controls:BorderLessEditor
-                        Text="{Binding Subtitle}"
+                        Text="{Binding Description}"
                         Placeholder="Decribe en detalle tu plan. Cuanta mas información proporciones, mejor."
                         MaxLength="200"
                         HeightRequest="100"
@@ -94,8 +95,9 @@
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessDatePicker
-                        Style="{StaticResource SubtitleFont}"
-                        TextColor="{StaticResource TertiaryTextColor}"/>
+                            Date="{Binding PlanDate}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
                     </Frame>
                     <Frame
                         Padding="8"
@@ -104,8 +106,9 @@
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessTimePicker
-                        Style="{StaticResource SubtitleFont}"
-                        TextColor="{StaticResource TertiaryTextColor}"/>
+                            Time="{Binding PlanTime}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
                     </Frame>
                 </StackLayout>
                 <Label
@@ -123,6 +126,7 @@
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessDatePicker
+                            Date="{Binding EndPlanDate}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                     </Frame>
@@ -133,6 +137,7 @@
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
                         <controls:BorderLessTimePicker
+                            Time="{Binding EndPlanTime}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                     </Frame>
@@ -143,7 +148,28 @@
                     Text="Localización"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                
+
+                <Frame
+                    Margin="16,4,16,0"   
+                    Padding="0"
+                    CornerRadius="4"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}"
+                    HorizontalOptions="FillAndExpand">
+                    <autocomplete:SfAutoComplete                                     
+                        Watermark="Lugar donde se desarrollará el evento"
+                        WatermarkColor="{StaticResource TertiaryTextColor}"
+                        TextColor="{StaticResource TertiaryTextColor}"                  
+                        Text="{Binding LocationText}"
+                        FontFamily="{StaticResource FontBold}"
+                        TextSize="16"
+                        ShowBorder="False"
+                        SuggestionBoxPlacement="Bottom"
+                        DataSource="{Binding Predictions}"
+                        SelectedItem="{Binding SelectedLocation}"
+                        DisplayMemberPath="Description"/>
+                </Frame>
+
                 <maps:Map
                     Margin="16,4,16,0"
                     x:Name="MyMap"
@@ -162,7 +188,6 @@
                     Margin="16,4,16,0"                
                     BorderColor="Transparent"
                     Value="5"/>
-
 
             </StackLayout>
         </ScrollView>

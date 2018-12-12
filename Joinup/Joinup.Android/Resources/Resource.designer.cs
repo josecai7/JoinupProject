@@ -65,6 +65,46 @@ namespace Joinup.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Joinup.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::Joinup.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::Joinup.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteBorderColor = global::Joinup.Droid.Resource.Attribute.autocompleteBorderColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowBorder = global::Joinup.Droid.Resource.Attribute.autocompleteShowBorder;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowClearButton = global::Joinup.Droid.Resource.Attribute.autocompleteShowClearButton;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteText = global::Joinup.Droid.Resource.Attribute.autocompleteText;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTextColor = global::Joinup.Droid.Resource.Attribute.autocompleteTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTextSize = global::Joinup.Droid.Resource.Attribute.autocompleteTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteWatermark = global::Joinup.Droid.Resource.Attribute.autocompleteWatermark;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteWatermarkColor = global::Joinup.Droid.Resource.Attribute.autocompleteWatermarkColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.layoutManager = global::Joinup.Droid.Resource.Attribute.layoutManager;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.reverseLayout = global::Joinup.Droid.Resource.Attribute.reverseLayout;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.spanCount = global::Joinup.Droid.Resource.Attribute.spanCount;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.stackFromEnd = global::Joinup.Droid.Resource.Attribute.stackFromEnd;
+			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::Joinup.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::Joinup.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::Joinup.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Com.Syncfusion.Autocomplete.Resource.Drawable.sfclosebutton = global::Joinup.Droid.Resource.Drawable.sfclosebutton;
+			global::Com.Syncfusion.Autocomplete.Resource.Drawable.styleinfo = global::Joinup.Droid.Resource.Drawable.styleinfo;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.Itemname = global::Joinup.Droid.Resource.Id.Itemname;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.icon = global::Joinup.Droid.Resource.Id.icon;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.item_touch_helper_previous_elevation = global::Joinup.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Com.Syncfusion.Autocomplete.Resource.Layout.CustomizedView = global::Joinup.Droid.Resource.Layout.CustomizedView;
+			global::Com.Syncfusion.Autocomplete.Resource.Layout.CustomizedView1 = global::Joinup.Droid.Resource.Layout.CustomizedView1;
+			global::Com.Syncfusion.Autocomplete.Resource.Layout.sfautocomplete_layout = global::Joinup.Droid.Resource.Layout.sfautocomplete_layout;
+			global::Com.Syncfusion.Autocomplete.Resource.String.library_name = global::Joinup.Droid.Resource.String.library_name;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView = global::Joinup.Droid.Resource.Styleable.RecyclerView;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_android_descendantFocusability = global::Joinup.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_android_orientation = global::Joinup.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_layoutManager = global::Joinup.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_reverseLayout = global::Joinup.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_spanCount = global::Joinup.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_stackFromEnd = global::Joinup.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete = global::Joinup.Droid.Resource.Styleable.SfAutoComplete;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteBorderColor = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteBorderColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowBorder = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowBorder;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowClearButton = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowClearButton;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteText = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteText;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTextColor = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTextSize = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteWatermark = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteWatermark;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteWatermarkColor = global::Joinup.Droid.Resource.Styleable.SfAutoComplete_autocompleteWatermarkColor;
 			global::Syncfusion.SfCalendar.XForms.Droid.Resource.Dimension.activity_horizontal_margin = global::Joinup.Droid.Resource.Dimension.activity_horizontal_margin;
 			global::Syncfusion.SfCalendar.XForms.Droid.Resource.Dimension.activity_vertical_margin = global::Joinup.Droid.Resource.Dimension.activity_vertical_margin;
 			global::Syncfusion.SfCalendar.XForms.Droid.Resource.Dimension.date_text_size = global::Joinup.Droid.Resource.Dimension.date_text_size;
@@ -3120,41 +3160,41 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0100ab
 			public const int activityChooserViewStyle = 2130772139;
 			
-			// aapt resource value: 0x7f010193
-			public const int ahBarColor = 2130772371;
-			
 			// aapt resource value: 0x7f01019b
-			public const int ahBarLength = 2130772379;
+			public const int ahBarColor = 2130772379;
 			
-			// aapt resource value: 0x7f01019a
-			public const int ahBarWidth = 2130772378;
+			// aapt resource value: 0x7f0101a3
+			public const int ahBarLength = 2130772387;
+			
+			// aapt resource value: 0x7f0101a2
+			public const int ahBarWidth = 2130772386;
+			
+			// aapt resource value: 0x7f0101a0
+			public const int ahCircleColor = 2130772384;
+			
+			// aapt resource value: 0x7f01019f
+			public const int ahDelayMillis = 2130772383;
+			
+			// aapt resource value: 0x7f0101a1
+			public const int ahRadius = 2130772385;
+			
+			// aapt resource value: 0x7f01019c
+			public const int ahRimColor = 2130772380;
+			
+			// aapt resource value: 0x7f01019d
+			public const int ahRimWidth = 2130772381;
+			
+			// aapt resource value: 0x7f01019e
+			public const int ahSpinSpeed = 2130772382;
 			
 			// aapt resource value: 0x7f010198
-			public const int ahCircleColor = 2130772376;
-			
-			// aapt resource value: 0x7f010197
-			public const int ahDelayMillis = 2130772375;
+			public const int ahText = 2130772376;
 			
 			// aapt resource value: 0x7f010199
-			public const int ahRadius = 2130772377;
+			public const int ahTextColor = 2130772377;
 			
-			// aapt resource value: 0x7f010194
-			public const int ahRimColor = 2130772372;
-			
-			// aapt resource value: 0x7f010195
-			public const int ahRimWidth = 2130772373;
-			
-			// aapt resource value: 0x7f010196
-			public const int ahSpinSpeed = 2130772374;
-			
-			// aapt resource value: 0x7f010190
-			public const int ahText = 2130772368;
-			
-			// aapt resource value: 0x7f010191
-			public const int ahTextColor = 2130772369;
-			
-			// aapt resource value: 0x7f010192
-			public const int ahTextSize = 2130772370;
+			// aapt resource value: 0x7f01019a
+			public const int ahTextSize = 2130772378;
 			
 			// aapt resource value: 0x7f0100d0
 			public const int alertDialogButtonGroupStyle = 2130772176;
@@ -3203,6 +3243,30 @@ namespace Joinup.Droid
 			
 			// aapt resource value: 0x7f01006d
 			public const int autoSizeTextType = 2130772077;
+			
+			// aapt resource value: 0x7f010194
+			public const int autocompleteBorderColor = 2130772372;
+			
+			// aapt resource value: 0x7f010190
+			public const int autocompleteShowBorder = 2130772368;
+			
+			// aapt resource value: 0x7f010191
+			public const int autocompleteShowClearButton = 2130772369;
+			
+			// aapt resource value: 0x7f010196
+			public const int autocompleteText = 2130772374;
+			
+			// aapt resource value: 0x7f010193
+			public const int autocompleteTextColor = 2130772371;
+			
+			// aapt resource value: 0x7f010197
+			public const int autocompleteTextSize = 2130772375;
+			
+			// aapt resource value: 0x7f010195
+			public const int autocompleteWatermark = 2130772373;
+			
+			// aapt resource value: 0x7f010192
+			public const int autocompleteWatermarkColor = 2130772370;
 			
 			// aapt resource value: 0x7f01004b
 			public const int background = 2130772043;
@@ -5500,26 +5564,26 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f020058
 			public const int avd_hide_password = 2130837592;
 			
-			// aapt resource value: 0x7f020164
-			public const int avd_hide_password_1 = 2130837860;
-			
-			// aapt resource value: 0x7f020165
-			public const int avd_hide_password_2 = 2130837861;
-			
 			// aapt resource value: 0x7f020166
-			public const int avd_hide_password_3 = 2130837862;
+			public const int avd_hide_password_1 = 2130837862;
+			
+			// aapt resource value: 0x7f020167
+			public const int avd_hide_password_2 = 2130837863;
+			
+			// aapt resource value: 0x7f020168
+			public const int avd_hide_password_3 = 2130837864;
 			
 			// aapt resource value: 0x7f020059
 			public const int avd_show_password = 2130837593;
 			
-			// aapt resource value: 0x7f020167
-			public const int avd_show_password_1 = 2130837863;
-			
-			// aapt resource value: 0x7f020168
-			public const int avd_show_password_2 = 2130837864;
-			
 			// aapt resource value: 0x7f020169
-			public const int avd_show_password_3 = 2130837865;
+			public const int avd_show_password_1 = 2130837865;
+			
+			// aapt resource value: 0x7f02016a
+			public const int avd_show_password_2 = 2130837866;
+			
+			// aapt resource value: 0x7f02016b
+			public const int avd_show_password_3 = 2130837867;
 			
 			// aapt resource value: 0x7f02005a
 			public const int calendar_bg_selector = 2130837594;
@@ -6280,11 +6344,11 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f020156
 			public const int notification_icon_background = 2130837846;
 			
-			// aapt resource value: 0x7f020162
-			public const int notification_template_icon_bg = 2130837858;
+			// aapt resource value: 0x7f020164
+			public const int notification_template_icon_bg = 2130837860;
 			
-			// aapt resource value: 0x7f020163
-			public const int notification_template_icon_low_bg = 2130837859;
+			// aapt resource value: 0x7f020165
+			public const int notification_template_icon_low_bg = 2130837861;
 			
 			// aapt resource value: 0x7f020157
 			public const int notification_tile_bg = 2130837847;
@@ -6308,16 +6372,22 @@ namespace Joinup.Droid
 			public const int roundedbgdark = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int Ticket = 2130837854;
+			public const int sfclosebutton = 2130837854;
 			
 			// aapt resource value: 0x7f02015f
-			public const int tooltip_frame_dark = 2130837855;
+			public const int styleinfo = 2130837855;
 			
 			// aapt resource value: 0x7f020160
-			public const int tooltip_frame_light = 2130837856;
+			public const int Ticket = 2130837856;
 			
 			// aapt resource value: 0x7f020161
-			public const int triox = 2130837857;
+			public const int tooltip_frame_dark = 2130837857;
+			
+			// aapt resource value: 0x7f020162
+			public const int tooltip_frame_light = 2130837858;
+			
+			// aapt resource value: 0x7f020163
+			public const int triox = 2130837859;
 			
 			static Drawable()
 			{
@@ -6341,6 +6411,9 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e003f
 			public const int FUNCTION = 2131623999;
 			
+			// aapt resource value: 0x7f0e0098
+			public const int Itemname = 2131624088;
+			
 			// aapt resource value: 0x7f0e0040
 			public const int META = 2131624000;
 			
@@ -6350,8 +6423,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0042
 			public const int SYM = 2131624002;
 			
-			// aapt resource value: 0x7f0e00c8
-			public const int action0 = 2131624136;
+			// aapt resource value: 0x7f0e00c9
+			public const int action0 = 2131624137;
 			
 			// aapt resource value: 0x7f0e0086
 			public const int action_bar = 2131624070;
@@ -6374,17 +6447,17 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0064
 			public const int action_bar_title = 2131624036;
 			
-			// aapt resource value: 0x7f0e00c5
-			public const int action_container = 2131624133;
+			// aapt resource value: 0x7f0e00c6
+			public const int action_container = 2131624134;
 			
 			// aapt resource value: 0x7f0e0087
 			public const int action_context_bar = 2131624071;
 			
-			// aapt resource value: 0x7f0e00cc
-			public const int action_divider = 2131624140;
+			// aapt resource value: 0x7f0e00cd
+			public const int action_divider = 2131624141;
 			
-			// aapt resource value: 0x7f0e00c6
-			public const int action_image = 2131624134;
+			// aapt resource value: 0x7f0e00c7
+			public const int action_image = 2131624135;
 			
 			// aapt resource value: 0x7f0e0003
 			public const int action_menu_divider = 2131623939;
@@ -6401,11 +6474,11 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0066
 			public const int action_mode_close_button = 2131624038;
 			
-			// aapt resource value: 0x7f0e00c7
-			public const int action_text = 2131624135;
+			// aapt resource value: 0x7f0e00c8
+			public const int action_text = 2131624136;
 			
-			// aapt resource value: 0x7f0e00d5
-			public const int actions = 2131624149;
+			// aapt resource value: 0x7f0e00d6
+			public const int actions = 2131624150;
 			
 			// aapt resource value: 0x7f0e0067
 			public const int activity_chooser_view_content = 2131624039;
@@ -6446,14 +6519,14 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e006d
 			public const int buttonPanel = 2131624045;
 			
-			// aapt resource value: 0x7f0e00aa
-			public const int calendar_grid = 2131624106;
+			// aapt resource value: 0x7f0e00ab
+			public const int calendar_grid = 2131624107;
 			
 			// aapt resource value: 0x7f0e0095
 			public const int calendar_view = 2131624085;
 			
-			// aapt resource value: 0x7f0e00c9
-			public const int cancel_action = 2131624137;
+			// aapt resource value: 0x7f0e00ca
+			public const int cancel_action = 2131624138;
 			
 			// aapt resource value: 0x7f0e004f
 			public const int center = 2131624015;
@@ -6467,8 +6540,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e007d
 			public const int checkbox = 2131624061;
 			
-			// aapt resource value: 0x7f0e00d1
-			public const int chronometer = 2131624145;
+			// aapt resource value: 0x7f0e00d2
+			public const int chronometer = 2131624146;
 			
 			// aapt resource value: 0x7f0e0058
 			public const int clip_horizontal = 2131624024;
@@ -6479,14 +6552,14 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0044
 			public const int collapseActionView = 2131624004;
 			
-			// aapt resource value: 0x7f0e009a
-			public const int container = 2131624090;
+			// aapt resource value: 0x7f0e009b
+			public const int container = 2131624091;
 			
 			// aapt resource value: 0x7f0e0070
 			public const int contentPanel = 2131624048;
 			
-			// aapt resource value: 0x7f0e009b
-			public const int coordinator = 2131624091;
+			// aapt resource value: 0x7f0e009c
+			public const int coordinator = 2131624092;
 			
 			// aapt resource value: 0x7f0e0077
 			public const int custom = 2131624055;
@@ -6503,20 +6576,20 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e006a
 			public const int default_activity_button = 2131624042;
 			
-			// aapt resource value: 0x7f0e009d
-			public const int design_bottom_sheet = 2131624093;
+			// aapt resource value: 0x7f0e009e
+			public const int design_bottom_sheet = 2131624094;
+			
+			// aapt resource value: 0x7f0e00a5
+			public const int design_menu_item_action_area = 2131624101;
 			
 			// aapt resource value: 0x7f0e00a4
-			public const int design_menu_item_action_area = 2131624100;
+			public const int design_menu_item_action_area_stub = 2131624100;
 			
 			// aapt resource value: 0x7f0e00a3
-			public const int design_menu_item_action_area_stub = 2131624099;
+			public const int design_menu_item_text = 2131624099;
 			
 			// aapt resource value: 0x7f0e00a2
-			public const int design_menu_item_text = 2131624098;
-			
-			// aapt resource value: 0x7f0e00a1
-			public const int design_navigation_view = 2131624097;
+			public const int design_navigation_view = 2131624098;
 			
 			// aapt resource value: 0x7f0e002c
 			public const int disableHome = 2131623980;
@@ -6527,8 +6600,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e003b
 			public const int end = 2131623995;
 			
-			// aapt resource value: 0x7f0e00d7
-			public const int end_padder = 2131624151;
+			// aapt resource value: 0x7f0e00d8
+			public const int end_padder = 2131624152;
 			
 			// aapt resource value: 0x7f0e004a
 			public const int enterAlways = 2131624010;
@@ -6575,8 +6648,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e006c
 			public const int icon = 2131624044;
 			
-			// aapt resource value: 0x7f0e00d6
-			public const int icon_group = 2131624150;
+			// aapt resource value: 0x7f0e00d7
+			public const int icon_group = 2131624151;
 			
 			// aapt resource value: 0x7f0e0024
 			public const int icon_only = 2131623972;
@@ -6587,8 +6660,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0069
 			public const int image = 2131624041;
 			
-			// aapt resource value: 0x7f0e00d2
-			public const int info = 2131624146;
+			// aapt resource value: 0x7f0e00d3
+			public const int info = 2131624147;
 			
 			// aapt resource value: 0x7f0e0063
 			public const int italic = 2131624035;
@@ -6596,8 +6669,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0000
 			public const int item_touch_helper_previous_elevation = 2131623936;
 			
-			// aapt resource value: 0x7f0e0099
-			public const int largeLabel = 2131624089;
+			// aapt resource value: 0x7f0e009a
+			public const int largeLabel = 2131624090;
 			
 			// aapt resource value: 0x7f0e0053
 			public const int left = 2131624019;
@@ -6620,23 +6693,23 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e006b
 			public const int list_item = 2131624043;
 			
-			// aapt resource value: 0x7f0e00a8
-			public const int loadingImage = 2131624104;
-			
-			// aapt resource value: 0x7f0e00a6
-			public const int loadingProgressBar = 2131624102;
-			
 			// aapt resource value: 0x7f0e00a9
-			public const int loadingProgressWheel = 2131624105;
+			public const int loadingImage = 2131624105;
 			
-			// aapt resource value: 0x7f0e00dc
-			public const int masked = 2131624156;
+			// aapt resource value: 0x7f0e00a7
+			public const int loadingProgressBar = 2131624103;
 			
-			// aapt resource value: 0x7f0e00cb
-			public const int media_actions = 2131624139;
+			// aapt resource value: 0x7f0e00aa
+			public const int loadingProgressWheel = 2131624106;
 			
-			// aapt resource value: 0x7f0e00da
-			public const int message = 2131624154;
+			// aapt resource value: 0x7f0e00dd
+			public const int masked = 2131624157;
+			
+			// aapt resource value: 0x7f0e00cc
+			public const int media_actions = 2131624140;
+			
+			// aapt resource value: 0x7f0e00db
+			public const int message = 2131624155;
 			
 			// aapt resource value: 0x7f0e003c
 			public const int middle = 2131623996;
@@ -6644,86 +6717,86 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e005d
 			public const int mini = 2131624029;
 			
-			// aapt resource value: 0x7f0e00b7
-			public const int mr_art = 2131624119;
-			
-			// aapt resource value: 0x7f0e00ac
-			public const int mr_chooser_list = 2131624108;
-			
-			// aapt resource value: 0x7f0e00af
-			public const int mr_chooser_route_desc = 2131624111;
+			// aapt resource value: 0x7f0e00b8
+			public const int mr_art = 2131624120;
 			
 			// aapt resource value: 0x7f0e00ad
-			public const int mr_chooser_route_icon = 2131624109;
-			
-			// aapt resource value: 0x7f0e00ae
-			public const int mr_chooser_route_name = 2131624110;
-			
-			// aapt resource value: 0x7f0e00ab
-			public const int mr_chooser_title = 2131624107;
-			
-			// aapt resource value: 0x7f0e00b4
-			public const int mr_close = 2131624116;
-			
-			// aapt resource value: 0x7f0e00ba
-			public const int mr_control_divider = 2131624122;
-			
-			// aapt resource value: 0x7f0e00c0
-			public const int mr_control_playback_ctrl = 2131624128;
-			
-			// aapt resource value: 0x7f0e00c3
-			public const int mr_control_subtitle = 2131624131;
-			
-			// aapt resource value: 0x7f0e00c2
-			public const int mr_control_title = 2131624130;
-			
-			// aapt resource value: 0x7f0e00c1
-			public const int mr_control_title_container = 2131624129;
-			
-			// aapt resource value: 0x7f0e00b5
-			public const int mr_custom_control = 2131624117;
-			
-			// aapt resource value: 0x7f0e00b6
-			public const int mr_default_control = 2131624118;
-			
-			// aapt resource value: 0x7f0e00b1
-			public const int mr_dialog_area = 2131624113;
+			public const int mr_chooser_list = 2131624109;
 			
 			// aapt resource value: 0x7f0e00b0
-			public const int mr_expandable_area = 2131624112;
+			public const int mr_chooser_route_desc = 2131624112;
 			
-			// aapt resource value: 0x7f0e00c4
-			public const int mr_group_expand_collapse = 2131624132;
+			// aapt resource value: 0x7f0e00ae
+			public const int mr_chooser_route_icon = 2131624110;
 			
-			// aapt resource value: 0x7f0e00b8
-			public const int mr_media_main_control = 2131624120;
+			// aapt resource value: 0x7f0e00af
+			public const int mr_chooser_route_name = 2131624111;
 			
-			// aapt resource value: 0x7f0e00b3
-			public const int mr_name = 2131624115;
+			// aapt resource value: 0x7f0e00ac
+			public const int mr_chooser_title = 2131624108;
 			
-			// aapt resource value: 0x7f0e00b9
-			public const int mr_playback_control = 2131624121;
-			
-			// aapt resource value: 0x7f0e00b2
-			public const int mr_title_bar = 2131624114;
+			// aapt resource value: 0x7f0e00b5
+			public const int mr_close = 2131624117;
 			
 			// aapt resource value: 0x7f0e00bb
-			public const int mr_volume_control = 2131624123;
+			public const int mr_control_divider = 2131624123;
+			
+			// aapt resource value: 0x7f0e00c1
+			public const int mr_control_playback_ctrl = 2131624129;
+			
+			// aapt resource value: 0x7f0e00c4
+			public const int mr_control_subtitle = 2131624132;
+			
+			// aapt resource value: 0x7f0e00c3
+			public const int mr_control_title = 2131624131;
+			
+			// aapt resource value: 0x7f0e00c2
+			public const int mr_control_title_container = 2131624130;
+			
+			// aapt resource value: 0x7f0e00b6
+			public const int mr_custom_control = 2131624118;
+			
+			// aapt resource value: 0x7f0e00b7
+			public const int mr_default_control = 2131624119;
+			
+			// aapt resource value: 0x7f0e00b2
+			public const int mr_dialog_area = 2131624114;
+			
+			// aapt resource value: 0x7f0e00b1
+			public const int mr_expandable_area = 2131624113;
+			
+			// aapt resource value: 0x7f0e00c5
+			public const int mr_group_expand_collapse = 2131624133;
+			
+			// aapt resource value: 0x7f0e00b9
+			public const int mr_media_main_control = 2131624121;
+			
+			// aapt resource value: 0x7f0e00b4
+			public const int mr_name = 2131624116;
+			
+			// aapt resource value: 0x7f0e00ba
+			public const int mr_playback_control = 2131624122;
+			
+			// aapt resource value: 0x7f0e00b3
+			public const int mr_title_bar = 2131624115;
 			
 			// aapt resource value: 0x7f0e00bc
-			public const int mr_volume_group_list = 2131624124;
+			public const int mr_volume_control = 2131624124;
 			
-			// aapt resource value: 0x7f0e00be
-			public const int mr_volume_item_icon = 2131624126;
+			// aapt resource value: 0x7f0e00bd
+			public const int mr_volume_group_list = 2131624125;
 			
 			// aapt resource value: 0x7f0e00bf
-			public const int mr_volume_slider = 2131624127;
+			public const int mr_volume_item_icon = 2131624127;
+			
+			// aapt resource value: 0x7f0e00c0
+			public const int mr_volume_slider = 2131624128;
 			
 			// aapt resource value: 0x7f0e0033
 			public const int multiply = 2131623987;
 			
-			// aapt resource value: 0x7f0e00a0
-			public const int navigation_header_container = 2131624096;
+			// aapt resource value: 0x7f0e00a1
+			public const int navigation_header_container = 2131624097;
 			
 			// aapt resource value: 0x7f0e0046
 			public const int never = 2131624006;
@@ -6734,14 +6807,14 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e001f
 			public const int normal = 2131623967;
 			
-			// aapt resource value: 0x7f0e00d4
-			public const int notification_background = 2131624148;
+			// aapt resource value: 0x7f0e00d5
+			public const int notification_background = 2131624149;
+			
+			// aapt resource value: 0x7f0e00cf
+			public const int notification_main_column = 2131624143;
 			
 			// aapt resource value: 0x7f0e00ce
-			public const int notification_main_column = 2131624142;
-			
-			// aapt resource value: 0x7f0e00cd
-			public const int notification_main_column_container = 2131624141;
+			public const int notification_main_column_container = 2131624142;
 			
 			// aapt resource value: 0x7f0e0056
 			public const int parallax = 2131624022;
@@ -6770,11 +6843,11 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0096
 			public const int right_arrow = 2131624086;
 			
-			// aapt resource value: 0x7f0e00d3
-			public const int right_icon = 2131624147;
+			// aapt resource value: 0x7f0e00d4
+			public const int right_icon = 2131624148;
 			
-			// aapt resource value: 0x7f0e00cf
-			public const int right_side = 2131624143;
+			// aapt resource value: 0x7f0e00d0
+			public const int right_side = 2131624144;
 			
 			// aapt resource value: 0x7f0e0020
 			public const int satellite = 2131623968;
@@ -6851,17 +6924,17 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0030
 			public const int showTitle = 2131623984;
 			
-			// aapt resource value: 0x7f0e00d8
-			public const int sliding_tabs = 2131624152;
+			// aapt resource value: 0x7f0e00d9
+			public const int sliding_tabs = 2131624153;
 			
-			// aapt resource value: 0x7f0e0098
-			public const int smallLabel = 2131624088;
+			// aapt resource value: 0x7f0e0099
+			public const int smallLabel = 2131624089;
+			
+			// aapt resource value: 0x7f0e00a0
+			public const int snackbar_action = 2131624096;
 			
 			// aapt resource value: 0x7f0e009f
-			public const int snackbar_action = 2131624095;
-			
-			// aapt resource value: 0x7f0e009e
-			public const int snackbar_text = 2131624094;
+			public const int snackbar_text = 2131624095;
 			
 			// aapt resource value: 0x7f0e004e
 			public const int snap = 2131624014;
@@ -6887,8 +6960,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0055
 			public const int start = 2131624021;
 			
-			// aapt resource value: 0x7f0e00ca
-			public const int status_bar_latest_event_content = 2131624138;
+			// aapt resource value: 0x7f0e00cb
+			public const int status_bar_latest_event_content = 2131624139;
 			
 			// aapt resource value: 0x7f0e0080
 			public const int submenuarrow = 2131624064;
@@ -6917,11 +6990,11 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0073
 			public const int textSpacerNoTitle = 2131624051;
 			
-			// aapt resource value: 0x7f0e00a7
-			public const int textViewStatus = 2131624103;
+			// aapt resource value: 0x7f0e00a8
+			public const int textViewStatus = 2131624104;
 			
-			// aapt resource value: 0x7f0e00a5
-			public const int text_input_password_toggle = 2131624101;
+			// aapt resource value: 0x7f0e00a6
+			public const int text_input_password_toggle = 2131624102;
 			
 			// aapt resource value: 0x7f0e0014
 			public const int textinput_counter = 2131623956;
@@ -6929,8 +7002,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0015
 			public const int textinput_error = 2131623957;
 			
-			// aapt resource value: 0x7f0e00d0
-			public const int time = 2131624144;
+			// aapt resource value: 0x7f0e00d1
+			public const int time = 2131624145;
 			
 			// aapt resource value: 0x7f0e001c
 			public const int title = 2131623964;
@@ -6941,8 +7014,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0079
 			public const int title_template = 2131624057;
 			
-			// aapt resource value: 0x7f0e00d9
-			public const int toolbar = 2131624153;
+			// aapt resource value: 0x7f0e00da
+			public const int toolbar = 2131624154;
 			
 			// aapt resource value: 0x7f0e0049
 			public const int top = 2131624009;
@@ -6950,8 +7023,8 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0078
 			public const int topPanel = 2131624056;
 			
-			// aapt resource value: 0x7f0e009c
-			public const int touch_outside = 2131624092;
+			// aapt resource value: 0x7f0e009d
+			public const int touch_outside = 2131624093;
 			
 			// aapt resource value: 0x7f0e000f
 			public const int transition_current_scene = 2131623951;
@@ -6980,11 +7053,11 @@ namespace Joinup.Droid
 			// aapt resource value: 0x7f0e0016
 			public const int view_offset_helper = 2131623958;
 			
-			// aapt resource value: 0x7f0e00db
-			public const int visible = 2131624155;
+			// aapt resource value: 0x7f0e00dc
+			public const int visible = 2131624156;
 			
-			// aapt resource value: 0x7f0e00bd
-			public const int volume_item_container = 2131624125;
+			// aapt resource value: 0x7f0e00be
+			public const int volume_item_container = 2131624126;
 			
 			// aapt resource value: 0x7f0e0026
 			public const int wide = 2131623974;
@@ -7167,148 +7240,157 @@ namespace Joinup.Droid
 			public const int calendar_picker = 2130968603;
 			
 			// aapt resource value: 0x7f04001c
-			public const int design_bottom_navigation_item = 2130968604;
+			public const int CustomizedView = 2130968604;
 			
 			// aapt resource value: 0x7f04001d
-			public const int design_bottom_sheet_dialog = 2130968605;
+			public const int CustomizedView1 = 2130968605;
 			
 			// aapt resource value: 0x7f04001e
-			public const int design_layout_snackbar = 2130968606;
+			public const int design_bottom_navigation_item = 2130968606;
 			
 			// aapt resource value: 0x7f04001f
-			public const int design_layout_snackbar_include = 2130968607;
+			public const int design_bottom_sheet_dialog = 2130968607;
 			
 			// aapt resource value: 0x7f040020
-			public const int design_layout_tab_icon = 2130968608;
+			public const int design_layout_snackbar = 2130968608;
 			
 			// aapt resource value: 0x7f040021
-			public const int design_layout_tab_text = 2130968609;
+			public const int design_layout_snackbar_include = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int design_menu_item_action_area = 2130968610;
+			public const int design_layout_tab_icon = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int design_navigation_item = 2130968611;
+			public const int design_layout_tab_text = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int design_navigation_item_header = 2130968612;
+			public const int design_menu_item_action_area = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int design_navigation_item_separator = 2130968613;
+			public const int design_navigation_item = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int design_navigation_item_subheader = 2130968614;
+			public const int design_navigation_item_header = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int design_navigation_menu = 2130968615;
+			public const int design_navigation_item_separator = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int design_navigation_menu_item = 2130968616;
+			public const int design_navigation_item_subheader = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int design_text_input_password_icon = 2130968617;
+			public const int design_navigation_menu = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int dialog = 2130968618;
+			public const int design_navigation_menu_item = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int loading = 2130968619;
+			public const int design_text_input_password_icon = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int loadingimage = 2130968620;
+			public const int dialog = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int loadingprogress = 2130968621;
+			public const int loading = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int month = 2130968622;
+			public const int loadingimage = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int mr_chooser_dialog = 2130968623;
+			public const int loadingprogress = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int mr_chooser_list_item = 2130968624;
+			public const int month = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int mr_controller_material_dialog_b = 2130968625;
+			public const int mr_chooser_dialog = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int mr_controller_volume_item = 2130968626;
+			public const int mr_chooser_list_item = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int mr_playback_control = 2130968627;
+			public const int mr_controller_material_dialog_b = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int mr_volume_control = 2130968628;
+			public const int mr_controller_volume_item = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int notification_action = 2130968629;
+			public const int mr_playback_control = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int notification_action_tombstone = 2130968630;
+			public const int mr_volume_control = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int notification_media_action = 2130968631;
+			public const int notification_action = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int notification_media_cancel_action = 2130968632;
+			public const int notification_action_tombstone = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int notification_template_big_media = 2130968633;
+			public const int notification_media_action = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int notification_template_big_media_custom = 2130968634;
+			public const int notification_media_cancel_action = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int notification_template_big_media_narrow = 2130968635;
+			public const int notification_template_big_media = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_template_big_media_narrow_custom = 2130968636;
+			public const int notification_template_big_media_custom = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_template_custom_big = 2130968637;
+			public const int notification_template_big_media_narrow = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int notification_template_icon_group = 2130968638;
+			public const int notification_template_big_media_narrow_custom = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int notification_template_lines_media = 2130968639;
+			public const int notification_template_custom_big = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int notification_template_media = 2130968640;
+			public const int notification_template_icon_group = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int notification_template_media_custom = 2130968641;
+			public const int notification_template_lines_media = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int notification_template_part_chronometer = 2130968642;
+			public const int notification_template_media = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int notification_template_part_time = 2130968643;
+			public const int notification_template_media_custom = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int select_dialog_item_material = 2130968644;
+			public const int notification_template_part_chronometer = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int select_dialog_multichoice_material = 2130968645;
+			public const int notification_template_part_time = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int select_dialog_singlechoice_material = 2130968646;
+			public const int select_dialog_item_material = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int support_simple_spinner_dropdown_item = 2130968647;
+			public const int select_dialog_multichoice_material = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int Tabbar = 2130968648;
+			public const int select_dialog_singlechoice_material = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int Toolbar = 2130968649;
+			public const int sfautocomplete_layout = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int tooltip = 2130968650;
+			public const int support_simple_spinner_dropdown_item = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int week = 2130968651;
+			public const int Tabbar = 2130968651;
+			
+			// aapt resource value: 0x7f04004c
+			public const int Toolbar = 2130968652;
+			
+			// aapt resource value: 0x7f04004d
+			public const int tooltip = 2130968653;
+			
+			// aapt resource value: 0x7f04004e
+			public const int week = 2130968654;
 			
 			static Layout()
 			{
@@ -10491,18 +10573,18 @@ namespace Joinup.Droid
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
 			public static int[] ProgressWheel = new int[] {
-					2130772368,
-					2130772369,
-					2130772370,
-					2130772371,
-					2130772372,
-					2130772373,
-					2130772374,
-					2130772375,
 					2130772376,
 					2130772377,
 					2130772378,
-					2130772379};
+					2130772379,
+					2130772380,
+					2130772381,
+					2130772382,
+					2130772383,
+					2130772384,
+					2130772385,
+					2130772386,
+					2130772387};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_ahBarColor = 3;
@@ -10677,6 +10759,40 @@ namespace Joinup.Droid
 			
 			// aapt resource value: 12
 			public const int SearchView_voiceIcon = 12;
+			
+			public static int[] SfAutoComplete = new int[] {
+					2130772368,
+					2130772369,
+					2130772370,
+					2130772371,
+					2130772372,
+					2130772373,
+					2130772374,
+					2130772375};
+			
+			// aapt resource value: 4
+			public const int SfAutoComplete_autocompleteBorderColor = 4;
+			
+			// aapt resource value: 0
+			public const int SfAutoComplete_autocompleteShowBorder = 0;
+			
+			// aapt resource value: 1
+			public const int SfAutoComplete_autocompleteShowClearButton = 1;
+			
+			// aapt resource value: 6
+			public const int SfAutoComplete_autocompleteText = 6;
+			
+			// aapt resource value: 3
+			public const int SfAutoComplete_autocompleteTextColor = 3;
+			
+			// aapt resource value: 7
+			public const int SfAutoComplete_autocompleteTextSize = 7;
+			
+			// aapt resource value: 5
+			public const int SfAutoComplete_autocompleteWatermark = 5;
+			
+			// aapt resource value: 2
+			public const int SfAutoComplete_autocompleteWatermarkColor = 2;
 			
 			public static int[] SignInButton = new int[] {
 					2130771994,
