@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:Joinup.Controls"
              xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:customcontrols="clr-namespace:Joinup.CustomControls"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
              xmlns:custom="clr-namespace:Joinup.Controls"
@@ -23,10 +24,29 @@
 
         <ScrollView
             Margin="0,70,0,16">
-            <StackLayout
+                <StackLayout
                 Orientation="Vertical">
+                <FlexLayout
+                    JustifyContent="SpaceAround"
+                     Margin="16,0,16,0">
+                        <controls:ImagePicker>
+                            <controls:ImagePicker.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                            </controls:ImagePicker.GestureRecognizers>
+                        </controls:ImagePicker>
+                        <controls:ImagePicker>
+                            <controls:ImagePicker.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                            </controls:ImagePicker.GestureRecognizers>
+                        </controls:ImagePicker>
+                        <controls:ImagePicker>
+                            <controls:ImagePicker.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                            </controls:ImagePicker.GestureRecognizers>
+                        </controls:ImagePicker>
+                    </FlexLayout>
                 <Label
-                    Margin="16,0,16,0"
+                    Margin="16,8,16,0"
                     Text="Categoría"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>

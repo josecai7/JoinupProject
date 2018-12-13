@@ -242,6 +242,13 @@ namespace Joinup.ViewModels
                 return new RelayCommand( CreatePlan );
             }
         }
+        public ICommand AddImageCommand
+        {
+            get
+            {
+                return new RelayCommand(AddImage);
+            }
+        }
         #endregion
         #region Methods
 
@@ -310,7 +317,6 @@ namespace Joinup.ViewModels
             SavePlan();
             plan.UserId = LoggedUser.Id;
         }
-
         private async void SavePlan()
         {
             IsRunning = true;
@@ -342,6 +348,10 @@ namespace Joinup.ViewModels
             }
 
             IsRunning = false;
+        }
+        private void AddImage()
+        {
+            
         }
         #endregion
     }

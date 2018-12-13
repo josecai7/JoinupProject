@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customcontrols="clr-namespace:Joinup.CustomControls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"   
+             x:Class="Joinup.Controls.ImagePicker">
+  <ContentView.Content>
+      <Grid>
+            <Frame
+                x:Name="imageFrame"
+                HeightRequest="50"
+                WidthRequest="50"
+                HasShadow="False"
+                BorderColor="{StaticResource TertiaryTextColor}">
+                <customcontrols:FontIcon
+                                IconColor="{StaticResource TertiaryTextColor}"
+                                Icon="camera"
+                                IconSize="{StaticResource IconSize}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"/>
+            </Frame>
+            <ffimageloading:CachedImage 
+                x:Name="image"
+                Aspect="AspectFill"
+                HeightRequest="50"
+                WidthRequest="50"/>
+        </Grid>
+  </ContentView.Content>
+</ContentView>
