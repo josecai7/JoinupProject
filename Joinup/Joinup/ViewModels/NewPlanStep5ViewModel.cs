@@ -75,11 +75,25 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
-        public ICommand AddImageCommand
+        public ICommand AddImage1Command
         {
             get
             {
-                return new RelayCommand( AddImage );
+                return new RelayCommand( AddImage1 );
+            }
+        }
+        public ICommand AddImage2Command
+        {
+            get
+            {
+                return new RelayCommand(AddImage2);
+            }
+        }
+        public ICommand AddImage3Command
+        {
+            get
+            {
+                return new RelayCommand(AddImage3);
             }
         }
         public ICommand NextStepCommand
@@ -91,6 +105,16 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Methods
+        private void AddImage1()
+        {
+
+        }
+        private void AddImage2()
+        {
+        }
+        private void AddImage3()
+        {
+        }
         private async void AddImage()
         {
             MediaFile file;
@@ -143,15 +167,16 @@ namespace Joinup.ViewModels
                     return stream;
                 });
 
-                LocalImage localImage = new LocalImage();
-                localImage.ImageMedia = file;
-                localImage.ImageSource = imageSource;
-                localImage.ImageArray = FilesHelper.ReadFully(file.GetStream());
+                LocalImage image = new LocalImage();
+                image.ImageMedia = file;
+                image.ImageSource = imageSource;
+                image.ImageArray = FilesHelper.ReadFully(file.GetStream());
 
-                Images.Add(localImage);
+                Images.Add(image);
                 RaisePropertyChanged("Images");
             }
         }
+
         private async void NextStepAsync()
         {
             IsRunning = true;

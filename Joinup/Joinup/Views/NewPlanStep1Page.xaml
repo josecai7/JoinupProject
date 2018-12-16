@@ -29,19 +29,22 @@
                 <FlexLayout
                     JustifyContent="SpaceAround"
                      Margin="16,0,16,0">
-                        <controls:ImagePicker>
+                        <controls:ImagePicker
+                            ImageSource="{Binding Image1}">
                             <controls:ImagePicker.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                                <TapGestureRecognizer Command="{Binding AddImage1Command}"/>
                             </controls:ImagePicker.GestureRecognizers>
                         </controls:ImagePicker>
-                        <controls:ImagePicker>
+                        <controls:ImagePicker
+                            ImageSource="{Binding Image2}">
                             <controls:ImagePicker.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                                <TapGestureRecognizer Command="{Binding AddImage2Command}"/>
                             </controls:ImagePicker.GestureRecognizers>
                         </controls:ImagePicker>
-                        <controls:ImagePicker>
+                        <controls:ImagePicker
+                            ImageSource="{Binding Image3}">
                             <controls:ImagePicker.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                                <TapGestureRecognizer Command="{Binding AddImage3Command}"/>
                             </controls:ImagePicker.GestureRecognizers>
                         </controls:ImagePicker>
                     </FlexLayout>

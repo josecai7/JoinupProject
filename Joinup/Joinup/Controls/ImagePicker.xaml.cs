@@ -17,21 +17,21 @@ namespace Joinup.Controls
 			InitializeComponent ();
         }
 
-        public static BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(IconEntry), defaultBindingMode: BindingMode.TwoWay, propertyChanged: (bindable, oldVal, newval) =>
+        public static BindableProperty ImageSourceProperty = BindableProperty.Create(nameof(ImageSource), typeof(ImageSource), typeof(ImagePicker), defaultBindingMode: BindingMode.TwoWay, propertyChanged: (bindable, oldVal, newval) =>
         {
-            var matEntry = (IconEntry)bindable;
-            matEntry.EntryField.Placeholder = (string)newval;
+            var matEntry = (ImagePicker)bindable;
+            matEntry.image.Source = (ImageSource)newval;
         });
 
-        public string Placeholder
+        public ImageSource ImageSource
         {
             get
             {
-                return (string)GetValue(PlaceholderProperty);
+                return (ImageSource)GetValue(ImageSourceProperty);
             }
             set
             {
-                SetValue(PlaceholderProperty, value);
+                SetValue(ImageSourceProperty, value);
             }
         }
     }

@@ -6,6 +6,8 @@ using Joinup.Service;
 using Joinup.Utils;
 using Joinup.ViewModels.Base;
 using Joinup.Views;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Plugin.Toasts;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,9 @@ namespace Joinup.ViewModels
         List<Prediction> predictions = new List<Prediction>();
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         private Category selectedCategory;
+        private ImageSource image1;
+        private ImageSource image2;
+        private ImageSource image3;
 
         #endregion
         #region Properties
@@ -202,6 +207,42 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("SelectedLocation");
             }
         }
+        public ImageSource Image1
+        {
+            get
+            {
+                return image1;
+            }
+            set
+            {
+                image1 = value;
+                RaisePropertyChanged("Image1");
+            }
+        }
+        public ImageSource Image2
+        {
+            get
+            {
+                return image2;
+            }
+            set
+            {
+                image2 = value;
+                RaisePropertyChanged("Image2");
+            }
+        }
+        public ImageSource Image3
+        {
+            get
+            {
+                return image3;
+            }
+            set
+            {
+                image3 = value;
+                RaisePropertyChanged("Image3");
+            }
+        }
         public List<Prediction> Predictions
         {
             get
@@ -242,13 +283,31 @@ namespace Joinup.ViewModels
                 return new RelayCommand( CreatePlan );
             }
         }
-        public ICommand AddImageCommand
+
+        public ICommand AddImage1Command
         {
             get
             {
-                return new RelayCommand(AddImage);
+                return new RelayCommand(AddImage1);
             }
         }
+
+        public ICommand AddImage2Command
+        {
+            get
+            {
+                return new RelayCommand(AddImage2);
+            }
+        }
+
+        public ICommand AddImage3Command
+        {
+            get
+            {
+                return new RelayCommand(AddImage3);
+            }
+        }
+
         #endregion
         #region Methods
 
@@ -349,9 +408,90 @@ namespace Joinup.ViewModels
 
             IsRunning = false;
         }
-        private void AddImage()
+        private void AddImage1()
         {
-            
+            AddImage(1);
+        }
+        private void AddImage2()
+        {
+            AddImage(2);
+        }
+        private void AddImage3()
+        {
+            AddImage(3);
+        }
+        private async void AddImage(int pPhoto)
+        {
+            MediaFile file;
+
+            await CrossMedia.Current.Initialize();
+
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "¿Desde donde desea tomar la imagen?",
+                "Cancelar",
+                null,
+                "Galeria",
+                "Camara");
+
+            if (source == "Cancelar")
+            {
+                return;
+            }
+
+            if (source == "Camara")
+            {
+                if (!CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    ToastNotificationUtils.ShowToastNotifications("Galeria no disponible", "add.png", ColorUtils.ErrorColor);
+                    return;
+                }
+
+                file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Joinup",
+                        Name = DateTime.Now.ToString()
+                    }
+                );
+            }
+            else
+            {
+                if (!CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    ToastNotificationUtils.ShowToastNotifications("Camara no disponible", "add.png", ColorUtils.ErrorColor);
+                    return;
+                }
+                file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (file != null)
+            {
+                if (pPhoto == 1)
+                {
+                    Image1 = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+                }
+                else if (pPhoto == 2)
+                {
+                    Image2 = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+                }
+                if (pPhoto == 3)
+                {
+                    Image3 = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        return stream;
+                    });
+                }
+
+            }
         }
         #endregion
     }
