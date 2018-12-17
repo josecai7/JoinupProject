@@ -10,10 +10,10 @@ namespace Joinup.Common.Models.DatabaseModels
     public class Comment
     {
         [Key]
-        public string CommentId { get; set; }
+        public int CommentId { get; set; }
         public string UserId { get; set; }
         public string UserDisplayName { get; set; }
-        public string PlanId { get; set; }
+        public int PlanId { get; set; }
         public string CommentText { get; set; }
         public DateTime CommentDate { get; set; }
     }

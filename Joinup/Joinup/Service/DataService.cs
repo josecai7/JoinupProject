@@ -121,11 +121,12 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<Response> GetComments(string pPlanId)
+        public async Task<Response> GetCommentsByPlan(int pPlanId)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlCommentsController"].ToString();
+            controller+="/ByPlan/"+pPlanId;
 
             var response = await ApiService.GetInstance().GetList<Comment>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
 

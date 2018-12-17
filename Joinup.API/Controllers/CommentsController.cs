@@ -24,9 +24,15 @@ namespace Joinup.API.Controllers
             return db.Comments;
         }
 
+        [Route("~/api/Comments/ByPlan/{pPlanId:int}")]
+        public IQueryable<Comment> GetCommentsByPlanId(int pPlanId)
+        {
+            return db.Comments.Where(b => b.PlanId == pPlanId);
+        }
+
         // GET: api/Comments/5
         [ResponseType(typeof(Comment))]
-        public async Task<IHttpActionResult> GetComment(string id)
+        public async Task<IHttpActionResult> GetComment(int id)
         {
             Comment comment = await db.Comments.FindAsync(id);
             if (comment == null)
@@ -39,7 +45,7 @@ namespace Joinup.API.Controllers
 
         // PUT: api/Comments/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutComment(string id, Comment comment)
+        public async Task<IHttpActionResult> PutComment(int id, Comment comment)
         {
             if (!ModelState.IsValid)
             {
@@ -127,7 +133,7 @@ namespace Joinup.API.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CommentExists(string id)
+        private bool CommentExists(int id)
         {
             return db.Comments.Count(e => e.CommentId == id) > 0;
         }

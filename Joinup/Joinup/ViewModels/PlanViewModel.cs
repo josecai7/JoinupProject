@@ -168,7 +168,7 @@ namespace Joinup.ViewModels
         }
         private void GoToComments()
         {
-            NavigationService.NavigateToAsync<CommentsViewModel>(plan);
+            NavigationService.NavigateToAsync<CommentsViewModel>(plan.PlanId);
         }
         private void ClickOnButton()
         {
