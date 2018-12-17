@@ -19,11 +19,19 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"/>
             </Frame>
-            <ffimageloading:CachedImage 
-                x:Name="image"
-                Aspect="AspectFill"
+            <Frame
+                x:Name="imageContainer"
+                IsVisible="False"
+                CornerRadius="4"
                 HeightRequest="50"
-                WidthRequest="50"/>
+                HasShadow="False"
+                Padding="0">
+                <ffimageloading:CachedImage 
+                    x:Name="image"
+                    Aspect="AspectFill"
+                    HeightRequest="50"
+                    WidthRequest="50"/>
+            </Frame>
         </Grid>
   </ContentView.Content>
 </ContentView>

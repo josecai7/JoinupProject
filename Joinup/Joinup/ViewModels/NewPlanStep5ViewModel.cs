@@ -167,13 +167,7 @@ namespace Joinup.ViewModels
                     return stream;
                 });
 
-                LocalImage image = new LocalImage();
-                image.ImageMedia = file;
-                image.ImageSource = imageSource;
-                image.ImageArray = FilesHelper.ReadFully(file.GetStream());
 
-                Images.Add(image);
-                RaisePropertyChanged("Images");
             }
         }
 
@@ -184,8 +178,7 @@ namespace Joinup.ViewModels
 
             foreach (LocalImage localImage in Images)
             {
-                Common.Models.Image image = localImage.ToImage();
-                plan.PlanImages.Add(image);
+
             }
 
             var response=await DataService.GetInstance().SavePlan(plan);

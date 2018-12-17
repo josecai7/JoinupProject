@@ -10,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Joinup.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PlanPage : ContentPage
+	public partial class CommentsPage : ContentPage
 	{
-		public PlanPage ()
+		public CommentsPage ()
 		{
-            SetValue(NavigationPage.HasNavigationBarProperty, false);
-            InitializeComponent ();
+			InitializeComponent ();
 		}
 	}
 }

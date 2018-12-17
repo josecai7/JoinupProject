@@ -128,6 +128,14 @@ namespace Joinup.ViewModels
             }
         }
 
+        public ICommand GoToCommentsCommand
+        {
+            get
+            {
+                return new RelayCommand(GoToComments);
+            }
+        }
+
         public ICommand ButtonCommand
         {
             get
@@ -157,6 +165,10 @@ namespace Joinup.ViewModels
         private void GoToHostProfile()
         {
             NavigationService.NavigateToAsync<ProfileViewModel>(plan.User);
+        }
+        private void GoToComments()
+        {
+            NavigationService.NavigateToAsync<CommentsViewModel>(plan);
         }
         private void ClickOnButton()
         {

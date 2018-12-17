@@ -17,6 +17,7 @@
             <x:String x:Key="UrlMeetsController">/Meets</x:String>
             <x:String x:Key="UrlPlansController">/Plans</x:String>
             <x:String x:Key="UrlImagesController">/Images</x:String>
+            <x:String x:Key="UrlCommentsController">/Comments</x:String>
 
 
             <!-- FONTS -->

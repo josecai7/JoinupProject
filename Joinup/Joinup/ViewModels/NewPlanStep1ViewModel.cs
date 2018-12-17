@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GooglePlaces.Xamarin;
 using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Service;
 using Joinup.Utils;
 using Joinup.ViewModels.Base;
@@ -30,8 +31,11 @@ namespace Joinup.ViewModels
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         private Category selectedCategory;
         private ImageSource image1;
+        private byte[] image1bytes;
         private ImageSource image2;
+        private byte[] image2bytes;
         private ImageSource image3;
+        private byte[] image3bytes;
 
         #endregion
         #region Properties
@@ -381,6 +385,28 @@ namespace Joinup.ViewModels
             IsRunning = true;
             plan.UserId = LoggedUser.Id;
 
+            if (Image1 != null)
+            {
+                plan.PlanImages.Add(new Common.Models.Image()
+                {
+                    ImageArray = image1bytes
+                });
+            }
+            if (Image2 != null)
+            {
+                plan.PlanImages.Add(new Common.Models.Image()
+                {
+                    ImageArray = image2bytes
+                });
+            }
+            if (Image3 != null)
+            {
+                plan.PlanImages.Add(new Common.Models.Image()
+                {
+                    ImageArray = image3bytes
+                });
+            }
+
             var response = await DataService.GetInstance().SavePlan(plan);
 
             if (!response.IsSuccess)
@@ -473,6 +499,7 @@ namespace Joinup.ViewModels
                         var stream = file.GetStream();
                         return stream;
                     });
+                    image1bytes = FilesHelper.ReadFully(file.GetStream());
                 }
                 else if (pPhoto == 2)
                 {
@@ -481,6 +508,7 @@ namespace Joinup.ViewModels
                         var stream = file.GetStream();
                         return stream;
                     });
+                    image2bytes = FilesHelper.ReadFully(file.GetStream());
                 }
                 if (pPhoto == 3)
                 {
@@ -489,6 +517,7 @@ namespace Joinup.ViewModels
                         var stream = file.GetStream();
                         return stream;
                     });
+                    image3bytes = FilesHelper.ReadFully(file.GetStream());
                 }
 
             }

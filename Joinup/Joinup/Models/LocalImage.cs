@@ -8,22 +8,11 @@ using Xamarin.Forms;
 
 namespace Joinup.Models
 {
-    public class LocalImage : Common.Models.Image
+    public class LocalImage
     {
         public ImageSource ImageSource { get; set; }
-        public MediaFile ImageMedia { get; set; }
+        public byte[] ByteArray { get; set; }
         public LocalImage() { }
 
-        public Common.Models.Image ToImage()
-        {
-            return new Common.Models.Image
-            {
-                ImageId = this.ImageId,
-                ImageArray = this.ImageArray,
-                ImagePath = this.ImagePath,
-                ImageFullPath = this.ImageFullPath,
-                EntityId = this.EntityId,
-            };
-        }
     }
 }

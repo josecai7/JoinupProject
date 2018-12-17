@@ -21,6 +21,7 @@ namespace Joinup.Controls
         {
             var matEntry = (ImagePicker)bindable;
             matEntry.image.Source = (ImageSource)newval;
+            matEntry.imageContainer.IsVisible = matEntry.image.Source == null ? false : true;
         });
 
         public ImageSource ImageSource
