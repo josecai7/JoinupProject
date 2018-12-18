@@ -14,7 +14,7 @@ namespace Joinup.ViewModels
     public class CommentsViewModel:BaseViewModel
     {
         #region Attributes
-        private int planId;
+        private Plan plan;
         ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
         private bool isRefreshing;
         #endregion
@@ -51,9 +51,9 @@ namespace Joinup.ViewModels
         }
         public override Task InitializeAsync(object navigationData)
         {
-            var parameter = (int)navigationData;
+            var parameter = (Plan)navigationData;
 
-            planId = parameter;
+            plan = parameter;
 
             LoadComments();
 
@@ -65,7 +65,7 @@ namespace Joinup.ViewModels
         #region Methods
         private async void LoadComments()
         {
-            var response = await DataService.GetInstance().GetCommentsByPlan(planId);
+            var response = await DataService.GetInstance().GetCommentsByPlan(plan.PlanId);
 
             if (!response.IsSuccess)
             {
