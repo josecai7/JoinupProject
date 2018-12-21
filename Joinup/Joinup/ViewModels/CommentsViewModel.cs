@@ -31,6 +31,18 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Comments");
             }
         }
+        public Plan Plan
+        {
+            get
+            {
+                return plan;
+            }
+            set
+            {
+                plan = value;
+                RaisePropertyChanged();
+            }
+        }
         public bool IsRefreshing
         {
             get
@@ -40,7 +52,7 @@ namespace Joinup.ViewModels
             set
             {
                 isRefreshing = value;
-                RaisePropertyChanged("IsRefreshing");
+                RaisePropertyChanged( "IsRefreshing" );
             }
         }
         #endregion
@@ -53,7 +65,7 @@ namespace Joinup.ViewModels
         {
             var parameter = (Plan)navigationData;
 
-            plan = parameter;
+            Plan = parameter;
 
             LoadComments();
 
