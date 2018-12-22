@@ -1,4 +1,5 @@
-﻿using Joinup.Common.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
 using Joinup.Common.Models.DatabaseModels;
 using Joinup.Service;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Joinup.ViewModels
@@ -15,6 +17,7 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private Plan plan;
+        string commentText;
         ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
         private bool isRefreshing;
         #endregion
@@ -29,6 +32,18 @@ namespace Joinup.ViewModels
             {
                 comments = value;
                 RaisePropertyChanged("Comments");
+            }
+        }
+        public string CommentText
+        {
+            get
+            {
+                return commentText;
+            }
+            set
+            {
+                commentText = value;
+                RaisePropertyChanged("CommentText");
             }
         }
         public Plan Plan
@@ -73,8 +88,42 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
+
+        public ICommand SendCommentCommand
+        {
+            get
+            {
+                return new RelayCommand(SendComment);
+            }
+        }
+
         #endregion
         #region Methods
+        private async void SendComment()
+        {
+            if (!string.IsNullOrEmpty(CommentText))
+            {
+                Comment sendComment = new Comment();
+                sendComment.CommentText = CommentText;
+                sendComment.CommentDate = DateTime.Now;
+                sendComment.UserDisplayName = LoggedUser.Name;
+                sendComment.UserId = LoggedUser.Id;
+                sendComment.PlanId = Plan.PlanId;
+
+                var response = await DataService.GetInstance().SendComment(sendComment);
+
+                if (!response.IsSuccess)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error al publicar el comentario", "Aceptar", "Cancelar");
+                    IsRefreshing = false;
+                    return;
+                }
+
+                CommentText = String.Empty;
+                LoadComments();
+            }
+        }
+
         private async void LoadComments()
         {
             var response = await DataService.GetInstance().GetCommentsByPlan(plan.PlanId);

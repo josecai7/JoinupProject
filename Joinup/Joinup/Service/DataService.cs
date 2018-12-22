@@ -132,6 +132,16 @@ namespace Joinup.Service
 
             return response;
         }
+        public async Task<Response> SendComment(Comment pComment)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlCommentsController"].ToString();
+
+            var response = await ApiService.GetInstance().Post<Comment>(url, prefix, controller, pComment, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
 
 
 

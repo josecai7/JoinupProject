@@ -28,6 +28,7 @@ namespace Joinup.Droid.Renderers
                 LayoutParameters = layoutParams;
                 Control.LayoutParameters = layoutParams;
                 Control.SetPadding(0, 0, 0, 0);
+                Control.Gravity = Android.Views.GravityFlags.CenterVertical;
                 SetPadding(0, 0, 0, 0);
             }
         }
