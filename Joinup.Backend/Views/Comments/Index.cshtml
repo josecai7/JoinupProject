@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.UserDisplayName)
         </th>
+		<th>
+            @Html.DisplayNameFor(model => model.UserDisplayImage)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.PlanId)
         </th>
@@ -36,6 +39,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserDisplayName)
+        </td>
+		<td>
+            @Html.DisplayFor(modelItem => item.UserDisplayImage)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.PlanId)

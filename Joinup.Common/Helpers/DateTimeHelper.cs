@@ -33,5 +33,30 @@ namespace Joinup.Common.Helpers
                 return textInfo.ToTitleCase( pDate1.ToString( "MMMM", CultureInfo.CurrentCulture )) + " " + pDate1.Day + " - " + pDate2.Day + " · " + pDate1.ToString( "HH:mm" ) + " - " + pDate2.ToString( "HH:mm" );
             }
         }
+
+        public static string GetFormattedCommentDate(DateTime commentDate)
+        {
+            TimeSpan timeSpan = DateTime.Now - commentDate;
+
+            if (timeSpan.Minutes < 1)
+            {
+                return "< 1 min";
+            }
+            else if (timeSpan.Minutes < 59)
+            {
+                return timeSpan.Minutes + " mins";
+            }
+            else if (timeSpan.Minutes < 1399)
+            {
+                return timeSpan.Hours + " horas";
+            }
+            else
+            {
+                if (timeSpan.Days > 1)
+                    return timeSpan.Days + " días";
+                else
+                    return timeSpan.Days + " día";
+            }
+        }
     }
 }

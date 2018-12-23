@@ -65,7 +65,8 @@
 
             <!-- COLORS -->
             <Color x:Key="BackgroundColor">#FFFFFF</Color>
-            <Color x:Key="FormBackgroundColor">#ECF0F1</Color>
+            <Color x:Key="SoftBackgroundColor">#F0F0F0</Color>
+            <Color x:Key="FormBackgroundColor">#F0F0F0</Color>
             <Color x:Key="WhiteColor">#FFFFFF</Color>
             <Color x:Key="DarkPrimaryColor">#CC4141</Color>
             <Color x:Key="PrimaryColor">#25CFC4</Color>

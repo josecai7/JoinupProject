@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.CommentsPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"   
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:customcontrols="clr-namespace:Joinup.CustomControls"
              BackgroundColor="{StaticResource WhiteColor}">
     <ContentPage.Content>
@@ -17,9 +18,11 @@
                 <Label
                     Text="{Binding Plan.Name}"
                     HorizontalTextAlignment="Center"
+                    Margin="16,16,16,0"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource TertiaryTextColor}"/>
                 <controls:CustomListView
+                    
                         HasUnevenRows="True"
                         ItemsSource="{Binding Comments}"
                         IsRefreshing="{Binding IsRefreshing}"
@@ -30,12 +33,91 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout
-                                        Spacing="0"
-                                        Padding="16">
-                                    <Label
-                                        Text="{Binding CommentText}"/>
-                                </StackLayout>
+                                <Grid>
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="8"
+                                        Padding="16,16,16,0"
+                                        HorizontalOptions="End"
+                                        IsVisible="{Binding IsMyComment}">
+                                        <Grid
+                                            RowSpacing="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label
+                                            Grid.Column="0"
+                                            VerticalOptions="End"
+                                            Style="{StaticResource SubtitleFont}"
+                                            TextColor="{StaticResource TertiaryTextColor}"
+                                            Text="{Binding FormattedCommentDate}"/>
+                                            <Frame
+                                            BackgroundColor="{StaticResource PrimaryColor}"
+                                            Grid.Column="1"
+                                            HasShadow="False"
+                                            CornerRadius="4">
+                                                <Label                                      
+                                                Style="{StaticResource SubtitleFont}"
+                                                TextColor="{StaticResource PrimaryTextColor}"
+                                                Text="{Binding CommentText}"/>
+                                            </Frame>
+                                        </Grid>
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="8"
+                                        Padding="16,16,16,0"
+                                        IsVisible="{Binding NotIsMyComment}">
+                                        <ffimageloading:CachedImage 
+                                            VerticalOptions="Start"
+                                            WidthRequest="32"
+                                            HeightRequest="32"
+                                            Source="{Binding UserDisplayImage}">
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <fftransformations:CircleTransformation/>
+                                            </ffimageloading:CachedImage.Transformations>
+                                        </ffimageloading:CachedImage>
+                                        <Grid
+                                        RowSpacing="4">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Grid.RowSpan="2"
+                                            Style="{StaticResource SubtitleFont}"
+                                            TextColor="{StaticResource TertiaryTextColor}"
+                                            Text="{Binding UserDisplayName}"/>
+                                            <Frame
+                                            BackgroundColor="{StaticResource SoftBackgroundColor}"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            HasShadow="False"
+                                            CornerRadius="4">
+                                                <Label                                      
+                                                Style="{StaticResource SubtitleFont}"
+                                                TextColor="{StaticResource PrimaryTextColor}"
+                                                Text="{Binding CommentText}"/>
+                                            </Frame>
+                                            <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            VerticalOptions="End"
+                                            Style="{StaticResource SubtitleFont}"
+                                            TextColor="{StaticResource TertiaryTextColor}"
+                                            Text="{Binding FormattedCommentDate}"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </Grid>
+
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

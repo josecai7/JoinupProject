@@ -97,6 +97,14 @@ namespace Joinup.ViewModels
             }
         }
 
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadComments);
+            }
+        }
+
         #endregion
         #region Methods
         private async void SendComment()
@@ -106,6 +114,7 @@ namespace Joinup.ViewModels
                 Comment sendComment = new Comment();
                 sendComment.CommentText = CommentText;
                 sendComment.CommentDate = DateTime.Now;
+                sendComment.UserDisplayImage = LoggedUser.UserImage;
                 sendComment.UserDisplayName = LoggedUser.Name;
                 sendComment.UserId = LoggedUser.Id;
                 sendComment.PlanId = Plan.PlanId;
@@ -126,6 +135,9 @@ namespace Joinup.ViewModels
 
         private async void LoadComments()
         {
+            IsRefreshing = true;
+
+
             var response = await DataService.GetInstance().GetCommentsByPlan(plan.PlanId);
 
             if (!response.IsSuccess)
@@ -136,7 +148,14 @@ namespace Joinup.ViewModels
             }
 
             var list = (List<Comment>)response.Result;
+
+            foreach (var comment in list)
+            {
+                comment.LoggedUserId = LoggedUser.Id;
+            }
+
             Comments = new ObservableCollection<Comment>(list);
+            IsRefreshing = false;
         }
         #endregion
      }
