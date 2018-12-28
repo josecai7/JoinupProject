@@ -30,7 +30,7 @@
 		/// <param name="input"> The search params. </param>
 		public async Task<Predictions> GetAutocomplete(string input)
 		{
-			string content = "input=" + input + "&components=country:es";
+			string content = "input=" + input + "&components=country:es&language=es";
 			string responseData = await httpProvider.FetchPostContentAsync(GooglePlacesUrl, content).ConfigureAwait(false);
 
 			var predictions = JsonConvert.DeserializeObject<Predictions>(responseData);

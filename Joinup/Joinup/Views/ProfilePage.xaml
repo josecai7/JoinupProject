@@ -231,34 +231,74 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout
-                                                Spacing="0"
-                                                Padding="16">
+                                Spacing="0"
+                                Padding="16">
                                             <Frame
-                                                    Padding="0"
-                                                    Margin="0,0,0,8"
-                                                    CornerRadius="6">
+                                    Padding="0"
+                                    Margin="0,0,0,8"
+                                    CornerRadius="6">
                                                 <ffimageloading:CachedImage    
-                                                        BackgroundColor="AliceBlue"
-                                                        Source="{Binding DefaultImageFullPath}"
-                                                        Aspect="AspectFill" 
-                                                        LoadingPlaceholder="no_image.png" 
-                                                        ErrorPlaceholder="no_image.png" 
-                                                        DownsampleToViewSize="true"
-                                                        HeightRequest="220">
+                                    BackgroundColor="AliceBlue"
+                                    Source="{Binding DefaultImageFullPath}"
+                                    Aspect="AspectFill" 
+                                    LoadingPlaceholder="no_image.png" 
+                                    ErrorPlaceholder="no_image.png" 
+                                    DownsampleToViewSize="true"
+                                    HeightRequest="220">
                                                 </ffimageloading:CachedImage>
                                             </Frame>
                                             <Label 
-                                                    Text="{Binding FormattedDateTime}"
-                                                    Style="{StaticResource SubtitleFont}"
-                                                    TextColor="{StaticResource TertiaryTextColor}"/>
+                                    Text="{Binding FormattedDateTime}"
+                                    Style="{StaticResource SubtitleFont}"
+                                    TextColor="{StaticResource TertiaryTextColor}"/>
+
                                             <Label 
-                                                    Text="{Binding Name}"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    Style="{StaticResource TitleElementFont}"/>
-                                            <Label Grid.Row="1" 
-                                                    Text="{Binding Address}"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    Style="{StaticResource SubtitleElementFont}"/>
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource SecondaryTextColor}"
+                                    Style="{StaticResource TitleElementFont}"/>
+
+                                            <Label
+                                    Text="{Binding Address}"
+                                    TextColor="{StaticResource SecondaryTextColor}"
+                                    Style="{StaticResource SubtitleElementFont}"/>
+
+                                            <StackLayout
+                                    Orientation="Horizontal"
+                                    Margin="0,8,0,0"
+                                    HeightRequest="24"
+                                    Spacing="8">
+                                                <controls:ExtendedFlexLayout                                     
+                                    ItemsSource="{Binding ResumeAssistantUsers}"
+                                    HeightRequest="24">
+                                                    <controls:ExtendedFlexLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Frame
+                                                Margin="0,0,-4,0"
+                                                Padding="0.7"
+                                                BackgroundColor="{StaticResource BackgroundColor}"
+                                                CornerRadius="12"
+                                                HeightRequest="24"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                WidthRequest="24">
+                                                                <ffimageloading:CachedImage 
+                                                    Source="{Binding UserImage}">
+                                                                    <ffimageloading:CachedImage.Transformations>
+                                                                        <fftransformations:CircleTransformation/>
+                                                                    </ffimageloading:CachedImage.Transformations>
+                                                                </ffimageloading:CachedImage>
+                                                            </Frame>
+                                                        </DataTemplate>
+                                                    </controls:ExtendedFlexLayout.ItemTemplate>
+                                                </controls:ExtendedFlexLayout>
+                                                <Label 
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding FormattedAssistantUsers}"
+                                        Style="{StaticResource HeaderElementFont}"
+                                        TextColor="{StaticResource TertiaryTextColor}"/>
+                                            </StackLayout>
+
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -293,34 +333,74 @@
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout
-                                                Spacing="0"
-                                                Padding="16">
+                                Spacing="0"
+                                Padding="16">
                                             <Frame
-                                                    Padding="0"
-                                                    Margin="0,0,0,8"
-                                                    CornerRadius="6">
+                                    Padding="0"
+                                    Margin="0,0,0,8"
+                                    CornerRadius="6">
                                                 <ffimageloading:CachedImage    
-                                                        BackgroundColor="AliceBlue"
-                                                        Source="{Binding DefaultImageFullPath}"
-                                                        Aspect="AspectFill" 
-                                                        LoadingPlaceholder="no_image.png" 
-                                                        ErrorPlaceholder="no_image.png" 
-                                                        DownsampleToViewSize="true"
-                                                        HeightRequest="220">
+                                    BackgroundColor="AliceBlue"
+                                    Source="{Binding DefaultImageFullPath}"
+                                    Aspect="AspectFill" 
+                                    LoadingPlaceholder="no_image.png" 
+                                    ErrorPlaceholder="no_image.png" 
+                                    DownsampleToViewSize="true"
+                                    HeightRequest="220">
                                                 </ffimageloading:CachedImage>
                                             </Frame>
                                             <Label 
-                                                    Text="{Binding FormattedDateTime}"
-                                                    Style="{StaticResource SubtitleFont}"
-                                                    TextColor="{StaticResource TertiaryTextColor}"/>
+                                    Text="{Binding FormattedDateTime}"
+                                    Style="{StaticResource SubtitleFont}"
+                                    TextColor="{StaticResource TertiaryTextColor}"/>
+
                                             <Label 
-                                                    Text="{Binding Name}"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    Style="{StaticResource TitleElementFont}"/>
-                                            <Label Grid.Row="1" 
-                                                    Text="{Binding Address}"
-                                                    TextColor="{StaticResource SecondaryTextColor}"
-                                                    Style="{StaticResource SubtitleElementFont}"/>
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource SecondaryTextColor}"
+                                    Style="{StaticResource TitleElementFont}"/>
+
+                                            <Label
+                                    Text="{Binding Address}"
+                                    TextColor="{StaticResource SecondaryTextColor}"
+                                    Style="{StaticResource SubtitleElementFont}"/>
+
+                                            <StackLayout
+                                    Orientation="Horizontal"
+                                    Margin="0,8,0,0"
+                                    HeightRequest="24"
+                                    Spacing="8">
+                                                <controls:ExtendedFlexLayout                                     
+                                    ItemsSource="{Binding ResumeAssistantUsers}"
+                                    HeightRequest="24">
+                                                    <controls:ExtendedFlexLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Frame
+                                                Margin="0,0,-4,0"
+                                                Padding="0.7"
+                                                BackgroundColor="{StaticResource BackgroundColor}"
+                                                CornerRadius="12"
+                                                HeightRequest="24"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                WidthRequest="24">
+                                                                <ffimageloading:CachedImage 
+                                                    Source="{Binding UserImage}">
+                                                                    <ffimageloading:CachedImage.Transformations>
+                                                                        <fftransformations:CircleTransformation/>
+                                                                    </ffimageloading:CachedImage.Transformations>
+                                                                </ffimageloading:CachedImage>
+                                                            </Frame>
+                                                        </DataTemplate>
+                                                    </controls:ExtendedFlexLayout.ItemTemplate>
+                                                </controls:ExtendedFlexLayout>
+                                                <Label 
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding FormattedAssistantUsers}"
+                                        Style="{StaticResource HeaderElementFont}"
+                                        TextColor="{StaticResource TertiaryTextColor}"/>
+                                            </StackLayout>
+
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>

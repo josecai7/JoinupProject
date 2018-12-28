@@ -23,10 +23,6 @@ namespace Joinup.Navigation
             { typeof(ProfileViewModel), typeof(ProfilePage) },
             { typeof(CommentsViewModel), typeof(CommentsPage) },
             { typeof(NewPlanStep1ViewModel), typeof(NewPlanStep1Page) },
-            { typeof(NewPlanStep2ViewModel), typeof(NewPlanStep2Page) },
-            { typeof(NewPlanStep3ViewModel), typeof(NewPlanStep3Page) },
-            { typeof(NewPlanStep4ViewModel), typeof(NewPlanStep4Page) },
-            { typeof(NewPlanStep5ViewModel), typeof(NewPlanStep5Page) },
         };
 
 
@@ -164,10 +160,6 @@ namespace Joinup.Navigation
             _mappings.Add( typeof( ProfileViewModel ), typeof( ProfilePage ) );
             _mappings.Add(typeof(CommentsViewModel), typeof(CommentsPage));
             _mappings.Add( typeof( NewPlanStep1ViewModel ), typeof( NewPlanStep1Page ) );
-            _mappings.Add( typeof( NewPlanStep2ViewModel ), typeof( NewPlanStep2Page ) );
-            _mappings.Add( typeof( NewPlanStep3ViewModel ), typeof( NewPlanStep3Page ) );
-            _mappings.Add( typeof( NewPlanStep4ViewModel ), typeof( NewPlanStep4Page ) );
-            _mappings.Add( typeof( NewPlanStep5ViewModel ), typeof( NewPlanStep5Page ) );
         }
 
         public async Task NavigateBackAsync()

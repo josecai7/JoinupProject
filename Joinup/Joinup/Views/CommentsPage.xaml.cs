@@ -15,7 +15,6 @@ namespace Joinup.Views
 	{
 		public CommentsPage ()
 		{
-            SetValue( NavigationPage.BarBackgroundColorProperty, ColorUtils.PrimaryColor );
             InitializeComponent ();
 		}
 	}

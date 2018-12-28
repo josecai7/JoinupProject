@@ -27,10 +27,6 @@ namespace Joinup.ViewModels.Base
             // ViewModels
             _unityContainer.RegisterType<PlansViewModel>();
             _unityContainer.RegisterType<NewPlanStep1ViewModel>();
-            _unityContainer.RegisterType<NewPlanStep2ViewModel>();
-            _unityContainer.RegisterType<NewPlanStep3ViewModel>();
-            _unityContainer.RegisterType<NewPlanStep4ViewModel>();
-            _unityContainer.RegisterType<NewPlanStep5ViewModel>();
             _unityContainer.RegisterType<MainViewModel>();
 
             //Services

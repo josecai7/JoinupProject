@@ -34,7 +34,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return new ObservableCollection<Plan>( filteredList.OrderBy( x => x.PlanDate ) );
+                return new ObservableCollection<Plan>( filteredList.Where(x=>x.PlanDate>DateTime.Now).OrderBy( x => x.PlanDate ) );
             }
             set
             {
