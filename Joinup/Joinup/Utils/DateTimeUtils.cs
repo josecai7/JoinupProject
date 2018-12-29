@@ -28,5 +28,14 @@ namespace Joinup.Utils
                 return dt.ToString("HH:mm");
             }
         }
+        public static DateTime GetLastWeekDay()
+        {
+            DateTime date = DateTime.Now;
+            while (date.DayOfWeek != DayOfWeek.Sunday)
+            {
+                date = date.AddDays(1);
+            }
+            return date;
+        }
     }
 }

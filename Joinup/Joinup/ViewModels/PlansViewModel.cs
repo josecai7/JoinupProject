@@ -2,6 +2,7 @@
 using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
+using Joinup.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,14 @@ namespace Joinup.ViewModels
         private bool isRefreshing;
         private bool isFilterNearActive;
         private bool isFilterTodayActive;
+        private bool isFilterWeekActive;
         private bool isFilterLanguageActive;
         private bool isFilterSportActive;
+        private bool isFilterFoodActive;
+        private bool isFilterSpectaclesActive;
+        private bool isFilterTravelActive;
+        private bool isFilterShoppingActive;
+        private bool isFilterPartyActive;
         #endregion
 
         #region Properties
@@ -78,7 +85,28 @@ namespace Joinup.ViewModels
             set
             {
                 isFilterTodayActive = value;
+                if (isFilterTodayActive)
+                {
+                    IsFilterWeekActive = false;
+                }
                 RaisePropertyChanged("IsFilterTodayActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterWeekActive
+        {
+            get
+            {
+                return isFilterWeekActive;
+            }
+            set
+            {
+                isFilterWeekActive = value;
+                if (isFilterWeekActive)
+                {
+                    IsFilterTodayActive = false;
+                }
+                RaisePropertyChanged("IsFilterWeekActive");
                 ApplyFilters();
             }
         }
@@ -105,6 +133,71 @@ namespace Joinup.ViewModels
             {
                 isFilterSportActive = value;
                 RaisePropertyChanged("IsFilterSportActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterFoodActive
+        {
+            get
+            {
+                return isFilterFoodActive;
+            }
+            set
+            {
+                isFilterFoodActive = value;
+                RaisePropertyChanged("IsFilterFoodActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterSpectaclesActive
+        {
+            get
+            {
+                return isFilterSpectaclesActive;
+            }
+            set
+            {
+                isFilterSpectaclesActive = value;
+                RaisePropertyChanged("IsFilterSpectaclesActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterTravelActive
+        {
+            get
+            {
+                return isFilterTravelActive;
+            }
+            set
+            {
+                isFilterTravelActive = value;
+                RaisePropertyChanged("IsFilterTravelActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterShoppingActive
+        {
+            get
+            {
+                return isFilterShoppingActive;
+            }
+            set
+            {
+                isFilterShoppingActive = value;
+                RaisePropertyChanged("IsFilterShoppingActive");
+                ApplyFilters();
+            }
+        }
+        public bool IsFilterPartyActive
+        {
+            get
+            {
+                return isFilterPartyActive;
+            }
+            set
+            {
+                isFilterPartyActive = value;
+                RaisePropertyChanged("IsFilterPartyActive");
                 ApplyFilters();
             }
         }
@@ -233,9 +326,10 @@ namespace Joinup.ViewModels
 
             foreach (Plan plan in planList)
             {
+                bool included = true;
                 if (!plan.Name.ToLower().Contains(SearchText.ToLower()) && !string.IsNullOrEmpty(searchText))
                 {
-                    break;
+                    included = false;
                 }
                 List<int> types = new List<int>();
                 if (IsFilterLanguageActive)
@@ -246,23 +340,49 @@ namespace Joinup.ViewModels
                 {
                     types.Add(PLANTYPE.SPORT);
                 }
+                if (IsFilterFoodActive)
+                {
+                    types.Add(PLANTYPE.FOODANDDRINK);
+                }
+                if (IsFilterPartyActive)
+                {
+                    types.Add(PLANTYPE.PARTY);
+                }
+                if (IsFilterShoppingActive)
+                {
+                    types.Add(PLANTYPE.SHOPPING);
+                }
+                if (IsFilterSpectaclesActive)
+                {
+                    types.Add(PLANTYPE.SPECTACLES);
+                }
+                if (IsFilterTravelActive)
+                {
+                    types.Add(PLANTYPE.TRAVEL);
+                }
 
                 if (types.Count>0 && !types.Contains(plan.PlanType))
                 {
-                    break;
+                    included = false;
                 }
 
                 if (IsFilterTodayActive && plan.PlanDate.Date != DateTime.Now.Date)
                 {
-                    break;
+                    included = false;
                 }
 
-                if(IsFilterNearActive && DistanceHelper.GetInstance().GetDistance(plan.Longitude, plan.Latitude).Result>15)
+                if (IsFilterWeekActive && plan.PlanDate.Date > DateTimeUtils.GetLastWeekDay())
                 {
-                    break;
+                    included = false;
                 }
 
-                filteredList.Add(plan);
+                if (IsFilterNearActive && DistanceHelper.GetInstance().GetDistance(plan.Longitude, plan.Latitude).Result>15)
+                {
+                    included = false;
+                }
+
+                if(included)
+                    filteredList.Add(plan);
             }
 
           

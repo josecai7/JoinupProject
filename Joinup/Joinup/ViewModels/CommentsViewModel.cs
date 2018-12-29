@@ -128,8 +128,12 @@ namespace Joinup.ViewModels
                     return;
                 }
 
+                sendComment = (Comment)response.Result;
+                sendComment.LoggedUserId = LoggedUser.Id;
+                comments.Add(sendComment);
+                RaisePropertyChanged("Comments");
+
                 CommentText = String.Empty;
-                LoadComments();
             }
         }
 

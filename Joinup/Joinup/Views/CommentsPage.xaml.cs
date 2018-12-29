@@ -16,6 +16,6 @@ namespace Joinup.Views
 		public CommentsPage ()
 		{
             InitializeComponent ();
-		}
+        }
 	}
 }

@@ -16,13 +16,14 @@
             <StackLayout
                     Grid.Row="0">
                 <Label
+                    
                     Text="{Binding Plan.Name}"
                     HorizontalTextAlignment="Center"
                     Margin="16,16,16,0"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource TertiaryTextColor}"/>
                 <controls:CustomListView
-                    
+                    x:Name="commentList"
                         HasUnevenRows="True"
                         ItemsSource="{Binding Comments}"
                         IsRefreshing="{Binding IsRefreshing}"

@@ -85,6 +85,13 @@
                         <controls:SwitchButton
                             Margin="4,0,0,0"
                             WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Esta semana"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterWeekActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
                             TitleText="Idiomas"
                             SelectedColor="{StaticResource WhiteColor}"
                             UnSelectedColor="{StaticResource SelectableBackgroundColor}"
@@ -96,6 +103,41 @@
                             SelectedColor="{StaticResource WhiteColor}"
                             UnSelectedColor="{StaticResource SelectableBackgroundColor}"
                             Selected="{Binding IsFilterSportActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Comidas"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterFoodActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Espectaculos"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterSpectaclesActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Viajes"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterTravelActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Compras"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterShoppingActive}"/>
+                        <controls:SwitchButton
+                            Margin="4,0,0,0"
+                            WidthRequest="{Binding ThirdScreenSize}"
+                            TitleText="Fiestas"
+                            SelectedColor="{StaticResource WhiteColor}"
+                            UnSelectedColor="{StaticResource SelectableBackgroundColor}"
+                            Selected="{Binding IsFilterPartyActive}"/>
 
                     </FlexLayout>
                 </ScrollView>
