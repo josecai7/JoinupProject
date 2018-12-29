@@ -42,13 +42,12 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "FilteredPlanList" );
             }
         }
-
-        
+     
         public string SearchText
         {
             get
             {
-                return searchText;
+                return string.IsNullOrEmpty(searchText)?string.Empty:searchText;
             }
             set
             {
@@ -57,7 +56,6 @@ namespace Joinup.ViewModels
                 ApplyFilters();
             }
         }
-
         public bool IsFilterNearActive
         {
             get
@@ -110,7 +108,6 @@ namespace Joinup.ViewModels
                 ApplyFilters();
             }
         }
-
         public bool IsRefreshing
         {
             get
@@ -198,34 +195,31 @@ namespace Joinup.ViewModels
 
             }
         }
+
         private async void LoadPlans()
         {
             IsRefreshing = true;
 
             var connection = await ApiService.GetInstance().CheckConnection();
-            if ( connection.IsSuccess )
+            if (connection.IsSuccess)
             {
-                var url = Application.Current.Resources["UrlAPI"].ToString();
-                var prefix = Application.Current.Resources["UrlPrefix"].ToString();
-                var controller = Application.Current.Resources["UrlPlansController"].ToString();
+                var response = await DataService.GetInstance().GetPlans();
 
-                var response = await ApiService.GetInstance().GetList<Plan>( url, prefix, controller, Settings.TokenType, Settings.AccessToken);
-
-                if ( !response.IsSuccess )
+                if (!response.IsSuccess)
                 {
-                    await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
+                    await Application.Current.MainPage.DisplayAlert("Error", "Aceptar", "Cancelar");
                     IsRefreshing = false;
                     return;
                 }
 
-                List<Plan> list = (List<Plan>) response.Result;
+                List<Plan> list = (List<Plan>)response.Result;
                 list = list.Where(item => item.PlanDate >= DateTime.Now).ToList();
                 FilteredPlanList = new ObservableCollection<Plan>(list);
                 planList = new ObservableCollection<Plan>(list);
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert( "Revisa tu conexión a internet", "Aceptar", "Cancelar" );
+                await Application.Current.MainPage.DisplayAlert("Revisa tu conexión a internet", "Aceptar", "Cancelar");
                 IsRefreshing = false;
                 return;
             }
@@ -236,28 +230,42 @@ namespace Joinup.ViewModels
         private void ApplyFilters()
         {
             List<Plan> filteredList = new List<Plan>();
-            if ( !string.IsNullOrEmpty( searchText ) )
+
+            foreach (Plan plan in planList)
             {
-                filteredList.AddRange(planList.Where(item=>item.Name.ToLower().Contains(searchText.ToLower())));
+                if (!plan.Name.ToLower().Contains(SearchText.ToLower()) && !string.IsNullOrEmpty(searchText))
+                {
+                    break;
+                }
+                List<int> types = new List<int>();
+                if (IsFilterLanguageActive)
+                {
+                    types.Add(PLANTYPE.LANGUAGE);
+                }
+                if (IsFilterSportActive)
+                {
+                    types.Add(PLANTYPE.SPORT);
+                }
+
+                if (types.Count>0 && !types.Contains(plan.PlanType))
+                {
+                    break;
+                }
+
+                if (IsFilterTodayActive && plan.PlanDate.Date != DateTime.Now.Date)
+                {
+                    break;
+                }
+
+                if(IsFilterNearActive && DistanceHelper.GetInstance().GetDistance(plan.Longitude, plan.Latitude).Result>15)
+                {
+                    break;
+                }
+
+                filteredList.Add(plan);
             }
 
-            if (IsFilterNearActive)
-            {
-
-            }
-            if (IsFilterLanguageActive)
-            {
-
-            }
-            if (IsFilterSportActive)
-            {
-
-            }
-            if (IsFilterTodayActive)
-            {
-
-            }
-
+          
             FilteredPlanList = new ObservableCollection<Plan>( filteredList );
         }
         #endregion

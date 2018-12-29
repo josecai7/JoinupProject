@@ -30,19 +30,6 @@ namespace Joinup.ViewModels
             }
         }
 
-        private static ObservableCollection<Plan> plans;
-        public ObservableCollection<Plan> Plans
-        {
-            get
-            {
-                return plans;
-            }
-            set
-            {
-                plans = value;
-            }
-        }
-
         public BaseViewModel()
         {
             NavigationService = ViewModelLocator.Instance.Resolve<INavigationService>();

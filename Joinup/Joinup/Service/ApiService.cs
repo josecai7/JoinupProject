@@ -141,6 +141,7 @@ namespace Joinup.Service
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    Console.WriteLine(answer);
                     return new Response
                     {
                         IsSuccess = false,
@@ -158,11 +159,12 @@ namespace Joinup.Service
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return new Response
                 {
                     IsSuccess = false,
                     Message = ex.Message,
-                };
+                };               
             }
         }
         public async Task<Response> Post<T>(string urlBase, string prefix, string controller, T model)

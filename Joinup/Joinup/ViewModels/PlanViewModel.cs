@@ -114,6 +114,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged( "IsHost" );
                 RaisePropertyChanged( "IsNotHost" );
+                RaisePropertyChanged("IsPlanAvaliable");
             }
 
             return base.InitializeAsync(navigationData);
