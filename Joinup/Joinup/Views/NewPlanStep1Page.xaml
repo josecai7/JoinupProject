@@ -234,8 +234,30 @@
                         Value="5"/>
                 </Frame>
 
+                <Label
+                    IsVisible="{Binding IsFoodInfoVisible}"
+                    Margin="16,8,16,0"
+                    Text="Tipo de comida"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Frame
+                        IsVisible="{Binding IsFoodInfoVisible}"
+                        Padding="8"
+                        CornerRadius="4"
+                        Margin="16,4,16,0"
+                        HasShadow="False"
+                        BorderColor="{StaticResource TertiaryTextColor}">
+                        <controls:BorderLessPicker                           
+                            Title="Tipo de comida"
+                            ItemsSource="{Binding FoodTypes}"
+                            SelectedItem="{Binding SelectedFoodType}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                </Frame>
+
                 <Grid
-                  Margin="16,8,16,0">
+                    Margin="16,8,16,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="16" />

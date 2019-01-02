@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using GalaSoft.MvvmLight.Command;
 using GooglePlaces.Xamarin;
+using Joinup.Common.Models.SelectablesModels;
 using Joinup.Common.Models;
 using Joinup.Helpers;
 using Joinup.Service;
@@ -30,6 +31,8 @@ namespace Joinup.ViewModels
         List<Prediction> predictions = new List<Prediction>();
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         private Category selectedCategory;
+        private bool isFoodInfoVisible;
+        private Category selectedFoodType;
         private ImageSource image1;
         private byte[] image1bytes;
         private ImageSource image2;
@@ -61,6 +64,7 @@ namespace Joinup.ViewModels
             {
                 selectedCategory = value;
                 plan.PlanType = selectedCategory.Id;
+                HiddePanels();
                 RaisePropertyChanged("SelectedCategory");
             }
         }
@@ -68,49 +72,40 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return GetCategories();
+                return PLANTYPE.GetAllPlanTypes();
             }
         }
-        private List<Category> GetCategories()
+        public bool IsFoodInfoVisible
         {
-            List<Category> categories = new List<Category>();
-            categories.Add(new Category()
+            get
             {
-                Id = PLANTYPE.FOODANDDRINK,
-                Name = "Comida y bebida"
-            });
-            categories.Add(new Category()
+                return isFoodInfoVisible;
+            }
+            set
             {
-                Id = PLANTYPE.SPECTACLES,
-                Name = "Conciertos y espectaculos"
-            });
-            categories.Add(new Category()
+                isFoodInfoVisible = value;
+                RaisePropertyChanged("IsFoodInfoVisible");
+            }
+        }
+        public Category SelectedFoodType
+        {
+            get
             {
-                Id = PLANTYPE.SPORT,
-                Name = "Deportes"
-            });
-            categories.Add(new Category()
+                return selectedFoodType;
+            }
+            set
             {
-                Id = PLANTYPE.LANGUAGE,
-                Name = "Intercambio de idiomas"
-            });
-            categories.Add(new Category()
+                selectedFoodType = value;
+                //plan.PlanType = selectedCategory.Id;
+                RaisePropertyChanged("SelectedFoodType");
+            }
+        }
+        public List<Category> FoodTypes
+        {
+            get
             {
-                Id = PLANTYPE.TRAVEL,
-                Name = "Viajes"
-            });
-            categories.Add(new Category()
-            {
-                Id = PLANTYPE.SHOPPING,
-                Name = "Ir de compras"
-            });
-            categories.Add(new Category()
-            {
-                Id = PLANTYPE.OTHER,
-                Name = "Otros"
-            });
-
-            return categories;
+                return FOODTYPE.GetAllFoodTypes();
+            }
         }
         public string Name
         {
@@ -314,7 +309,17 @@ namespace Joinup.ViewModels
 
         #endregion
         #region Methods
+        private void HiddePanels()
+        {
+            IsFoodInfoVisible = false;
+            switch (plan.PlanType)
+            {
+                case PLANTYPE.FOODANDDRINK:
+                    IsFoodInfoVisible = true;
+                    break;
 
+            }
+        }
         private async void LoadPredictions(string pLocationText)
         {
             PlacesAutocomplete places = new PlacesAutocomplete("AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg");

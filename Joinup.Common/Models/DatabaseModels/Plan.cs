@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Joinup.Common.Helpers;
+using Joinup.Common.Models.SelectablesModels;
 
 namespace Joinup.Common.Models
 {
