@@ -36,12 +36,11 @@ namespace Joinup.Common.Models
         [DataType(DataType.Date)]
         public DateTime EndPlanDate { get; set; }
 
-        public string Link { get; set; }
-
         #region Specific atributes
         public int FoodType { get; set; }
         public int Sport { get; set; }
         public int RecommendedLevel { get; set; }
+        public string Link { get; set; }
         public int Language1 { get; set; }
         public int Language2 { get; set; }
         public string DestinationAddress { get; set; }

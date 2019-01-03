@@ -77,6 +77,13 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("IsRunning");
             }
         }
+        public DateTime MinimumDate
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+        }
 
         public Category SelectedCategory
         {
@@ -415,6 +422,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Image3");
             }
         }
+
         public string LocationText
         {
             get
@@ -428,7 +436,33 @@ namespace Joinup.ViewModels
                 LoadPredictions( locationText );
                 RaisePropertyChanged( "LocationText" );
             }
+        }    
+        public Prediction SelectedLocation
+        {
+            get
+            {
+                return selectedLocation;
+            }
+            set
+            {
+                selectedLocation = value;
+                SelectLocation();
+                RaisePropertyChanged( "SelectedLocation" );
+            }
         }
+        public List<Prediction> Predictions
+        {
+            get
+            {
+                return predictions;
+            }
+            set
+            {
+                predictions = value;
+                RaisePropertyChanged( "Predictions" );
+            }
+        }
+
         public string DestinationText
         {
             get
@@ -443,19 +477,6 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "DestinationText" );
             }
         }
-        public Prediction SelectedLocation
-        {
-            get
-            {
-                return selectedLocation;
-            }
-            set
-            {
-                selectedLocation = value;
-                SelectLocation();
-                RaisePropertyChanged( "SelectedLocation" );
-            }
-        }
         public Prediction SelectedDestination
         {
             get
@@ -468,19 +489,7 @@ namespace Joinup.ViewModels
                 SelectDestination();
                 RaisePropertyChanged( "SelectedDestination" );
             }
-        }
-        public List<Prediction> Predictions
-        {
-            get
-            {
-                return predictions;
-            }
-            set
-            {
-                predictions = value;
-                RaisePropertyChanged("Predictions");
-            }
-        }
+        }   
         public List<Prediction> DestinationPredictions
         {
             get
@@ -493,6 +502,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "DestinationPredictions" );
             }
         }
+
         public ObservableCollection<Plan> Pins
         {
             get { return pins; }
@@ -661,11 +671,22 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes establecer una fecha de inicio para tu plan", "add.png", ColorUtils.ErrorColor);
                 return;
             }
+            if (PlanDate < DateTime.Now)
+            {
+                ToastNotificationUtils.ShowToastNotifications( "Ups...Debes establecer una fecha de inicio mayor que la fecha actual", "add.png", ColorUtils.ErrorColor );
+                return;
+            }
             if (EndPlanDate == DateTime.MinValue)
             {
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes establecer una fecha de fin para tu plan", "add.png", ColorUtils.ErrorColor);
                 return;
             }
+            if (PlanDate>EndPlanDate)
+            {
+                ToastNotificationUtils.ShowToastNotifications( "Ups...La fecha de finalización del plan no puede ser mayor a la fecha inicial", "add.png", ColorUtils.ErrorColor );
+                return;
+            }
+
             SavePlan();
             plan.UserId = LoggedUser.Id;
         }
