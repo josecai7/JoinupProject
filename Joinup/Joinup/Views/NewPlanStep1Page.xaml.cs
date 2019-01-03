@@ -21,6 +21,7 @@ namespace Joinup.Views
             ((NavigationPage) Application.Current.MainPage).BarBackgroundColor = ColorUtils.PrimaryColor;
 
             autocomplete.Filter = AutoCompleteSearch;
+            autocompleteDestination.Filter = AutoCompleteSearch;
         }
 
         private bool AutoCompleteSearch(string str1, object str2)

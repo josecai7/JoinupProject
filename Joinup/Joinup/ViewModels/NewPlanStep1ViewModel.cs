@@ -26,18 +26,36 @@ namespace Joinup.ViewModels
         #region Attributes
         private bool isRunning;
         private Plan plan;
+
         string locationText;
+        string destinationText;
         Prediction selectedLocation;
+        Prediction selectedDestination;
         List<Prediction> predictions = new List<Prediction>();
+        List<Prediction> destinationPredictions = new List<Prediction>();
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
+
         private Category selectedCategory;
+
         private bool hasLink;
         private string linkShowedText;
+
+        private bool hasLevel;
+        private string levelShowedText;
+        private Category selectedRecommendedLevel;
+
         private bool isFoodInfoVisible;
         private Category selectedFoodType;
+
         private bool isSportInfoVisible;
         private Category selectedSport;
-        private Category selectedRecommendedLevel;
+
+        private bool isLanguageInfoVisible;
+        private Category selectedLanguage1;
+        private Category selectedLanguage2;
+
+        private bool isTravelInfoVisible;
+
         private ImageSource image1;
         private byte[] image1bytes;
         private ImageSource image2;
@@ -59,6 +77,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("IsRunning");
             }
         }
+
         public Category SelectedCategory
         {
             get
@@ -80,6 +99,7 @@ namespace Joinup.ViewModels
                 return PLANTYPE.GetAllPlanTypes();
             }
         }
+
         public bool IsFoodInfoVisible
         {
             get
@@ -112,6 +132,7 @@ namespace Joinup.ViewModels
                 return FOODTYPE.GetAllFoodTypes();
             }
         }
+
         public bool HasLink
         {
             get
@@ -148,16 +169,29 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "Link" );
             }
         }
-        public bool IsSportInfoVisible
+
+        public bool HasLevel
         {
             get
             {
-                return isSportInfoVisible;
+                return hasLevel;
             }
             set
             {
-                isSportInfoVisible = value;
-                RaisePropertyChanged( "IsSportInfoVisible" );
+                hasLevel = value;
+                RaisePropertyChanged( "HasLevel" );
+            }
+        }
+        public string LevelShowedText
+        {
+            get
+            {
+                return levelShowedText;
+            }
+            set
+            {
+                levelShowedText = value;
+                RaisePropertyChanged( "LevelShowedText" );
             }
         }
         public Category SelectedRecommendedLevel
@@ -180,6 +214,19 @@ namespace Joinup.ViewModels
                 return SKILLLEVEL.GetAllSkillLevel();
             }
         }
+
+        public bool IsSportInfoVisible
+        {
+            get
+            {
+                return isSportInfoVisible;
+            }
+            set
+            {
+                isSportInfoVisible = value;
+                RaisePropertyChanged( "IsSportInfoVisible" );
+            }
+        }
         public Category SelectedSport
         {
             get
@@ -200,6 +247,66 @@ namespace Joinup.ViewModels
                 return SPORT.GetAllSports();
             }
         }
+
+        public bool IsLanguageInfoVisible
+        {
+            get
+            {
+                return isLanguageInfoVisible;
+            }
+            set
+            {
+                isLanguageInfoVisible = value;
+                RaisePropertyChanged( "IsLanguageInfoVisible" );
+            }
+        }
+        public Category SelectedLanguage1
+        {
+            get
+            {
+                return selectedLanguage1;
+            }
+            set
+            {
+                selectedLanguage1 = value;
+                plan.Language1 = selectedLanguage1.Id;
+                RaisePropertyChanged( "SelectedLanguage1" );
+            }
+        }
+        public Category SelectedLanguage2
+        {
+            get
+            {
+                return selectedLanguage2;
+            }
+            set
+            {
+                selectedLanguage2 = value;
+                plan.Language2 = selectedLanguage2.Id;
+                RaisePropertyChanged( "SelectedLanguage2" );
+            }
+        }
+        public List<Category> Languages
+        {
+            get
+            {
+                return LANGUAGE.GetAllLanguages();
+            }
+        }
+
+        public bool IsTravelInfoVisible
+        {
+            get
+            {
+                return isTravelInfoVisible;
+            }
+            set
+            {
+                isTravelInfoVisible = value;
+                RaisePropertyChanged( "IsTravelInfoVisible" );
+            }
+        }
+
         public string Name
         {
             get
@@ -272,33 +379,6 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("EndPlanTime");
             }
         }
-        public string LocationText
-        {
-            get
-            {
-                return locationText;
-            }
-            set
-            {
-                locationText = value;
-                Pins = new ObservableCollection<Plan>();
-                LoadPredictions(locationText);
-                RaisePropertyChanged("LocationText");
-            }
-        }
-        public Prediction SelectedLocation
-        {
-            get
-            {
-                return selectedLocation;
-            }
-            set
-            {
-                selectedLocation = value;
-                SelectLocation();
-                RaisePropertyChanged("SelectedLocation");
-            }
-        }
         public ImageSource Image1
         {
             get
@@ -335,6 +415,60 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Image3");
             }
         }
+        public string LocationText
+        {
+            get
+            {
+                return locationText;
+            }
+            set
+            {
+                locationText = value;
+                Pins = new ObservableCollection<Plan>();
+                LoadPredictions( locationText );
+                RaisePropertyChanged( "LocationText" );
+            }
+        }
+        public string DestinationText
+        {
+            get
+            {
+                return destinationText;
+            }
+            set
+            {
+                destinationText = value;
+                Pins = new ObservableCollection<Plan>();
+                LoadDestinationPredictions( destinationText );
+                RaisePropertyChanged( "DestinationText" );
+            }
+        }
+        public Prediction SelectedLocation
+        {
+            get
+            {
+                return selectedLocation;
+            }
+            set
+            {
+                selectedLocation = value;
+                SelectLocation();
+                RaisePropertyChanged( "SelectedLocation" );
+            }
+        }
+        public Prediction SelectedDestination
+        {
+            get
+            {
+                return selectedDestination;
+            }
+            set
+            {
+                selectedDestination = value;
+                SelectDestination();
+                RaisePropertyChanged( "SelectedDestination" );
+            }
+        }
         public List<Prediction> Predictions
         {
             get
@@ -345,6 +479,18 @@ namespace Joinup.ViewModels
             {
                 predictions = value;
                 RaisePropertyChanged("Predictions");
+            }
+        }
+        public List<Prediction> DestinationPredictions
+        {
+            get
+            {
+                return destinationPredictions;
+            }
+            set
+            {
+                destinationPredictions = value;
+                RaisePropertyChanged( "DestinationPredictions" );
             }
         }
         public ObservableCollection<Plan> Pins
@@ -404,7 +550,7 @@ namespace Joinup.ViewModels
         #region Methods
         private void HiddePanels()
         {
-            IsSportInfoVisible = IsFoodInfoVisible = HasLink= false;
+            IsSportInfoVisible = IsFoodInfoVisible = HasLink= HasLevel=false;
             switch (plan.PlanType)
             {
                 case PLANTYPE.FOODANDDRINK:
@@ -416,9 +562,16 @@ namespace Joinup.ViewModels
                     LinkShowedText = "Puedes incluir un link de información sobre el espectaculo.";
                     break;
                 case PLANTYPE.SPORT:
-                    IsSportInfoVisible = true;
+                    LevelShowedText = "Nivel en el deporte";
+                    HasLevel=IsSportInfoVisible = true;
                     break;
-
+                case PLANTYPE.LANGUAGE:
+                    LevelShowedText = "Nivel en el idioma";
+                    HasLevel =IsLanguageInfoVisible = true;
+                    break;
+                case PLANTYPE.TRAVEL:
+                    IsTravelInfoVisible = true;
+                    break;
             }
         }
         private async void LoadPredictions(string pLocationText)
@@ -426,6 +579,12 @@ namespace Joinup.ViewModels
             PlacesAutocomplete places = new PlacesAutocomplete("AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg");
             Predictions predictions = await places.GetAutocomplete(pLocationText);
             Predictions = predictions.predictions;
+        }
+        private async void LoadDestinationPredictions(string pLocationText)
+        {
+            PlacesAutocomplete places = new PlacesAutocomplete( "AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg" );
+            Predictions predictions = await places.GetAutocomplete( pLocationText );
+            DestinationPredictions = predictions.predictions;
         }
         private async void SelectLocation()
         {
@@ -447,6 +606,30 @@ namespace Joinup.ViewModels
                 plan.Address = null;
                 plan.Latitude = Double.NaN;
                 plan.Longitude = Double.NaN;
+
+                Pins = new ObservableCollection<Plan>();
+            }
+        }
+        private async void SelectDestination()
+        {
+            if (SelectedDestination != null)
+            {
+                PlacesGeocode placesGeocode = new PlacesGeocode( "AIzaSyCFG2-DEKK7EnqzH_tiiKItD_CpaJYGCUg" );
+                Geocode geocode = await placesGeocode.GetGeocode( SelectedDestination.Description );
+
+                plan.DestinationLatitude = geocode.results.FirstOrDefault().geometry.location.lat;
+                plan.DestinationLongitude = geocode.results.FirstOrDefault().geometry.location.lng;
+                plan.DestinationAddress = geocode.results.FirstOrDefault().formatted_address;
+
+
+                Pins = new ObservableCollection<Plan>();
+                Pins.Add( plan );
+            }
+            else
+            {
+                plan.DestinationAddress = null;
+                plan.DestinationLatitude = Double.NaN;
+                plan.DestinationLongitude = Double.NaN;
 
                 Pins = new ObservableCollection<Plan>();
             }

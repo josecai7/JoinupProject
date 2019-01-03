@@ -20,13 +20,13 @@
 
     <ContentPage.Content>
         <Grid>
-            
 
-        <ScrollView
+
+            <ScrollView
             Margin="0,70,0,16">
                 <StackLayout
                 Orientation="Vertical">
-                <FlexLayout
+                    <FlexLayout
                     JustifyContent="SpaceAround"
                      Margin="16,0,16,0">
                         <controls:ImagePicker
@@ -48,57 +48,57 @@
                             </controls:ImagePicker.GestureRecognizers>
                         </controls:ImagePicker>
                     </FlexLayout>
-                <Label
+                    <Label
                     Margin="16,8,16,0"
                     Text="Categoría"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
+                    <Frame
                     Padding="8"
                     CornerRadius="4"
                     Margin="16,4,16,0"
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}">
-                    <controls:BorderLessPicker
+                        <controls:BorderLessPicker
                         Title="Tipo de plan"
                         ItemsSource="{Binding Categories}"
                         SelectedItem="{Binding SelectedCategory}"
                         ItemDisplayBinding="{Binding Name}"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource TertiaryTextColor}"/>
-                </Frame>
+                    </Frame>
 
-                <Label
+                    <Label
                     Margin="16,8,16,0"
                     Text="Título del plan"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
+                    <Frame
                     Padding="8"
                     CornerRadius="4"
                     Margin="16,4,16,0"
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}">
-                    <controls:BorderLessEditor
+                        <controls:BorderLessEditor
                         Text="{Binding Name}"
                         Placeholder="Pon un título claro, corto y descriptivo"
                         MaxLength="40"
                         AutoSize="TextChanges"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource TertiaryTextColor}"/>
-                </Frame>
-                <Label
+                    </Frame>
+                    <Label
                     Margin="16,8,16,0"
                     Text="Descripción del plan"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
+                    <Frame
                     Padding="8"
                     CornerRadius="4"
                     Margin="16,4,16,0"
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}">
-                    <controls:BorderLessEditor
+                        <controls:BorderLessEditor
                         Text="{Binding Description}"
                         Placeholder="Decribe en detalle tu plan. Cuanta mas información proporciones, mejor."
                         MaxLength="200"
@@ -106,88 +106,88 @@
                         AutoSize="TextChanges"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource TertiaryTextColor}"/>
-                </Frame>
-                <Label
+                    </Frame>
+                    <Label
                     Margin="16,8,16,0"
                     Text="Inicio del plan"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <StackLayout
+                    <StackLayout
                     Orientation="Horizontal"
                     Margin="16,4,16,0">
-                    <Frame
+                        <Frame
                         Padding="8"
                         CornerRadius="4"
                         HasShadow="False"
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
-                        <controls:BorderLessDatePicker
+                            <controls:BorderLessDatePicker
                             Date="{Binding PlanDate}"
                             Format="D"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                    </Frame>
-                    <Frame
+                        </Frame>
+                        <Frame
                         Padding="8"
                         CornerRadius="4"
                         HasShadow="False"
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
-                        <controls:BorderLessTimePicker
+                            <controls:BorderLessTimePicker
                             Format="HH:mm"
                             Time="{Binding PlanTime}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                    </Frame>
-                </StackLayout>
-                <Label
+                        </Frame>
+                    </StackLayout>
+                    <Label
                     Margin="16,8,16,0"
                     Text="Fin del plan"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <StackLayout
+                    <StackLayout
                     Orientation="Horizontal"
                     Margin="16,4,16,0">
-                    <Frame
+                        <Frame
                         Padding="8"
                         CornerRadius="4"
                         HasShadow="False"
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
-                        <controls:BorderLessDatePicker
+                            <controls:BorderLessDatePicker
                             Format="D"
                             Date="{Binding EndPlanDate}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                    </Frame>
-                    <Frame
+                        </Frame>
+                        <Frame
                         Padding="8"
                         CornerRadius="4"
                         HasShadow="False"
                         BorderColor="{StaticResource TertiaryTextColor}"
                         HorizontalOptions="FillAndExpand">
-                        <controls:BorderLessTimePicker
+                            <controls:BorderLessTimePicker
                             Time="{Binding EndPlanTime}"
                             Format="HH:mm"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                    </Frame>
-                </StackLayout>
+                        </Frame>
+                    </StackLayout>
 
-                <Label
+                    <Label
                     Margin="16,8,16,0"
                     Text="Localización"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
 
-                <Frame
+                    <Frame
                     Margin="16,4,16,0"   
                     Padding="0"
                     CornerRadius="4"
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}"
                     HorizontalOptions="FillAndExpand">
-                    <autocomplete:SfAutoComplete       
+                        <autocomplete:SfAutoComplete       
                         x:Name="autocomplete"
                         SuggestionMode="Custom"
                         MinimumPrefixCharacters="3"
@@ -204,37 +204,71 @@
                         DataSource="{Binding Predictions}"
                         SelectedItem="{Binding SelectedLocation}"
                         DisplayMemberPath="Description"/>
-                </Frame>
+                    </Frame>
 
-                <maps:Map
-                    Margin="16,4,16,0"
-                    x:Name="MyMap"
-                    HeightRequest="200">
-                    <maps:Map.Behaviors>
-                        <behaviors:MapBehavior 
-                            ItemsSource="{Binding Pins}" />
-                    </maps:Map.Behaviors>
-                </maps:Map>
-                <Label
+                    <Label
+                        IsVisible="{Binding IsTravelInfoVisible}"
                     Margin="16,8,16,0"
-                    Text="Maximo de asistentes"
+                    Text="Destino"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
+
+                    <Frame
+                        IsVisible="{Binding IsTravelInfoVisible}"
                     Margin="16,4,16,0"   
                     Padding="0"
                     CornerRadius="4"
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}"
                     HorizontalOptions="FillAndExpand">
-                    <numeric:SfNumericUpDown  
+                        <autocomplete:SfAutoComplete       
+                        x:Name="autocompleteDestination"
+                        SuggestionMode="Custom"
+                        MinimumPrefixCharacters="3"
+                        IgnoreDiacritic="True"
+                        NoResultsFoundText="No hay resultados"
+                        Watermark="Lugar donde se desarrollará el evento"
+                        WatermarkColor="{StaticResource TertiaryTextColor}"
+                        TextColor="{StaticResource TertiaryTextColor}"                  
+                        Text="{Binding DestinationText}"
+                        FontFamily="{StaticResource FontBold}"
+                        TextSize="16"
+                        ShowBorder="False"
+                        SuggestionBoxPlacement="Bottom"
+                        DataSource="{Binding DestinationPredictions}"
+                        SelectedItem="{Binding SelectedDestination}"
+                        DisplayMemberPath="Description"/>
+                    </Frame>
+
+                    <maps:Map
+                    Margin="16,4,16,0"
+                    x:Name="MyMap"
+                    HeightRequest="200">
+                        <maps:Map.Behaviors>
+                            <behaviors:MapBehavior 
+                            ItemsSource="{Binding Pins}" />
+                        </maps:Map.Behaviors>
+                    </maps:Map>
+                    <Label
+                    Margin="16,8,16,0"
+                    Text="Maximo de asistentes"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Frame
+                    Margin="16,4,16,0"   
+                    Padding="0"
+                    CornerRadius="4"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}"
+                    HorizontalOptions="FillAndExpand">
+                        <numeric:SfNumericUpDown  
                         Margin="16,4,16,0"                
                         BorderColor="White"
                         TextColor="{StaticResource TertiaryTextColor}" 
                         Value="5"/>
-                </Frame>
+                    </Frame>
 
-                <Label
+                    <Label
                     IsVisible="{Binding IsFoodInfoVisible}"
                     Margin="16,8,16,0"
                     Text="Tipo de comida"
@@ -254,14 +288,14 @@
                             ItemDisplayBinding="{Binding Name}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                </Frame>
-                <Label
+                    </Frame>
+                    <Label
                     IsVisible="{Binding HasLink}"
                     Margin="16,8,16,0"
                     Text="Link de interés"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
+                    <Frame
                     IsVisible="{Binding HasLink}"
                     Padding="8"
                     CornerRadius="4"
@@ -275,15 +309,15 @@
                             AutoSize="TextChanges"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource LinkColor}"/>
-                </Frame>
+                    </Frame>
 
-                <Label
+                    <Label
                     IsVisible="{Binding IsSportInfoVisible}"
                     Margin="16,8,16,0"
                     Text="Deporte"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
+                    <Frame
                     IsVisible="{Binding IsSportInfoVisible}"
                     Padding="8"
                     CornerRadius="4"
@@ -297,38 +331,95 @@
                             ItemDisplayBinding="{Binding Name}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                </Frame>
+                    </Frame>
 
                     <Label
-                    IsVisible="{Binding IsSportInfoVisible}"
+                    IsVisible="{Binding HasLevel}"
                     Margin="16,8,16,0"
                     Text="Nivel recomendado"
                     Style="{StaticResource SubtitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
-                <Frame
-                    IsVisible="{Binding IsSportInfoVisible}"
+                    <Frame
+                    IsVisible="{Binding HasLevel}"
                     Padding="8"
                     CornerRadius="4"
                     Margin="16,4,16,0"
                     HasShadow="False"
                     BorderColor="{StaticResource TertiaryTextColor}">
                         <controls:BorderLessPicker                           
-                            Title="Nivel recomendado para el deporte"
+                            Title="{Binding LevelShowedText}"
                             ItemsSource="{Binding SkillLevels}"
                             SelectedItem="{Binding SelectedRecommendedLevel}"
                             ItemDisplayBinding="{Binding Name}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
-                 </Frame>
+                    </Frame>
+
+                    <Label
+                    IsVisible="{Binding IsLanguageInfoVisible}"
+                    Margin="16,8,16,0"
+                    Text="Idiomas a intercambiar"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Grid
+                        IsVisible="{Binding IsLanguageInfoVisible}"
+                        Margin="16,4,16,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame
+                            Grid.Column="0"
+                            Padding="8"
+                            CornerRadius="4"
+                            Margin="0,4,0,0"
+                            HasShadow="False"
+                            BorderColor="{StaticResource TertiaryTextColor}">
+                            <controls:BorderLessPicker                           
+                            Title="Idioma 1"
+                            ItemsSource="{Binding Languages}"
+                            SelectedItem="{Binding SelectedLanguage1}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                        </Frame>
+
+                        <Label
+                            Grid.Column="1"
+                            VerticalOptions="Center"
+                            IsVisible="{Binding IsLanguageInfoVisible}"
+                            Margin="8,0,8,0"
+                            Text="-"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+
+                        <Frame
+                            Grid.Column="2"
+                            Padding="8"
+                            CornerRadius="4"
+                            Margin="0,4,0,0"
+                            HasShadow="False"
+                            BorderColor="{StaticResource TertiaryTextColor}">
+                            <controls:BorderLessPicker                           
+                            Title="Idioma 1"
+                            ItemsSource="{Binding Languages}"
+                            SelectedItem="{Binding SelectedLanguage2}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                        </Frame>
+                    </Grid>
 
                     <Grid
                     Margin="16,8,16,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="16" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="16" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
                         Grid.Column="0"
                         Command="{Binding CreatePlanCommand}"
                         BackgroundColor="{StaticResource PrimaryColor}"
@@ -337,7 +428,7 @@
                         Text="Crear plan"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"/>
-                    <Button
+                        <Button
                         Grid.Column="2"
                         Command="{Binding CreatePlanCommand}"
                         BackgroundColor="{StaticResource PrimaryColor}"
@@ -346,13 +437,13 @@
                         Text="Previsualizar"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"/>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
             <custom:CustomActivityIndicator
                 IsVisible="{Binding IsRunning}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"/>
         </Grid>
-</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using Joinup.Common.Models;
+using Joinup.Common.Models.SelectablesModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,17 +54,34 @@ namespace Joinup.Behaviors
                 _map.Pins.RemoveAt( i );
             }
 
-            var pins = ItemsSource.Select( x =>
+            var pins = new List<Pin>();
+
+            foreach (Plan plan in ItemsSource)
             {
-                var pin = new Pin
+                var originPin = new Pin
                 {
                     Type = PinType.SearchResult,
-                    Position = new Position(x.Latitude, x.Longitude),
-                    Label = x.Name == null ? "Nombre de plan por definir":x.Name,
+                    Position = new Position( plan.Latitude, plan.Longitude ),
+                    Label = plan.Name == null ? "Nombre de plan por definir" : plan.Name,
                 };
-
-                return pin;
-            } ).ToArray();
+                if (originPin.Position.Latitude != 0 && originPin.Position.Longitude != 0)
+                {
+                    pins.Add( originPin );
+                }
+                if (plan.PlanType == PLANTYPE.TRAVEL)
+                {
+                    var destinationPin = new Pin
+                    {
+                        Type = PinType.SearchResult,
+                        Position = new Position( plan.DestinationLatitude, plan.DestinationLongitude ),
+                        Label = plan.Name == null ? "Nombre de plan por definir" : plan.Name,
+                    };
+                    if (destinationPin.Position.Latitude != 0 && destinationPin.Position.Longitude != 0)
+                    {
+                        pins.Add( destinationPin );
+                    }
+                }
+            }
 
             foreach ( var pin in pins )
                 _map.Pins.Add( pin );
@@ -74,17 +92,43 @@ namespace Joinup.Behaviors
             if ( ItemsSource == null || !ItemsSource.Any() )
                 return;
 
-            var centerPosition = new Position( ItemsSource.Average( x => x.Latitude ), ItemsSource.Average( x => x.Longitude ) );
+            List<Position> positions = new List<Position>();
 
-            var distance = 0.2;
+            foreach (Pin pin in _map.Pins)
+            {
+                positions.Add( pin.Position );
+            }
 
-            _map.MoveToRegion( MapSpan.FromCenterAndRadius( centerPosition, Distance.FromMiles( distance ) ) );
+
+            MapSpan mapSpan = FromPositions( positions );
+
+            _map.MoveToRegion( mapSpan );
 
             Device.StartTimer( TimeSpan.FromMilliseconds( 500 ), () =>
             {
-                _map.MoveToRegion( MapSpan.FromCenterAndRadius( centerPosition, Distance.FromMiles( distance ) ) );
+                _map.MoveToRegion( mapSpan );
                 return false;
             } );
+        }
+        private static MapSpan FromPositions(IEnumerable<Position> positions)
+        {
+            double minLat = double.MaxValue;
+            double minLon = double.MaxValue;
+            double maxLat = double.MinValue;
+            double maxLon = double.MinValue;
+
+            foreach (var p in positions)
+            {
+                minLat = Math.Min( minLat, p.Latitude );
+                minLon = Math.Min( minLon, p.Longitude );
+                maxLat = Math.Max( maxLat, p.Latitude );
+                maxLon = Math.Max( maxLon, p.Longitude );
+            }
+
+            return new MapSpan(
+                new Position( (minLat + maxLat) / 2d, (minLon + maxLon) / 2d ),
+                (maxLat - minLat)+0.2,
+                (maxLon - minLon ) + 0.2 );
         }
     }
 }

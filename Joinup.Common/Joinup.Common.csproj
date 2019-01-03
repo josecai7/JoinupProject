@@ -59,6 +59,7 @@
     <Compile Include="Models\MyUserASP.cs" />
     <Compile Include="Models\DatabaseModels\Plan.cs" />
     <Compile Include="Models\SelectablesModels\FOODTYPE.cs" />
+    <Compile Include="Models\SelectablesModels\LANGUAGE.cs" />
     <Compile Include="Models\SelectablesModels\PLANTYPE.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SelectablesModels\SKILLLEVEL.cs" />
