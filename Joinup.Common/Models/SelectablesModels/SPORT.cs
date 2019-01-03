@@ -8,20 +8,23 @@ namespace Joinup.Common.Models.SelectablesModels
 {
     public class SPORT
     {
-        public const int FOOTBALL = 0;
-        public const int BASKETBALL = 1;
-        public const int TENIS = 2;
-        public const int PADEL = 3;
-        public const int HANDBALL = 4;
-        public const int RUNNING = 5;
-        public const int VOLEYBALL = 6;
-        public const int RUGBY = 7;
-        public const int OTHER = 8;
+        public const int UNDEFINED = 0;
+        public const int FOOTBALL = 1;
+        public const int INDOORFOOTBALL = 2;
+        public const int BASKETBALL = 3;
+        public const int TENIS = 4;
+        public const int PADEL = 5;
+        public const int HANDBALL = 6;
+        public const int RUNNING = 7;
+        public const int VOLEYBALL = 8;
+        public const int RUGBY = 9;
+        public const int OTHER = 10;
 
         public static List<Category> GetAllSports()
         {
             List<Category> foodTypes = new List<Category>();
             foodTypes.Add( new Category { Id = FOOTBALL, Name = "Fútbol" } );
+            foodTypes.Add( new Category { Id = INDOORFOOTBALL, Name = "Fútbol sala" } );
             foodTypes.Add( new Category { Id = BASKETBALL, Name = "Baloncesto" } );
             foodTypes.Add( new Category { Id = TENIS, Name = "Tenis" } );
             foodTypes.Add( new Category { Id = PADEL, Name = "Padel" } );

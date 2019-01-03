@@ -8,11 +8,12 @@ namespace Joinup.Common.Models.SelectablesModels
 {
     public class SKILLLEVEL
     {
-        public const int ANYONE = 0;
-        public const int LOW = 1;
-        public const int MEDIUM = 2;
-        public const int HIGH = 3;
-        public const int PROFESSIONAL = 4;
+        public const int UNDEFINED = 0;
+        public const int ANYONE = 1;
+        public const int LOW = 2;
+        public const int MEDIUM = 3;
+        public const int HIGH = 4;
+        public const int PROFESSIONAL = 5;
 
         public static List<Category> GetAllSkillLevel()
         {

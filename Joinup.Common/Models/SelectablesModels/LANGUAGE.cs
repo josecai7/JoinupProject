@@ -8,12 +8,13 @@ namespace Joinup.Common.Models.SelectablesModels
 {
     public class LANGUAGE
     {
-        public const int SPANISH = 0;
-        public const int ENGLISH = 1;
-        public const int FRENCH = 2;
-        public const int GERMAN = 3;
-        public const int PORTUGUESE = 4;
-        public const int CHINESE = 5;
+        public const int UNDEFINED = 0;
+        public const int SPANISH = 1;
+        public const int ENGLISH = 2;
+        public const int FRENCH = 3;
+        public const int GERMAN = 4;
+        public const int PORTUGUESE = 5;
+        public const int CHINESE = 6;
 
         public static List<Category> GetAllLanguages()
         {

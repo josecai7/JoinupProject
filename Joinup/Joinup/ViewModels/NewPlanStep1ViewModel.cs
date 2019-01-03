@@ -686,6 +686,16 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowToastNotifications( "Ups...La fecha de finalización del plan no puede ser mayor a la fecha inicial", "add.png", ColorUtils.ErrorColor );
                 return;
             }
+            if (plan.PlanType==PLANTYPE.LANGUAGE && (plan.Language1==LANGUAGE.UNDEFINED|| plan.Language2 == LANGUAGE.UNDEFINED))
+            {
+                ToastNotificationUtils.ShowToastNotifications( "Ups...Debes establecer los idiomas que se trabajaran en el intercambio", "add.png", ColorUtils.ErrorColor );
+                return;
+            }
+            if (plan.PlanType == PLANTYPE.SPORT && plan.Sport == SPORT.UNDEFINED)
+            {
+                ToastNotificationUtils.ShowToastNotifications( "Ups...Debes especificar el deporte que se practicará en tu plan", "add.png", ColorUtils.ErrorColor );
+                return;
+            }
 
             SavePlan();
             plan.UserId = LoggedUser.Id;
