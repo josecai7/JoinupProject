@@ -83,6 +83,7 @@
             <Color x:Key="ShadowColor">#E5E5E5</Color>
 
             <Color x:Key="ErrorColor">#FF5E5B</Color>
+            <Color x:Key="LinkColor">#404BCE</Color>
             
 
 

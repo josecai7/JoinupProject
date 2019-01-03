@@ -36,6 +36,14 @@ namespace Joinup.Common.Models
         [DataType(DataType.Date)]
         public DateTime EndPlanDate { get; set; }
 
+        public string Link { get; set; }
+
+        #region Specific atributes
+        public int FoodType { get; set; }
+        public int Sport { get; set; }
+        public int RecommendedLevel { get; set; }
+        #endregion
+
         [NotMapped]
         [JsonIgnore]
         public string DefaultImageFullPath

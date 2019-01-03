@@ -31,8 +31,13 @@ namespace Joinup.ViewModels
         List<Prediction> predictions = new List<Prediction>();
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         private Category selectedCategory;
+        private bool hasLink;
+        private string linkShowedText;
         private bool isFoodInfoVisible;
         private Category selectedFoodType;
+        private bool isSportInfoVisible;
+        private Category selectedSport;
+        private Category selectedRecommendedLevel;
         private ImageSource image1;
         private byte[] image1bytes;
         private ImageSource image2;
@@ -96,7 +101,7 @@ namespace Joinup.ViewModels
             set
             {
                 selectedFoodType = value;
-                //plan.PlanType = selectedCategory.Id;
+                plan.FoodType = selectedFoodType.Id;
                 RaisePropertyChanged("SelectedFoodType");
             }
         }
@@ -105,6 +110,94 @@ namespace Joinup.ViewModels
             get
             {
                 return FOODTYPE.GetAllFoodTypes();
+            }
+        }
+        public bool HasLink
+        {
+            get
+            {
+                return hasLink;
+            }
+            set
+            {
+                hasLink = value;
+                RaisePropertyChanged( "HasLink" );
+            }
+        }
+        public string LinkShowedText
+        {
+            get
+            {
+                return linkShowedText;
+            }
+            set
+            {
+                linkShowedText = value;
+                RaisePropertyChanged( "LinkShowedText" );
+            }
+        }
+        public string Link
+        {
+            get
+            {
+                return plan.Link;
+            }
+            set
+            {
+                plan.Link = value;
+                RaisePropertyChanged( "Link" );
+            }
+        }
+        public bool IsSportInfoVisible
+        {
+            get
+            {
+                return isSportInfoVisible;
+            }
+            set
+            {
+                isSportInfoVisible = value;
+                RaisePropertyChanged( "IsSportInfoVisible" );
+            }
+        }
+        public Category SelectedRecommendedLevel
+        {
+            get
+            {
+                return selectedRecommendedLevel;
+            }
+            set
+            {
+                selectedRecommendedLevel = value;
+                plan.RecommendedLevel = selectedRecommendedLevel.Id;
+                RaisePropertyChanged( "SelectedRecommendedLevel" );
+            }
+        }
+        public List<Category> SkillLevels
+        {
+            get
+            {
+                return SKILLLEVEL.GetAllSkillLevel();
+            }
+        }
+        public Category SelectedSport
+        {
+            get
+            {
+                return selectedSport;
+            }
+            set
+            {
+                selectedSport = value;
+                plan.Sport = selectedSport.Id;
+                RaisePropertyChanged( "SelectedSport" );
+            }
+        }
+        public List<Category> Sports
+        {
+            get
+            {
+                return SPORT.GetAllSports();
             }
         }
         public string Name
@@ -311,11 +404,19 @@ namespace Joinup.ViewModels
         #region Methods
         private void HiddePanels()
         {
-            IsFoodInfoVisible = false;
+            IsSportInfoVisible = IsFoodInfoVisible = HasLink= false;
             switch (plan.PlanType)
             {
                 case PLANTYPE.FOODANDDRINK:
-                    IsFoodInfoVisible = true;
+                    IsFoodInfoVisible = HasLink=true;
+                    LinkShowedText = "Puedes incluir un link a la web del restaurante.";
+                    break;
+                case PLANTYPE.SPECTACLES:
+                    HasLink = true;
+                    LinkShowedText = "Puedes incluir un link de información sobre el espectaculo.";
+                    break;
+                case PLANTYPE.SPORT:
+                    IsSportInfoVisible = true;
                     break;
 
             }

@@ -61,6 +61,8 @@
     <Compile Include="Models\SelectablesModels\FOODTYPE.cs" />
     <Compile Include="Models\SelectablesModels\PLANTYPE.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\SelectablesModels\SKILLLEVEL.cs" />
+    <Compile Include="Models\SelectablesModels\SPORT.cs" />
     <Compile Include="Models\TokenResponse.cs" />
     <Compile Include="Models\DatabaseModels\UserRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

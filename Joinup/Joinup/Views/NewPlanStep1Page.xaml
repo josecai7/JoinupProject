@@ -255,8 +255,73 @@
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                 </Frame>
+                <Label
+                    IsVisible="{Binding HasLink}"
+                    Margin="16,8,16,0"
+                    Text="Link de interés"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    IsVisible="{Binding HasLink}"
+                    Padding="8"
+                    CornerRadius="4"
+                    Margin="16,4,16,0"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                        <controls:BorderLessEditor
+                            Text="{Binding Link}"
+                            Placeholder="{Binding LinkShowedText}"
+                            MaxLength="40"
+                            AutoSize="TextChanges"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource LinkColor}"/>
+                </Frame>
 
-                <Grid
+                <Label
+                    IsVisible="{Binding IsSportInfoVisible}"
+                    Margin="16,8,16,0"
+                    Text="Deporte"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    IsVisible="{Binding IsSportInfoVisible}"
+                    Padding="8"
+                    CornerRadius="4"
+                    Margin="16,4,16,0"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                        <controls:BorderLessPicker                           
+                            Title="Deporte a practicar"
+                            ItemsSource="{Binding Sports}"
+                            SelectedItem="{Binding SelectedSport}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                </Frame>
+
+                    <Label
+                    IsVisible="{Binding IsSportInfoVisible}"
+                    Margin="16,8,16,0"
+                    Text="Nivel recomendado"
+                    Style="{StaticResource SubtitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    IsVisible="{Binding IsSportInfoVisible}"
+                    Padding="8"
+                    CornerRadius="4"
+                    Margin="16,4,16,0"
+                    HasShadow="False"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                        <controls:BorderLessPicker                           
+                            Title="Nivel recomendado para el deporte"
+                            ItemsSource="{Binding SkillLevels}"
+                            SelectedItem="{Binding SelectedRecommendedLevel}"
+                            ItemDisplayBinding="{Binding Name}"
+                            Style="{StaticResource SubtitleFont}"
+                            TextColor="{StaticResource TertiaryTextColor}"/>
+                 </Frame>
+
+                    <Grid
                     Margin="16,8,16,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

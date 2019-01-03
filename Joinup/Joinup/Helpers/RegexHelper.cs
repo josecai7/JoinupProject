@@ -19,5 +19,19 @@ namespace Joinup.Helpers
                 return false;
             }
         }
+        public static bool IsValidUrl(string pUrl)
+        {
+            try
+            {
+                Uri uriResult;
+                bool result = Uri.TryCreate( pUrl, UriKind.Absolute, out uriResult )
+                    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+                return result;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
     }
 }
