@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Common.Models.SelectablesModels;
 using Joinup.Helpers;
 using Joinup.Service;
 using Joinup.Utils;
@@ -92,6 +93,23 @@ namespace Joinup.ViewModels
                 return plan.PlanDate > DateTime.Now;
             }
         }
+
+        public bool HasLink
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(plan.Link);
+            }
+        }
+
+        public bool IsFoodPlan
+        {
+            get
+            {
+                return PLANTYPE.FOODANDDRINK==plan.PlanType;
+            }
+        }
+
         #endregion
         #region Constructors
         public PlanViewModel()
@@ -115,6 +133,9 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "IsHost" );
                 RaisePropertyChanged( "IsNotHost" );
                 RaisePropertyChanged("IsPlanAvaliable");
+
+                RaisePropertyChanged("HasLink");
+                RaisePropertyChanged("IsFoodPlan");
             }
 
             return base.InitializeAsync(navigationData);
@@ -158,6 +179,14 @@ namespace Joinup.ViewModels
             get
             {
                 return new RelayCommand(EditPlan);
+            }
+        }
+
+        public ICommand GoToLinkCommand
+        {
+            get
+            {
+                return new RelayCommand(GoToLink);
             }
         }
 
@@ -272,6 +301,11 @@ namespace Joinup.ViewModels
                     //DataService.GetInstance().CancelPlan();
                 }
             }
+        }
+
+        public void GoToLink()
+        {
+            Device.OpenUri(new Uri(plan.Link));
         }
 
         #endregion

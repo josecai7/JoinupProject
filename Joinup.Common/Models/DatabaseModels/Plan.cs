@@ -139,6 +139,35 @@ namespace Joinup.Common.Models
 
         [NotMapped]
         [JsonIgnore]
+        public string TimeRemaining
+        {
+            get
+            {
+                TimeSpan ts = PlanDate.Date - DateTime.Now.Date;
+
+                int differenceInDays = ts.Days;
+
+                if (differenceInDays == 0)
+                {
+                    return "El plan se llevará a cabo hoy";
+                }
+                else
+                {
+                    if (PlanDate.Date < DateTime.Now.Date)
+                    {
+                        return "El plan se llevó a cabo hace "+differenceInDays+" días";
+                    }
+                    else
+                    {
+                        return "Faltan " + differenceInDays + " días para el plan";
+                    }
+                }
+                return DateTimeHelper.GetCompletedPlanDate(PlanDate, EndPlanDate);
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
         public string FormattedAssistantUsers
         {
             get
@@ -190,6 +219,23 @@ namespace Joinup.Common.Models
                 else
                 {
                     return DateTimeHelper.GetFormattedHour( PlanDate ) + " - " + DateTimeHelper.GetFormattedHour( EndPlanDate );
+                }
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedFoodType
+        {
+            get
+            {
+                if (PLANTYPE.FOODANDDRINK==PlanType)
+                {
+                    return FOODTYPE.GetFoodTypeById(FoodType);
+                }
+                else
+                {
+                    return String.Empty;
                 }
             }
         }

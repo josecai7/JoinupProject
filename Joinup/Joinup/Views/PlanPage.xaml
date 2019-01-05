@@ -177,7 +177,7 @@
                             <Label
                             Grid.Column="1"
                             Grid.Row="2"
-                            Text="Agregar al calendario"
+                            Text="{Binding Plan.TimeRemaining}"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
                         </Grid>
@@ -266,6 +266,54 @@
                         <controls:SeparatorLine
                         Margin="0,16,0,16"/>
 
+                        <!-- FoodInfo -->
+                        <Grid
+                            IsVisible="{Binding IsFoodPlan}"
+                        RowSpacing="0"
+                        ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <customcontrols:FontIcon
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            IconColor="{StaticResource TertiaryTextColor}"
+                            Icon="silverware-fork-knife"
+                            IconSize="{StaticResource IconBigSize}"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center">
+                            </customcontrols:FontIcon>
+                            <Label
+                            VerticalOptions="Center"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Text="{Binding Plan.FormattedFoodType}"
+                            Style="{StaticResource TitleSectionFont}"
+                            TextColor="{StaticResource SecondaryTextColor}"/>
+
+                            <Label
+                                IsVisible="{Binding HasLink}"
+                                VerticalOptions="Center"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Text="{Binding Plan.Link}"
+                                Style="{StaticResource TitleSectionFont}"
+                                TextColor="{StaticResource LinkColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToLinkCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        
+                        <controls:SeparatorLine
+                            IsVisible="{Binding IsFoodPlan}"
+                        Margin="0,16,0,16"/>
+
                         <!-- Description -->
                         <Label
                         Text="{Binding Plan.Description}"
@@ -319,7 +367,6 @@
 
                         <controls:SeparatorLine
                         Margin="0,16,0,16"/>
-
 
                         <!-- Comments -->
                         <Grid
