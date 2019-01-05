@@ -8,7 +8,6 @@ namespace Joinup.Common.Models.SelectablesModels
 {
     public class SKILLLEVEL
     {
-        public const int UNDEFINED = 0;
         public const int ANYONE = 1;
         public const int LOW = 2;
         public const int MEDIUM = 3;
@@ -24,6 +23,26 @@ namespace Joinup.Common.Models.SelectablesModels
             foodTypes.Add( new Category { Id = HIGH, Name = "Alto" } );
             foodTypes.Add( new Category { Id = PROFESSIONAL, Name = "Profesional" } );
             return foodTypes;
+        }
+
+        public static string GetLevelTypeById(int pLevelTypeId)
+        {
+            switch (pLevelTypeId)
+            {
+                case ANYONE:
+                    return "Cualquier nivel recomendado";
+                case LOW:
+                    return "Nivel bajo recomendado";
+                case MEDIUM:
+                    return "Nivel medio recomendado";
+                case HIGH:
+                    return "Nivel alto recomendado";
+                case PROFESSIONAL:
+                    return "Nivel muy alto recomendado";
+                default:
+                    return string.Empty;
+            }
+
         }
     }
 }

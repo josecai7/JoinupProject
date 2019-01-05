@@ -101,6 +101,13 @@ namespace Joinup.ViewModels
                 return !string.IsNullOrEmpty(plan.Link);
             }
         }
+        public bool HasLevel
+        {
+            get
+            {
+                return plan.RecommendedLevel!=0;
+            }
+        }
 
         public bool IsFoodPlan
         {
@@ -114,6 +121,20 @@ namespace Joinup.ViewModels
             get
             {
                 return PLANTYPE.SPECTACLES == plan.PlanType && !string.IsNullOrEmpty(plan.Link);
+            }
+        }
+        public bool IsSportPlan
+        {
+            get
+            {
+                return PLANTYPE.SPORT == plan.PlanType;
+            }
+        }
+        public bool IsLanguagePlan
+        {
+            get
+            {
+                return PLANTYPE.LANGUAGE == plan.PlanType;
             }
         }
 
@@ -142,8 +163,11 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("IsPlanAvaliable");
 
                 RaisePropertyChanged("HasLink");
+                RaisePropertyChanged("HasLevel");
                 RaisePropertyChanged("IsFoodPlan");
                 RaisePropertyChanged("IsSpectaclePlan");
+                RaisePropertyChanged("IsSportPlan");
+                RaisePropertyChanged("IsLanguagePlan");
             }
 
             return base.InitializeAsync(navigationData);

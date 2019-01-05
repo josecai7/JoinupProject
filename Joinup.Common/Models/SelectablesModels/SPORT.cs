@@ -35,5 +35,33 @@ namespace Joinup.Common.Models.SelectablesModels
             foodTypes.Add( new Category { Id = OTHER, Name = "Otro" } );
             return foodTypes;
         }
+
+        public static string GetSportTypeById(int pSportTypeId)
+        {
+            switch (pSportTypeId)
+            {
+                case FOOTBALL:
+                    return "Fútbol";
+                case INDOORFOOTBALL:
+                    return "Fútbol sala";
+                case BASKETBALL:
+                    return "Baloncesto";
+                case TENIS:
+                    return "Tenis";
+                case PADEL:
+                    return "Padel";
+                case HANDBALL:
+                    return "Balonmano";
+                case RUNNING:
+                    return "Running";
+                case VOLEYBALL:
+                    return "Voleyball";
+                case RUGBY:
+                    return "Rugby";
+                default:
+                    return string.Empty;
+            }
+
+        }
     }
 }

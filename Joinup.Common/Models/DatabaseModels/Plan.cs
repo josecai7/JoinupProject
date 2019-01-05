@@ -239,5 +239,49 @@ namespace Joinup.Common.Models
             }
         }
 
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedSport
+        {
+            get
+            {
+                if (PLANTYPE.SPORT == PlanType)
+                {
+                    return SPORT.GetSportTypeById(Sport);
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedRecommendedLevel
+        {
+            get
+            {
+                return SKILLLEVEL.GetLevelTypeById(RecommendedLevel);
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedExchange
+        {
+            get
+            {
+                if (PLANTYPE.LANGUAGE == PlanType)
+                {
+                    return LANGUAGE.GetExchangeById(Language1,Language2);
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
+
     }
 }
