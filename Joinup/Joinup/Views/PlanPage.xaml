@@ -314,6 +314,46 @@
                             IsVisible="{Binding IsFoodPlan}"
                         Margin="0,16,0,16"/>
 
+                        <!-- SpectacleInfo -->
+                        <Grid
+                            IsVisible="{Binding IsSpectaclePlan}"
+                        RowSpacing="0"
+                        ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <customcontrols:FontIcon
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            IconColor="{StaticResource TertiaryTextColor}"
+                            Icon="ticket-outline"
+                            IconSize="{StaticResource IconBigSize}"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center">
+                            </customcontrols:FontIcon>
+
+                            <Label
+                                IsVisible="{Binding HasLink}"
+                                VerticalOptions="Center"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="{Binding Plan.Link}"
+                                Style="{StaticResource TitleSectionFont}"
+                                TextColor="{StaticResource LinkColor}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding GoToLinkCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+
+                        <controls:SeparatorLine
+                            IsVisible="{Binding IsSpectaclePlan}"
+                        Margin="0,16,0,16"/>
+
                         <!-- Description -->
                         <Label
                         Text="{Binding Plan.Description}"

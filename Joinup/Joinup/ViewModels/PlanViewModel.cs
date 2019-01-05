@@ -109,6 +109,13 @@ namespace Joinup.ViewModels
                 return PLANTYPE.FOODANDDRINK==plan.PlanType;
             }
         }
+        public bool IsSpectaclePlan
+        {
+            get
+            {
+                return PLANTYPE.SPECTACLES == plan.PlanType && !string.IsNullOrEmpty(plan.Link);
+            }
+        }
 
         #endregion
         #region Constructors
@@ -136,6 +143,7 @@ namespace Joinup.ViewModels
 
                 RaisePropertyChanged("HasLink");
                 RaisePropertyChanged("IsFoodPlan");
+                RaisePropertyChanged("IsSpectaclePlan");
             }
 
             return base.InitializeAsync(navigationData);

@@ -162,7 +162,6 @@ namespace Joinup.Common.Models
                         return "Faltan " + differenceInDays + " días para el plan";
                     }
                 }
-                return DateTimeHelper.GetCompletedPlanDate(PlanDate, EndPlanDate);
             }
         }
 
