@@ -283,5 +283,39 @@ namespace Joinup.Common.Models
             }
         }
 
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedAddress
+        {
+            get
+            {
+                if (PLANTYPE.TRAVEL == PlanType)
+                {
+                    return "Origen: "+Address;
+                }
+                else
+                {
+                    return Address;
+                }
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedDestinationAddress
+        {
+            get
+            {
+                if (PLANTYPE.TRAVEL == PlanType)
+                {
+                    return "Destino: "+DestinationAddress;
+                }
+                else
+                {
+                    return String.Empty;
+                }
+            }
+        }
+
     }
 }

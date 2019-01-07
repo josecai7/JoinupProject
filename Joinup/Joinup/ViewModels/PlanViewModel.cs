@@ -137,6 +137,13 @@ namespace Joinup.ViewModels
                 return PLANTYPE.LANGUAGE == plan.PlanType;
             }
         }
+        public bool IsTravelPlan
+        {
+            get
+            {
+                return PLANTYPE.TRAVEL == plan.PlanType;
+            }
+        }
 
         #endregion
         #region Constructors
@@ -168,6 +175,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("IsSpectaclePlan");
                 RaisePropertyChanged("IsSportPlan");
                 RaisePropertyChanged("IsLanguagePlan");
+                RaisePropertyChanged("IsTravelPlan");
             }
 
             return base.InitializeAsync(navigationData);
@@ -295,9 +303,9 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("ButtonStyle");
             }
         }
-        private async void EditPlan()
+        private void EditPlan()
         {
-
+            NavigationService.NavigateToAsync<NewPlanStep1ViewModel>(Plan);
         }
         private async void CancelPlan()
         {

@@ -14,7 +14,6 @@ namespace Joinup.Views
 	{
 		public PlanPage ()
 		{
-            SetValue(NavigationPage.HasNavigationBarProperty, false);
             InitializeComponent ();
 		}
 	}

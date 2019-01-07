@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace Joinup.ViewModels
 {
@@ -521,9 +522,37 @@ namespace Joinup.ViewModels
             plan.PlanDate = DateTime.Now;
             plan.EndPlanDate = DateTime.Now;
         }
+        public override Task InitializeAsync(object navigationData)
+        {
+            var parameter = navigationData as Plan;
+            if (parameter != null)
+            {
+                plan = parameter;
+                if (plan.Latitude != Double.NaN && plan.Longitude != Double.NaN)
+                {
+                    Pins = new ObservableCollection<Plan>();
+                    Pins.Add(plan);
+                }
+
+                RaisePropertyChanged("MinimumDate");
+
+                selectedCategory = Categories.Find(item => item.Id == plan.PlanType);
+                RaisePropertyChanged("SelectedCategory");
+
+                RaisePropertyChanged("Name");
+                RaisePropertyChanged("Description");
+                RaisePropertyChanged("PlanDate");
+                RaisePropertyChanged("PlanTime");
+                RaisePropertyChanged("EndPlanDate");
+                RaisePropertyChanged("EndPlanTime");
+
+            }
+
+            return base.InitializeAsync(navigationData);
+        }
         #endregion
         #region Commands
-        
+
         public ICommand CreatePlanCommand
         {
             get

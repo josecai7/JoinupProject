@@ -11,7 +11,7 @@
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.PlanPage">
     <ContentPage.ToolbarItems>
-        <controls:HideableToolbarItem Icon="ic_eye.png" IsVisible="{Binding IsHost}" Command="{Binding EditPlanCommand}"/>
+        <controls:HideableToolbarItem Icon="ic_pencil.png" IsVisible="{Binding IsHost}" Command="{Binding EditPlanCommand}"/>
         <ToolbarItem />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -504,6 +504,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <customcontrols:FontIcon
                             Grid.Column="0"
@@ -518,14 +519,23 @@
                             VerticalOptions="Center"
                             Grid.Column="1"
                             Grid.Row="0"
-                            Text="{Binding Plan.Address}"
+                            Text="{Binding Plan.FormattedAddress}"
+                            Style="{StaticResource TitleSectionFont}"
+                            TextColor="{StaticResource SecondaryTextColor}"/>
+                            
+                            <Label
+                                IsVisible="{Binding IsTravelPlan}"
+                            VerticalOptions="Center"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Text="{Binding Plan.FormattedDestinationAddress}"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource SecondaryTextColor}"/>
 
                             <maps:Map
                             x:Name="MyMap"
                             Grid.ColumnSpan="2"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             HeightRequest="150">
                                 <maps:Map.Behaviors>
                                     <behaviors:MapBehavior 
