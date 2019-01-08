@@ -25,6 +25,9 @@ namespace Joinup.ViewModels
     public class NewPlanStep1ViewModel:BaseViewModel
     {
         #region Attributes
+        private bool isEditing = false;
+        private string buttonText;
+
         private bool isRunning;
         private Plan plan;
 
@@ -36,6 +39,7 @@ namespace Joinup.ViewModels
         List<Prediction> destinationPredictions = new List<Prediction>();
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
 
+        private List<Category> categories;
         private Category selectedCategory;
 
         private bool hasLink;
@@ -43,15 +47,19 @@ namespace Joinup.ViewModels
 
         private bool hasLevel;
         private string levelShowedText;
+        private List<Category> levels;
         private Category selectedRecommendedLevel;
 
         private bool isFoodInfoVisible;
-        private Category selectedFoodType;
 
+        private Category selectedFoodType;
+        private List<Category> foodTypes;
         private bool isSportInfoVisible;
+        private List<Category> sports;
         private Category selectedSport;
 
         private bool isLanguageInfoVisible;
+        private List<Category> languages;
         private Category selectedLanguage1;
         private Category selectedLanguage2;
 
@@ -78,6 +86,19 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("IsRunning");
             }
         }
+        public string ButtonText
+        {
+            get
+            {
+                return buttonText;
+            }
+            set
+            {
+                buttonText = value;
+                RaisePropertyChanged("ButtonText");
+            }
+        }
+
         public DateTime MinimumDate
         {
             get
@@ -104,7 +125,12 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return PLANTYPE.GetAllPlanTypes();
+                return categories;
+            }
+            set
+            {
+                categories=value;
+                RaisePropertyChanged("Categories");
             }
         }
 
@@ -137,7 +163,12 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return FOODTYPE.GetAllFoodTypes();
+                return foodTypes;
+            }
+            set
+            {
+                foodTypes = value;
+                RaisePropertyChanged("FoodTypes");
             }
         }
 
@@ -219,7 +250,12 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return SKILLLEVEL.GetAllSkillLevel();
+                return levels;
+            }
+            set
+            {
+                levels = value;
+                RaisePropertyChanged("SkillLevels");
             }
         }
 
@@ -252,7 +288,12 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return SPORT.GetAllSports();
+                return sports;
+            }
+            set
+            {
+                sports = value;
+                RaisePropertyChanged("Sports");
             }
         }
 
@@ -298,7 +339,12 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return LANGUAGE.GetAllLanguages();
+                return languages;
+            }
+            set
+            {
+                languages = value;
+                RaisePropertyChanged("Languages");
             }
         }
 
@@ -433,7 +479,6 @@ namespace Joinup.ViewModels
             set
             {
                 locationText = value;
-                Pins = new ObservableCollection<Plan>();
                 LoadPredictions( locationText );
                 RaisePropertyChanged( "LocationText" );
             }
@@ -473,7 +518,6 @@ namespace Joinup.ViewModels
             set
             {
                 destinationText = value;
-                Pins = new ObservableCollection<Plan>();
                 LoadDestinationPredictions( destinationText );
                 RaisePropertyChanged( "DestinationText" );
             }
@@ -517,21 +561,31 @@ namespace Joinup.ViewModels
         #region Constructors
         public NewPlanStep1ViewModel()
         {
+            Categories=PLANTYPE.GetAllPlanTypes();
+            SkillLevels = SKILLLEVEL.GetAllSkillLevel();
+            Languages = LANGUAGE.GetAllLanguages();
+            FoodTypes = FOODTYPE.GetAllFoodTypes();
+            Sports = SPORT.GetAllSports();
+
             plan = new Plan();
 
             plan.PlanDate = DateTime.Now;
             plan.EndPlanDate = DateTime.Now;
+
+            ButtonText = "Crear plan";
         }
         public override Task InitializeAsync(object navigationData)
         {
             var parameter = navigationData as Plan;
             if (parameter != null)
             {
+                isEditing = true;
+                ButtonText = "Modificar plan";
                 plan = parameter;
                 if (plan.Latitude != Double.NaN && plan.Longitude != Double.NaN)
                 {
-                    Pins = new ObservableCollection<Plan>();
-                    Pins.Add(plan);
+                    pins = new ObservableCollection<Plan>();
+                    pins.Add(plan);
                 }
 
                 RaisePropertyChanged("MinimumDate");
@@ -545,6 +599,24 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("PlanTime");
                 RaisePropertyChanged("EndPlanDate");
                 RaisePropertyChanged("EndPlanTime");
+                LocationText = plan.Address;
+                DestinationText = plan.DestinationAddress;
+                RaisePropertyChanged("Pins");
+
+                selectedCategory = Categories.Find(item => item.Id == plan.PlanType);
+                RaisePropertyChanged("SelectedCategory");
+
+                selectedRecommendedLevel = SkillLevels.Find(item => item.Id == plan.RecommendedLevel);
+                RaisePropertyChanged("SelectedRecommendedLevel");
+
+                selectedLanguage1 = Languages.Find(item => item.Id == plan.Language1);
+                RaisePropertyChanged("SelectedLanguage1");
+
+                selectedLanguage2 = Languages.Find(item => item.Id == plan.Language2);
+                RaisePropertyChanged("SelectedLanguage2");
+
+                selectedFoodType = FoodTypes.Find(item => item.Id == plan.Language2);
+                RaisePropertyChanged("SelectedLanguage2");
 
             }
 
@@ -725,9 +797,15 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowToastNotifications( "Ups...Debes especificar el deporte que se practicará en tu plan", "add.png", ColorUtils.ErrorColor );
                 return;
             }
+            if (isEditing)
+            {
 
-            SavePlan();
-            plan.UserId = LoggedUser.Id;
+            }
+            else
+            {
+                SavePlan();
+                plan.UserId = LoggedUser.Id;
+            }
         }
         private async void SavePlan()
         {

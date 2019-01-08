@@ -418,8 +418,6 @@
                     Margin="16,8,16,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="16" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Button
                         Grid.Column="0"
@@ -427,16 +425,7 @@
                         BackgroundColor="{StaticResource PrimaryColor}"
                         Style="{StaticResource BaseButtonStyle}"
                         TextColor="White"
-                        Text="Crear plan"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"/>
-                        <Button
-                        Grid.Column="2"
-                        Command="{Binding CreatePlanCommand}"
-                        BackgroundColor="{StaticResource PrimaryColor}"
-                        Style="{StaticResource BaseButtonStyle}"
-                        TextColor="White"
-                        Text="Previsualizar"
+                        Text="{Binding ButtonText}"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"/>
                     </Grid>
