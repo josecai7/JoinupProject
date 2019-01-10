@@ -84,7 +84,23 @@ namespace Joinup.Service
             }
             
             return response;
-        }   
+        }
+        public async Task<Response> EditPlan(Plan pPlan)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlPlansController"].ToString();
+
+            //Save plan
+            var response = await ApiService.GetInstance().Put<Plan>(url, prefix, controller, pPlan,pPlan.PlanId, Settings.TokenType, Settings.AccessToken);
+
+            if (response.IsSuccess)
+            {
+                Plan plan = (Plan)response.Result;               
+            }
+
+            return response;
+        }
         public async Task<Response> Cancel(Plan pPlan)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();

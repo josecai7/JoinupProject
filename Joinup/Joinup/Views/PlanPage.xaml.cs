@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Joinup.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace Joinup.Views
 		public PlanPage ()
 		{
             InitializeComponent ();
+
 		}
-	}
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.Transparent;
+
+        }
+    }
 }

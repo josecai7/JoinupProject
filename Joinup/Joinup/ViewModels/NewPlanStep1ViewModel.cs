@@ -757,7 +757,7 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes ponerle nombre a tu plan", "add.png", ColorUtils.ErrorColor);
                 return;
             }
-            if (SelectedLocation==null)
+            if (plan.Latitude==0 && plan.Longitude==0)
             {
                 ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una ubicación para tu plan", "add.png", ColorUtils.ErrorColor);
                 return;
@@ -799,12 +799,11 @@ namespace Joinup.ViewModels
             }
             if (isEditing)
             {
-
+                EditPlan();
             }
             else
             {
                 SavePlan();
-                plan.UserId = LoggedUser.Id;
             }
         }
         private async void SavePlan()
@@ -861,6 +860,77 @@ namespace Joinup.ViewModels
 
             IsRunning = false;
         }
+        private async void EditPlan()
+        {
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "¿Estas seguro de modificar el plan? Los usuarios serán notificados de dichos cambios",
+                "Cancelar",
+                null,
+                "Si",
+                "No");
+
+            if (source == "No")
+            {
+                return;
+            }
+            else
+            {
+                IsRunning = true;
+                plan.UserId = LoggedUser.Id;
+
+                /*
+                if (Image1 != null)
+                {
+                    plan.PlanImages.Add(new Common.Models.Image()
+                    {
+                        ImageArray = image1bytes
+                    });
+                }
+                if (Image2 != null)
+                {
+                    plan.PlanImages.Add(new Common.Models.Image()
+                    {
+                        ImageArray = image2bytes
+                    });
+                }
+                if (Image3 != null)
+                {
+                    plan.PlanImages.Add(new Common.Models.Image()
+                    {
+                        ImageArray = image3bytes
+                    });
+                }
+                */
+
+                var response = await DataService.GetInstance().EditPlan(plan);
+
+                if (!response.IsSuccess)
+                {
+                    ToastNotificationUtils.ShowToastNotifications("Ha habido un error en al editar el plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
+                }
+                else
+                {
+                    Plan plan = (Plan)response.Result;
+
+                    SendEmails()
+
+                    MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan");
+                    await NavigationService.NavigateBackAsync();
+
+                }
+
+                IsRunning = false;
+            }
+        }
+
+        private void SendEmails()
+        {
+            foreach (MyUserASP user in plan.AssistantUsers)
+            {
+
+            }
+        }
+
         private void AddImage1()
         {
             AddImage(1);

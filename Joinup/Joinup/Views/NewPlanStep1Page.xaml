@@ -10,7 +10,7 @@
              xmlns:custom="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.NewPlanStep1Page"
              BackgroundColor="White"
-             Title="Crea tu plan">
+             Title="{Binding ButtonText}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
