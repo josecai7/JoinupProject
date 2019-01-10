@@ -912,7 +912,7 @@ namespace Joinup.ViewModels
                 {
                     Plan plan = (Plan)response.Result;
 
-                    SendEmails()
+                    SendEmails();
 
                     MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan");
                     await NavigationService.NavigateBackAsync();
@@ -923,11 +923,13 @@ namespace Joinup.ViewModels
             }
         }
 
-        private void SendEmails()
+        private async void SendEmails()
         {
             foreach (MyUserASP user in plan.AssistantUsers)
             {
-
+                string subject = "Cambios en tu plan: " + plan.Name;
+                string body = "El organizador del plan ha realizado cambios. No olvides entrar para revisar si el plan te sigue pareciendo interesante";
+                await MailHelper.SendEmail(user.Email, subject, body);
             }
         }
 

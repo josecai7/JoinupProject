@@ -28,7 +28,6 @@ namespace Joinup.Droid
             Xamarin.FormsMaps.Init(this, bundle);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            Xamarin.Essentials.Platform.Init(this, bundle); // add this line to your code
             CrossCurrentActivity.Current.Init(this, bundle);
             base.OnCreate(bundle);
 
