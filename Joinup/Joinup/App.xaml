@@ -305,7 +305,7 @@
 
             <!-- BUTTON STYLES -->
 
-            <Style x:Key="CancelPlanButton"
+            <Style x:Key="ModifyPlanButton"
                    TargetType="{x:Type Button}">
                 <Setter Property="FontFamily"
                  Value="{StaticResource FontSemiBold}" />
@@ -318,9 +318,9 @@
                 <Setter Property="BackgroundColor"
                  Value="{StaticResource WhiteColor}" />
                 <Setter Property="TextColor"
-                 Value="{StaticResource ErrorColor}" />
+                 Value="{StaticResource PrimaryColor}" />
                 <Setter Property="Text"
-                 Value="CANCELAR PLAN" />
+                 Value="MODIFICAR PLAN" />
             </Style>
 
             <Style x:Key="JoinButton"

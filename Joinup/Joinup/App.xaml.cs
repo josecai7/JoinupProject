@@ -1,6 +1,8 @@
 using DLToolkit.Forms.Controls;
+using Joinup.Helpers;
 using Joinup.Navigation;
 using Joinup.Utils;
+using Joinup.ViewModels;
 using Joinup.ViewModels.Base;
 using Joinup.Views;
 using System;
@@ -28,7 +30,14 @@ namespace Joinup
         private Task InitNavigation()
         {
             var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
-            return navigationService.InitializeAsync();
+            if (Settings.IsRemembered)
+            {
+                return navigationService.NavigateToAsync<MainViewModel>();
+            }
+            else
+            {
+                return navigationService.InitializeAsync();
+            }                    
         }
 
         protected override void OnSleep ()

@@ -5,6 +5,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation" 
              xmlns:controls="clr-namespace:Joinup.Controls"
+             xmlns:customcontrols="clr-namespace:Joinup.CustomControls"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              BackgroundColor="{StaticResource WhiteColor}"
              x:Class="Joinup.Views.ProfilePage">
@@ -123,6 +124,20 @@
                     </ffimageloading:CachedImage.GestureRecognizers>
                 </ffimageloading:CachedImage>
             </Frame>
+
+            <!--  logout button  -->
+            <customcontrols:FontIcon
+                IsVisible="{Binding IsLoggedUser}"
+                                IconColor="{StaticResource WhiteColor}"
+                                Icon="logout-variant"
+                                IconSize="{StaticResource IconExtraBigSize}"
+                                VerticalOptions="Start"
+                                HorizontalOptions="End"
+                Margin="8">
+                <customcontrols:FontIcon.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LogoutCommand}"/>
+                </customcontrols:FontIcon.GestureRecognizers>
+            </customcontrols:FontIcon>
 
             <!--  Profile Name  -->
             <StackLayout 

@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +17,7 @@ namespace Joinup.ViewModels
 
         public MainViewModel()
         {
-            
+            //LoggedUser = JsonConvert.DeserializeObject<MyUserASP>( Settings.UserASP );
         }
 
         

@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
 using Joinup.Helpers;
+using Joinup.Navigation;
 using Joinup.Service;
+using Joinup.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -90,6 +92,13 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public bool IsLoggedUser
+        {
+            get
+            {
+                return user.Id==LoggedUser.Id;
+            }
+        }
         #endregion
         #region Constructors
         public ProfileViewModel()
@@ -99,11 +108,13 @@ namespace Joinup.ViewModels
             user = LoggedUser;
             LoadPlans();
             SetTab2();
+            RaisePropertyChanged( "IsLoggedUser" );
         }
 
         public override Task InitializeAsync(object navigationData)
         {
             User = (MyUserASP) navigationData;
+            RaisePropertyChanged( "IsLoggedUser" );
             LoadPlans();
 
             return base.InitializeAsync( navigationData );
@@ -130,6 +141,13 @@ namespace Joinup.ViewModels
             get
             {
                 return new RelayCommand(SetTab2);
+            }
+        }
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                return new RelayCommand( DoLogout );
             }
         }
         #endregion
@@ -174,6 +192,17 @@ namespace Joinup.ViewModels
         {
             PlansTab = false;
             Tab2 = true;
+        }
+
+        private void DoLogout()
+        {
+            LoggedUser = null;
+            Settings.UserASP = null;
+            Settings.AccessToken = null;
+            Settings.TokenType = null;
+            Settings.IsRemembered = false;
+            var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
+            navigationService.InitializeAsync();
         }
         #endregion
     }

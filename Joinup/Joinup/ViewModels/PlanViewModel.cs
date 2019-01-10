@@ -57,7 +57,7 @@ namespace Joinup.ViewModels
             {
                 if ( IsHost )
                 {
-                    return Application.Current.Resources["CancelPlanButton"] as Style;
+                    return Application.Current.Resources["ModifyPlanButton"] as Style;
                 }
                 else
                 {
@@ -206,22 +206,6 @@ namespace Joinup.ViewModels
             }
         }
 
-        public ICommand CancelPlanCommand
-        {
-            get
-            {
-                return new RelayCommand(CancelPlan);
-            }
-        }
-
-        public ICommand EditPlanCommand
-        {
-            get
-            {
-                return new RelayCommand(EditPlan);
-            }
-        }
-
         public ICommand GoToLinkCommand
         {
             get
@@ -244,7 +228,7 @@ namespace Joinup.ViewModels
         {
             if ( IsHost )
             {
-                CancelPlan();
+                EditPlan();
             }
             else
             {
@@ -341,8 +325,7 @@ namespace Joinup.ViewModels
                     //DataService.GetInstance().CancelPlan();
                 }
             }
-        }
-
+        }   
         public void GoToLink()
         {
             Device.OpenUri(new Uri(plan.Link));

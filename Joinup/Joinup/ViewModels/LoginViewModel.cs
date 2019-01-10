@@ -16,6 +16,7 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private bool isRunning;
+        private bool isRemembered;
         private string email;
         private string password;
         #endregion
@@ -54,6 +55,18 @@ namespace Joinup.ViewModels
             {
                 isRunning = value;
                 RaisePropertyChanged("IsRunning");
+            }
+        }
+        public bool IsRemembered
+        {
+            get
+            {
+                return isRemembered;
+            }
+            set
+            {
+                isRemembered = value;
+                RaisePropertyChanged( "IsRemembered" );
             }
         }
         #endregion
@@ -129,6 +142,7 @@ namespace Joinup.ViewModels
                 {
                     Settings.AccessToken = token.AccessToken;
                     Settings.TokenType = token.TokenType;
+                    Settings.IsRemembered = IsRemembered;
 
                     var response = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
                     if (response.IsSuccess)

@@ -10,10 +10,6 @@
              xmlns:behaviors="clr-namespace:Joinup.Behaviors;assembly=Joinup"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="Joinup.Views.PlanPage">
-    <ContentPage.ToolbarItems>
-        <controls:HideableToolbarItem Icon="ic_pencil.png" IsVisible="{Binding IsHost}" Command="{Binding EditPlanCommand}"/>
-        <ToolbarItem />
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid
             Margin="0,-40,0,0">
