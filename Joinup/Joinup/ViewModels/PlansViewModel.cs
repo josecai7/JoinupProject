@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace Joinup.ViewModels
 {
@@ -219,7 +220,10 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return (Application.Current.MainPage.Width-40)/3;
+                if (Application.Current.MainPage != null)
+                    return (Application.Current.MainPage.Width - 40) / 3;
+                else
+                    return 0;
             }
         }
         #endregion
@@ -235,6 +239,7 @@ namespace Joinup.ViewModels
             } );
 
             LoadPlans();
+            RaisePropertyChanged( "ThirdScreenSize" );
         }
         #endregion
 

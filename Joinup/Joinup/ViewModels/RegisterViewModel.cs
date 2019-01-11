@@ -241,7 +241,6 @@ namespace Joinup.ViewModels
                     var getUserResponse = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, Settings.TokenType, token.AccessToken);
                     if (getUserResponse.IsSuccess)
                     {
-                        LoggedUser = (MyUserASP)getUserResponse.Result;
                         Settings.UserASP = JsonConvert.SerializeObject(LoggedUser);
                         IsRunning = false;
                         NavigationService.NavigateToAsync<MainViewModel>();

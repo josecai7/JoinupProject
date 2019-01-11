@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using Acr.UserDialogs;
 using ImageCircle.Forms.Plugin.Droid;
 using Plugin.CurrentActivity;
+using System.Threading.Tasks;
 
 namespace Joinup.Droid
 {
@@ -29,6 +30,8 @@ namespace Joinup.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             CrossCurrentActivity.Current.Init(this, bundle);
+
+
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
@@ -42,6 +45,7 @@ namespace Joinup.Droid
             }
 
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
         {
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);

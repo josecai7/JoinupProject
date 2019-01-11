@@ -115,6 +115,7 @@ namespace Joinup.ViewModels
         {
             User = (MyUserASP) navigationData;
             RaisePropertyChanged( "IsLoggedUser" );
+            string s=Settings.AccessToken;
             LoadPlans();
 
             return base.InitializeAsync( navigationData );
@@ -196,10 +197,6 @@ namespace Joinup.ViewModels
 
         private void DoLogout()
         {
-            LoggedUser = null;
-            Settings.UserASP = null;
-            Settings.AccessToken = null;
-            Settings.TokenType = null;
             Settings.IsRemembered = false;
             var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
             navigationService.InitializeAsync();

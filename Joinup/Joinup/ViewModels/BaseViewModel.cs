@@ -1,6 +1,8 @@
 ﻿using Joinup.Common.Models;
+using Joinup.Helpers;
 using Joinup.Navigation;
 using Joinup.ViewModels.Base;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,12 +23,11 @@ namespace Joinup.ViewModels
         {
             get
             {
+                if (loggedUser == null)
+                {
+                    loggedUser = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
+                }
                 return loggedUser;
-            }
-            set
-            {
-                loggedUser = value;
-                RaisePropertyChanged();
             }
         }
 

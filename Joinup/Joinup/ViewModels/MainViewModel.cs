@@ -17,7 +17,6 @@ namespace Joinup.ViewModels
 
         public MainViewModel()
         {
-            //LoggedUser = JsonConvert.DeserializeObject<MyUserASP>( Settings.UserASP );
         }
 
         

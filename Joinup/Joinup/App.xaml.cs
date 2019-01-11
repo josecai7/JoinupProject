@@ -30,6 +30,7 @@ namespace Joinup
         private Task InitNavigation()
         {
             var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
+
             if (Settings.IsRemembered)
             {
                 return navigationService.NavigateToAsync<MainViewModel>();
