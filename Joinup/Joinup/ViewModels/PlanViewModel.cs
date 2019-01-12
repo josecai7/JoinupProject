@@ -182,6 +182,13 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
+        public ICommand OpenImageCommand
+        {
+            get
+            {
+                return new RelayCommand(OpenImage);
+            }
+        }
         public ICommand HostProfileCommand
         {
             get
@@ -216,6 +223,18 @@ namespace Joinup.ViewModels
 
         #endregion
         #region Methods
+        private void OpenImage()
+        {
+            List<string> images = new List<string>();
+            if (Plan.HasImage)
+            {
+                foreach (Common.Models.Image image in Plan.PlanImages)
+                {
+                    images.Add(image.ImageFullPath);
+                }
+                NavigationService.NavigateToAsync<ImageFullScreenViewModel>(images);
+            }
+        }
         private void GoToHostProfile()
         {
             NavigationService.NavigateToAsync<ProfileViewModel>(plan.User);

@@ -13,7 +13,8 @@
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Style="{StaticResource SubtitleElementFont}">
+                Style="{StaticResource SubtitleElementFont}"
+                LineBreakMode="NoWrap">
             </Label>
         </Frame>
     </ContentView.Content>

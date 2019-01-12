@@ -120,7 +120,7 @@
                         <fftransformations:CircleTransformation/>
                     </ffimageloading:CachedImage.Transformations>
                     <ffimageloading:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        <TapGestureRecognizer Command="{Binding OpenImageCommand}"/>
                     </ffimageloading:CachedImage.GestureRecognizers>
                 </ffimageloading:CachedImage>
             </Frame>

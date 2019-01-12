@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Joinup.Views.ImageFullScreenPage"
+             xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="LightGray"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <cv:CarouselView
+                    ItemsSource="{Binding Paths}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                <cv:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ffimageloading:CachedImage 
+                                Source="{Binding ComepletePath}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"/>
+                        </Grid>
+                    </DataTemplate>
+                </cv:CarouselView.ItemTemplate>
+            </cv:CarouselView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

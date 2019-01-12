@@ -122,6 +122,13 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
+        public ICommand OpenImageCommand
+        {
+            get
+            {
+                return new RelayCommand(OpenImage);
+            }
+        }
         public ICommand RefreshCommand
         {
             get
@@ -153,6 +160,15 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Methods
+        private void OpenImage()
+        {
+            List<string> images = new List<string>();
+            if (!string.IsNullOrEmpty(User.UserImage))
+            {
+                images.Add(User.UserImage);
+                NavigationService.NavigateToAsync<ImageFullScreenViewModel>(images);
+            }              
+        }
         private async void LoadPlans()
         {
             IsRefreshing = true;
@@ -171,7 +187,7 @@ namespace Joinup.ViewModels
 
                 var list = (List<Plan>) response.Result;
                 PublishedPlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId == User.Id) );
-                AssistPlanList = new ObservableCollection<Plan>( list.Where( item => item.AssistantUsers.Find(user=> user.Id==LoggedUser.Id)!=null ) );
+                AssistPlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId != User.Id && item.AssistantUsers.Find(user=> user.Id==User.Id)!=null ) );
             }
             else
             {

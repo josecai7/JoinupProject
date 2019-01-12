@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Essentials;  
 
 namespace Joinup.ViewModels
 {
@@ -220,10 +221,8 @@ namespace Joinup.ViewModels
         {
             get
             {
-                if (Application.Current.MainPage != null)
-                    return (Application.Current.MainPage.Width - 40) / 3;
-                else
-                    return 0;
+                double screenWidth = DeviceDisplay.MainDisplayInfo.Width/4;
+                return (screenWidth - 40) / 3;
             }
         }
         #endregion

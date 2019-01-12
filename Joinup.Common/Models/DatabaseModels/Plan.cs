@@ -54,7 +54,7 @@ namespace Joinup.Common.Models
         {
             get
             {
-                string imagePath = "no_image";
+                string imagePath = GetDefaultImage();
                 if ( PlanImages != null && PlanImages.Count > 0 )
                 {
                     Image image = PlanImages.FirstOrDefault();
@@ -62,6 +62,41 @@ namespace Joinup.Common.Models
                 }
 
                 return imagePath;
+            }
+        }
+
+        private string GetDefaultImage()
+        {
+            switch (PlanType)
+            {
+                case PLANTYPE.FOODANDDRINK:
+                    return "food";
+                case PLANTYPE.SPECTACLES:
+                    return "spectacle";
+                case PLANTYPE.SPORT:
+                    return "sport";
+                case PLANTYPE.LANGUAGE:
+                    return "language";
+                case PLANTYPE.TRAVEL:
+                    return "travel";
+                case PLANTYPE.SHOPPING:
+                    return "shopping";
+                case PLANTYPE.PARTY:
+                    return "party";
+                case PLANTYPE.OTHER:
+                    return "other";
+                default:
+                    return "no_image";
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public bool HasImage
+        {
+            get
+            {
+                return PlanImages.Count>0;
             }
         }
         [NotMapped]       

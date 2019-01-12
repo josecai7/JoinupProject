@@ -251,24 +251,6 @@
                             ItemsSource="{Binding Pins}" />
                         </maps:Map.Behaviors>
                     </maps:Map>
-                    <Label
-                    Margin="16,8,16,0"
-                    Text="Maximo de asistentes"
-                    Style="{StaticResource SubtitleFont}"
-                    TextColor="{StaticResource PrimaryTextColor}"/>
-                    <Frame
-                    Margin="16,4,16,0"   
-                    Padding="0"
-                    CornerRadius="4"
-                    HasShadow="False"
-                    BorderColor="{StaticResource TertiaryTextColor}"
-                    HorizontalOptions="FillAndExpand">
-                        <numeric:SfNumericUpDown  
-                        Margin="16,4,16,0"                
-                        BorderColor="White"
-                        TextColor="{StaticResource TertiaryTextColor}" 
-                        Value="5"/>
-                    </Frame>
 
                     <Label
                     IsVisible="{Binding IsFoodInfoVisible}"

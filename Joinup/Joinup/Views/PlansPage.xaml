@@ -85,7 +85,7 @@
                         <controls:SwitchButton
                             Margin="4,0,0,0"
                             WidthRequest="{Binding ThirdScreenSize}"
-                            TitleText="Esta semana"
+                            TitleText="Semana"
                             SelectedColor="{StaticResource WhiteColor}"
                             UnSelectedColor="{StaticResource SelectableBackgroundColor}"
                             Selected="{Binding IsFilterWeekActive}"/>

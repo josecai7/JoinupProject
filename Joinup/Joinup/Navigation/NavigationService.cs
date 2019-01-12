@@ -23,6 +23,7 @@ namespace Joinup.Navigation
             { typeof(ProfileViewModel), typeof(ProfilePage) },
             { typeof(CommentsViewModel), typeof(CommentsPage) },
             { typeof(NewPlanStep1ViewModel), typeof(NewPlanStep1Page) },
+            { typeof(ImageFullScreenViewModel), typeof(ImageFullScreenPage) },
         };
 
 
@@ -160,6 +161,7 @@ namespace Joinup.Navigation
             _mappings.Add( typeof( ProfileViewModel ), typeof( ProfilePage ) );
             _mappings.Add(typeof(CommentsViewModel), typeof(CommentsPage));
             _mappings.Add( typeof( NewPlanStep1ViewModel ), typeof( NewPlanStep1Page ) );
+            _mappings.Add(typeof(ImageFullScreenViewModel), typeof(ImageFullScreenPage));
         }
 
         public async Task NavigateBackAsync()

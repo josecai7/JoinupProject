@@ -30,7 +30,7 @@ namespace Joinup.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             CrossCurrentActivity.Current.Init(this, bundle);
-
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
             base.OnCreate(bundle);
 

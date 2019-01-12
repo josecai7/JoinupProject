@@ -25,29 +25,52 @@
                 VerticalOptions="FillAndExpand">
                 <StackLayout
                 Orientation="Vertical">
+                    <ffimageloading:CachedImage                                            
+                        Source="{Binding Plan.DefaultImageFullPath}"
+                        Aspect="AspectFill" 
+                        HeightRequest="230"
+                        Margin="0,0,0,8">
+                        <ffimageloading:CachedImage.Triggers>
+                            <DataTrigger TargetType="ffimageloading:CachedImage" Binding="{Binding Plan.HasImage}" Value="True">
+                                <Setter Property="IsVisible" Value="False" />
+                            </DataTrigger>
+                        </ffimageloading:CachedImage.Triggers>
+                    </ffimageloading:CachedImage>
                     <!--  Carrousel images  -->
-                    <cv:CarouselView 
-                    ItemsSource="{Binding Plan.PlanImages}"
-                    HeightRequest="230"
-                    VerticalOptions="Start"
-                    BackgroundColor="AliceBlue">
-                        <cv:CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="230"/>
-                                    </Grid.RowDefinitions>
-                                    <ffimageloading:CachedImage 
+                    <Grid>
+                        <cv:CarouselView
+                            ItemsSource="{Binding Plan.PlanImages}"
+                            HeightRequest="230"
+                            VerticalOptions="Start"
+                            BackgroundColor="AliceBlue">
+                            <cv:CarouselView.Triggers>
+                                <DataTrigger TargetType="cv:CarouselView" Binding="{Binding Plan.HasImage}" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </DataTrigger>
+                            </cv:CarouselView.Triggers>
+                            <cv:CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="230"/>
+                                        </Grid.RowDefinitions>
+                                        <ffimageloading:CachedImage 
                                         Grid.Row="0"
                                         Source="{Binding ImageFullPath}"
                                         Aspect="AspectFill" 
                                         HeightRequest="230"/>
-                                </Grid>
-                            </DataTemplate>
-                        </cv:CarouselView.ItemTemplate>
-                    </cv:CarouselView>
-                    
-                    
+                                    </Grid>
+                                </DataTemplate>
+                            </cv:CarouselView.ItemTemplate>
+                        </cv:CarouselView>
+                        <Grid
+                        HeightRequest="230">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenImageCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </Grid>
+
                     <StackLayout
                     Spacing="0"
                     Orientation="Vertical"
@@ -90,13 +113,7 @@
                                 <ffimageloading:CachedImage.Transformations>
                                     <fftransformations:CircleTransformation/>
                                 </ffimageloading:CachedImage.Transformations>
-                                <ffimageloading:CachedImage.GestureRecognizers>
-                                    <TapGestureRecognizer                                        
-                                        Command="{Binding HostProfileCommand}"/>
-                                </ffimageloading:CachedImage.GestureRecognizers>
                             </ffimageloading:CachedImage>
-
-
                             <Frame
                                 Grid.RowSpan="2"
                                 Grid.Column="0"
@@ -115,10 +132,9 @@
                                     Text="A"
                                     Style="{StaticResource ParagraphFont}"
                                     TextColor="{StaticResource WhiteColor}">
-                                    
+
                                 </Label>
                             </Frame>
-                            
                             <Label
                             Grid.Column="1"
                             Grid.Row="0"
@@ -128,9 +144,13 @@
                             <Label
                             Grid.Column="1"
                             Grid.Row="1"
-                            Text="Ha publicado este plan"
+                            Text="Ver su perfil"
                             Style="{StaticResource TitleSectionFont}"
                             TextColor="{StaticResource PrimaryColor}"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer                                        
+                                        Command="{Binding HostProfileCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <controls:SeparatorLine
