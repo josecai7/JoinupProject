@@ -9,13 +9,12 @@ namespace Joinup.Utils
 {
     public class ToastNotificationUtils
     {
-        public static async void ShowToastNotifications(string pTitle, string pIcon,Color pBackgroundColor,ToastPosition pToastPosition=ToastPosition.Top,int pDuration=3000)
+        public static async void ShowErrorToastNotifications(string pTitle)
         {
             var toastConfig = new ToastConfig(pTitle);
-            toastConfig.SetDuration(pDuration);
-            toastConfig.Icon = pIcon;
-            toastConfig.SetBackgroundColor(pBackgroundColor);
-            toastConfig.Position = pToastPosition;
+            toastConfig.SetDuration(3000);
+            toastConfig.SetBackgroundColor(ColorUtils.ErrorColor);
+            toastConfig.Position = ToastPosition.Top;
 
             UserDialogs.Instance.Toast(toastConfig);
         }

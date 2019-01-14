@@ -188,11 +188,11 @@ namespace Joinup.Service
                     };
                 }
 
-                var obj = JsonConvert.DeserializeObject<T>(answer);
+                var obj = JsonConvert.DeserializeObject<Response>(answer);
                 return new Response
                 {
-                    IsSuccess = true,
-                    Result = obj,
+                    IsSuccess = obj.IsSuccess,
+                    Result = obj.Result,
                 };
             }
             catch (Exception ex)

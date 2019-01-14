@@ -49,6 +49,8 @@ namespace Joinup.Common.Models
         #endregion
 
         [NotMapped]
+        public int CommentNumber{ get; set; }
+        [NotMapped]
         [JsonIgnore]
         public string DefaultImageFullPath
         {

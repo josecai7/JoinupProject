@@ -180,7 +180,7 @@ namespace Joinup.ViewModels
 
                 if ( !response.IsSuccess )
                 {
-                    await Application.Current.MainPage.DisplayAlert( "Error", "Aceptar", "Cancelar" );
+                    await Application.Current.MainPage.DisplayAlert(response.Message, "Aceptar", "Cancelar" );
                     IsRefreshing = false;
                     return;
                 }

@@ -118,22 +118,21 @@ namespace Joinup.ViewModels
                 sendComment.UserDisplayName = LoggedUser.Name;
                 sendComment.UserId = LoggedUser.Id;
                 sendComment.PlanId = Plan.PlanId;
-
-                var response = await DataService.GetInstance().SendComment(sendComment);
-
-                if (!response.IsSuccess)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Error al publicar el comentario", "Aceptar", "Cancelar");
-                    IsRefreshing = false;
-                    return;
-                }
-
-                sendComment = (Comment)response.Result;
                 sendComment.LoggedUserId = LoggedUser.Id;
                 comments.Add(sendComment);
                 RaisePropertyChanged("Comments");
 
                 CommentText = String.Empty;
+
+                var response = await DataService.GetInstance().SendComment(sendComment);
+
+                if (!response.IsSuccess)
+                {
+                    comments.Remove(sendComment);
+                    await Application.Current.MainPage.DisplayAlert("Error al publicar el comentario", "Aceptar", "Cancelar");
+                    IsRefreshing = false;
+                    return;
+                }            
             }
         }
 

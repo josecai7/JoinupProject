@@ -749,52 +749,52 @@ namespace Joinup.ViewModels
         {
             if (selectedCategory == null)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una categoria", "add.png", ColorUtils.ErrorColor);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes seleccionar una categoria");
                 return;
             }
             if (string.IsNullOrEmpty(Name))
             {
-                ToastNotificationUtils.ShowToastNotifications("Ups...Debes ponerle nombre a tu plan", "add.png", ColorUtils.ErrorColor);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes ponerle nombre a tu plan");
                 return;
             }
             if (plan.Latitude==0 && plan.Longitude==0)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ups...Debes seleccionar una ubicación para tu plan", "add.png", ColorUtils.ErrorColor);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes seleccionar una ubicación para tu plan");
                 return;
             }
             if (string.IsNullOrEmpty(Name))
             {
-                ToastNotificationUtils.ShowToastNotifications("Ups...Debes ponerle nombre a tu plan", "add.png", ColorUtils.ErrorColor);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes ponerle nombre a tu plan");
                 return;
             }
             if (PlanDate == DateTime.MinValue)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ups...Debes establecer una fecha de inicio para tu plan", "add.png", ColorUtils.ErrorColor);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes establecer una fecha de inicio para tu plan");
                 return;
             }
             if (PlanDate < DateTime.Now)
             {
-                ToastNotificationUtils.ShowToastNotifications( "Ups...Debes establecer una fecha de inicio mayor que la fecha actual", "add.png", ColorUtils.ErrorColor );
+                ToastNotificationUtils.ShowErrorToastNotifications( "Ups...Debes establecer una fecha de inicio mayor que la fecha actual" );
                 return;
             }
             if (EndPlanDate == DateTime.MinValue)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ups...Debes establecer una fecha de fin para tu plan", "add.png", ColorUtils.ErrorColor);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes establecer una fecha de fin para tu plan");
                 return;
             }
             if (PlanDate>EndPlanDate)
             {
-                ToastNotificationUtils.ShowToastNotifications( "Ups...La fecha de finalización del plan no puede ser mayor a la fecha inicial", "add.png", ColorUtils.ErrorColor );
+                ToastNotificationUtils.ShowErrorToastNotifications( "Ups...La fecha de finalización del plan no puede ser mayor a la fecha inicial" );
                 return;
             }
             if (plan.PlanType==PLANTYPE.LANGUAGE && (plan.Language1==LANGUAGE.UNDEFINED|| plan.Language2 == LANGUAGE.UNDEFINED))
             {
-                ToastNotificationUtils.ShowToastNotifications( "Ups...Debes establecer los idiomas que se trabajaran en el intercambio", "add.png", ColorUtils.ErrorColor );
+                ToastNotificationUtils.ShowErrorToastNotifications( "Ups...Debes establecer los idiomas que se trabajaran en el intercambio" );
                 return;
             }
             if (plan.PlanType == PLANTYPE.SPORT && plan.Sport == SPORT.UNDEFINED)
             {
-                ToastNotificationUtils.ShowToastNotifications( "Ups...Debes especificar el deporte que se practicará en tu plan", "add.png", ColorUtils.ErrorColor );
+                ToastNotificationUtils.ShowErrorToastNotifications( "Ups...Debes especificar el deporte que se practicará en tu plan" );
                 return;
             }
             if (isEditing)
@@ -837,7 +837,7 @@ namespace Joinup.ViewModels
 
             if (!response.IsSuccess)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde");
             }
             else
             {
@@ -847,7 +847,7 @@ namespace Joinup.ViewModels
 
                 if (!responseJoin.IsSuccess)
                 {
-                    ToastNotificationUtils.ShowToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
+                    ToastNotificationUtils.ShowErrorToastNotifications("Ha habido un error en la creación del plan. Intentelo de nuevo más tarde");
                 }
                 else
                 {
@@ -906,7 +906,7 @@ namespace Joinup.ViewModels
 
                 if (!response.IsSuccess)
                 {
-                    ToastNotificationUtils.ShowToastNotifications("Ha habido un error en al editar el plan. Intentelo de nuevo más tarde", "add.png", Color.IndianRed);
+                    ToastNotificationUtils.ShowErrorToastNotifications("Ha habido un error en al editar el plan. Intentelo de nuevo más tarde");
                 }
                 else
                 {
@@ -967,7 +967,7 @@ namespace Joinup.ViewModels
             {
                 if (!CrossMedia.Current.IsTakePhotoSupported)
                 {
-                    ToastNotificationUtils.ShowToastNotifications("Galeria no disponible", "add.png", ColorUtils.ErrorColor);
+                    ToastNotificationUtils.ShowErrorToastNotifications("Galeria no disponible");
                     return;
                 }
 
@@ -983,7 +983,7 @@ namespace Joinup.ViewModels
             {
                 if (!CrossMedia.Current.IsTakePhotoSupported)
                 {
-                    ToastNotificationUtils.ShowToastNotifications("Camara no disponible", "add.png", ColorUtils.ErrorColor);
+                    ToastNotificationUtils.ShowErrorToastNotifications("Camara no disponible");
                     return;
                 }
                 file = await CrossMedia.Current.PickPhotoAsync();

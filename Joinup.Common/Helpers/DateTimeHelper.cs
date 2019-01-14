@@ -38,15 +38,19 @@ namespace Joinup.Common.Helpers
         {
             TimeSpan timeSpan = DateTime.Now - commentDate;
 
-            if (timeSpan.Minutes < 1)
+            if (timeSpan.TotalMinutes < 1)
             {
                 return "< 1 min";
             }
-            else if (timeSpan.Minutes < 59)
+            else if (timeSpan.TotalMinutes == 1)
             {
-                return timeSpan.Minutes + " mins";
+                return " 1 min";
             }
-            else if (timeSpan.Minutes < 1399)
+            else if (timeSpan.TotalMinutes < 59)
+            {
+                return (int)timeSpan.TotalMinutes + " mins";
+            }
+            else if (timeSpan.TotalMinutes < 1399)
             {
                 return timeSpan.Hours + " horas";
             }

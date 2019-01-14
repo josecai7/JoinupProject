@@ -147,7 +147,7 @@ namespace Joinup.ViewModels
             {
                 if (!CrossMedia.Current.IsTakePhotoSupported )
                 {
-                    ToastNotificationUtils.ShowToastNotifications( "Galeria no disponible", "add.png", ColorUtils.ErrorColor );
+                    ToastNotificationUtils.ShowErrorToastNotifications( "Galeria no disponible" );
                     return;
                 }
 
@@ -163,7 +163,7 @@ namespace Joinup.ViewModels
             {
                 if ( !CrossMedia.Current.IsTakePhotoSupported )
                 {
-                    ToastNotificationUtils.ShowToastNotifications( "Camara no disponible", "add.png", ColorUtils.ErrorColor );
+                    ToastNotificationUtils.ShowErrorToastNotifications( "Camara no disponible" );
                     return;
                 }
                 this.file = await CrossMedia.Current.PickPhotoAsync();
@@ -188,22 +188,22 @@ namespace Joinup.ViewModels
 
             if (!connection.IsSuccess)
             {
-                ToastNotificationUtils.ShowToastNotifications("No hay conexion a internet", "",Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("No hay conexion a internet");
                 return;
             }
             else if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Surname))
             {
-                ToastNotificationUtils.ShowToastNotifications("Nombre incorrecto", "", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                ToastNotificationUtils.ShowErrorToastNotifications("Nombre incorrecto");
                 return;
             }
             else if (!RegexHelper.IsValidEmail(Email) || string.IsNullOrEmpty(Email))
             {
-                ToastNotificationUtils.ShowToastNotifications("Email incorrecto", "", Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("Email incorrecto");
                 return;
             }
             else if (Password.Length < 6)
             {
-                ToastNotificationUtils.ShowToastNotifications("La contraseña debe tener al menos 6 caracteres", "", Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("La contraseña debe tener al menos 6 caracteres");
                 return;
             }
             else
@@ -238,18 +238,9 @@ namespace Joinup.ViewModels
 
                     Settings.TokenType = token.TokenType;
                     Settings.AccessToken = token.AccessToken;
-                    var getUserResponse = await ApiService.GetInstance().GetUser(url, prefix, $"{controller}/GetUser", this.Email, Settings.TokenType, token.AccessToken);
-                    if (getUserResponse.IsSuccess)
-                    {
-                        Settings.UserASP = JsonConvert.SerializeObject(LoggedUser);
-                        IsRunning = false;
-                        NavigationService.NavigateToAsync<MainViewModel>();
-                    }
-                    else
-                    {
-                        IsRunning = false;
-                        ShowErrorMessage("Error al obtener el usuario. Contacte con el administrador del sistema");
-                    }
+                    Settings.UserASP = JsonConvert.SerializeObject(postUserResponse.Result);
+                    IsRunning = false;
+                    NavigationService.NavigateToAsync<MainViewModel>();
 
                 }
                 else
@@ -262,7 +253,7 @@ namespace Joinup.ViewModels
 
         private void ShowErrorMessage(string pMessage)
         {
-            ToastNotificationUtils.ShowToastNotifications(pMessage, "", Color.IndianRed);
+            ToastNotificationUtils.ShowErrorToastNotifications(pMessage);
         }
         #endregion
     }

@@ -32,7 +32,7 @@ namespace Joinup.Helpers
             }
             catch (Exception ex)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ha habido un error al enviar el correo. Intentelo de nuevo más tarde", "add.png", Xamarin.Forms.Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ha habido un error al enviar el correo. Intentelo de nuevo más tarde");
             }
         }
     }

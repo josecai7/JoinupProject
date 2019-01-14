@@ -280,7 +280,7 @@ namespace Joinup.ViewModels
 
             if (!response.IsSuccess)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ha habido un error al unirse. Intentelo de nuevo más tarde", "add.png", Xamarin.Forms.Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ha habido un error al unirse. Intentelo de nuevo más tarde");
             }
             else
             {
@@ -296,7 +296,7 @@ namespace Joinup.ViewModels
 
             if (!response.IsSuccess)
             {
-                ToastNotificationUtils.ShowToastNotifications("Ha habido un error al desvincularse del plan. Intentelo de nuevo más tarde", "add.png", Xamarin.Forms.Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("Ha habido un error al desvincularse del plan. Intentelo de nuevo más tarde");
             }
             else
             {

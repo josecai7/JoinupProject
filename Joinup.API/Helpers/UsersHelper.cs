@@ -51,6 +51,7 @@ namespace Joinup.API.Helpers
 
                     return new Response
                     {
+                        Result= newUserASP,
                         IsSuccess = true,
                     };
                 }

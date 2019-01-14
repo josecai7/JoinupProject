@@ -65,6 +65,11 @@
                         </cv:CarouselView>
                         <Grid
                         HeightRequest="230">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding Plan.HasImage}" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </DataTrigger>
+                            </Grid.Triggers>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OpenImageCommand}"/>
                             </Grid.GestureRecognizers>
@@ -584,13 +589,23 @@
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center"/>
 
-                            <Label
+                            <StackLayout
+                                Orientation="Horizontal"
                                 VerticalOptions="Center"
                                 Grid.Column="1"
-                                Grid.Row="0"
-                                Text="12 comentarios"
+                                Grid.Row="0">
+                                <Label
+                                    VerticalOptions="Center"
+                                Text="{Binding Plan.CommentNumber}"
                                 Style="{StaticResource TitleSectionFont}"
                                 TextColor="{StaticResource SecondaryTextColor}"/>
+                                <Label
+                                    VerticalOptions="Center"
+                                Text=" Comentarios"
+                                Style="{StaticResource TitleSectionFont}"
+                                TextColor="{StaticResource SecondaryTextColor}"/>
+                            </StackLayout>
+
                             <customcontrols:FontIcon
                                 Grid.Column="2"
                                 Grid.Row="0"

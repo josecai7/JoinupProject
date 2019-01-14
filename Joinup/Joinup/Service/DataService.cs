@@ -12,7 +12,6 @@ namespace Joinup.Service
 {
     public class DataService
     {
-        public bool isServiceUsed = false;
 
         #region Singleton
 
@@ -130,14 +129,11 @@ namespace Joinup.Service
         }      
         public async Task<Response> GetPlans()
         {
-            while (isServiceUsed) { }
-            isServiceUsed = true;
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlPlansController"].ToString();
 
             var response = await ApiService.GetInstance().GetList<Plan>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
-            isServiceUsed = false;
             return response;
         }
         public async Task<Response> GetCommentsByPlan(int pPlanId)

@@ -106,22 +106,22 @@ namespace Joinup.ViewModels
 
             if (!connection.IsSuccess)
             {
-                ToastNotificationUtils.ShowToastNotifications("No hay conexion a internet", "add.png", Color.IndianRed);
+                ToastNotificationUtils.ShowErrorToastNotifications("No hay conexion a internet");
                 return;
             }
             else if (string.IsNullOrEmpty(Email))
             {
-                ToastNotificationUtils.ShowToastNotifications("Email no puede estar vacio", "add.png", Color.IndianRed,Acr.UserDialogs.ToastPosition.Bottom);
+                ToastNotificationUtils.ShowErrorToastNotifications("Email no puede estar vacio");
                 return;
             }
             else if (string.IsNullOrEmpty(Password))
             {
-                ToastNotificationUtils.ShowToastNotifications("Introduzca una contraseña", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                ToastNotificationUtils.ShowErrorToastNotifications("Introduzca una contraseña");
                 return;
             }
             else if (Password.Length<6)
             {
-                ToastNotificationUtils.ShowToastNotifications("La contraseña debe tener al menos 6 caracteres", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                ToastNotificationUtils.ShowErrorToastNotifications("La contraseña debe tener al menos 6 caracteres");
                 return;
             }
             else
@@ -134,7 +134,7 @@ namespace Joinup.ViewModels
                 {
                     Password = string.Empty;
                     Email = string.Empty;
-                    ToastNotificationUtils.ShowToastNotifications("Usuario o contraseña incorrectos", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                    ToastNotificationUtils.ShowErrorToastNotifications("Usuario o contraseña incorrectos");
                     IsRunning = false;
                     return;
                 }
@@ -153,7 +153,7 @@ namespace Joinup.ViewModels
                     }
                     else
                     {
-                        ToastNotificationUtils.ShowToastNotifications("Algo fué mal. Contacte con el administrador del sistema.", "add.png", Color.IndianRed, Acr.UserDialogs.ToastPosition.Bottom);
+                        ToastNotificationUtils.ShowErrorToastNotifications("Algo fué mal. Contacte con el administrador del sistema.");
                         IsRunning = false;
                         return;
                     }

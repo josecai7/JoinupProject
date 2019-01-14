@@ -29,6 +29,7 @@ namespace Joinup.API.Controllers
                     //Load plan images
                     var images = db.Images.Where(item => item.EntityId == plan.PlanId);
                     plan.PlanImages = images.ToList();
+                    plan.CommentNumber = db.Comments.Where(item => item.PlanId == plan.PlanId).Count();
 
                     //Load plan assistants
                     var assistantsUsers = db.Meets.Where(item => item.PlanId == plan.PlanId);
