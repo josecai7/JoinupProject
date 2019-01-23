@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ctrls="clr-namespace:Joinup.Controls;assembly=Joinup"
+             xmlns:local="clr-namespace:Joinup"
              x:Class="Joinup.App">
 	<Application.Resources>
 
 
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Sizes />
+            </ResourceDictionary.MergedDictionaries>
 
             <x:String x:Key="AppName">Joinup</x:String>
 
@@ -23,27 +26,27 @@
             <!-- FONTS -->
             <OnPlatform x:Key="FontBold"
                         x:TypeArguments="x:String"
-                        iOS="Monserrat-Bold"
-                        Android="Montserrat-Bold.ttf#Montserrat"/>
+                        iOS="Brandon_bld"
+                        Android="Brandon_bld.otf#Brandon"/>
             <OnPlatform x:Key="FontSemiBold"
                         x:TypeArguments="x:String"
-                        iOS="Monserrat-SemiBold"
-                        Android="Montserrat-SemiBold.ttf#Montserrat"/>
+                        iOS="Brandon_bld"
+                        Android="Brandon_bld.otf#Brandon"/>
 
             <OnPlatform x:Key="FontLight"
                         x:TypeArguments="x:String"
-                        iOS="Monserrat-Light"
-                        Android="Montserrat-Light.ttf#Montserrat"/>
+                        iOS="Brandon_light"
+                        Android="Brandon_light.otf#Brandon"/>
 
             <OnPlatform x:Key="FontMedium"
                         x:TypeArguments="x:String"
-                        iOS="Monserrat-Medium"
-                        Android="Montserrat-Medium.ttf#Montserrat"/>
+                        iOS="Brandon_med"
+                        Android="Brandon_med.otf#Brandon"/>
 
             <OnPlatform x:Key="FontRegular"
                         x:TypeArguments="x:String"
-                        iOS="Monserrat-Regular"
-                        Android="Montserrat-Regular.ttf#Montserrat"/>
+                        iOS="Brandon_reg"
+                        Android="Brandon_reg.otf#Brandon"/>
             
             
             <OnPlatform x:Key="CasualRegular"
@@ -69,6 +72,7 @@
             <Color x:Key="FormBackgroundColor">#F0F0F0</Color>
             <Color x:Key="WhiteColor">#FFFFFF</Color>
             <Color x:Key="DarkPrimaryColor">#CC4141</Color>
+            <Color x:Key="AccentColor">#547AA5</Color>
             <Color x:Key="PrimaryColor">#25CFC4</Color>
             
             <Color x:Key="PrimaryTextColor">#1B1B1B</Color>
@@ -87,7 +91,7 @@
             
 
 
-            <Color x:Key="AccentColor">#BC4C1B</Color>
+            
             <Color x:Key="BlackColor">#000000</Color>
             <Color x:Key="BlackTextColor">#253748</Color>
             <Color x:Key="BlueColor">#0072C6</Color>

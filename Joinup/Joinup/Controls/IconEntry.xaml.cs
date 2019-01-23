@@ -19,6 +19,7 @@ namespace Joinup.Controls
         {
             var matEntry = (IconEntry) bindable;
             matEntry.Icon.Icon = (string) newval;
+            matEntry.Icon.IsVisible = !string.IsNullOrEmpty( matEntry.Icon.Icon );
         } );
         public static BindableProperty IconColorProperty = BindableProperty.Create( nameof( IconColor ), typeof( Color ), typeof( IconEntry ), defaultBindingMode: BindingMode.TwoWay, propertyChanged: (bindable, oldVal, newval) =>
         {
@@ -147,7 +148,6 @@ namespace Joinup.Controls
                     await Task.WhenAll(
                         HiddenBottomBorder.LayoutTo( new Rectangle( BottomBorder.X, BottomBorder.Y, BottomBorder.Width, BottomBorder.Height ), 200 )
                      );
-                    EntryField.Placeholder = null;
                 }
                 else
                 {
@@ -162,7 +162,6 @@ namespace Joinup.Controls
                     await Task.WhenAll(
                         HiddenBottomBorder.LayoutTo( new Rectangle( BottomBorder.X, BottomBorder.Y, 0, BottomBorder.Height ), 200 )
                      );
-                    EntryField.Placeholder = Placeholder;
                 }
                 else
                 {

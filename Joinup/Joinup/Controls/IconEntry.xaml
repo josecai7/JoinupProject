@@ -26,16 +26,16 @@
                     x:Name="EntryField" 
                     
                     Text="{Binding Text, Mode=TwoWay}" 
-                    TextColor="White"                
-                    FontSize="{StaticResource LargeSize}" 
-                    FontFamily="{StaticResource FontLight}"
+                    TextColor="{StaticResource PrimaryColor}"                
+                    FontSize="{StaticResource MediumSize}" 
+                    FontFamily="{StaticResource FontMedium}"
                     PlaceholderColor="{StaticResource PlaceholderColor}"
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="End"/>
             </StackLayout>
 
-            <BoxView x:Name="BottomBorder" BackgroundColor="{StaticResource PlaceholderColor}"  Grid.Row="1" HeightRequest="0.5" Margin="0" HorizontalOptions="FillAndExpand"/>
-            <BoxView x:Name="HiddenBottomBorder" BackgroundColor="{StaticResource PlaceholderColor}" Grid.Row="1" HeightRequest="0.5" Margin="0" WidthRequest="0" HorizontalOptions="Center"/>
+            <BoxView x:Name="BottomBorder" BackgroundColor="{StaticResource PrimaryColor}"  Grid.Row="1" HeightRequest="1" Margin="0" HorizontalOptions="FillAndExpand"/>
+            <BoxView x:Name="HiddenBottomBorder" BackgroundColor="{StaticResource PrimaryColor}" Grid.Row="1" HeightRequest="1" Margin="0" WidthRequest="0" HorizontalOptions="Center"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

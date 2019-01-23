@@ -131,6 +131,7 @@
     <Compile Include="Renderers\CustomNavigationRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Poppins-Light.ttf" />
@@ -151,6 +152,10 @@
     <AndroidAsset Include="Assets\Montserrat-Bold.ttf" />
     <AndroidAsset Include="Assets\Montserrat-Light.ttf" />
     <AndroidAsset Include="Assets\Montserrat-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\Brandon_light.otf" />
+    <AndroidAsset Include="Assets\Brandon_med.otf" />
+    <AndroidAsset Include="Assets\Brandon_reg.otf" />
+    <AndroidAsset Include="Assets\Brandon_bld.otf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
@@ -202,9 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\alert.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\logo.svg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_magnify.png" />
@@ -310,6 +312,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\other.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Logo.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\Splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\Splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxhdpi\Splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Splash.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

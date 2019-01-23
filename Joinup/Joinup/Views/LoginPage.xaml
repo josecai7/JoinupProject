@@ -4,109 +4,136 @@
              xmlns:customControls="clr-namespace:Joinup.Controls"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Joinup.Views.LoginPage"
-             BackgroundColor="{StaticResource PrimaryColor}">
+             BackgroundColor="{StaticResource BackgroundColor}">
 
     <ContentPage.Content>
-        <Grid>
+        <Grid
+            RowSpacing="0">
+            <Grid.Padding>
+                <Thickness
+          Left="{StaticResource Default2Margin}"
+          Right="{StaticResource Default2Margin}" />
+            </Grid.Padding>
 
-            <Grid
-            Margin="32,0,32,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="7*"/>
-                </Grid.RowDefinitions>
-                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ContentView Grid.Row="0">
+
                 <ffimageloadingsvg:SvgCachedImage 
-                    Grid.Row="0"
-                    VerticalOptions="End"
-                    HorizontalOptions="Center"
-                    WidthRequest="150" 
-                    HeightRequest="125" 
-                    Source="logo.svg"/>
+                        Source="Logo.svg"
+                    Margin="{StaticResource DefaultMargin}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                    WidthRequest="310"
+                        HeightRequest="160">
+                </ffimageloadingsvg:SvgCachedImage>
 
-                <StackLayout
-                Grid.Row="1">
+            </ContentView>
 
-                    <customControls:IconEntry
+            <StackLayout Grid.Row="1">
+                <Label
+                    TextColor="{StaticResource PrimaryColor}"
+                  FontSize="{StaticResource MediumSize}" 
+                  FontFamily="{StaticResource FontLight}"
+                  Text="Email">
+                    <Label.Margin>
+                    <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                    </Label.Margin>
+                </Label>
+
+                <customControls:IconEntry
                         Text="{Binding Email}"
-                        IconSource="email-outline"
-                        IconColor="{StaticResource WhiteColor}"
-                        AccentColor="{StaticResource WhiteColor}"
+                        IconColor="{StaticResource PrimaryColor}"
+                        AccentColor="{StaticResource PrimaryColor}"
                         Keyboard="Email"
-                        PlaceholderColor="{StaticResource WhiteColor}"
+                        PlaceholderColor="{StaticResource PrimaryColor}"
                         Placeholder="Email"/>
 
-                    <customControls:IconEntry
+                <Label
+                    TextColor="{StaticResource PrimaryColor}"
+                  FontSize="{StaticResource MediumSize}" 
+                  FontFamily="{StaticResource FontLight}"
+                  Text="Contraseña">
+                    <Label.Margin>
+                        <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                    </Label.Margin>
+                </Label>
+
+                <customControls:IconEntry
                         Text="{Binding Password}"
-                        IconSource="lock-outline"
-                        IconColor="{StaticResource WhiteColor}"
-                        AccentColor="{StaticResource WhiteColor}"
+                        IconColor="{StaticResource PrimaryColor}"
+                        AccentColor="{StaticResource PrimaryColor}"
                         IsPassword="True"
-                        PlaceholderColor="{StaticResource PlaceholderColor}"
-                        Placeholder="Contraseña"
-                        Margin="0,8,0,0"/>
+                        PlaceholderColor="{StaticResource PrimaryColor}"
+                        Placeholder="Contraseña"/>
 
-                    <customControls:CheckBar 
+                <customControls:CheckBar 
                         Checked="{Binding IsRemembered}"
-                        TextColor="{StaticResource WhiteColor}"
-                        CheckColor="{StaticResource WhiteColor}"
+                        TextColor="{StaticResource PrimaryColor}"
+                        CheckColor="{StaticResource PrimaryColor}"
                         Text="Recordarme"
-                        Margin="0,16,0,0" />
+                        Margin="0,8,0,0" />
+            </StackLayout>
 
-                    <Frame
-                        HasShadow="True"
-                        OutlineColor="{StaticResource ShadowColor}"  
-                        Margin="0,40,0,0"
-                        HeightRequest="40"
+            <StackLayout
+        Grid.Row="2"
+        Spacing="0"
+        VerticalOptions="End">
+                <StackLayout.Padding>
+                    <Thickness
+            Top="{OnPlatform Android={StaticResource 2xDefaultMargin},
+                             iOS={StaticResource 4xDefaultMargin}}"
+            Bottom="{OnPlatform Android={StaticResource 2xDefaultMargin},
+                                iOS={StaticResource 4xDefaultMargin}}" />
+                </StackLayout.Padding>
+
+                <Frame
+                    HasShadow="False"
+                        HeightRequest="48"
                         CornerRadius="24"
                         Padding="0">
-                        <Button                
-                            TextColor="{StaticResource PrimaryColor}"
-                            FontFamily="{StaticResource FontMedium}"
-                            FontSize="{StaticResource MediumSize}"
-                            BackgroundColor="{StaticResource WhiteColor}"
-                            HorizontalOptions="FillAndExpand"
-                            CornerRadius="32"
-                            Text="Entrar"
-                            Command="{Binding DoLoginCommand}"/>
-                    </Frame>
-                    <Label
-                        Text="o"
-                        Margin="0,16,0,16"
-                        TextColor="{StaticResource WhiteColor}"
-                        HorizontalOptions="Center"
-                        FontFamily="{StaticResource FontLight}"
-                        FontSize="{StaticResource MidMediumSize}">
-                    </Label>
-                    <Frame
-                        HasShadow="False"
-                        OutlineColor="{StaticResource ShadowColor}"  
-                        HeightRequest="40"
-                        CornerRadius="24"
-                        Padding="0">
-                        <Button                
-                            BorderWidth="1"
-                            BorderColor="{StaticResource WhiteColor}"
+                    <Button                
                             TextColor="{StaticResource WhiteColor}"
                             FontFamily="{StaticResource FontMedium}"
                             FontSize="{StaticResource MediumSize}"
                             BackgroundColor="{StaticResource PrimaryColor}"
                             HorizontalOptions="FillAndExpand"
                             CornerRadius="32"
+                            Text="Entrar"
+                            Command="{Binding DoLoginCommand}"/>
+                </Frame>
+                <Label
+                        Text="o"
+                        Margin="0,16,0,16"
+                        TextColor="{StaticResource PrimaryColor}"
+                        HorizontalOptions="Center"
+                        FontFamily="{StaticResource FontMedium}"
+                        FontSize="{StaticResource MediumSize}">
+                </Label>
+                <Frame
+                        HasShadow="False"
+                        HeightRequest="48"
+                        CornerRadius="24"
+                        Padding="0">
+                    <Button                
+                            BorderWidth="1"
+                            BorderColor="{StaticResource WhiteColor}"
+                            TextColor="{StaticResource WhiteColor}"
+                            FontFamily="{StaticResource FontMedium}"
+                            FontSize="{StaticResource MediumSize}"
+                            BackgroundColor="{StaticResource AccentColor}"
+                            HorizontalOptions="FillAndExpand"
+                            CornerRadius="32"
                             Text="Registrarse"
                             Command="{Binding RegisterCommand}"/>
-                    </Frame>
-                </StackLayout>
+                </Frame>
 
-            </Grid>
-            <ActivityIndicator 
-                IsRunning="{Binding IsRunning}" 
-                Color="{StaticResource WhiteColor}"
-                WidthRequest="50"
-                HeightRequest="50"
-                VerticalOptions="End" 
-                Margin="0,0,0,32"
-                HorizontalOptions="Center" />
+            </StackLayout>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
