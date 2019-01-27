@@ -74,6 +74,7 @@
             <Color x:Key="DarkPrimaryColor">#CC4141</Color>
             <Color x:Key="AccentColor">#547AA5</Color>
             <Color x:Key="PrimaryColor">#25CFC4</Color>
+            <Color x:Key="NegativeColor">#F8333C</Color>
             
             <Color x:Key="PrimaryTextColor">#1B1B1B</Color>
             <Color x:Key="SecondaryTextColor">#4A4A4A</Color>
@@ -111,9 +112,9 @@
                 <Setter Property="HeightRequest" Value="{StaticResource TouchSize}" />
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="FontSize"
-                        Value="Small" />
+                        Value="Medium" />
                 <Setter Property="FontFamily"
-                        Value="{StaticResource FontRegular}" />
+                        Value="{StaticResource FontMedium}" />
                 
             </Style>
 
@@ -315,16 +316,14 @@
                  Value="{StaticResource FontSemiBold}" />
                 <Setter Property="FontSize"
                  Value="{StaticResource MidMediumSize}" />
-                <Setter Property="BorderColor"
-                 Value="{StaticResource SecondaryTextColor}" />
-                <Setter Property="BorderWidth"
-                 Value="1" />
                 <Setter Property="BackgroundColor"
-                 Value="{StaticResource WhiteColor}" />
+                 Value="{StaticResource AccentColor}" />
                 <Setter Property="TextColor"
-                 Value="{StaticResource PrimaryColor}" />
+                 Value="{StaticResource WhiteColor}" />
                 <Setter Property="Text"
-                 Value="MODIFICAR PLAN" />
+                 Value="MODIFICAR PLAN"/>
+                <Setter Property="CornerRadius"
+                 Value="4"/>
             </Style>
 
             <Style x:Key="JoinButton"
@@ -333,14 +332,10 @@
                  Value="{StaticResource FontSemiBold}" />
                 <Setter Property="FontSize"
                  Value="{StaticResource MidMediumSize}" />
-                <Setter Property="BorderColor"
-                 Value="{StaticResource SecondaryTextColor}" />
-                <Setter Property="BorderWidth"
-                 Value="1" />
                 <Setter Property="BackgroundColor"
-                 Value="{StaticResource WhiteColor}" />
+                 Value="{StaticResource PrimaryColor}" />
                 <Setter Property="TextColor"
-                 Value="{StaticResource SecondaryTextColor}" />
+                 Value="{StaticResource WhiteColor}" />
                 <Setter Property="Text"
                  Value="¡ME APUNTO!" />
             </Style>
@@ -351,16 +346,12 @@
                  Value="{StaticResource FontSemiBold}" />
                 <Setter Property="FontSize"
                  Value="{StaticResource MidMediumSize}" />
-                <Setter Property="BorderColor"
-                 Value="{StaticResource PrimaryColor}" />
-                <Setter Property="BorderWidth"
-                 Value="1" />
                 <Setter Property="BackgroundColor"
-                 Value="{StaticResource PrimaryColor}" />
+                 Value="{StaticResource NegativeColor}" />
                 <Setter Property="TextColor"
                  Value="{StaticResource WhiteColor}" />
                 <Setter Property="Text"
-                Value="ASISTIRÉ" />
+                Value="NO IRÉ" />
                  
             </Style>
 

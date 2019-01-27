@@ -572,7 +572,7 @@ namespace Joinup.ViewModels
             plan.PlanDate = DateTime.Now;
             plan.EndPlanDate = DateTime.Now;
 
-            ButtonText = "Crear plan";
+            ButtonText = "CREAR PLAN";
         }
         public override Task InitializeAsync(object navigationData)
         {
@@ -580,7 +580,7 @@ namespace Joinup.ViewModels
             if (parameter != null)
             {
                 isEditing = true;
-                ButtonText = "Modificar plan";
+                ButtonText = "MODIFICAR PLAN";
                 plan = parameter;
                 if (plan.Latitude != Double.NaN && plan.Longitude != Double.NaN)
                 {

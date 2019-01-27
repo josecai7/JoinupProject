@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:customEntry="clr-namespace:Joinup.Controls"
+             xmlns:customControls="clr-namespace:Joinup.Controls"
              x:Class="Joinup.Views.RegisterPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             BackgroundColor="{StaticResource PrimaryColor}">
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,32 +17,34 @@
     <NavigationPage.TitleView>
         <StackLayout 
             Orientation="Horizontal" 
-            VerticalOptions="Center" 
-            HorizontalOptions="FillAndExpand" 
-            Spacing="10">
+            VerticalOptions="Start" 
+            HorizontalOptions="FillAndExpand">
 
-            <Label 
-                Text="{StaticResource AppName}" 
-                FontSize="{StaticResource ExtraBigSize}" 
-                FontFamily="{StaticResource MageHand}"
-                TextColor="White" 
-                HorizontalTextAlignment="Start"
-                HorizontalOptions="FillAndExpand"
-                VerticalTextAlignment="Center" />
+            <ffimageloadingsvg:SvgCachedImage 
+                        Source="Logo_inverted.svg"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        WidthRequest="85"
+                        HeightRequest="44">
+            </ffimageloadingsvg:SvgCachedImage>
 
         </StackLayout>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-    <Grid>
-        <Grid
-            Margin="32,0,32,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="7*"/>
-            </Grid.RowDefinitions>
+        <ScrollView 
+                Orientation="Vertical" 
+                VerticalOptions="FillAndExpand">
+            <Grid>
+                <Grid
+                    RowSpacing="8"
+                    Margin="32,64,32,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="115"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-            <ffimageloading:CachedImage 
+                    <ffimageloading:CachedImage 
                 Grid.Row="0"
                 Source="{Binding ImageSource}"
                 Aspect="AspectFit" 
@@ -50,93 +52,128 @@
                 HorizontalOptions="Center"
                 HeightRequest="120"
                 WidthRequest="120">
-                    <ffimageloading:CachedImage.Transformations>
-                        <fftransformations:CircleTransformation/>
-                    </ffimageloading:CachedImage.Transformations>
-                    <ffimageloading:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
-                    </ffimageloading:CachedImage.GestureRecognizers>
-                </ffimageloading:CachedImage>
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation/>
+                        </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
 
-            <StackLayout
+                    <StackLayout
                 Grid.Row="1">
 
-                <customEntry:IconEntry
+                        <Label
+                    TextColor="{StaticResource PrimaryColor}"
+                  FontSize="{StaticResource MediumSize}" 
+                  FontFamily="{StaticResource FontLight}"
+                  Text="Nombre">
+                            <Label.Margin>
+                                <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                            </Label.Margin>
+                        </Label>
+
+                        <customControls:IconEntry
                         Text="{Binding Name}"
-                        IconSource="account"
-                        IconColor="White"
-                        AccentColor="White"
-                        PlaceholderColor="{StaticResource PlaceholderColor}"
+                        IconColor="{StaticResource PrimaryColor}"
+                        AccentColor="{StaticResource PrimaryColor}"
+                        PlaceholderColor="{StaticResource PrimaryColor}"
                         Placeholder="Nombre"/>
 
-                <customEntry:IconEntry
-                        Text="{Binding Surname}"
-                        IconSource="account"
-                        IconColor="White"
-                        AccentColor="White"
-                        PlaceholderColor="{StaticResource PlaceholderColor}"
-                        Placeholder="Apellidos"/>
-                
-                <customEntry:IconEntry
-                    Text="{Binding Email}"
-                    IconSource="email"
-                    IconColor="White"
-                    AccentColor="White"
-                    Keyboard="Email"
-                    PlaceholderColor="{StaticResource PlaceholderColor}"
-                    Placeholder="Email"/>
 
-                <customEntry:IconEntry
-                    Text="{Binding Password}"
-                    IconSource="lock"
-                    IconColor="White"
-                    AccentColor="White"
-                    IsPassword="True"
-                    PlaceholderColor="{StaticResource PlaceholderColor}"
-                    Placeholder="Contraseña"/>
-
-                <Frame
-                    HasShadow="True"
-                    OutlineColor="{StaticResource ShadowColor}"  
-                    Margin="24,24,24,0"
-                    Padding="0">
-                    <Button                
+                        <Label
                     TextColor="{StaticResource PrimaryColor}"
-                    FontFamily="{StaticResource FontMedium}"
-                    FontSize="{StaticResource LargeSize}"
-                    BackgroundColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Registrame"
-                    Command="{Binding DoRegisterCommand}"
-                    />
+                  FontSize="{StaticResource MediumSize}" 
+                  FontFamily="{StaticResource FontLight}"
+                  Text="Apellidos">
+                            <Label.Margin>
+                                <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                            </Label.Margin>
+                        </Label>
+
+                        <customControls:IconEntry
+                        Text="{Binding Surname}"
+                        IconColor="{StaticResource PrimaryColor}"
+                        AccentColor="{StaticResource PrimaryColor}"
+                        PlaceholderColor="{StaticResource PrimaryColor}"
+                        Placeholder="Apellidos"/>
+
+                        <Label
+                    TextColor="{StaticResource PrimaryColor}"
+                  FontSize="{StaticResource MediumSize}" 
+                  FontFamily="{StaticResource FontLight}"
+                  Text="Email">
+                            <Label.Margin>
+                                <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                            </Label.Margin>
+                        </Label>
+
+                        <customControls:IconEntry
+                        Text="{Binding Email}"
+                        IconColor="{StaticResource PrimaryColor}"
+                        AccentColor="{StaticResource PrimaryColor}"
+                        Keyboard="Email"
+                        PlaceholderColor="{StaticResource PrimaryColor}"
+                        Placeholder="Email"/>
+
+                        <Label
+                    TextColor="{StaticResource PrimaryColor}"
+                  FontSize="{StaticResource MediumSize}" 
+                  FontFamily="{StaticResource FontLight}"
+                  Text="Contraseña">
+                            <Label.Margin>
+                                <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                            </Label.Margin>
+                        </Label>
+
+                        <customControls:IconEntry
+                        Text="{Binding Password}"
+                        IconColor="{StaticResource PrimaryColor}"
+                        AccentColor="{StaticResource PrimaryColor}"
+                        IsPassword="True"
+                        PlaceholderColor="{StaticResource PrimaryColor}"
+                        Placeholder="Contraseña"/>
 
 
-                </Frame>
+                        <Frame
+                    HasShadow="False"
+                        HeightRequest="48"
+                        CornerRadius="24"
+                        Padding="0">
+                            <Button                
+                            TextColor="{StaticResource WhiteColor}"
+                            FontFamily="{StaticResource FontMedium}"
+                            FontSize="{StaticResource MediumSize}"
+                            BackgroundColor="{StaticResource PrimaryColor}"
+                            HorizontalOptions="FillAndExpand"
+                            CornerRadius="32"
+                            Text="Registrarme"
+                            Command="{Binding DoRegisterCommand}"/>
+                        </Frame>
 
-
-                <Label
+                        <Label
                     Margin="0,20,0,0"
                     Text="¿Tienes ya una cuenta? Entra"    
                     HorizontalTextAlignment="Center"
                     FontSize="{StaticResource MediumSize}" 
                     FontFamily="{StaticResource FontRegular}"
-                    TextColor="{StaticResource PlaceholderColor}"
+                    TextColor="{StaticResource PrimaryColor}"
                     >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
 
-        </Grid>
-        <ActivityIndicator 
-                IsRunning="{Binding IsRunning}" 
-                Color="White"
-                WidthRequest="50"
-                HeightRequest="50"
-                VerticalOptions="End" 
-                Margin="0,0,0,32"
-                HorizontalOptions="Center" />
-    </Grid>
-</ContentPage.Content>
+                </Grid>
+                <ActivityIndicator
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Color="{StaticResource PrimaryColor}"
+                IsRunning="{Binding IsRunning}"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

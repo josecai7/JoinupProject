@@ -622,13 +622,17 @@
             </ScrollView>
 
             <!--  Bottom Button  -->
-            <Button
-                IsVisible="{Binding IsPlanAvaliable}"
-                Command="{Binding ButtonCommand}"
+
+            <Frame
                 Grid.Row="1"
+                HasShadow="False"
+                Padding="8">
+                <Button
+                IsVisible="{Binding IsPlanAvaliable}"
+                Command="{Binding ButtonCommand}"              
                 HeightRequest="{StaticResource TouchSize}"
                 Style="{Binding ButtonStyle}"/>
-
+            </Frame>
 
         </Grid>
 

@@ -122,6 +122,14 @@ namespace Joinup.ViewModels
             }
         }
 
+        public ICommand GoToBackCommand
+        {
+            get
+            {
+                return new RelayCommand(GoBack);
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -137,7 +145,7 @@ namespace Joinup.ViewModels
                 "Galeria",
                 "Camara" );
 
-            if ( source == "Cancelar" )
+            if ( source == "Cancelar" || string.IsNullOrEmpty(source))
             {
                 file = null;
                 return;
@@ -249,6 +257,10 @@ namespace Joinup.ViewModels
                     ShowErrorMessage(postUserResponse.Message);
                 }
             }
+        }
+        private async void GoBack()
+        {          
+             NavigationService.NavigateBackAsync();
         }
 
         private void ShowErrorMessage(string pMessage)

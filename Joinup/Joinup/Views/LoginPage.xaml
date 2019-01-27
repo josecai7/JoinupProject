@@ -7,45 +7,46 @@
              BackgroundColor="{StaticResource BackgroundColor}">
 
     <ContentPage.Content>
-        <Grid
+        <Grid>
+            <Grid
             RowSpacing="0">
-            <Grid.Padding>
-                <Thickness
+                <Grid.Padding>
+                    <Thickness
           Left="{StaticResource Default2Margin}"
           Right="{StaticResource Default2Margin}" />
-            </Grid.Padding>
+                </Grid.Padding>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="140" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <ContentView Grid.Row="0">
+                <ContentView Grid.Row="0">
 
-                <ffimageloadingsvg:SvgCachedImage 
+                    <ffimageloadingsvg:SvgCachedImage 
                         Source="Logo.svg"
                     Margin="{StaticResource DefaultMargin}"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"
                     WidthRequest="310"
                         HeightRequest="160">
-                </ffimageloadingsvg:SvgCachedImage>
+                    </ffimageloadingsvg:SvgCachedImage>
 
-            </ContentView>
+                </ContentView>
 
-            <StackLayout Grid.Row="1">
-                <Label
+                <StackLayout Grid.Row="1">
+                    <Label
                     TextColor="{StaticResource PrimaryColor}"
                   FontSize="{StaticResource MediumSize}" 
                   FontFamily="{StaticResource FontLight}"
                   Text="Email">
-                    <Label.Margin>
-                    <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
-                    </Label.Margin>
-                </Label>
+                        <Label.Margin>
+                            <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                        </Label.Margin>
+                    </Label>
 
-                <customControls:IconEntry
+                    <customControls:IconEntry
                         Text="{Binding Email}"
                         IconColor="{StaticResource PrimaryColor}"
                         AccentColor="{StaticResource PrimaryColor}"
@@ -53,17 +54,17 @@
                         PlaceholderColor="{StaticResource PrimaryColor}"
                         Placeholder="Email"/>
 
-                <Label
+                    <Label
                     TextColor="{StaticResource PrimaryColor}"
                   FontSize="{StaticResource MediumSize}" 
                   FontFamily="{StaticResource FontLight}"
                   Text="Contraseña">
-                    <Label.Margin>
-                        <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
-                    </Label.Margin>
-                </Label>
+                        <Label.Margin>
+                            <Thickness Top="{OnPlatform Android={StaticResource DefaultMargin}, iOS={StaticResource 2xDefaultMargin}}" />
+                        </Label.Margin>
+                    </Label>
 
-                <customControls:IconEntry
+                    <customControls:IconEntry
                         Text="{Binding Password}"
                         IconColor="{StaticResource PrimaryColor}"
                         AccentColor="{StaticResource PrimaryColor}"
@@ -71,32 +72,32 @@
                         PlaceholderColor="{StaticResource PrimaryColor}"
                         Placeholder="Contraseña"/>
 
-                <customControls:CheckBar 
+                    <customControls:CheckBar 
                         Checked="{Binding IsRemembered}"
                         TextColor="{StaticResource PrimaryColor}"
                         CheckColor="{StaticResource PrimaryColor}"
                         Text="Recordarme"
                         Margin="0,8,0,0" />
-            </StackLayout>
+                </StackLayout>
 
-            <StackLayout
+                <StackLayout
         Grid.Row="2"
         Spacing="0"
         VerticalOptions="End">
-                <StackLayout.Padding>
-                    <Thickness
+                    <StackLayout.Padding>
+                        <Thickness
             Top="{OnPlatform Android={StaticResource 2xDefaultMargin},
                              iOS={StaticResource 4xDefaultMargin}}"
             Bottom="{OnPlatform Android={StaticResource 2xDefaultMargin},
                                 iOS={StaticResource 4xDefaultMargin}}" />
-                </StackLayout.Padding>
+                    </StackLayout.Padding>
 
-                <Frame
+                    <Frame
                     HasShadow="False"
                         HeightRequest="48"
                         CornerRadius="24"
                         Padding="0">
-                    <Button                
+                        <Button                
                             TextColor="{StaticResource WhiteColor}"
                             FontFamily="{StaticResource FontMedium}"
                             FontSize="{StaticResource MediumSize}"
@@ -105,21 +106,21 @@
                             CornerRadius="32"
                             Text="Entrar"
                             Command="{Binding DoLoginCommand}"/>
-                </Frame>
-                <Label
+                    </Frame>
+                    <Label
                         Text="o"
                         Margin="0,16,0,16"
                         TextColor="{StaticResource PrimaryColor}"
                         HorizontalOptions="Center"
                         FontFamily="{StaticResource FontMedium}"
                         FontSize="{StaticResource MediumSize}">
-                </Label>
-                <Frame
+                    </Label>
+                    <Frame
                         HasShadow="False"
                         HeightRequest="48"
                         CornerRadius="24"
                         Padding="0">
-                    <Button                
+                        <Button                
                             BorderWidth="1"
                             BorderColor="{StaticResource WhiteColor}"
                             TextColor="{StaticResource WhiteColor}"
@@ -130,9 +131,19 @@
                             CornerRadius="32"
                             Text="Registrarse"
                             Command="{Binding RegisterCommand}"/>
-                </Frame>
+                    </Frame>
 
-            </StackLayout>
+                </StackLayout>
+
+            </Grid>
+            <ActivityIndicator
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Color="{StaticResource PrimaryColor}"
+                IsRunning="{Binding IsRunning}"/>
+
 
         </Grid>
     </ContentPage.Content>
