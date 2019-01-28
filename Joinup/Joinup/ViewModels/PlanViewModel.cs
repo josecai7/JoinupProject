@@ -20,6 +20,8 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private Plan plan;
+        bool isEnabled = true;
+        bool isRunning = false;
         ObservableCollection<Plan> pins = new ObservableCollection<Plan>();
         #endregion
         #region Properties
@@ -142,6 +144,31 @@ namespace Joinup.ViewModels
             get
             {
                 return PLANTYPE.TRAVEL == plan.PlanType;
+            }
+        }
+
+        public bool IsRunning
+        {
+            get
+            {
+                return isRunning;
+            }
+            set
+            {
+                isRunning = value;
+                RaisePropertyChanged("IsRunning");
+            }
+        }
+        public bool IsEnabled
+        {
+            get
+            {
+                return isEnabled;
+            }
+            set
+            {
+                isEnabled = value;
+                RaisePropertyChanged("IsEnabled");
             }
         }
 
@@ -276,6 +303,8 @@ namespace Joinup.ViewModels
         }
         private async void JoinPlan()
         {
+            IsRunning = true;
+            IsEnabled = false;
             var response = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id);
 
             if (!response.IsSuccess)
@@ -289,9 +318,13 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
             }
+            IsRunning = false;
+            IsEnabled = true;
         }
         private async void UnJoinPlan()
         {
+            IsRunning = true;
+            IsEnabled = false;
             var response = await DataService.GetInstance().UnJoinAPlan(plan.PlanId, LoggedUser.Id);
 
             if (!response.IsSuccess)
@@ -305,46 +338,13 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
             }
+            IsRunning = false;
+            IsEnabled = true;
         }
         private void EditPlan()
         {
             NavigationService.NavigateToAsync<NewPlanStep1ViewModel>(Plan);
         }
-        private async void CancelPlan()
-        {
-            if (Plan.AssistantUsers.Count > 1)
-            {
-                var source = await Application.Current.MainPage.DisplayActionSheet(
-                    "Hay usuarios que asistirán a tu plan. ¿Estás seguro de eliminarlo?",
-                    "Cancelar",
-                    null,
-                    "Aceptar");
-                if (source == "Cancelar")
-                {
-                    return;
-                }
-                else if (source == "Aceptar")
-                {
-                    //Cancelar el plan
-                }
-            }
-            else
-            {
-                var source = await Application.Current.MainPage.DisplayActionSheet(
-                    "¿Estás seguro de eliminar tu plan?",
-                    "Cancelar",
-                    null,
-                    "Aceptar");
-                if (source == "Cancelar")
-                {
-                    return;
-                }
-                else if (source == "Aceptar")
-                {
-                    //DataService.GetInstance().CancelPlan();
-                }
-            }
-        }   
         public void GoToLink()
         {
             Device.OpenUri(new Uri(plan.Link));

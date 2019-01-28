@@ -403,6 +403,7 @@
                         </Grid.ColumnDefinitions>
                         <Button
                         Grid.Column="0"
+                            IsEnabled="{Binding IsEnabled}"
                         Command="{Binding CreatePlanCommand}"
                         BackgroundColor="{StaticResource PrimaryColor}"
                         Style="{StaticResource BaseButtonStyle}"
@@ -413,10 +414,13 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <custom:CustomActivityIndicator
-                IsVisible="{Binding IsRunning}"
+            <ActivityIndicator
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="Center"
                 VerticalOptions="Center"
-                HorizontalOptions="Center"/>
+                Color="{StaticResource PrimaryColor}"
+                IsRunning="{Binding IsRunning}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

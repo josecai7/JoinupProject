@@ -221,7 +221,6 @@
                             Grid.ColumnSpan="2"
                             Grid.Row="1">
 
-
                     <Grid  
                                 x:Name="PlansPanel"
                                 IsVisible="{Binding PlansTab}"
@@ -238,6 +237,7 @@
                                 HasUnevenRows="True"
                                 ItemsSource="{Binding AssistPlanList}"
                                 IsRefreshing="{Binding IsRefreshing}"
+                                ItemClickCommand="{Binding ClickOnPlan}"
                                 IsPullToRefreshEnabled="True"
                                 SeparatorVisibility="None"
                                 RefreshCommand="{Binding RefreshCommand}">
@@ -340,6 +340,7 @@
                                 HasUnevenRows="True"
                                 ItemsSource="{Binding PublishedPlanList}"
                                 IsRefreshing="{Binding IsRefreshing}"
+                            ItemClickCommand="{Binding ClickOnPlan}"
                                 IsPullToRefreshEnabled="True"
                                 SeparatorVisibility="None"
                                 RefreshCommand="{Binding RefreshCommand}">

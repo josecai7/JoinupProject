@@ -97,7 +97,8 @@
                         HeightRequest="48"
                         CornerRadius="24"
                         Padding="0">
-                        <Button                
+                        <Button         
+                            IsEnabled="{Binding IsEnabled}"
                             TextColor="{StaticResource WhiteColor}"
                             FontFamily="{StaticResource FontMedium}"
                             FontSize="{StaticResource MediumSize}"
@@ -120,7 +121,8 @@
                         HeightRequest="48"
                         CornerRadius="24"
                         Padding="0">
-                        <Button                
+                        <Button
+                            IsEnabled="{Binding IsEnabled}"
                             BorderWidth="1"
                             BorderColor="{StaticResource WhiteColor}"
                             TextColor="{StaticResource WhiteColor}"

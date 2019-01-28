@@ -28,7 +28,8 @@ namespace Joinup.ViewModels
         private bool isEditing = false;
         private string buttonText;
 
-        private bool isRunning;
+        bool isEnabled = true;
+        bool isRunning = false;
         private Plan plan;
 
         string locationText;
@@ -84,6 +85,18 @@ namespace Joinup.ViewModels
             {
                 isRunning = value;
                 RaisePropertyChanged("IsRunning");
+            }
+        }
+        public bool IsEnabled
+        {
+            get
+            {
+                return isEnabled;
+            }
+            set
+            {
+                isEnabled = value;
+                RaisePropertyChanged("IsEnabled");
             }
         }
         public string ButtonText
@@ -809,6 +822,7 @@ namespace Joinup.ViewModels
         private async void SavePlan()
         {
             IsRunning = true;
+            IsEnabled = false;
             plan.UserId = LoggedUser.Id;
 
             if (Image1 != null)
@@ -859,6 +873,7 @@ namespace Joinup.ViewModels
             }
 
             IsRunning = false;
+            IsEnabled = true;
         }
         private async void EditPlan()
         {
@@ -875,6 +890,7 @@ namespace Joinup.ViewModels
             }
             else
             {
+                IsEnabled = false;
                 IsRunning = true;
                 plan.UserId = LoggedUser.Id;
 
@@ -920,6 +936,7 @@ namespace Joinup.ViewModels
                 }
 
                 IsRunning = false;
+                IsEnabled = true;
             }
         }
 

@@ -122,6 +122,24 @@ namespace Joinup.ViewModels
         }
         #endregion
         #region Commands
+        public ICommand ClickOnPlan
+        {
+            get
+            {
+                return new Command((item) =>
+                {
+                    try
+                    {
+                        NavigationService.NavigateToAsync<PlanViewModel>((Plan)item);
+                    }
+                    catch (Exception exc)
+                    {
+
+                    }
+
+                });
+            }
+        }
         public ICommand OpenImageCommand
         {
             get

@@ -240,7 +240,7 @@
                                 Grid.Row="1"
                                 HeightRequest="45">
                                 <controls:ExtendedFlexLayout 
-                                    ItemsSource="{Binding Assistants}"
+                                    ItemsSource="{Binding Assistants}"                                   
                                     HeightRequest="45">
                                     <controls:ExtendedFlexLayout.ItemTemplate>
                                         <DataTemplate>
@@ -392,7 +392,7 @@
                             Grid.Column="0"
                             Grid.Row="0"
                             IconColor="{StaticResource TertiaryTextColor}"
-                            Icon="silverware-fork-knife"
+                            Icon="basketball"
                             IconSize="{StaticResource IconBigSize}"
                             VerticalOptions="Start"
                             HorizontalOptions="Center">
@@ -620,7 +620,15 @@
 
                 </StackLayout>
             </ScrollView>
-
+            
+            <ActivityIndicator
+                Grid.Row="0"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Color="{StaticResource PrimaryColor}"
+                IsRunning="{Binding IsRunning}"/>
             <!--  Bottom Button  -->
 
             <Frame
@@ -628,6 +636,7 @@
                 HasShadow="False"
                 Padding="8">
                 <Button
+                    IsEnabled="{Binding IsEnabled}"
                 IsVisible="{Binding IsPlanAvaliable}"
                 Command="{Binding ButtonCommand}"              
                 HeightRequest="{StaticResource TouchSize}"

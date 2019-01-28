@@ -192,7 +192,7 @@ namespace Joinup.Common.Models
                 {
                     if (PlanDate.Date < DateTime.Now.Date)
                     {
-                        return "El plan se llevó a cabo hace "+differenceInDays+" días";
+                        return "El plan se llevó a cabo hace "+Math.Abs(differenceInDays)+" días";
                     }
                     else
                     {

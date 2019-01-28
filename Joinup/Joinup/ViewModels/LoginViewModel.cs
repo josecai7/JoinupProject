@@ -16,6 +16,7 @@ namespace Joinup.ViewModels
     {
         #region Attributes
         private bool isRunning;
+        private bool isEnabled;
         private bool isRemembered;
         private string email;
         private string password;
@@ -55,6 +56,18 @@ namespace Joinup.ViewModels
             {
                 isRunning = value;
                 RaisePropertyChanged("IsRunning");
+            }
+        }
+        public bool IsEnabled
+        {
+            get
+            {
+                return isEnabled;
+            }
+            set
+            {
+                isEnabled = value;
+                RaisePropertyChanged("IsEnabled");
             }
         }
         public bool IsRemembered
@@ -97,7 +110,6 @@ namespace Joinup.ViewModels
         #region Methods
         private async void Login()
         {
-            
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlUsersController"].ToString();
@@ -127,6 +139,7 @@ namespace Joinup.ViewModels
             else
             {
                 IsRunning = true;
+                IsEnabled = false;
 
                 var token = await ApiService.GetInstance().GetToken(url, Email, Password);
 
@@ -136,6 +149,7 @@ namespace Joinup.ViewModels
                     Email = string.Empty;
                     ToastNotificationUtils.ShowErrorToastNotifications("Usuario o contraseña incorrectos");
                     IsRunning = false;
+                    IsEnabled = true;
                     return;
                 }
                 else
@@ -149,12 +163,14 @@ namespace Joinup.ViewModels
                     {
                         Settings.UserASP = JsonConvert.SerializeObject(response.Result);
                         IsRunning = false;
+                        IsEnabled = true;
                         NavigationService.NavigateToAsync<MainViewModel>();
                     }
                     else
                     {
                         ToastNotificationUtils.ShowErrorToastNotifications("Algo fué mal. Contacte con el administrador del sistema.");
                         IsRunning = false;
+                        IsEnabled = true;
                         return;
                     }
                 }
