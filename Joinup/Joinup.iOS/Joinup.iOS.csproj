@@ -230,6 +230,10 @@
     <PackageReference Include="XLabs.Forms">
       <Version>2.0.5782</Version>
     </PackageReference>
+<PackageReference Include="System.Reflection.Emit">
+  <Version>4.3.0</Version>
+  <ExcludeAssets>all</ExcludeAssets>
+</PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
