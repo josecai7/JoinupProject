@@ -77,9 +77,6 @@
                                         Style="{StaticResource HeaderElementFont}"
                                         TextColor="{StaticResource TertiaryTextColor}"/>
 
-                                    <RatingBar>
-                                        
-                                    </RatingBar>
                                     
                                     <StackLayout
                                     Orientation="Horizontal"
