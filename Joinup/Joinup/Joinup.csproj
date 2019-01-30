@@ -12,6 +12,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="16.3.0.36" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="16.3.0.21" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="16.3.0.36" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="16.4.0.48" />
     <PackageReference Include="Toasts.Forms.Plugin" Version="3.3.2" />
     <PackageReference Include="Unity" Version="5.8.11" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
@@ -105,6 +106,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Main\MainView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyPlansPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NewPlanPage.xaml">

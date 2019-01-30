@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Joinup.Controls"
+             xmlns:viewModels="clr-namespace:Joinup.ViewModels"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="Joinup.Views.MyPlansPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:MyPlansViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <controls:CustomListView
+                ItemsSource="{Binding MyPlans}"
+                IsGroupingEnabled="True"
+                GroupDisplayBinding="{Binding Key}"
+                HasUnevenRows="True"            
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemClickCommand="{Binding ClickOnPlan}"
+                IsPullToRefreshEnabled="True"
+                SeparatorVisibility="Default"
+                RefreshCommand="{Binding RefreshCommand}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Spacing="0">
+                                <Grid
+                                    HeightRequest="132"
+                                    RowSpacing="0"
+                                    Padding="16,8,16,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame
+                                        Grid.Column="0"
+                                        Padding="0"
+                                        CornerRadius="6">
+                                        <ffimageloading:CachedImage    
+                                            Source="{Binding DefaultImageFullPath}"
+                                            Aspect="AspectFill" 
+                                            LoadingPlaceholder="no_image.png" 
+                                            ErrorPlaceholder="no_image.png" >
+                                        </ffimageloading:CachedImage>
+                                    </Frame>
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        Spacing="0">
+                                        <Label
+                                        Text="{Binding Name}"
+                                        TextColor="{StaticResource SecondaryTextColor}"
+                                        Style="{StaticResource SubtitleElementFont}"/>
+                                        <Label
+                                        Text="{Binding TimeRemaining}"
+                                        Style="{StaticResource HeaderElementFont}"
+                                        TextColor="{StaticResource TertiaryTextColor}"/>
+                                        <rating:SfRating 
+                                        VerticalOptions="End"
+                                        ReadOnly="True"
+                                        ItemSize="20"
+                                        Value="3">
+                                            <rating:SfRating.RatingSettings>
+                                                <rating:SfRatingSettings RatedFill="{StaticResource PrimaryColor}" RatedStroke="Transparent"/>
+                                            </rating:SfRating.RatingSettings>
+                                        </rating:SfRating>
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </controls:CustomListView>
+            <controls:SeparatorLine/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
