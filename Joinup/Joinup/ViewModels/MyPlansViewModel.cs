@@ -83,6 +83,8 @@ namespace Joinup.ViewModels
                 myPlans.Clear();
                 myPlans.Add(new Grouping<string, Plan>("Planes finalizados", new ObservableCollection<Plan>(myPlansList)));
 
+                myPlans.Add( new Grouping<string, Plan>( "Próximos planes", new ObservableCollection<Plan>( myPlansList ) ) );
+
                 RaisePropertyChanged("MyPlans");
             }
             else

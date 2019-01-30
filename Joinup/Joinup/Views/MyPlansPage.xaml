@@ -4,6 +4,7 @@
              xmlns:controls="clr-namespace:Joinup.Controls"
              xmlns:viewModels="clr-namespace:Joinup.ViewModels"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              x:Class="Joinup.Views.MyPlansPage">
 
@@ -14,63 +15,111 @@
     <ContentPage.Content>
         <StackLayout>
             <controls:CustomListView
-                ItemsSource="{Binding MyPlans}"
+                HasUnevenRows="True"
                 IsGroupingEnabled="True"
                 GroupDisplayBinding="{Binding Key}"
-                HasUnevenRows="True"            
+                ItemsSource="{Binding MyPlans}"
                 IsRefreshing="{Binding IsRefreshing}"
                 ItemClickCommand="{Binding ClickOnPlan}"
                 IsPullToRefreshEnabled="True"
                 SeparatorVisibility="Default"
                 RefreshCommand="{Binding RefreshCommand}">
 
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout 
+                                Padding="16,8,16,8"
+                                Orientation="Horizontal"
+                                 BackgroundColor="{StaticResource PrimaryColor}"
+                                 VerticalOptions="FillAndExpand">
+                                <Label Text="{Binding Key}"
+                                    TextColor="{StaticResource WhiteColor}"
+                                    Style="{StaticResource TitleElementFont}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout
-                                Spacing="0">
-                                <Grid
-                                    HeightRequest="132"
-                                    RowSpacing="0"
-                                    Padding="16,8,16,8">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Frame
-                                        Grid.Column="0"
-                                        Padding="0"
-                                        CornerRadius="6">
-                                        <ffimageloading:CachedImage    
-                                            Source="{Binding DefaultImageFullPath}"
-                                            Aspect="AspectFill" 
-                                            LoadingPlaceholder="no_image.png" 
-                                            ErrorPlaceholder="no_image.png" >
-                                        </ffimageloading:CachedImage>
-                                    </Frame>
-                                    <StackLayout
-                                        Grid.Column="1"
-                                        Spacing="0">
-                                        <Label
+                            <Grid
+                                ColumnSpacing="16"
+                                Padding="16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame
+                                    Grid.Column="0"
+                                    Padding="0"
+                                    CornerRadius="6">
+                                    <ffimageloading:CachedImage    
+                                    BackgroundColor="AliceBlue"
+                                    Source="{Binding DefaultImageFullPath}"
+                                    Aspect="AspectFill" 
+                                    LoadingPlaceholder="no_image.png" 
+                                    ErrorPlaceholder="no_image.png" 
+                                    DownsampleToViewSize="true"
+                                    HeightRequest="150">
+                                    </ffimageloading:CachedImage>
+                                </Frame>
+                                <StackLayout
+                                    Spacing="0"
+                                    Grid.Column="1">
+
+                                    <Label
                                         Text="{Binding Name}"
                                         TextColor="{StaticResource SecondaryTextColor}"
                                         Style="{StaticResource SubtitleElementFont}"/>
-                                        <Label
+                                    <Label
                                         Text="{Binding TimeRemaining}"
                                         Style="{StaticResource HeaderElementFont}"
                                         TextColor="{StaticResource TertiaryTextColor}"/>
-                                        <rating:SfRating 
-                                        VerticalOptions="End"
-                                        ReadOnly="True"
-                                        ItemSize="20"
-                                        Value="3">
-                                            <rating:SfRating.RatingSettings>
-                                                <rating:SfRatingSettings RatedFill="{StaticResource PrimaryColor}" RatedStroke="Transparent"/>
-                                            </rating:SfRating.RatingSettings>
-                                        </rating:SfRating>
+
+                                    <RatingBar>
+                                        
+                                    </RatingBar>
+                                    
+                                    <StackLayout
+                                    Orientation="Horizontal"
+                                    Margin="0,8,0,0"
+                                    HeightRequest="24"
+                                    Spacing="8">
+                                        <controls:ExtendedFlexLayout                                     
+                                    ItemsSource="{Binding ResumeAssistantUsers}"
+                                    HeightRequest="24">
+                                            <controls:ExtendedFlexLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame
+                                                Margin="0,0,-4,0"
+                                                Padding="0.7"
+                                                BackgroundColor="{StaticResource BackgroundColor}"
+                                                CornerRadius="12"
+                                                HeightRequest="24"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                WidthRequest="24">
+                                                        <ffimageloading:CachedImage 
+                                                    Source="{Binding UserImage}">
+                                                            <ffimageloading:CachedImage.Transformations>
+                                                                <fftransformations:CircleTransformation/>
+                                                            </ffimageloading:CachedImage.Transformations>
+                                                        </ffimageloading:CachedImage>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </controls:ExtendedFlexLayout.ItemTemplate>
+                                        </controls:ExtendedFlexLayout>
+                                        <Label 
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center"
+                                        Text="{Binding FormattedAssistantUsers}"
+                                        Style="{StaticResource HeaderElementFont}"
+                                        TextColor="{StaticResource TertiaryTextColor}"/>
                                     </StackLayout>
-                                </Grid>
-                            </StackLayout>
+                                </StackLayout>
+
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
