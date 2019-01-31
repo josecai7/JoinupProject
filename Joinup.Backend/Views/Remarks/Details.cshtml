@@ -1,0 +1,82 @@
+﻿@model Joinup.Common.Models.DatabaseModels.Remark
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Remark</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserDisplayImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserDisplayImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RemarkId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

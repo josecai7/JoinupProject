@@ -5,7 +5,6 @@
              xmlns:viewModels="clr-namespace:Joinup.ViewModels"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              x:Class="Joinup.Views.MyPlansPage">
 
     <ContentPage.BindingContext>
@@ -71,13 +70,12 @@
                                     <Label
                                         Text="{Binding Name}"
                                         TextColor="{StaticResource SecondaryTextColor}"
-                                        Style="{StaticResource SubtitleElementFont}"/>
+                                        Style="{StaticResource TitleElementFont}"/>
                                     <Label
                                         Text="{Binding TimeRemaining}"
                                         Style="{StaticResource HeaderElementFont}"
                                         TextColor="{StaticResource TertiaryTextColor}"/>
 
-                                    
                                     <StackLayout
                                     Orientation="Horizontal"
                                     Margin="0,8,0,0"
@@ -107,13 +105,15 @@
                                                 </DataTemplate>
                                             </controls:ExtendedFlexLayout.ItemTemplate>
                                         </controls:ExtendedFlexLayout>
-                                        <Label 
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center"
-                                        Text="{Binding FormattedAssistantUsers}"
-                                        Style="{StaticResource HeaderElementFont}"
-                                        TextColor="{StaticResource TertiaryTextColor}"/>
                                     </StackLayout>
+                                    
+                                    <Label
+                                        IsVisible="{Binding HasRemarks}"
+                                        VerticalOptions="EndAndExpand"
+                                        VerticalTextAlignment="End"
+                                        Text="Valora el plan"
+                                        TextColor="{StaticResource RemarkColor}"
+                                        Style="{StaticResource SubtitleFont}"/>
                                 </StackLayout>
 
                             </Grid>

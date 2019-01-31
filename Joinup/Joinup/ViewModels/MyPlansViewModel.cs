@@ -60,6 +60,24 @@ namespace Joinup.ViewModels
                 return new RelayCommand(LoadPlans);
             }
         }
+        public ICommand ClickOnPlan
+        {
+            get
+            {
+                return new Command((item) =>
+                {
+                    try
+                    {
+                        NavigationService.NavigateToAsync<PlanViewModel>((Plan)item);
+                    }
+                    catch (Exception exc)
+                    {
+
+                    }
+
+                });
+            }
+        }
         #endregion
         #region Methods
         private async void LoadPlans()
@@ -69,7 +87,7 @@ namespace Joinup.ViewModels
             var connection = await ApiService.GetInstance().CheckConnection();
             if (connection.IsSuccess)
             {
-                var response = await DataService.GetInstance().GetPlans();
+                var response = await DataService.GetInstance().GetPlansByUserId(LoggedUser.Id);
 
                 if (!response.IsSuccess)
                 {
@@ -81,9 +99,14 @@ namespace Joinup.ViewModels
                 var myPlansList = (List<Plan>)response.Result;
 
                 myPlans.Clear();
-                myPlans.Add(new Grouping<string, Plan>("Planes finalizados", new ObservableCollection<Plan>(myPlansList)));
 
-                myPlans.Add( new Grouping<string, Plan>( "Próximos planes", new ObservableCollection<Plan>( myPlansList ) ) );
+                var nextPlans = myPlansList.Where(item => item.EndPlanDate >= DateTime.Now).OrderBy(item=>item.PlanDate);
+                nextPlans.Select(p => { p.LoggedUser = LoggedUser; return p; }).ToList();
+                myPlans.Add(new Grouping<string, Plan>("Próximos planes", new ObservableCollection<Plan>(nextPlans)));
+
+                var finishedPlans = myPlansList.Where(item=>item.EndPlanDate<DateTime.Now).OrderByDescending(item => item.PlanDate);
+                finishedPlans.Select(p => { p.LoggedUser = LoggedUser; return p; }).ToList();
+                myPlans.Add(new Grouping<string, Plan>("Planes finalizados", new ObservableCollection<Plan>(finishedPlans)));
 
                 RaisePropertyChanged("MyPlans");
             }

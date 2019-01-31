@@ -9,7 +9,6 @@
     <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="SkiaRate.Forms" Version="0.5.2-pre" />
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="16.3.0.36" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="16.3.0.21" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="16.3.0.36" />
@@ -128,6 +127,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegisterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RemarkPlanPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

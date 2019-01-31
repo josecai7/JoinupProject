@@ -57,19 +57,39 @@ namespace Joinup.ViewModels
         {
             get
             {
-                if ( IsHost )
+                if (IsHost && plan.PlanDate > DateTime.Now)
                 {
                     return Application.Current.Resources["ModifyPlanButton"] as Style;
                 }
+                else if (IsHost && plan.PlanDate <= DateTime.Now)
+                {
+                    IsEnabled = false;
+                    return Application.Current.Resources["EndPlanButton"] as Style;
+                }
                 else
                 {
-                    if ( plan.AssistantUsers.Find( assistant => assistant.Id == LoggedUser.Id ) == null )
+                    if (plan.PlanDate <= DateTime.Now)
                     {
-                        return Application.Current.Resources["JoinButton"] as Style;
+                        if (plan.Remarks.Find(item => item.UserId == LoggedUser.Id) == null)
+                        {
+                            return Application.Current.Resources["RemarkPlanButton"] as Style;
+                        }
+                        else
+                        {
+                            IsEnabled = false;
+                            return Application.Current.Resources["EndPlanButton"] as Style;
+                        }
                     }
                     else
                     {
-                        return Application.Current.Resources["UnJoinButton"] as Style;
+                        if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
+                        {
+                            return Application.Current.Resources["JoinButton"] as Style;
+                        }
+                        else
+                        {
+                            return Application.Current.Resources["UnJoinButton"] as Style;
+                        }
                     }
                 }
             }
@@ -86,13 +106,6 @@ namespace Joinup.ViewModels
             get
             {
                 return plan.UserId != LoggedUser.Id;
-            }
-        }
-        public bool IsPlanAvaliable
-        {
-            get
-            {
-                return plan.PlanDate > DateTime.Now;
             }
         }
 
@@ -278,13 +291,20 @@ namespace Joinup.ViewModels
             }
             else
             {
-                if ( plan.AssistantUsers.Find( assistant => assistant.Id == LoggedUser.Id ) == null )
+                if (plan.PlanDate <= DateTime.Now)
                 {
-                    JoinPlan();
+                    NavigationService.NavigateToAsync<RemarkPlanViewModel>(Plan);
                 }
                 else
                 {
-                    UnJoinPlan();
+                    if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
+                    {
+                        JoinPlan();
+                    }
+                    else
+                    {
+                        UnJoinPlan();
+                    }
                 }
             }
         }

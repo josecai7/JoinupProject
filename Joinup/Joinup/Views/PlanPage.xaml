@@ -637,7 +637,6 @@
                 Padding="8">
                 <Button
                     IsEnabled="{Binding IsEnabled}"
-                IsVisible="{Binding IsPlanAvaliable}"
                 Command="{Binding ButtonCommand}"              
                 HeightRequest="{StaticResource TouchSize}"
                 Style="{Binding ButtonStyle}"/>

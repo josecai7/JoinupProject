@@ -26,6 +26,10 @@ namespace Joinup.API.Controllers
                 var plans = db.Plans;
                 foreach (var plan in plans)
                 {
+                    //Load remarks
+                    var remarks = db.Remarks.Where(item => item.PlanId == plan.PlanId);
+                    plan.Remarks = remarks.ToList();
+
                     //Load plan images
                     var images = db.Images.Where(item => item.EntityId == plan.PlanId);
                     plan.PlanImages = images.ToList();
@@ -50,6 +54,49 @@ namespace Joinup.API.Controllers
                 }
 
                 return plans;
+        }
+
+        // GET: api/Plans
+        [Route("~/api/Plans/ByUser/{pUserId}")]
+        public IQueryable<Plan> GetPlansByUser(string pUserId)
+        {
+            var plans =
+                from plan in db.Plans
+                join meet in db.Meets on plan.PlanId equals meet.PlanId
+                where meet.UserId == pUserId
+                select plan;
+
+
+            foreach (var plan in plans)
+            {
+                //Load remarks
+                var remarks = db.Remarks.Where(item => item.PlanId == plan.PlanId);
+                plan.Remarks = remarks.ToList();
+
+                //Load plan images
+                var images = db.Images.Where(item => item.EntityId == plan.PlanId);
+                plan.PlanImages = images.ToList();
+                plan.CommentNumber = db.Comments.Where(item => item.PlanId == plan.PlanId).Count();
+
+                //Load plan assistants
+                var assistantsUsers = db.Meets.Where(item => item.PlanId == plan.PlanId);
+                plan.AssistantUsers = new List<MyUserASP>();
+                foreach (var meet in assistantsUsers)
+                {
+                    var assistant = UsersHelper.GetUserASPById(meet.UserId);
+                    var assistantserialized = JsonConvert.SerializeObject(assistant);
+                    var assistantdesserialized = JsonConvert.DeserializeObject<MyUserASP>(assistantserialized);
+                    assistantdesserialized.IsHost = plan.UserId == meet.UserId;
+                    plan.AssistantUsers.Add(assistantdesserialized);
+                }
+
+                //Load plan creator
+                var user = UsersHelper.GetUserASPById(plan.UserId);
+                var userserialized = JsonConvert.SerializeObject(user);
+                plan.User = JsonConvert.DeserializeObject<MyUserASP>(userserialized);
+            }
+
+            return plans;
         }
 
         // GET: api/Plans/5

@@ -126,7 +126,18 @@ namespace Joinup.Service
             var response = await ApiService.GetInstance().Post<Common.Models.Image>(url, prefix, controller, pImage, Settings.TokenType, Settings.AccessToken);
 
             return response;
-        }      
+        }
+        public async Task<Response> SaveRemark(Remark pRemark)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlRemarksController"].ToString();
+
+            //Save remark
+            var response = await ApiService.GetInstance().Post<Remark>(url, prefix, controller, pRemark, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
         public async Task<Response> GetPlans()
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
@@ -144,6 +155,17 @@ namespace Joinup.Service
             controller+="/ByPlan/"+pPlanId;
 
             var response = await ApiService.GetInstance().GetList<Comment>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
+        public async Task<Response> GetPlansByUserId(string pUserId)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlPlansController"].ToString();
+            controller += "/ByUser/" + pUserId;
+
+            var response = await ApiService.GetInstance().GetList<Plan>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
 
             return response;
         }

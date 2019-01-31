@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Joinup.Controls"
+             x:Class="Joinup.Views.RemarkPlanPage"
+             BackgroundColor="{StaticResource WhiteColor}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+            Padding="16"
+            Spacing="16">
+                <Label                 
+                    Text="{Binding Plan.Name}"
+                    HorizontalTextAlignment="Center"
+                    Margin="16"
+                    Style="{StaticResource TitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+                <Frame
+                    Padding="8"
+                    CornerRadius="4"
+                    HasShadow="False"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    BorderColor="{StaticResource TertiaryTextColor}">
+                    <controls:BorderLessEditor
+                        Text="{Binding Comment}"
+                        Placeholder="Describe tu experiencia en el plan"
+                        MaxLength="120"
+                        Style="{StaticResource SubtitleFont}"
+                        TextColor="{StaticResource TertiaryTextColor}"/>
+                </Frame>
+                <Button
+                        IsEnabled="{Binding IsEnabled}"
+                        Command="{Binding SendRemarkCommand}"
+                        BackgroundColor="{StaticResource RemarkColor}"
+                        Style="{StaticResource BaseButtonStyle}"
+                        TextColor="White"
+                        Text="PUBLICAR VALORACIÓN"
+                        HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <ActivityIndicator
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Color="{StaticResource PrimaryColor}"
+                IsRunning="{Binding IsRunning}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

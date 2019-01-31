@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeetsController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
+    <Compile Include="Controllers\RemarksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -315,6 +316,11 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Remarks\Create.cshtml" />
+    <Content Include="Views\Remarks\Delete.cshtml" />
+    <Content Include="Views\Remarks\Details.cshtml" />
+    <Content Include="Views\Remarks\Edit.cshtml" />
+    <Content Include="Views\Remarks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

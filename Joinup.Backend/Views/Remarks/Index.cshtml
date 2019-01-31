@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Joinup.Common.Models.DatabaseModels.Remark>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDisplayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDisplayImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommentText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommentDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDisplayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDisplayImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlanId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlanName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommentText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RemarkId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RemarkId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RemarkId })
+        </td>
+    </tr>
+}
+
+</table>

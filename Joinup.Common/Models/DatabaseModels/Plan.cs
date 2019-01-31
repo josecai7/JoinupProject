@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Joinup.Common.Helpers;
 using Joinup.Common.Models.SelectablesModels;
+using Joinup.Common.Models.DatabaseModels;
 
 namespace Joinup.Common.Models
 {
@@ -18,6 +19,7 @@ namespace Joinup.Common.Models
         {
             PlanImages = new List<Image>();
             AssistantUsers = new List<MyUserASP>();
+            Remarks= new List<Remark>();
         }
         [Key]
         public int PlanId { get; set; }
@@ -116,6 +118,11 @@ namespace Joinup.Common.Models
         [NonSerialized]
         private List<Image> _planImages;
 
+        [NotMapped]
+        public List<Remark> Remarks
+        {
+            get; set;
+        }
         [NotMapped]
         public List<MyUserASP> AssistantUsers
         {
@@ -351,6 +358,22 @@ namespace Joinup.Common.Models
                 {
                     return String.Empty;
                 }
+            }
+        }
+
+        [NotMapped]
+        [JsonIgnore]
+        public MyUserASP LoggedUser
+        {
+            get;set;
+        }
+        [NotMapped]
+        [JsonIgnore]
+        public bool HasRemarks
+        {
+            get
+            {
+                return PlanDate <= DateTime.Now && LoggedUser.Id != UserId && Remarks.Find(item => item.UserId == LoggedUser.Id) == null;
             }
         }
 
