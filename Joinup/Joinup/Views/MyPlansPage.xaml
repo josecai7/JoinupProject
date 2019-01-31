@@ -75,7 +75,12 @@
                                         Text="{Binding TimeRemaining}"
                                         Style="{StaticResource HeaderElementFont}"
                                         TextColor="{StaticResource TertiaryTextColor}"/>
-
+                                    <controls:RatingBar
+                                        IsEditable="False"
+                                        IsVisible="{Binding IsPastPlan}"
+                                        IconSize="{StaticResource IconSize}"
+                                        Score="{Binding Score}"
+                                        />
                                     <StackLayout
                                     Orientation="Horizontal"
                                     Margin="0,8,0,0"

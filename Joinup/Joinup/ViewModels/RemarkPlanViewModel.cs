@@ -3,11 +3,13 @@ using Joinup.Common.Models;
 using Joinup.Common.Models.DatabaseModels;
 using Joinup.Service;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Joinup.ViewModels
 {
@@ -108,9 +110,9 @@ namespace Joinup.ViewModels
         #region Methods
         public void SendRemark()
         {
-            if (string.IsNullOrEmpty(Comment))
+            if (Score==0)
             {
-                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes seleccionar una categoria");
+                ToastNotificationUtils.ShowErrorToastNotifications("Ups...Debes puntuar el plan del 1 al 5");
                 return;
             }
             else
@@ -137,10 +139,15 @@ namespace Joinup.ViewModels
             }
             else
             {
-                Remark remark = (Remark)response.Result;            
+                Remark remark = (Remark)response.Result;
+                plan.Remarks.Add(remark);
+                plan.Name = "PACO";
+                NavigationService.NavigateBackAsync();
             }
             IsRunning = false;
             IsEnabled = true;
+            
+            MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
         }
         #endregion
     }

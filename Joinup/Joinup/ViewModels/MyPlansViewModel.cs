@@ -49,8 +49,13 @@ namespace Joinup.ViewModels
         {
             myPlans = new ObservableCollection<Grouping<string, Plan>>();
 
+            MessagingCenter.Subscribe<MyPlansViewModel>( this, "RefreshPlans", (sender) => {
+                RaisePropertyChanged( "MyPlans" );
+            } );
+
             LoadPlans();
         }
+
         #endregion
         #region Commands
         public ICommand RefreshCommand

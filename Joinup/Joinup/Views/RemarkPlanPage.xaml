@@ -15,6 +15,10 @@
                     Margin="16"
                     Style="{StaticResource TitleFont}"
                     TextColor="{StaticResource PrimaryTextColor}"/>
+                <controls:RatingBar
+                    IconSize="{StaticResource IconExtraBigSize}"
+                    Score="{Binding Score}"
+                    HorizontalOptions="Center"/>
                 <Frame
                     Padding="8"
                     CornerRadius="4"

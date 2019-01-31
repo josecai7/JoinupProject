@@ -369,11 +369,48 @@ namespace Joinup.Common.Models
         }
         [NotMapped]
         [JsonIgnore]
+        public bool IsPastPlan
+        {
+            get
+            {
+                return PlanDate <= DateTime.Now;
+            }
+        }
+        [NotMapped]
+        [JsonIgnore]
+        public int Score
+        {
+            get
+            {
+                if (Remarks.Count == 0)
+                    return 0;
+                else
+                    return (int)Remarks.Average( item => item.Score );
+            }
+        }
+        [NotMapped]
+        [JsonIgnore]
         public bool HasRemarks
         {
             get
             {
-                return PlanDate <= DateTime.Now && LoggedUser.Id != UserId && Remarks.Find(item => item.UserId == LoggedUser.Id) == null;
+                return IsPastPlan && LoggedUser.Id != UserId && Remarks.Find(item => item.UserId == LoggedUser.Id) == null;
+            }
+        }
+        [NotMapped]
+        [JsonIgnore]
+        public string FormattedRemarks
+        {
+            get
+            {
+                if (Remarks.Count == 1)
+                {
+                    return "1 Reseña";
+                }                   
+                else
+                {
+                    return Remarks.Count + " Reseñas";
+                }
             }
         }
 

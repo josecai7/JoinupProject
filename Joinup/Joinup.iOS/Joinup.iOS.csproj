@@ -175,6 +175,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
+    <PackageReference Include="SkiaRate.Forms">
+      <Version>0.5.2-pre</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete">
       <Version>16.3.0.36</Version>
     </PackageReference>

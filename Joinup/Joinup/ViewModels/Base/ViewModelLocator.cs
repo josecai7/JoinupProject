@@ -28,6 +28,14 @@ namespace Joinup.ViewModels.Base
             _unityContainer.RegisterType<PlansViewModel>();
             _unityContainer.RegisterType<NewPlanStep1ViewModel>();
             _unityContainer.RegisterType<MainViewModel>();
+            _unityContainer.RegisterType<CommentsViewModel>();
+            _unityContainer.RegisterType<ImageFullScreenViewModel>();
+            _unityContainer.RegisterType<LoginViewModel>();
+            _unityContainer.RegisterType<MyPlansViewModel>();
+            _unityContainer.RegisterType<PlanViewModel>();
+            _unityContainer.RegisterType<ProfileViewModel>();
+            _unityContainer.RegisterType<RegisterViewModel>();
+            _unityContainer.RegisterType<RemarkPlanViewModel>();
 
             //Services
             _unityContainer.RegisterType<INavigationService, NavigationService>();
