@@ -141,7 +141,6 @@ namespace Joinup.ViewModels
             {
                 Remark remark = (Remark)response.Result;
                 plan.Remarks.Add(remark);
-                plan.Name = "PACO";
                 NavigationService.NavigateBackAsync();
             }
             IsRunning = false;

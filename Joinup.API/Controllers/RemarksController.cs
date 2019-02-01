@@ -24,6 +24,19 @@ namespace Joinup.API.Controllers
             return db.Remarks;
         }
 
+        // GET: api/Plans
+        [Route("~/api/Remarks/ByUser/{pUserId}")]
+        public IQueryable<Remark> GetRemarksByUserId(string pUserId)
+        {
+            var remarks =
+                from remark in db.Remarks
+                join plan in db.Plans on remark.PlanId equals plan.PlanId
+                where plan.UserId == pUserId
+                select remark;
+
+            return remarks;
+        }
+
         // GET: api/Remarks/5
         [ResponseType(typeof(Remark))]
         public async Task<IHttpActionResult> GetRemark(int id)

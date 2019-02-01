@@ -260,6 +260,13 @@ namespace Joinup.ViewModels
                 return new RelayCommand(GoToLink);
             }
         }
+        public ICommand RemarksCommand
+        {
+            get
+            {
+                return new RelayCommand(GoToRemarks);
+            }
+        }
 
         #endregion
         #region Methods
@@ -282,6 +289,10 @@ namespace Joinup.ViewModels
         private void GoToComments()
         {
             NavigationService.NavigateToAsync<CommentsViewModel>(plan);
+        }
+        private void GoToRemarks()
+        {
+            NavigationService.NavigateToAsync<RemarksViewModel>(plan);
         }
         private void ClickOnButton()
         {

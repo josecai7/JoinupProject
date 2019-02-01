@@ -36,6 +36,7 @@ namespace Joinup.ViewModels.Base
             _unityContainer.RegisterType<ProfileViewModel>();
             _unityContainer.RegisterType<RegisterViewModel>();
             _unityContainer.RegisterType<RemarkPlanViewModel>();
+            _unityContainer.RegisterType<RemarksViewModel>();
 
             //Services
             _unityContainer.RegisterType<INavigationService, NavigationService>();

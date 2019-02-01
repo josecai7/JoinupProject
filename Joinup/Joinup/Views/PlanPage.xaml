@@ -93,6 +93,9 @@
                         <StackLayout
                             Orientation="Horizontal"
                             Spacing="8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RemarksCommand}"/>
+                            </StackLayout.GestureRecognizers>
                             <controls:RatingBar
                             IsVisible="{Binding Plan.IsPastPlan}"
                             IconSize="{StaticResource IconSize}"

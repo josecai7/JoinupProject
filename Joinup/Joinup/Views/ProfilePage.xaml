@@ -148,12 +148,12 @@
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource SubtitleFont}"
                         TextColor="{StaticResource PrimaryTextColor}"/>
-                <Label 
-                        Margin="0,-5"  
-                        Text="Hipster Coffee Drinker" 
-                        HorizontalTextAlignment="Center"
-                        Style="{StaticResource SubtitleFont}"
-                        TextColor="{StaticResource TertiaryTextColor}"/>
+                <controls:RatingBar
+                    IsEditable="False"
+                    Margin="0,-5"  
+                    HorizontalOptions="Center"
+                    IconSize="{StaticResource IconSize}"
+                    Score="{Binding Average}"/>
             </StackLayout>
 
 
@@ -171,10 +171,10 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid
-                            Grid.Column="1"
+                            Grid.Column="0"
                             Grid.Row="0">
                     <Label   
-                                Text="Asistirás"  
+                                Text="Publicados"  
                                 Style="{StaticResource TabTextStyle}">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding PlansTab}" Value="true" >
@@ -194,10 +194,10 @@
                 </Grid>
 
                 <Grid
-                            Grid.Column="0"  
+                            Grid.Column="1"  
                             Grid.Row="0">
                     <Label
-                                Text="Publicados" 
+                                Text="Reseñas" 
                                 Style="{StaticResource TabTextStyle}">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding Tab2}" Value="true" >
@@ -235,7 +235,7 @@
                         </Grid.Triggers>
                         <controls:CustomListView
                                 HasUnevenRows="True"
-                                ItemsSource="{Binding AssistPlanList}"
+                                ItemsSource="{Binding PublishedPlanList}"
                                 IsRefreshing="{Binding IsRefreshing}"
                                 ItemClickCommand="{Binding ClickOnPlan}"
                                 IsPullToRefreshEnabled="True"
@@ -336,88 +336,64 @@
                                 </Trigger.EnterActions>
                             </Trigger>
                         </Grid.Triggers>
-                        <controls:CustomListView
-                                HasUnevenRows="True"
-                                ItemsSource="{Binding PublishedPlanList}"
-                                IsRefreshing="{Binding IsRefreshing}"
-                            ItemClickCommand="{Binding ClickOnPlan}"
-                                IsPullToRefreshEnabled="True"
-                                SeparatorVisibility="None"
-                                RefreshCommand="{Binding RefreshCommand}">
 
+
+                        <controls:CustomListView
+                        x:Name="remarksList"
+                            IsRefreshing="{Binding IsRefreshing2}"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding RemarksList}"
+                        SeparatorVisibility="Default"
+                            IsPullToRefreshEnabled="True"
+                            RefreshCommand="{Binding RefreshRemarksCommand}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout
-                                Spacing="0"
-                                Padding="16">
-                                            <Frame
-                                    Padding="0"
-                                    Margin="0,0,0,8"
-                                    CornerRadius="6">
-                                                <ffimageloading:CachedImage    
-                                    BackgroundColor="AliceBlue"
-                                    Source="{Binding DefaultImageFullPath}"
-                                    Aspect="AspectFill" 
-                                    LoadingPlaceholder="no_image.png" 
-                                    ErrorPlaceholder="no_image.png" 
-                                    DownsampleToViewSize="true"
-                                    HeightRequest="220">
-                                                </ffimageloading:CachedImage>
-                                            </Frame>
-                                            <Label 
-                                    Text="{Binding FormattedDateTime}"
-                                    Style="{StaticResource SubtitleFont}"
-                                    TextColor="{StaticResource TertiaryTextColor}"/>
+                                        <Grid
+                                            Margin="8"
+                                ColumnSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="45"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                            <Label 
-                                    Text="{Binding Name}"
-                                    TextColor="{StaticResource SecondaryTextColor}"
-                                    Style="{StaticResource TitleElementFont}"/>
-
-                                            <Label
-                                    Text="{Binding Address}"
-                                    TextColor="{StaticResource SecondaryTextColor}"
-                                    Style="{StaticResource SubtitleElementFont}"/>
+                                            <ffimageloading:CachedImage 
+                                    VerticalOptions="Start"
+                                Grid.Column="0"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                                Source="{Binding UserDisplayImage}"
+                                Aspect="AspectFit">
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <fftransformations:CircleTransformation/>
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloading:CachedImage>
 
                                             <StackLayout
-                                    Orientation="Horizontal"
-                                    Margin="0,8,0,0"
-                                    HeightRequest="24"
-                                    Spacing="8">
-                                                <controls:ExtendedFlexLayout                                     
-                                    ItemsSource="{Binding ResumeAssistantUsers}"
-                                    HeightRequest="24">
-                                                    <controls:ExtendedFlexLayout.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <Frame
-                                                Margin="0,0,-4,0"
-                                                Padding="0.7"
-                                                BackgroundColor="{StaticResource BackgroundColor}"
-                                                CornerRadius="12"
-                                                HeightRequest="24"
-                                                VerticalOptions="Center"
-                                                HorizontalOptions="Center"
-                                                WidthRequest="24">
-                                                                <ffimageloading:CachedImage 
-                                                    Source="{Binding UserImage}">
-                                                                    <ffimageloading:CachedImage.Transformations>
-                                                                        <fftransformations:CircleTransformation/>
-                                                                    </ffimageloading:CachedImage.Transformations>
-                                                                </ffimageloading:CachedImage>
-                                                            </Frame>
-                                                        </DataTemplate>
-                                                    </controls:ExtendedFlexLayout.ItemTemplate>
-                                                </controls:ExtendedFlexLayout>
-                                                <Label 
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center"
-                                        Text="{Binding FormattedAssistantUsers}"
-                                        Style="{StaticResource HeaderElementFont}"
-                                        TextColor="{StaticResource TertiaryTextColor}"/>
+                                        Spacing="0"
+                                    Grid.Column="1">
+                                                <Label
+                                        Text="{Binding PlanName}"
+                                        Style="{StaticResource SubtitleFont}"
+                                        TextColor="{StaticResource PrimaryTextColor}"/>
+                                                <StackLayout
+                                        Orientation="Horizontal">
+                                                    <controls:RatingBar
+                                                        IsEditable="False"
+                                            IconSize="{StaticResource IconExtraSmallSize}"
+                                            Score="{Binding Score}"/>
+                                                    <Label
+                                            Text="{Binding FormattedDate}"
+                                            Style="{StaticResource SubtitleFont}"
+                                            TextColor="{StaticResource TertiaryTextColor}"/>
+                                                </StackLayout>
+                                                <Label
+                                            Text="{Binding CommentText}"
+                                            Style="{StaticResource ParagraphFont}"
+                                            TextColor="{StaticResource PrimaryTextColor}"/>
                                             </StackLayout>
+                                        </Grid>
 
-                                        </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

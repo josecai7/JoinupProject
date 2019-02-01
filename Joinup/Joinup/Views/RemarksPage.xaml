@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Joinup.Controls"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="Joinup.Views.RemarksPage">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="16,48,16,16">
+            <Label                 
+                    Text="{Binding Plan.Name}"
+                    Style="{StaticResource TitleFont}"
+                    TextColor="{StaticResource PrimaryTextColor}"/>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label                 
+                    Text="{Binding Plan.Score}"
+                    Style="{StaticResource TitleFont}"
+                    TextColor="{StaticResource RemarkColor}"/>
+                <controls:RatingBar
+                HorizontalOptions="Center"
+                IconSize="{StaticResource IconBigSize}"
+                Score="{Binding Plan.Score}"/>
+            </StackLayout>
+            <controls:SeparatorLine
+                Margin="0,16,0,16"/>
+            <controls:CustomListView
+                    x:Name="remarksList"
+                        HasUnevenRows="True"
+                        ItemsSource="{Binding Plan.Remarks}"
+                        IsPullToRefreshEnabled="false"
+                        SeparatorVisibility="Default">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                ColumnSpacing="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="45"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <ffimageloading:CachedImage 
+                                    VerticalOptions="Start"
+                                Grid.Column="0"
+                                HeightRequest="45"
+                                WidthRequest="45"
+                                Source="{Binding UserDisplayImage}"
+                                Aspect="AspectFit">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation/>
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                                
+                                <StackLayout
+                                        Spacing="0"
+                                    Grid.Column="1">
+                                    <Label
+                                        Text="{Binding UserDisplayName}"
+                                        Style="{StaticResource SubtitleFont}"
+                                        TextColor="{StaticResource PrimaryTextColor}"/>
+                                    <StackLayout
+                                        Orientation="Horizontal">
+                                        <controls:RatingBar
+                                            IconSize="{StaticResource IconExtraSmallSize}"
+                                            Score="{Binding Score}"/>
+                                        <Label
+                                            Text="{Binding FormattedDate}"
+                                            Style="{StaticResource SubtitleFont}"
+                                            TextColor="{StaticResource TertiaryTextColor}"/>
+                                    </StackLayout>
+                                    <Label
+                                            Text="{Binding CommentText}"
+                                            Style="{StaticResource ParagraphFont}"
+                                            TextColor="{StaticResource PrimaryTextColor}"/>
+                                </StackLayout>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </controls:CustomListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

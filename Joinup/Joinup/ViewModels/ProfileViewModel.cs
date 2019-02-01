@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Joinup.Helpers;
 using Joinup.Navigation;
 using Joinup.Service;
@@ -20,22 +21,24 @@ namespace Joinup.ViewModels
         #region Attributes
         private MyUserASP user;
         private ObservableCollection<Plan> publishedPlanList;
-        private ObservableCollection<Plan> assistPlanList;
+        private ObservableCollection<Remark> remarksList;
         private bool plansTab;
         private bool tab2;
         private bool isRefreshing;
+        private bool isRefreshing2;
         #endregion
         #region Properties
-        public ObservableCollection<Plan> AssistPlanList
+        public ObservableCollection<Remark> RemarksList
         {
             get
             {
-                return new ObservableCollection<Plan>( assistPlanList.OrderBy( x => x.PlanDate ) );
+                return new ObservableCollection<Remark>(remarksList.OrderByDescending( x => x.CommentDate ) );
             }
             set
             {
-                assistPlanList = value;
-                RaisePropertyChanged( "AssistPlanList" );
+                remarksList = value;
+                RaisePropertyChanged("RemarksList");
+                RaisePropertyChanged("Average");
             }
         }
         public ObservableCollection<Plan> PublishedPlanList
@@ -60,6 +63,18 @@ namespace Joinup.ViewModels
             {
                 isRefreshing = value;
                 RaisePropertyChanged( "IsRefreshing" );
+            }
+        }
+        public bool IsRefreshing2
+        {
+            get
+            {
+                return isRefreshing2;
+            }
+            set
+            {
+                isRefreshing2 = value;
+                RaisePropertyChanged("IsRefreshing2");
             }
         }
         public bool PlansTab
@@ -92,6 +107,16 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public int Average
+        {
+            get
+            {
+                if (RemarksList.Count == 0)
+                    return 0;
+                else
+                    return (int)RemarksList.Average(item => item.Score);
+            }
+        }
         public bool IsLoggedUser
         {
             get
@@ -104,19 +129,21 @@ namespace Joinup.ViewModels
         public ProfileViewModel()
         {
             publishedPlanList = new ObservableCollection<Plan>();
-            assistPlanList = new ObservableCollection<Plan>();
+            remarksList = new ObservableCollection<Remark>();
             user = LoggedUser;
             LoadPlans();
-            SetTab2();
+            LoadRemarks();
+            SetPlansTab();
             RaisePropertyChanged( "IsLoggedUser" );
         }
 
         public override Task InitializeAsync(object navigationData)
         {
             User = (MyUserASP) navigationData;
-            RaisePropertyChanged( "IsLoggedUser" );
             string s=Settings.AccessToken;
             LoadPlans();
+            LoadRemarks();
+            RaisePropertyChanged("IsLoggedUser");           
 
             return base.InitializeAsync( navigationData );
         }
@@ -152,6 +179,13 @@ namespace Joinup.ViewModels
             get
             {
                 return new RelayCommand( LoadPlans );
+            }
+        }
+        public ICommand RefreshRemarksCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadRemarks);
             }
         }
         public ICommand PlansCommand
@@ -194,7 +228,7 @@ namespace Joinup.ViewModels
             var connection = await ApiService.GetInstance().CheckConnection();
             if ( connection.IsSuccess )
             {
-                var response = await DataService.GetInstance().GetPlans();
+                var response = await DataService.GetInstance().GetPlansByUserId(User.Id);
 
                 if ( !response.IsSuccess )
                 {
@@ -204,8 +238,7 @@ namespace Joinup.ViewModels
                 }
 
                 var list = (List<Plan>) response.Result;
-                PublishedPlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId == User.Id) );
-                AssistPlanList = new ObservableCollection<Plan>( list.Where( item => item.UserId != User.Id && item.AssistantUsers.Find(user=> user.Id==User.Id)!=null ) );
+                PublishedPlanList = new ObservableCollection<Plan>( list.Where(item=>item.UserId==User.Id).OrderByDescending(item=>item.PlanDate) );                
             }
             else
             {
@@ -215,6 +248,34 @@ namespace Joinup.ViewModels
             }
 
             IsRefreshing = false;
+        }
+        private async void LoadRemarks()
+        {
+            IsRefreshing2 = true;
+
+            var connection = await ApiService.GetInstance().CheckConnection();
+            if (connection.IsSuccess)
+            {
+                var response = await DataService.GetInstance().GetRemarksByUserId(User.Id);
+
+                if (!response.IsSuccess)
+                {
+                    await Application.Current.MainPage.DisplayAlert(response.Message, "Aceptar", "Cancelar");
+                    IsRefreshing2 = false;
+                    return;
+                }
+
+                var list = (List<Remark>)response.Result;
+                RemarksList = new ObservableCollection<Remark>(list.OrderByDescending(item=>item.CommentDate));
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Revisa tu conexión a internet", "Aceptar", "Cancelar");
+                IsRefreshing2 = false;
+                return;
+            }
+
+            IsRefreshing2 = false;
         }
 
         private void SetPlansTab()

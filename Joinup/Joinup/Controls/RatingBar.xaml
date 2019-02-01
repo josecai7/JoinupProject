@@ -5,7 +5,8 @@
              x:Class="Joinup.Controls.RatingBar">
   <ContentView.Content>
       <StackLayout
-          Orientation="Horizontal">
+          Orientation="Horizontal"
+          Spacing="0">
             <controls:FontIcon 
                 x:Name="star1"
                 Icon="star-outline"

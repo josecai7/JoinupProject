@@ -169,6 +169,17 @@ namespace Joinup.Service
 
             return response;
         }
+        public async Task<Response> GetRemarksByUserId(string pUserId)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlRemarksController"].ToString();
+            controller += "/ByUser/" + pUserId;
+
+            var response = await ApiService.GetInstance().GetList<Remark>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
         public async Task<Response> SendComment(Comment pComment)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
