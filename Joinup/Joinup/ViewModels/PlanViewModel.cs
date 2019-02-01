@@ -4,6 +4,7 @@ using Joinup.Common.Models.SelectablesModels;
 using Joinup.Helpers;
 using Joinup.Service;
 using Joinup.Utils;
+using Joinup.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -348,6 +349,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlanList" );
             }
             IsRunning = false;
             IsEnabled = true;
@@ -368,6 +370,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlanList" );
             }
             IsRunning = false;
             IsEnabled = true;

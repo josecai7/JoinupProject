@@ -45,7 +45,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return new ObservableCollection<Plan>( publishedPlanList.OrderBy( x => x.PlanDate ) );
+                return new ObservableCollection<Plan>( publishedPlanList);
             }
             set
             {

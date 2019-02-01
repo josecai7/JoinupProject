@@ -102,6 +102,7 @@
                             Score="{Binding Plan.Score}"
                             IsEditable="False"/>
                             <Label
+                                IsVisible="{Binding Plan.IsPastPlan}"
                                 VerticalOptions="Center"
                                 Text="{Binding Plan.FormattedRemarks}"
                                 Style="{StaticResource TitleSectionFont}"

@@ -32,7 +32,7 @@
                         <controls:ImagePicker
                             ImageSource="{Binding Image1}">
                             <controls:ImagePicker.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddImage1Command}"/>
+                                <TapGestureRecognizer  Command="{Binding AddImage1Command}"/>
                             </controls:ImagePicker.GestureRecognizers>
                         </controls:ImagePicker>
                         <controls:ImagePicker

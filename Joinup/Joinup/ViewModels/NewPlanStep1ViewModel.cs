@@ -631,6 +631,18 @@ namespace Joinup.ViewModels
                 selectedFoodType = FoodTypes.Find(item => item.Id == plan.Language2);
                 RaisePropertyChanged("SelectedLanguage2");
 
+                if (plan.PlanImages.Count == 1)
+                {
+                    Image1 = ImageSource.FromUri( new Uri(plan.PlanImages[0].ImageFullPath) );
+                }
+                if (plan.PlanImages.Count==2)
+                {
+                    Image2 = ImageSource.FromUri( new Uri( plan.PlanImages[1].ImageFullPath ) );
+                }
+                if (plan.PlanImages.Count == 3)
+                {
+                    Image3 = ImageSource.FromUri( new Uri( plan.PlanImages[2].ImageFullPath ) );
+                }
             }
 
             return base.InitializeAsync(navigationData);
@@ -865,7 +877,9 @@ namespace Joinup.ViewModels
                 }
                 else
                 {
-                    MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan");
+                    //MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan",plan);
+                    //MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "AddNewPlan", plan );
+                    //MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "AddNewPlan", plan );
 
                     await NavigationService.NavigateToRootAsync();
                 }
@@ -894,30 +908,6 @@ namespace Joinup.ViewModels
                 IsRunning = true;
                 plan.UserId = LoggedUser.Id;
 
-                /*
-                if (Image1 != null)
-                {
-                    plan.PlanImages.Add(new Common.Models.Image()
-                    {
-                        ImageArray = image1bytes
-                    });
-                }
-                if (Image2 != null)
-                {
-                    plan.PlanImages.Add(new Common.Models.Image()
-                    {
-                        ImageArray = image2bytes
-                    });
-                }
-                if (Image3 != null)
-                {
-                    plan.PlanImages.Add(new Common.Models.Image()
-                    {
-                        ImageArray = image3bytes
-                    });
-                }
-                */
-
                 var response = await DataService.GetInstance().EditPlan(plan);
 
                 if (!response.IsSuccess)
@@ -930,7 +920,7 @@ namespace Joinup.ViewModels
 
                     SendEmails();
 
-                    MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan");
+                    MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlanList" );
                     await NavigationService.NavigateBackAsync();
 
                 }
@@ -964,79 +954,81 @@ namespace Joinup.ViewModels
         }
         private async void AddImage(int pPhoto)
         {
-            MediaFile file;
-
-            await CrossMedia.Current.Initialize();
-
-            var source = await Application.Current.MainPage.DisplayActionSheet(
-                "¿Desde donde desea tomar la imagen?",
-                "Cancelar",
-                null,
-                "Galeria",
-                "Camara");
-
-            if (source == "Cancelar")
+            if (!isEditing)
             {
-                return;
-            }
+                MediaFile file;
 
-            if (source == "Camara")
-            {
-                if (!CrossMedia.Current.IsTakePhotoSupported)
+                await CrossMedia.Current.Initialize();
+
+                var source = await Application.Current.MainPage.DisplayActionSheet(
+                    "¿Desde donde desea tomar la imagen?",
+                    "Cancelar",
+                    null,
+                    "Galeria",
+                    "Camara" );
+
+                if (source == "Cancelar")
                 {
-                    ToastNotificationUtils.ShowErrorToastNotifications("Galeria no disponible");
                     return;
                 }
 
-                file = await CrossMedia.Current.TakePhotoAsync(
-                    new StoreCameraMediaOptions
+                if (source == "Camara")
+                {
+                    if (!CrossMedia.Current.IsTakePhotoSupported)
                     {
-                        Directory = "Joinup",
-                        Name = DateTime.Now.ToString()
+                        ToastNotificationUtils.ShowErrorToastNotifications( "Galeria no disponible" );
+                        return;
                     }
-                );
-            }
-            else
-            {
-                if (!CrossMedia.Current.IsTakePhotoSupported)
-                {
-                    ToastNotificationUtils.ShowErrorToastNotifications("Camara no disponible");
-                    return;
-                }
-                file = await CrossMedia.Current.PickPhotoAsync();
-            }
 
-            if (file != null)
-            {
-                if (pPhoto == 1)
-                {
-                    Image1 = ImageSource.FromStream(() =>
-                    {
-                        var stream = file.GetStream();
-                        return stream;
-                    });
-                    image1bytes = FilesHelper.ReadFully(file.GetStream());
+                    file = await CrossMedia.Current.TakePhotoAsync(
+                        new StoreCameraMediaOptions
+                        {
+                            Directory = "Joinup",
+                            Name = DateTime.Now.ToString()
+                        }
+                    );
                 }
-                else if (pPhoto == 2)
+                else
                 {
-                    Image2 = ImageSource.FromStream(() =>
+                    if (!CrossMedia.Current.IsTakePhotoSupported)
                     {
-                        var stream = file.GetStream();
-                        return stream;
-                    });
-                    image2bytes = FilesHelper.ReadFully(file.GetStream());
-                }
-                if (pPhoto == 3)
-                {
-                    Image3 = ImageSource.FromStream(() =>
-                    {
-                        var stream = file.GetStream();
-                        return stream;
-                    });
-                    image3bytes = FilesHelper.ReadFully(file.GetStream());
+                        ToastNotificationUtils.ShowErrorToastNotifications( "Camara no disponible" );
+                        return;
+                    }
+                    file = await CrossMedia.Current.PickPhotoAsync();
                 }
 
-            }
+                if (file != null)
+                {
+                    if (pPhoto == 1)
+                    {
+                        Image1 = ImageSource.FromStream( () =>
+                        {
+                            var stream = file.GetStream();
+                            return stream;
+                        } );
+                        image1bytes = FilesHelper.ReadFully( file.GetStream() );
+                    }
+                    else if (pPhoto == 2)
+                    {
+                        Image2 = ImageSource.FromStream( () =>
+                        {
+                            var stream = file.GetStream();
+                            return stream;
+                        } );
+                        image2bytes = FilesHelper.ReadFully( file.GetStream() );
+                    }
+                    if (pPhoto == 3)
+                    {
+                        Image3 = ImageSource.FromStream( () =>
+                        {
+                            var stream = file.GetStream();
+                            return stream;
+                        } );
+                        image3bytes = FilesHelper.ReadFully( file.GetStream() );
+                    }
+                }
+                }
         }
         #endregion
     }

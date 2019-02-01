@@ -233,7 +233,7 @@ namespace Joinup.ViewModels
             planList = new ObservableCollection<Plan>();
             filteredList = new ObservableCollection<Plan>();
 
-            MessagingCenter.Subscribe<PlansViewModel>( this, "AddNewPlan", (sender) => {
+            MessagingCenter.Subscribe<PlansViewModel>( this, "RefreshPlanList", (sender) => {
                 LoadPlans();
             } );
 

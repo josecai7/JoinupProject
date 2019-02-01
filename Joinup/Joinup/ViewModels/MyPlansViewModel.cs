@@ -105,7 +105,7 @@ namespace Joinup.ViewModels
 
                 myPlans.Clear();
 
-                var nextPlans = myPlansList.Where(item => item.EndPlanDate >= DateTime.Now).OrderBy(item=>item.PlanDate);
+                var nextPlans = myPlansList.Where(item => item.PlanDate >= DateTime.Now).OrderBy(item=>item.PlanDate);
                 nextPlans.Select(p => { p.LoggedUser = LoggedUser; return p; }).ToList();
                 myPlans.Add(new Grouping<string, Plan>("Próximos planes", new ObservableCollection<Plan>(nextPlans)));
 

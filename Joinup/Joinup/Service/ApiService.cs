@@ -132,6 +132,7 @@ namespace Joinup.Service
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(pUrlBase);
+                client.MaxResponseContentBufferSize = long.MaxValue;
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(pTokenType, pAccessToken);
                 var url = $"{pPrefix}{pController}";
 
