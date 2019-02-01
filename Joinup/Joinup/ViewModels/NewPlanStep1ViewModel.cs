@@ -877,9 +877,9 @@ namespace Joinup.ViewModels
                 }
                 else
                 {
-                    //MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "AddNewPlan",plan);
-                    //MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "AddNewPlan", plan );
-                    //MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "AddNewPlan", plan );
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
 
                     await NavigationService.NavigateToRootAsync();
                 }
@@ -920,7 +920,9 @@ namespace Joinup.ViewModels
 
                     SendEmails();
 
-                    MessagingCenter.Send(ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlanList" );
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
+                    MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
                     await NavigationService.NavigateBackAsync();
 
                 }

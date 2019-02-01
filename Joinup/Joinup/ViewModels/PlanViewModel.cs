@@ -349,7 +349,9 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlanList" );
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
             }
             IsRunning = false;
             IsEnabled = true;
@@ -370,7 +372,9 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlanList" );
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
+                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
             }
             IsRunning = false;
             IsEnabled = true;

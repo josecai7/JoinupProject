@@ -15,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace Joinup.Droid
 {
-    [Activity(Label = "Joinup", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init( true );
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM1MjJAMzEzNjJlMzMyZTMwR2hlSDFiVHhxUDNWT2NNSSswUVBzRmxFUEV1R0lnaWxWWTNMRHlyeVpZdz0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense( "NjUxMjBAMzEzNjJlMzQyZTMwbGIyeDI2TllycGtGYWwyM3o0NXlDRzFyRUFYV05CSHpGYzY3QXBhU3hZOD0=" );
             DependencyService.Register<ToastNotification>(); // Register your dependency
             ToastNotification.Init( this );
             UserDialogs.Init( this );

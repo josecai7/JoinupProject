@@ -130,6 +130,11 @@ namespace Joinup.ViewModels
         {
             publishedPlanList = new ObservableCollection<Plan>();
             remarksList = new ObservableCollection<Remark>();
+
+            MessagingCenter.Subscribe<ProfileViewModel>( this, "RefreshPlans", (sender) => {
+                LoadPlans();
+            } );
+
             user = LoggedUser;
             LoadPlans();
             LoadRemarks();
