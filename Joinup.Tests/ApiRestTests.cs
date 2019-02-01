@@ -16,6 +16,7 @@ namespace Joinup.Tests
         public const string prefix = "/api";
         public const string plansController = "/Plans";
         public const string commentsController = "/Comments";
+        public const string remarksController = "/Remarks";
         public const string usersController = "/Users/GetUser";
 
         [TestMethod]
@@ -52,6 +53,17 @@ namespace Joinup.Tests
             client.BaseAddress = new Uri( url );
 
             var requestUrl = $"{prefix}{commentsController}";
+
+            var response = await client.GetAsync( requestUrl );
+            Assert.IsTrue( response.IsSuccessStatusCode );
+        }
+        [TestMethod]
+        public async Task GetRemarksAsync()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri( url );
+
+            var requestUrl = $"{prefix}{remarksController}";
 
             var response = await client.GetAsync( requestUrl );
             Assert.IsTrue( response.IsSuccessStatusCode );
