@@ -47,6 +47,7 @@
                     </Label>
 
                     <customControls:IconEntry
+                        AutomationId="emailEntry"
                         Text="{Binding Email}"
                         IconColor="{StaticResource PrimaryColor}"
                         AccentColor="{StaticResource PrimaryColor}"
@@ -65,6 +66,7 @@
                     </Label>
 
                     <customControls:IconEntry
+                        AutomationId="passwordEntry"
                         Text="{Binding Password}"
                         IconColor="{StaticResource PrimaryColor}"
                         AccentColor="{StaticResource PrimaryColor}"
@@ -97,7 +99,8 @@
                         HeightRequest="48"
                         CornerRadius="24"
                         Padding="0">
-                        <Button         
+                        <Button       
+                            AutomationId="loginButton"
                             IsEnabled="{Binding IsEnabled}"
                             TextColor="{StaticResource WhiteColor}"
                             FontFamily="{StaticResource FontMedium}"
