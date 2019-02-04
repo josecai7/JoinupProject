@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Joinup.API.Helpers;
@@ -21,9 +22,9 @@ namespace Joinup.API.Controllers
         private DataContext db = new DataContext();
 
         // GET: api/Plans
-        public IQueryable<Plan> GetPlans()
+        public async Task<IQueryable<Plan>> GetPlans()
         {
-                var plans = db.Plans;
+                var plans = await db.Plans.ToListAsync();
                 foreach (var plan in plans)
                 {
                     //Load remarks
