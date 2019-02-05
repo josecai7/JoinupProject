@@ -23,5 +23,7 @@ namespace Joinup.Domain.Models
         public System.Data.Entity.DbSet<Joinup.Common.Models.DatabaseModels.Comment> Comments { get; set; }
 
         public System.Data.Entity.DbSet<Joinup.Common.Models.DatabaseModels.Remark> Remarks { get; set; }
+
+        public System.Data.Entity.DbSet<Joinup.Common.Models.DatabaseModels.User> Users { get; set; }
     }
 }

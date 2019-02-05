@@ -206,7 +206,7 @@
                                                 HorizontalOptions="Center"
                                                 WidthRequest="24">
                                                     <ffimageloading:CachedImage 
-                                                    Source="{Binding UserImage}">
+                                                    Source="{Binding User.ImagePath}">
                                                         <ffimageloading:CachedImage.Transformations>
                                                             <fftransformations:CircleTransformation/>
                                                         </ffimageloading:CachedImage.Transformations>

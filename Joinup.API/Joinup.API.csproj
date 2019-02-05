@@ -244,6 +244,7 @@
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\MeetsController.cs" />
     <Compile Include="Controllers\RemarksController.cs" />
+    <Compile Include="Controllers\Users1Controller.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

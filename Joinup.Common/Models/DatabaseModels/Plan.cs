@@ -17,8 +17,7 @@ namespace Joinup.Common.Models
     {
         public Plan()
         {
-            PlanImages = new List<Image>();
-            AssistantUsers = new List<MyUserASP>();
+            Images = new List<Image>();
             Remarks= new List<Remark>();
         }
         [Key]
@@ -49,6 +48,33 @@ namespace Joinup.Common.Models
         public double DestinationLatitude { get; set; }
         public double DestinationLongitude { get; set; }
         #endregion
+        #region References
+
+        public List<Image> Images
+        {
+            get;set;
+        }
+
+        public List<Comment> Comments
+        {
+            get; set;
+        }
+        public List<Meet> Meets
+        {
+            get; set;
+        }
+        public List<Remark> Remarks
+        {
+            get; set;
+        }
+
+        public User User
+        {
+            get; set;
+        }
+
+
+        #endregion
 
         [NotMapped]
         public int CommentNumber{ get; set; }
@@ -59,9 +85,9 @@ namespace Joinup.Common.Models
             get
             {
                 string imagePath = GetDefaultImage();
-                if ( PlanImages != null && PlanImages.Count > 0 )
+                if (Images != null && Images.Count > 0 )
                 {
-                    Image image = PlanImages.FirstOrDefault();
+                    Image image = Images.FirstOrDefault();
                     imagePath = image.ImageFullPath;
                 }
 
@@ -100,47 +126,17 @@ namespace Joinup.Common.Models
         {
             get
             {
-                return PlanImages.Count>0;
-            }
-        }
-        [NotMapped]       
-        public List<Image> PlanImages
-        {
-            get
-            {
-                return _planImages;
-            }
-            set
-            {
-                _planImages = value;
-            }
-        }
-        [NonSerialized]
-        private List<Image> _planImages;
-
-        [NotMapped]
-        public List<Remark> Remarks
-        {
-            get; set;
-        }
-        [NotMapped]
-        public List<MyUserASP> AssistantUsers
-        {
-            get; set;
-        }
-        [NotMapped]
-        public List<MyUserASP> ResumeAssistantUsers
-        {
-            get
-            {
-                return AssistantUsers.GetRange( 0, Math.Min(AssistantUsers.Count,5) );
+                return Images.Count>0;
             }
         }
 
         [NotMapped]
-        public MyUserASP User
+        public List<Meet> ResumeAssistantUsers
         {
-            get; set;
+            get
+            {
+                return Meets.GetRange( 0, Math.Min(Meets.Count,5) );
+            }
         }
 
         [NotMapped]
@@ -215,21 +211,21 @@ namespace Joinup.Common.Models
         {
             get
             {
-                if (AssistantUsers.Count == 0)
+                if (Meets.Count == 0)
                 {
                     return "Aun no hay nadie apuntado. Sé el primero.";                    
                 }
-                else if (AssistantUsers.Count == 1)
+                else if (Meets.Count == 1)
                 {
-                    return AssistantUsers.FirstOrDefault().Name + " va a ir";
+                    return Meets.FirstOrDefault().User.Name + " va a ir";
                 }
-                else if (AssistantUsers.Count == 2)
+                else if (Meets.Count == 2)
                 {
-                    return AssistantUsers.FirstOrDefault().Name + " y " + (AssistantUsers.Count - 1) + " amigo van a ir";
+                    return Meets.FirstOrDefault().User.Name + " y " + (Meets.Count - 1) + " amigo van a ir";
                 }
                 else
                 {
-                    return AssistantUsers.FirstOrDefault().Name + " y " + (AssistantUsers.Count - 1) + " amigos van a ir";
+                    return Meets.FirstOrDefault().User.Name + " y " + (Meets.Count - 1) + " amigos van a ir";
                 }
             }
         }

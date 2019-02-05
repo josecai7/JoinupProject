@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Joinup.Common.Models.SelectablesModels;
 using Joinup.Helpers;
 using Joinup.Service;
@@ -38,11 +39,11 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public ObservableCollection<MyUserASP> Assistants
+        public ObservableCollection<Meet> Assistants
         {
             get
             {
-                return new ObservableCollection<MyUserASP>(plan.AssistantUsers);
+                return new ObservableCollection<Meet>(plan.Meets);
             }
         }
         public ObservableCollection<Plan> Pins
@@ -83,7 +84,7 @@ namespace Joinup.ViewModels
                     }
                     else
                     {
-                        if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
+                        if (plan.Meets.Find(meet => meet.UserId == LoggedUser.Id) == null)
                         {
                             return Application.Current.Resources["JoinButton"] as Style;
                         }
@@ -276,7 +277,7 @@ namespace Joinup.ViewModels
             List<string> images = new List<string>();
             if (Plan.HasImage)
             {
-                foreach (Common.Models.Image image in Plan.PlanImages)
+                foreach (Common.Models.Image image in Plan.Images)
                 {
                     images.Add(image.ImageFullPath);
                 }
@@ -309,7 +310,7 @@ namespace Joinup.ViewModels
                 }
                 else
                 {
-                    if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
+                    if (plan.Meets.Find(meet => meet.UserId == LoggedUser.Id) == null)
                     {
                         JoinPlan();
                     }
@@ -322,7 +323,7 @@ namespace Joinup.ViewModels
         }
         private void JoinUnJoinPlan()
         {
-            if (plan.AssistantUsers.Find(assistant => assistant.Id == LoggedUser.Id) == null)
+            if (plan.Meets.Find(meet => meet.UserId == LoggedUser.Id) == null)
             {
                 JoinPlan();
             }
@@ -345,7 +346,7 @@ namespace Joinup.ViewModels
             }
             else
             {
-                plan.AssistantUsers.Add(LoggedUser);
+                plan.Meets.Add(response.Result as Meet);
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
@@ -368,7 +369,7 @@ namespace Joinup.ViewModels
             }
             else
             {
-                plan.AssistantUsers.Remove(plan.AssistantUsers.Single(s => s.Id == LoggedUser.Id));
+                plan.Meets.Remove(plan.Meets.Single(meet => meet.UserId == LoggedUser.Id));
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");

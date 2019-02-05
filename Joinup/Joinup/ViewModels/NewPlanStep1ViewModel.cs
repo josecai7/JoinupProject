@@ -19,6 +19,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using Joinup.Common.Models.DatabaseModels;
 
 namespace Joinup.ViewModels
 {
@@ -631,17 +632,17 @@ namespace Joinup.ViewModels
                 selectedFoodType = FoodTypes.Find(item => item.Id == plan.Language2);
                 RaisePropertyChanged("SelectedLanguage2");
 
-                if (plan.PlanImages.Count == 1)
+                if (plan.Images.Count == 1)
                 {
-                    Image1 = ImageSource.FromUri( new Uri(plan.PlanImages[0].ImageFullPath) );
+                    Image1 = ImageSource.FromUri( new Uri(plan.Images[0].ImageFullPath) );
                 }
-                if (plan.PlanImages.Count==2)
+                if (plan.Images.Count==2)
                 {
-                    Image2 = ImageSource.FromUri( new Uri( plan.PlanImages[1].ImageFullPath ) );
+                    Image2 = ImageSource.FromUri( new Uri( plan.Images[1].ImageFullPath ) );
                 }
-                if (plan.PlanImages.Count == 3)
+                if (plan.Images.Count == 3)
                 {
-                    Image3 = ImageSource.FromUri( new Uri( plan.PlanImages[2].ImageFullPath ) );
+                    Image3 = ImageSource.FromUri( new Uri( plan.Images[2].ImageFullPath ) );
                 }
             }
 
@@ -839,21 +840,21 @@ namespace Joinup.ViewModels
 
             if (Image1 != null)
             {
-                plan.PlanImages.Add(new Common.Models.Image()
+                plan.Images.Add(new Common.Models.Image()
                 {
                     ImageArray = image1bytes
                 });
             }
             if (Image2 != null)
             {
-                plan.PlanImages.Add(new Common.Models.Image()
+                plan.Images.Add(new Common.Models.Image()
                 {
                     ImageArray = image2bytes
                 });
             }
             if (Image3 != null)
             {
-                plan.PlanImages.Add(new Common.Models.Image()
+                plan.Images.Add(new Common.Models.Image()
                 {
                     ImageArray = image3bytes
                 });
@@ -934,11 +935,11 @@ namespace Joinup.ViewModels
 
         private async void SendEmails()
         {
-            foreach (MyUserASP user in plan.AssistantUsers)
+            foreach (Meet meet in plan.Meets)
             {
                 string subject = "Cambios en tu plan: " + plan.Name;
                 string body = "El organizador del plan ha realizado cambios. No olvides entrar para revisar si el plan te sigue pareciendo interesante";
-                await MailHelper.SendEmail(user.Email, subject, body);
+                await MailHelper.SendEmail(meet.User.Email, subject, body);
             }
         }
 

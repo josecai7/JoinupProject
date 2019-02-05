@@ -12,7 +12,7 @@ namespace Joinup.Common.Models
     {
         [Key]
         public int ImageId { get; set; }
-        public int EntityId { get; set; }
+        public int PlanId { get; set; }
         public string ImagePath { get; set; }
         [NotMapped]
         public byte[] ImageArray { get; set; }

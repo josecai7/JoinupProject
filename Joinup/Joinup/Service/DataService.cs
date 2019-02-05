@@ -71,9 +71,9 @@ namespace Joinup.Service
             if (response.IsSuccess)
             {
                 Plan plan = (Plan)response.Result;
-                foreach (Common.Models.Image image in pPlan.PlanImages)
+                foreach (Common.Models.Image image in pPlan.Images)
                 {
-                    image.EntityId = plan.PlanId;
+                    image.PlanId = plan.PlanId;
                     var imageResponse = await SaveImage(image);
                     if (!imageResponse.IsSuccess)
                     {

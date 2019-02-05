@@ -39,7 +39,7 @@
                     <!--  Carrousel images  -->
                     <Grid>
                         <cv:CarouselView
-                            ItemsSource="{Binding Plan.PlanImages}"
+                            ItemsSource="{Binding Plan.Images}"
                             HeightRequest="230"
                             VerticalOptions="Start"
                             BackgroundColor="AliceBlue">
@@ -130,7 +130,7 @@
                                 Grid.Column="0"
                                 HeightRequest="45"
                                 WidthRequest="45"
-                                Source="{Binding Plan.User.UserImage}"
+                                Source="{Binding Plan.User.ImagePath}"
                                 Aspect="AspectFit"
                                 IsEnabled="{Binding IsNotHost}">
                                 <ffimageloading:CachedImage.Transformations>
