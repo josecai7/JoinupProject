@@ -9,7 +9,9 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}"></Setter>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
    

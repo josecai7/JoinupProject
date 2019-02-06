@@ -14,6 +14,7 @@ namespace Joinup.Common.Models.DatabaseModels
         public int MeetId { get; set; }
         public int PlanId { get; set; }
         public string UserId { get; set; }
+        public bool IsHost { get; set; }
         public User User
         {
             get; set;

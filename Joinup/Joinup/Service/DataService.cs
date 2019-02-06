@@ -29,7 +29,7 @@ namespace Joinup.Service
             }
         }
         #endregion
-        public async Task<Response> JoinAPlan(int pPlanId, string pUserId)
+        public async Task<Response> JoinAPlan(int pPlanId, string pUserId, bool pIsHost)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -38,6 +38,7 @@ namespace Joinup.Service
             Meet meet = new Meet();
             meet.PlanId = pPlanId;
             meet.UserId = pUserId;
+            meet.IsHost = pIsHost;
 
             //Save meet
             var response = await ApiService.GetInstance().Post<Meet>(url, prefix, controller, meet, Settings.TokenType, Settings.AccessToken);

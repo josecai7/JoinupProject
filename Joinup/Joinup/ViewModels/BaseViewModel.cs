@@ -29,6 +29,10 @@ namespace Joinup.ViewModels
                 }
                 return loggedUser;
             }
+            set
+            {
+                loggedUser = value;
+            }
         }
 
         public BaseViewModel()

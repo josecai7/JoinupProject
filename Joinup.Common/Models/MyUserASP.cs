@@ -55,6 +55,17 @@ namespace Joinup.Common.Models
                 return "no_image.png";
             }
         }
+        public string Image
+        {
+            get
+            {
+                if (Claims.Count >= 3)
+                {
+                    return Claims[2].ClaimValue;
+                }
+                return "no_image.png";
+            }
+        }
         public bool IsHost
         {
             get;

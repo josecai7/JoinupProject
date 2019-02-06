@@ -870,7 +870,7 @@ namespace Joinup.ViewModels
             {
                 Plan plan = (Plan)response.Result;
 
-                var responseJoin = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id);
+                var responseJoin = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id,true);
 
                 if (!responseJoin.IsSuccess)
                 {

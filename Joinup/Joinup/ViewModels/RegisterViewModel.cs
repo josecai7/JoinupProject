@@ -250,7 +250,7 @@ namespace Joinup.ViewModels
                     Settings.UserASP = JsonConvert.SerializeObject(postUserResponse.Result);
                     MyUserASP newUser = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
 
-                    var userResponse=await DataService.GetInstance().PostUser(newUser.Id, newUser.Email,newUser.Name,newUser.Surname,newUser.UserImage);
+                    var userResponse=await DataService.GetInstance().PostUser(newUser.Id, newUser.Email,newUser.Name,newUser.Surname,newUser.Image);
                     if (postUserResponse.IsSuccess)
                     {
                         IsRunning = false;

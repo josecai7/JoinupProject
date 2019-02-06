@@ -330,7 +330,7 @@ namespace Joinup.ViewModels
         {
             IsRunning = true;
             IsEnabled = false;
-            var response = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id);
+            var response = await DataService.GetInstance().JoinAPlan(plan.PlanId, LoggedUser.Id,false);
 
             if (!response.IsSuccess)
             {

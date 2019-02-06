@@ -297,7 +297,11 @@ namespace Joinup.ViewModels
 
         private void DoLogout()
         {
+            Settings.AccessToken = null;
+            Settings.TokenType = null;
+            Settings.UserASP = null;
             Settings.IsRemembered = false;
+            LoggedUser = null;
             var navigationService = ViewModelLocator.Instance.Resolve<INavigationService>();
             navigationService.InitializeAsync();
         }

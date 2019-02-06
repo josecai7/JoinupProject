@@ -14,9 +14,6 @@
         <th>
             @Html.DisplayNameFor(model => model.PlanId)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </th>
         <th></th>
     </tr>
 
@@ -24,9 +21,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.PlanId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MeetId }) |
