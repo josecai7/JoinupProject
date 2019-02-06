@@ -338,12 +338,7 @@ namespace Joinup.ViewModels
             }
             else
             {
-                plan.Meets.Add(response.Result as Meet);
-                RaisePropertyChanged("Plan");
-                RaisePropertyChanged("ButtonStyle");
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
+                RefreshMeets();
             }
             IsRunning = false;
             IsEnabled = true;
@@ -360,16 +355,24 @@ namespace Joinup.ViewModels
             }
             else
             {
-                plan.Meets.Remove(plan.Meets.Single(meet => meet.UserId == LoggedUser.Id));
-                RaisePropertyChanged("Plan");
-                RaisePropertyChanged("ButtonStyle");
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
-                MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
+                RefreshMeets();
             }
             IsRunning = false;
             IsEnabled = true;
         }
+
+        private async void RefreshMeets()
+        {
+            var meetResponse = await DataService.GetInstance().GetMeetsByPlan( plan.PlanId );
+
+            plan.Meets = meetResponse.IsSuccess ? (List<Meet>) meetResponse.Result : plan.Meets;
+            RaisePropertyChanged( "Plan" );
+            RaisePropertyChanged( "ButtonStyle" );
+            MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
+            MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
+            MessagingCenter.Send( ViewModelLocator.Instance.Resolve<ProfileViewModel>(), "RefreshPlans" );
+        }
+
         private void EditPlan()
         {
             NavigationService.NavigateToAsync<NewPlanStep1ViewModel>(Plan);

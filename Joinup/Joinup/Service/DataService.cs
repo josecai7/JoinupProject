@@ -207,6 +207,17 @@ namespace Joinup.Service
 
             return response;
         }
+        public async Task<Response> GetMeetsByPlan(int pPlanId)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlMeetsController"].ToString();
+            controller += "/ByPlan/" + pPlanId;
+
+            var response = await ApiService.GetInstance().GetList<Meet>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
+
+            return response;
+        }
 
     }
 }

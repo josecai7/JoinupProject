@@ -275,7 +275,7 @@
                                                 </ffimageloading:CachedImage>
 
                                                 <Frame              
-                                                    IsVisible="{Binding User.IsHost}"
+                                                    IsVisible="{Binding IsHost}"
                                                     Padding="0"
                                                     HeightRequest="18"
                                                     WidthRequest="18"

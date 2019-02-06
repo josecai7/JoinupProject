@@ -23,6 +23,14 @@ namespace Joinup.API.Controllers
         {
             return db.Meets;
         }
+        // GET: api/Meets
+        [Route( "~/api/Meets/ByPlan/{pPlanId}" )]
+        public IQueryable<Meet> GetMeetsByPlan(int pPlanId)
+        {
+            return db.Meets
+                .Where(item=>item.PlanId==pPlanId)
+                .Include(meet=>meet.User);
+        }
 
         // GET: api/Meets/5
         [ResponseType(typeof(Meet))]
