@@ -19,7 +19,7 @@ namespace Joinup.ViewModels
     public class ProfileViewModel : BaseViewModel
     {
         #region Attributes
-        private MyUserASP user;
+        private User user;
         private ObservableCollection<Plan> publishedPlanList;
         private ObservableCollection<Remark> remarksList;
         private bool plansTab;
@@ -95,7 +95,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public MyUserASP User
+        public User User
         {
             get
             {
@@ -121,7 +121,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return user.Id==LoggedUser.Id;
+                return user.UserId==LoggedUser.Id;
             }
         }
         #endregion
@@ -135,7 +135,7 @@ namespace Joinup.ViewModels
                 LoadPlans();
             } );
 
-            user = LoggedUser;
+            user = LoggedUser.ToUser();
             LoadPlans();
             LoadRemarks();
             SetPlansTab();
@@ -144,8 +144,7 @@ namespace Joinup.ViewModels
 
         public override Task InitializeAsync(object navigationData)
         {
-            User = (MyUserASP) navigationData;
-            string s=Settings.AccessToken;
+            User = (User) navigationData;
             LoadPlans();
             LoadRemarks();
             RaisePropertyChanged("IsLoggedUser");           
@@ -220,9 +219,9 @@ namespace Joinup.ViewModels
         private void OpenImage()
         {
             List<string> images = new List<string>();
-            if (!string.IsNullOrEmpty(User.UserImage))
+            if (!string.IsNullOrEmpty(User.ImagePath))
             {
-                images.Add(User.UserImage);
+                images.Add(User.ImagePath);
                 NavigationService.NavigateToAsync<ImageFullScreenViewModel>(images);
             }              
         }
@@ -233,7 +232,7 @@ namespace Joinup.ViewModels
             var connection = await ApiService.GetInstance().CheckConnection();
             if ( connection.IsSuccess )
             {
-                var response = await DataService.GetInstance().GetPlansByUserId(User.Id);
+                var response = await DataService.GetInstance().GetPlansByUserId(User.UserId);
 
                 if ( !response.IsSuccess )
                 {
@@ -243,7 +242,7 @@ namespace Joinup.ViewModels
                 }
 
                 var list = (List<Plan>) response.Result;
-                PublishedPlanList = new ObservableCollection<Plan>( list.Where(item=>item.UserId==User.Id).OrderByDescending(item=>item.PlanDate) );                
+                PublishedPlanList = new ObservableCollection<Plan>( list.Where(item=>item.UserId==User.UserId).OrderByDescending(item=>item.PlanDate) );                
             }
             else
             {
@@ -261,7 +260,7 @@ namespace Joinup.ViewModels
             var connection = await ApiService.GetInstance().CheckConnection();
             if (connection.IsSuccess)
             {
-                var response = await DataService.GetInstance().GetRemarksByUserId(User.Id);
+                var response = await DataService.GetInstance().GetRemarksByUserId(User.UserId);
 
                 if (!response.IsSuccess)
                 {

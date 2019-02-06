@@ -115,7 +115,7 @@
                     TranslationY="50"
                     WidthRequest="100">
                 <ffimageloading:CachedImage 
-                    Source="{Binding User.UserImage}">
+                    Source="{Binding User.ImagePath}">
                     <ffimageloading:CachedImage.Transformations>
                         <fftransformations:CircleTransformation/>
                     </ffimageloading:CachedImage.Transformations>
