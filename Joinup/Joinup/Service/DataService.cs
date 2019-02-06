@@ -190,6 +190,22 @@ namespace Joinup.Service
 
             return response;
         }
+        public async Task<Response> PostUser(string pUserId, string pEmail, string pName, string pSurname, string pImagePath)
+        {
+            User user = new User();
+            user.UserId = pUserId;
+            user.Name = pName;
+            user.Surname = pSurname;
+            user.Email = pEmail;
+            user.Image = pImagePath;
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlUsers1Controller"].ToString();
+
+            var response = await ApiService.GetInstance().Post<User>(url, prefix, controller, user, Settings.TokenType, Settings.AccessToken);
+
+            return response;
+        }
 
     }
 }

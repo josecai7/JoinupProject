@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,8 @@ namespace Joinup.Common.Models.DatabaseModels
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Image { get; set; }
+        [JsonIgnore]
+        [NotMapped]
         public string ImagePath
         {
             get

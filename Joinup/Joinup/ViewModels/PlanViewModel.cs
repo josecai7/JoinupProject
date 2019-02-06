@@ -39,13 +39,6 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public ObservableCollection<Meet> Assistants
-        {
-            get
-            {
-                return new ObservableCollection<Meet>(plan.Meets);
-            }
-        }
         public ObservableCollection<Plan> Pins
         {
             get { return pins; }
@@ -206,7 +199,6 @@ namespace Joinup.ViewModels
                 }
                 RaisePropertyChanged("Plan");
                 RaisePropertyChanged("ButtonStyle");
-                RaisePropertyChanged("Assistants");
                 RaisePropertyChanged( "IsHost" );
                 RaisePropertyChanged( "IsNotHost" );
                 RaisePropertyChanged("IsPlanAvaliable");
@@ -348,7 +340,6 @@ namespace Joinup.ViewModels
             {
                 plan.Meets.Add(response.Result as Meet);
                 RaisePropertyChanged("Plan");
-                RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
                 MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
                 MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );
@@ -371,7 +362,6 @@ namespace Joinup.ViewModels
             {
                 plan.Meets.Remove(plan.Meets.Single(meet => meet.UserId == LoggedUser.Id));
                 RaisePropertyChanged("Plan");
-                RaisePropertyChanged("Assistants");
                 RaisePropertyChanged("ButtonStyle");
                 MessagingCenter.Send( ViewModelLocator.Instance.Resolve<PlansViewModel>(), "RefreshPlans" );
                 MessagingCenter.Send( ViewModelLocator.Instance.Resolve<MyPlansViewModel>(), "RefreshPlans" );

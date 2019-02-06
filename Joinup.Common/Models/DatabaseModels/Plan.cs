@@ -19,6 +19,8 @@ namespace Joinup.Common.Models
         {
             Images = new List<Image>();
             Remarks= new List<Remark>();
+            Comments = new List<Comment>();
+            Meets = new List<Meet>();
         }
         [Key]
         public int PlanId { get; set; }

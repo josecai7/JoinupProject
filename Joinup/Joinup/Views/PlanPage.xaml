@@ -258,7 +258,7 @@
                                 Grid.Row="1"
                                 HeightRequest="45">
                                 <controls:ExtendedFlexLayout 
-                                    ItemsSource="{Binding Assistants}"                                   
+                                    ItemsSource="{Binding Plan.ResumeAssistantUsers}"                                   
                                     HeightRequest="45">
                                     <controls:ExtendedFlexLayout.ItemTemplate>
                                         <DataTemplate>
@@ -267,7 +267,7 @@
                                                     HeightRequest="45"
                                                     WidthRequest="45"
                                                     Margin="4,0,4,0"
-                                                    Source="{Binding UserImage}"
+                                                    Source="{Binding User.ImagePath}"
                                                     Aspect="AspectFit">
                                                     <ffimageloading:CachedImage.Transformations>
                                                         <fftransformations:CircleTransformation/>
@@ -275,7 +275,7 @@
                                                 </ffimageloading:CachedImage>
 
                                                 <Frame              
-                                                    IsVisible="{Binding IsHost}"
+                                                    IsVisible="{Binding User.IsHost}"
                                                     Padding="0"
                                                     HeightRequest="18"
                                                     WidthRequest="18"

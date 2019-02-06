@@ -246,15 +246,26 @@ namespace Joinup.ViewModels
 
                     Settings.TokenType = token.TokenType;
                     Settings.AccessToken = token.AccessToken;
-                    Settings.UserASP = JsonConvert.SerializeObject(postUserResponse.Result);
-                    IsRunning = false;
-                    NavigationService.NavigateToAsync<MainViewModel>();
 
+                    Settings.UserASP = JsonConvert.SerializeObject(postUserResponse.Result);
+                    MyUserASP newUser = JsonConvert.DeserializeObject<MyUserASP>(Settings.UserASP);
+
+                    var userResponse=await DataService.GetInstance().PostUser(newUser.Id, newUser.Email,newUser.Name,newUser.Surname,newUser.UserImage);
+                    if (postUserResponse.IsSuccess)
+                    {
+                        IsRunning = false;
+                        NavigationService.NavigateToAsync<MainViewModel>();
+                    }
+                    else
+                    {
+                        IsRunning = false;
+                        ShowErrorMessage("Se ha producido un error durante el registro del usuario");
+                    }
                 }
                 else
                 {
                     IsRunning = false;
-                    ShowErrorMessage(postUserResponse.Message);
+                    ShowErrorMessage("Se ha producido un error durante el registro del usuario");
                 }
             }
         }

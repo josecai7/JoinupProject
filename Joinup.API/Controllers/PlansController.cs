@@ -37,8 +37,8 @@ namespace Joinup.API.Controllers
         [Route("~/api/Plans/ByUser/{pUserId}")]
         public IQueryable<Plan> GetPlansByUser(string pUserId)
         {
-            var plans = db.Plans
-                .Where(plan => plan.UserId == pUserId)
+            var plans = db.Plans              
+                .Where(plan => plan.UserId == pUserId || plan.Meets.Any(item=>item.UserId== pUserId))
                 .Include(plan => plan.Remarks)
                 .Include(plan => plan.Images)
                 .Include(plan => plan.Meets)
