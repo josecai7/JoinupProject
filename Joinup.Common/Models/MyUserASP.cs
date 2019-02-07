@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Joinup.Common.Models.DatabaseModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -70,6 +71,10 @@ namespace Joinup.Common.Models
         {
             get;
             set;
+        }
+        public User ToUser()
+        {
+            return new User { UserId = Id, Name = Name, Surname = Surname, Image = Image, Email = Email };
         }
     }
 }

@@ -4,6 +4,7 @@ using Joinup.Helpers;
 using Joinup.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -60,7 +61,7 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<Response> SavePlan(Plan pPlan)
+        public async Task<Response> SavePlan(Plan pPlan, ObservableCollection<Common.Models.Image> pImages)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -72,7 +73,7 @@ namespace Joinup.Service
             if (response.IsSuccess)
             {
                 Plan plan = (Plan)response.Result;
-                foreach (Common.Models.Image image in pPlan.Images)
+                foreach (Common.Models.Image image in pImages)
                 {
                     image.PlanId = plan.PlanId;
                     var imageResponse = await SaveImage(image);

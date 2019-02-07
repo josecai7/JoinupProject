@@ -67,6 +67,8 @@ namespace Joinup.ViewModels
 
         private bool isTravelInfoVisible;
 
+        ObservableCollection<Common.Models.Image> images = new ObservableCollection<Common.Models.Image>();
+
         private ImageSource image1;
         private byte[] image1bytes;
         private ImageSource image2;
@@ -632,15 +634,15 @@ namespace Joinup.ViewModels
                 selectedFoodType = FoodTypes.Find(item => item.Id == plan.Language2);
                 RaisePropertyChanged("SelectedLanguage2");
 
-                if (plan.Images.Count == 1)
+                if (plan.Images.Count > 0)
                 {
                     Image1 = ImageSource.FromUri( new Uri(plan.Images[0].ImageFullPath) );
                 }
-                if (plan.Images.Count==2)
+                if (plan.Images.Count>1)
                 {
                     Image2 = ImageSource.FromUri( new Uri( plan.Images[1].ImageFullPath ) );
                 }
-                if (plan.Images.Count == 3)
+                if (plan.Images.Count >2)
                 {
                     Image3 = ImageSource.FromUri( new Uri( plan.Images[2].ImageFullPath ) );
                 }
@@ -840,27 +842,27 @@ namespace Joinup.ViewModels
 
             if (Image1 != null)
             {
-                plan.Images.Add(new Common.Models.Image()
+                images.Add(new Common.Models.Image()
                 {
                     ImageArray = image1bytes
                 });
             }
             if (Image2 != null)
             {
-                plan.Images.Add(new Common.Models.Image()
+                images.Add(new Common.Models.Image()
                 {
                     ImageArray = image2bytes
                 });
             }
             if (Image3 != null)
             {
-                plan.Images.Add(new Common.Models.Image()
+                images.Add(new Common.Models.Image()
                 {
                     ImageArray = image3bytes
                 });
             }
 
-            var response = await DataService.GetInstance().SavePlan(plan);
+            var response = await DataService.GetInstance().SavePlan(plan, images);
 
             if (!response.IsSuccess)
             {

@@ -27,7 +27,7 @@ namespace Joinup.API.Controllers
             .Include(plan => plan.Remarks)
             .Include(plan => plan.Images)
             .Include(plan => plan.Comments)
-            .Include(plan => plan.Meets)
+            .Include(plan => plan.Meets.Select(item=>item.User))
             .Include(plan => plan.User);
 
             return plans;
@@ -41,7 +41,7 @@ namespace Joinup.API.Controllers
                 .Where(plan => plan.UserId == pUserId || plan.Meets.Any(item=>item.UserId== pUserId))
                 .Include(plan => plan.Remarks)
                 .Include(plan => plan.Images)
-                .Include(plan => plan.Meets)
+                .Include(plan => plan.Meets.Select(item => item.User))
                 .Include(plan => plan.Comments)
                 .Include(plan => plan.User);
 
