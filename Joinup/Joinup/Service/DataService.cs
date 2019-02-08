@@ -140,6 +140,15 @@ namespace Joinup.Service
 
             return response;
         }
+        public async Task<Response> GetPlan(int pPlanId)
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlPlansController"].ToString();
+
+            var response = await ApiService.GetInstance().GetList<Plan>( url, prefix, controller,pPlanId, Settings.TokenType, Settings.AccessToken );
+            return response;
+        }
         public async Task<Response> GetPlans()
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();

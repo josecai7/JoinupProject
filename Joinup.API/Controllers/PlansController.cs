@@ -33,7 +33,6 @@ namespace Joinup.API.Controllers
             return plans;
         }
 
-        // GET: api/Plans
         [Route("~/api/Plans/ByUser/{pUserId}")]
         public IQueryable<Plan> GetPlansByUser(string pUserId)
         {
@@ -52,13 +51,20 @@ namespace Joinup.API.Controllers
         [ResponseType(typeof(Plan))]
         public IHttpActionResult GetPlan(int id)
         {
-            Plan plan = db.Plans.Find(id);
-            if (plan == null)
+            Plan planEntity = db.Plans
+                .Include( plan => plan.Remarks )
+                .Include( plan => plan.Images )
+                .Include( plan => plan.Meets.Select( item => item.User ) )
+                .Include( plan => plan.Comments )
+                .Include( plan => plan.User )
+                .FirstOrDefault(plan=>plan.PlanId==id);
+
+            if (planEntity == null)
             {
                 return NotFound();
             }
 
-            return Ok(plan);
+            return Ok( planEntity );
         }
 
         // PUT: api/Plans/5

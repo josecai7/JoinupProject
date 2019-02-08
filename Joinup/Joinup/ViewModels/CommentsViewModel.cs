@@ -18,7 +18,6 @@ namespace Joinup.ViewModels
         #region Attributes
         private Plan plan;
         string commentText;
-        ObservableCollection<Comment> comments = new ObservableCollection<Comment>();
         private bool isRefreshing;
         #endregion
         #region Properties
@@ -26,12 +25,8 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return new ObservableCollection<Comment>(comments.OrderBy(x => x.CommentDate));
-            }
-            set
-            {
-                comments = value;
-                RaisePropertyChanged("Comments");
+                plan.Comments.Select( c => { c.LoggedUserId = LoggedUser.Id; return c; } ).ToList();
+                return new ObservableCollection<Comment>(plan.Comments.OrderBy(x => x.CommentDate));
             }
         }
         public string CommentText
@@ -74,7 +69,7 @@ namespace Joinup.ViewModels
         #region Constructors
         public CommentsViewModel()
         {
-
+            plan = new Plan();
         }
         public override Task InitializeAsync(object navigationData)
         {
@@ -82,7 +77,7 @@ namespace Joinup.ViewModels
 
             Plan = parameter;
 
-            LoadComments();
+            RaisePropertyChanged( "Comments" );
 
             return base.InitializeAsync(navigationData);
         }
@@ -101,7 +96,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return new RelayCommand(LoadComments);
+                return new RelayCommand( ReloadPlan );
             }
         }
 
@@ -119,7 +114,7 @@ namespace Joinup.ViewModels
                 sendComment.UserId = LoggedUser.Id;
                 sendComment.PlanId = Plan.PlanId;
                 sendComment.LoggedUserId = LoggedUser.Id;
-                comments.Add(sendComment);
+                plan.Comments.Add(sendComment);
                 RaisePropertyChanged("Comments");
 
                 CommentText = String.Empty;
@@ -128,7 +123,7 @@ namespace Joinup.ViewModels
 
                 if (!response.IsSuccess)
                 {
-                    comments.Remove(sendComment);
+                    plan.Comments.Remove( sendComment );
                     await Application.Current.MainPage.DisplayAlert("Error al publicar el comentario", "Aceptar", "Cancelar");
                     IsRefreshing = false;
                     return;
@@ -136,12 +131,12 @@ namespace Joinup.ViewModels
             }
         }
 
-        private async void LoadComments()
+        private async void ReloadPlan()
         {
             IsRefreshing = true;
 
 
-            var response = await DataService.GetInstance().GetCommentsByPlan(plan.PlanId);
+            var response = await DataService.GetInstance().GetPlan( plan.PlanId);
 
             if (!response.IsSuccess)
             {
@@ -150,14 +145,10 @@ namespace Joinup.ViewModels
                 return;
             }
 
-            var list = (List<Comment>)response.Result;
+            plan = (Plan)response.Result;
 
-            foreach (var comment in list)
-            {
-                comment.LoggedUserId = LoggedUser.Id;
-            }
+            RaisePropertyChanged( "Comments" );
 
-            Comments = new ObservableCollection<Comment>(list);
             IsRefreshing = false;
         }
         #endregion
