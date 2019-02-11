@@ -51,7 +51,6 @@ namespace Joinup.Common.Models
         public double DestinationLongitude { get; set; }
         #endregion
         #region References
-
         public List<Image> Images
         {
             get;set;
@@ -69,7 +68,6 @@ namespace Joinup.Common.Models
         {
             get; set;
         }
-
         public User User
         {
             get; set;

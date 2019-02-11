@@ -71,6 +71,12 @@ namespace Joinup.API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPlan(int id, Plan plan)
         {
+            plan.Comments = null;
+            plan.User = null;
+            plan.Images = null;
+            plan.Remarks = null;
+            plan.Meets = null;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
