@@ -86,8 +86,7 @@ namespace Joinup.ViewModels
         #region Constructors
         public LoginViewModel()
         {
-            Email = "jasoljim92@gmail.com";
-            Password = "proyecto01";
+
         }
         #endregion
         #region Commands
@@ -146,7 +145,6 @@ namespace Joinup.ViewModels
                 if (token == null || string.IsNullOrEmpty(token.AccessToken))
                 {
                     Password = string.Empty;
-                    Email = string.Empty;
                     ToastNotificationUtils.ShowErrorToastNotifications("Usuario o contraseña incorrectos");
                     IsRunning = false;
                     IsEnabled = true;

@@ -289,7 +289,7 @@
                         <controls:BorderLessEditor
                             Text="{Binding Link}"
                             Placeholder="{Binding LinkShowedText}"
-                            MaxLength="40"
+                            MaxLength="200"
                             AutoSize="TextChanges"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource LinkColor}"/>
