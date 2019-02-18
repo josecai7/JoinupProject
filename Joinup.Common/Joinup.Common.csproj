@@ -53,9 +53,13 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Claim.cs" />
     <Compile Include="Models\DatabaseModels\Comment.cs" />
+    <Compile Include="Models\DatabaseModels\Language.cs" />
     <Compile Include="Models\DatabaseModels\Meet.cs" />
     <Compile Include="Models\DatabaseModels\Remark.cs" />
+    <Compile Include="Models\DatabaseModels\SkillLevel.cs" />
+    <Compile Include="Models\DatabaseModels\Sport.cs" />
     <Compile Include="Models\DatabaseModels\User.cs" />
+    <Compile Include="Models\FoodType.cs" />
     <Compile Include="Models\GetUserRequest.cs" />
     <Compile Include="Models\DatabaseModels\Image.cs" />
     <Compile Include="Models\MyUserASP.cs" />
