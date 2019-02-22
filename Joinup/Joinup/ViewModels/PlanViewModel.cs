@@ -115,7 +115,7 @@ namespace Joinup.ViewModels
         {
             get
             {
-                return plan.RecommendedLevel!=0;
+                return plan.SkillLevel!=null;
             }
         }
 
@@ -269,7 +269,7 @@ namespace Joinup.ViewModels
             List<string> images = new List<string>();
             if (Plan.HasImage)
             {
-                foreach (Common.Models.Image image in Plan.Images)
+                foreach (Common.Models.DatabaseModels.Image image in Plan.Images)
                 {
                     images.Add(image.ImageFullPath);
                 }

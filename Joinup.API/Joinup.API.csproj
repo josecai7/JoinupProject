@@ -240,10 +240,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\FoodTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\MeetsController.cs" />
     <Compile Include="Controllers\RemarksController.cs" />
+    <Compile Include="Controllers\SkillLevelsController.cs" />
+    <Compile Include="Controllers\SportsController.cs" />
     <Compile Include="Controllers\Users1Controller.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
@@ -254,6 +258,14 @@
     <Compile Include="Helpers\UsersHelper.cs" />
     <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Migrations\201902221059304_Initial.cs" />
+    <Compile Include="Migrations\201902221059304_Initial.Designer.cs">
+      <DependentUpon>201902221059304_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902221119378_Second.cs" />
+    <Compile Include="Migrations\201902221119378_Second.Designer.cs">
+      <DependentUpon>201902221119378_Second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -366,6 +378,14 @@
       <Project>{d997b5a9-0566-46e9-bf44-ad33969b759f}</Project>
       <Name>Joinup.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902221059304_Initial.resx">
+      <DependentUpon>201902221059304_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902221119378_Second.resx">
+      <DependentUpon>201902221119378_Second.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

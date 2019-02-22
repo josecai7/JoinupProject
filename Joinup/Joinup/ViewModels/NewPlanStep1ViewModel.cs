@@ -49,25 +49,25 @@ namespace Joinup.ViewModels
 
         private bool hasLevel;
         private string levelShowedText;
-        private List<Category> levels;
-        private Category selectedRecommendedLevel;
+        private List<SkillLevel> levels;
+        private SkillLevel selectedRecommendedLevel;
 
         private bool isFoodInfoVisible;
 
-        private Category selectedFoodType;
-        private List<Category> foodTypes;
+        private FoodType selectedFoodType;
+        private List<FoodType> foodTypes;
         private bool isSportInfoVisible;
-        private List<Category> sports;
-        private Category selectedSport;
+        private List<Sport> sports;
+        private Sport selectedSport;
 
         private bool isLanguageInfoVisible;
-        private List<Category> languages;
-        private Category selectedLanguage1;
-        private Category selectedLanguage2;
+        private List<Language> languages;
+        private PlanLanguage selectedLanguage1;
+        private PlanLanguage selectedLanguage2;
 
         private bool isTravelInfoVisible;
 
-        ObservableCollection<Common.Models.Image> images = new ObservableCollection<Common.Models.Image>();
+        ObservableCollection<Common.Models.DatabaseModels.Image> images = new ObservableCollection<Common.Models.DatabaseModels.Image>();
 
         private ImageSource image1;
         private byte[] image1bytes;
@@ -162,7 +162,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged("IsFoodInfoVisible");
             }
         }
-        public Category SelectedFoodType
+        public FoodType SelectedFoodType
         {
             get
             {
@@ -171,11 +171,11 @@ namespace Joinup.ViewModels
             set
             {
                 selectedFoodType = value;
-                plan.FoodType = selectedFoodType.Id;
+                plan.SkillLevelId = selectedFoodType.FoodTypeId;
                 RaisePropertyChanged("SelectedFoodType");
             }
         }
-        public List<Category> FoodTypes
+        public List<FoodType> FoodTypes
         {
             get
             {
@@ -249,7 +249,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "LevelShowedText" );
             }
         }
-        public Category SelectedRecommendedLevel
+        public SkillLevel SelectedRecommendedLevel
         {
             get
             {
@@ -258,11 +258,11 @@ namespace Joinup.ViewModels
             set
             {
                 selectedRecommendedLevel = value;
-                plan.RecommendedLevel = selectedRecommendedLevel.Id;
+                plan.SkillLevelId = selectedRecommendedLevel.SkillLevelId;
                 RaisePropertyChanged( "SelectedRecommendedLevel" );
             }
         }
-        public List<Category> SkillLevels
+        public List<SkillLevel> SkillLevels
         {
             get
             {
@@ -287,7 +287,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "IsSportInfoVisible" );
             }
         }
-        public Category SelectedSport
+        public Sport SelectedSport
         {
             get
             {
@@ -296,11 +296,11 @@ namespace Joinup.ViewModels
             set
             {
                 selectedSport = value;
-                plan.Sport = selectedSport.Id;
+                plan.SportId = selectedSport.SportId;
                 RaisePropertyChanged( "SelectedSport" );
             }
         }
-        public List<Category> Sports
+        public List<Sport> Sports
         {
             get
             {
@@ -325,7 +325,7 @@ namespace Joinup.ViewModels
                 RaisePropertyChanged( "IsLanguageInfoVisible" );
             }
         }
-        public Category SelectedLanguage1
+        public PlanLanguage SelectedLanguage1
         {
             get
             {
@@ -334,11 +334,10 @@ namespace Joinup.ViewModels
             set
             {
                 selectedLanguage1 = value;
-                plan.Language1 = selectedLanguage1.Id;
                 RaisePropertyChanged( "SelectedLanguage1" );
             }
         }
-        public Category SelectedLanguage2
+        public PlanLanguage SelectedLanguage2
         {
             get
             {
@@ -347,11 +346,10 @@ namespace Joinup.ViewModels
             set
             {
                 selectedLanguage2 = value;
-                plan.Language2 = selectedLanguage2.Id;
                 RaisePropertyChanged( "SelectedLanguage2" );
             }
         }
-        public List<Category> Languages
+        public List<Language> Languages
         {
             get
             {
@@ -578,10 +576,10 @@ namespace Joinup.ViewModels
         public NewPlanStep1ViewModel()
         {
             Categories=PLANTYPE.GetAllPlanTypes();
-            SkillLevels = SKILLLEVEL.GetAllSkillLevel();
-            Languages = LANGUAGE.GetAllLanguages();
-            FoodTypes = FOODTYPE.GetAllFoodTypes();
-            Sports = SPORT.GetAllSports();
+            SkillLevels = DataService.GetInstance().GetSkillLevels().Result as List<SkillLevel>;
+            Languages = DataService.GetInstance().GetLanguages().Result as List<Language>;
+            FoodTypes = DataService.GetInstance().GetFoodTypes().Result as List<FoodType>;
+            Sports = DataService.GetInstance().GetSports().Result as List<Sport>;
 
             plan = new Plan();
 
@@ -622,17 +620,17 @@ namespace Joinup.ViewModels
                 selectedCategory = Categories.Find(item => item.Id == plan.PlanType);
                 RaisePropertyChanged("SelectedCategory");
 
-                selectedRecommendedLevel = SkillLevels.Find(item => item.Id == plan.RecommendedLevel);
+                selectedRecommendedLevel = plan.SkillLevel;
                 RaisePropertyChanged("SelectedRecommendedLevel");
 
-                selectedLanguage1 = Languages.Find(item => item.Id == plan.Language1);
+                selectedLanguage1 = plan.PlanLanguages.FirstOrDefault();
                 RaisePropertyChanged("SelectedLanguage1");
 
-                selectedLanguage2 = Languages.Find(item => item.Id == plan.Language2);
+                selectedLanguage2 = plan.PlanLanguages.Skip(1).FirstOrDefault();
                 RaisePropertyChanged("SelectedLanguage2");
 
-                selectedFoodType = FoodTypes.Find(item => item.Id == plan.Language2);
-                RaisePropertyChanged("SelectedLanguage2");
+                selectedFoodType =plan.FoodType;
+                RaisePropertyChanged( "SelectedFoodType" );
 
                 if (plan.Images.Count > 0)
                 {
@@ -815,12 +813,22 @@ namespace Joinup.ViewModels
                 ToastNotificationUtils.ShowErrorToastNotifications( "Ups...La fecha de finalización del plan no puede ser mayor a la fecha inicial" );
                 return;
             }
-            if (plan.PlanType==PLANTYPE.LANGUAGE && (plan.Language1==LANGUAGE.UNDEFINED|| plan.Language2 == LANGUAGE.UNDEFINED))
+
+            if (plan.PlanType==PLANTYPE.LANGUAGE)
             {
-                ToastNotificationUtils.ShowErrorToastNotifications( "Ups...Debes establecer los idiomas que se trabajaran en el intercambio" );
-                return;
+                
+                if (plan.PlanLanguages.Count < 2)
+                {
+                    ToastNotificationUtils.ShowErrorToastNotifications( "Ups...Debes establecer los idiomas que se trabajaran en el intercambio" );
+                    return;
+                }
+                else
+                {
+                    plan.PlanLanguages.Add(SelectedLanguage1);
+                    plan.PlanLanguages.Add( SelectedLanguage2 );
+                }             
             }
-            if (plan.PlanType == PLANTYPE.SPORT && plan.Sport == SPORT.UNDEFINED)
+            if (plan.PlanType == PLANTYPE.SPORT && plan.Sport.SportId == SPORT.UNDEFINED)
             {
                 ToastNotificationUtils.ShowErrorToastNotifications( "Ups...Debes especificar el deporte que se practicará en tu plan" );
                 return;
@@ -842,21 +850,21 @@ namespace Joinup.ViewModels
 
             if (Image1 != null)
             {
-                images.Add(new Common.Models.Image()
+                images.Add(new Common.Models.DatabaseModels.Image()
                 {
                     ImageArray = image1bytes
                 });
             }
             if (Image2 != null)
             {
-                images.Add(new Common.Models.Image()
+                images.Add(new Common.Models.DatabaseModels.Image()
                 {
                     ImageArray = image2bytes
                 });
             }
             if (Image3 != null)
             {
-                images.Add(new Common.Models.Image()
+                images.Add(new Common.Models.DatabaseModels.Image()
                 {
                     ImageArray = image3bytes
                 });

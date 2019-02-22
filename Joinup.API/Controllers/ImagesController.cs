@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Joinup.Common.Models;
-using Joinup.Domain.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Joinup.API.Helpers;
+using Joinup.Domain.Models;
 
 namespace Joinup.API.Controllers
 {

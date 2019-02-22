@@ -23,6 +23,10 @@
             <x:String x:Key="UrlImagesController">/Images</x:String>
             <x:String x:Key="UrlCommentsController">/Comments</x:String>
             <x:String x:Key="UrlRemarksController">/Remarks</x:String>
+            <x:String x:Key="UrlSportsController">/Sports</x:String>
+            <x:String x:Key="UrlLanguagesController">/Languages</x:String>
+            <x:String x:Key="UrlSkillLevelsController">/SkillLevels</x:String>
+            <x:String x:Key="UrlFoodTypesController">/FoodTypes</x:String>
 
 
             <!-- FONTS -->

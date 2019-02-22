@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using Joinup.Service;
 using Joinup.Utils;
 using System;

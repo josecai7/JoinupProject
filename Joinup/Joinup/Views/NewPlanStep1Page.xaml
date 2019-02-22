@@ -365,7 +365,7 @@
                             Title="Idioma 1"
                             ItemsSource="{Binding Languages}"
                             SelectedItem="{Binding SelectedLanguage1}"
-                            ItemDisplayBinding="{Binding Name}"
+                            ItemDisplayBinding="{Binding Language.Name}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                         </Frame>
@@ -390,7 +390,7 @@
                             Title="Idioma 1"
                             ItemsSource="{Binding Languages}"
                             SelectedItem="{Binding SelectedLanguage2}"
-                            ItemDisplayBinding="{Binding Name}"
+                            ItemDisplayBinding="{Binding Language.Name}"
                             Style="{StaticResource SubtitleFont}"
                             TextColor="{StaticResource TertiaryTextColor}"/>
                         </Frame>

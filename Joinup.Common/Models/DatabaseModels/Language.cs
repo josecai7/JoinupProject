@@ -10,7 +10,9 @@ namespace Joinup.Common.Models.DatabaseModels
     public class Language
     {
         [Key]
-        public int Id { get; set; }
-        public int Name { get; set; }
+        public int LanguageId { get; set; }
+        public string Name { get; set; }
+
+        public IList<PlanLanguage> PlanLanguages { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<Response> SavePlan(Plan pPlan, ObservableCollection<Common.Models.Image> pImages)
+        public async Task<Response> SavePlan(Plan pPlan, ObservableCollection<Common.Models.DatabaseModels.Image> pImages)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -73,7 +73,7 @@ namespace Joinup.Service
             if (response.IsSuccess)
             {
                 Plan plan = (Plan)response.Result;
-                foreach (Common.Models.Image image in pImages)
+                foreach (Common.Models.DatabaseModels.Image image in pImages)
                 {
                     image.PlanId = plan.PlanId;
                     var imageResponse = await SaveImage(image);
@@ -118,14 +118,14 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<Response> SaveImage(Common.Models.Image pImage)
+        public async Task<Response> SaveImage(Common.Models.DatabaseModels.Image pImage)
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlImagesController"].ToString();
 
             //Save plan
-            var response = await ApiService.GetInstance().Post<Common.Models.Image>(url, prefix, controller, pImage, Settings.TokenType, Settings.AccessToken);
+            var response = await ApiService.GetInstance().Post<Common.Models.DatabaseModels.Image>(url, prefix, controller, pImage, Settings.TokenType, Settings.AccessToken);
 
             return response;
         }
@@ -227,6 +227,90 @@ namespace Joinup.Service
             var response = await ApiService.GetInstance().GetList<Meet>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
 
             return response;
+        }
+
+        private async Task<Response> GetSkillLevels_()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlSkillLevelsController"].ToString();
+
+            var response = await ApiService.GetInstance().GetList<SkillLevel>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
+
+            return response;
+        }
+        public async Task<List<SkillLevel>> GetSkillLevels()
+        {
+            var response = await GetSkillLevels_();
+
+            if (response.IsSuccess)
+            {
+                return response.Result as List<SkillLevel>;
+            }
+            return new List<SkillLevel>();
+        }
+
+        private async Task<Response> GetSports_()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlSportsController"].ToString();
+
+            var response = await ApiService.GetInstance().GetList<Sport>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
+
+            return response;
+        }
+        public async Task<List<Sport>> GetSports()
+        {
+            var response = await GetSports_();
+
+            if (response.IsSuccess)
+            {
+                return response.Result as List<Sport>;
+            }
+            return new List<Sport>();
+        }
+
+        private async Task<Response> GetLanguages_()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlLanguagesController"].ToString();
+
+            var response = await ApiService.GetInstance().GetList<Language>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
+
+            return response;
+        }
+        public async Task<List<Language>> GetLanguages()
+        {
+            var response = await GetLanguages_();
+
+            if (response.IsSuccess)
+            {
+                return response.Result as List<Language>;
+            }
+            return new List<Language>();
+        }
+
+        private async Task<Response> GetFoodTypes_()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlFoodTypesController"].ToString();
+
+            var response = await ApiService.GetInstance().GetList<FoodType>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
+
+            return response;
+        }
+        public async Task<List<FoodType>> GetFoodTypes()
+        {
+            var response = await GetFoodTypes_();
+
+            if (response.IsSuccess)
+            {
+                return response.Result as List<FoodType>;
+            }
+            return new List<FoodType>();
         }
 
     }

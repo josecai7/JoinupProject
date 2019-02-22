@@ -10,7 +10,9 @@ namespace Joinup.Common.Models.DatabaseModels
     public class SkillLevel
     {
         [Key]
-        public int Id { get; set; }
-        public int Name { get; set; }
+        public int SkillLevelId { get; set; }
+        public string Name { get; set; }
+
+        public ICollection<Plan> Plans { get; set; }
     }
 }

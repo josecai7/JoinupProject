@@ -28,7 +28,11 @@ namespace Joinup.API.Controllers
             .Include(plan => plan.Images)
             .Include(plan => plan.Comments)
             .Include(plan => plan.Meets.Select(item=>item.User))
-            .Include(plan => plan.User);
+            .Include(plan => plan.User)
+            .Include( plan => plan.Sport )
+            .Include( plan => plan.SkillLevel )
+            .Include( plan => plan.FoodType )
+            .Include( plan => plan.PlanLanguages );
 
             return plans;
         }
@@ -42,7 +46,8 @@ namespace Joinup.API.Controllers
                 .Include(plan => plan.Images)
                 .Include(plan => plan.Meets.Select(item => item.User))
                 .Include(plan => plan.Comments)
-                .Include(plan => plan.User);
+                .Include(plan => plan.User)
+                .Include( plan => plan.PlanLanguages );
 
             return plans;
         }
@@ -57,6 +62,10 @@ namespace Joinup.API.Controllers
                 .Include( plan => plan.Meets.Select( item => item.User ) )
                 .Include( plan => plan.Comments )
                 .Include( plan => plan.User )
+                .Include( plan => plan.Sport )
+                .Include( plan => plan.SkillLevel )
+                .Include( plan => plan.FoodType )
+                .Include( plan => plan.PlanLanguages )
                 .FirstOrDefault(plan=>plan.PlanId==id);
 
             if (planEntity == null)

@@ -11,7 +11,7 @@ using Joinup.Common.Helpers;
 using Joinup.Common.Models.SelectablesModels;
 using Joinup.Common.Models.DatabaseModels;
 
-namespace Joinup.Common.Models
+namespace Joinup.Common.Models.DatabaseModels
 {
     public class Plan
     {
@@ -40,9 +40,6 @@ namespace Joinup.Common.Models
         public DateTime EndPlanDate { get; set; }
 
         #region Specific atributes
-        public int FoodType { get; set; }
-        public int Sport { get; set; }
-        public int RecommendedLevel { get; set; }
         public string Link { get; set; }
         public int Language1 { get; set; }
         public int Language2 { get; set; }
@@ -73,6 +70,16 @@ namespace Joinup.Common.Models
             get; set;
         }
 
+        public int? SportId { get; set; }
+        public Sport Sport { get; set; }
+
+        public int? FoodTypeId { get; set; }
+        public FoodType FoodType { get; set; }
+
+        public int? SkillLevelId { get; set; }
+        public SkillLevel SkillLevel { get; set; }
+
+        public IList<PlanLanguage> PlanLanguages { get; set; }
 
         #endregion
 
@@ -274,9 +281,9 @@ namespace Joinup.Common.Models
         {
             get
             {
-                if (PLANTYPE.FOODANDDRINK==PlanType)
+                if (FoodType!=null)
                 {
-                    return FOODTYPE.GetFoodTypeById(FoodType);
+                    return FoodType.Name;
                 }
                 else
                 {
@@ -291,14 +298,7 @@ namespace Joinup.Common.Models
         {
             get
             {
-                if (PLANTYPE.SPORT == PlanType)
-                {
-                    return SPORT.GetSportTypeById(Sport);
-                }
-                else
-                {
-                    return String.Empty;
-                }
+                return Sport.Name;
             }
         }
 
@@ -308,7 +308,14 @@ namespace Joinup.Common.Models
         {
             get
             {
-                return SKILLLEVEL.GetLevelTypeById(RecommendedLevel);
+                if (SkillLevel != null)
+                {
+                    return SkillLevel.Name;
+                }
+                else
+                {
+                    return String.Empty;
+                }
             }
         }
 

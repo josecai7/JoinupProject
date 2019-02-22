@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xamarin.Essentials;  
+using Xamarin.Essentials;
+using Joinup.Common.Models.DatabaseModels;
 
 namespace Joinup.ViewModels
 {

@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Joinup.Common.Models
+namespace Joinup.Common.Models.DatabaseModels
 {
     public class FoodType
     {
         [Key]
-        public int Id { get; set; }
-        public int Name { get; set; }
+        public int FoodTypeId { get; set; }
+        public string Name { get; set; }
+
+        public ICollection<Plan> Plans { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Joinup.Common.Models;
+using Joinup.Common.Models.DatabaseModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

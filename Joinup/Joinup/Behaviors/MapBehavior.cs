@@ -1,4 +1,4 @@
-﻿using Joinup.Common.Models;
+﻿using Joinup.Common.Models.DatabaseModels;
 using Joinup.Common.Models.SelectablesModels;
 using System;
 using System.Collections.Generic;
