@@ -576,10 +576,10 @@ namespace Joinup.ViewModels
         public NewPlanStep1ViewModel()
         {
             Categories=PLANTYPE.GetAllPlanTypes();
-            SkillLevels = DataService.GetInstance().GetSkillLevels().Result as List<SkillLevel>;
-            Languages = DataService.GetInstance().GetLanguages().Result as List<Language>;
-            FoodTypes = DataService.GetInstance().GetFoodTypes().Result as List<FoodType>;
-            Sports = DataService.GetInstance().GetSports().Result as List<Sport>;
+            LoadSkillLevels();
+            LoadLanguages();
+            LoadFoodTypes();
+            LoadSports();
 
             plan = new Plan();
 
@@ -588,6 +588,47 @@ namespace Joinup.ViewModels
 
             ButtonText = "CREAR PLAN";
         }
+
+        private async void LoadSports()
+        {
+            var response = await DataService.GetInstance().GetSports();
+
+            if (response.IsSuccess)
+            {
+                Sports = (List<Sport>) response.Result;
+            }
+        }
+
+        private async void LoadFoodTypes()
+        {
+            var response = await DataService.GetInstance().GetFoodTypes();
+
+            if (response.IsSuccess)
+            {
+                FoodTypes = (List<FoodType>) response.Result;
+            }
+        }
+
+        private async void LoadLanguages()
+        {
+            var response = await DataService.GetInstance().GetLanguages();
+
+            if (response.IsSuccess)
+            {
+                Languages = (List<Language>) response.Result;
+            }
+        }
+
+        private async void LoadSkillLevels()
+        {
+            var response = await DataService.GetInstance().GetSkillLevels();
+
+            if (response.IsSuccess)
+            {
+                SkillLevels = (List<SkillLevel>) response.Result;
+            }
+        }
+
         public override Task InitializeAsync(object navigationData)
         {
             var parameter = navigationData as Plan;

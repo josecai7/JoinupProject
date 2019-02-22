@@ -229,7 +229,7 @@ namespace Joinup.Service
             return response;
         }
 
-        private async Task<Response> GetSkillLevels_()
+        public async Task<Response> GetSkillLevels()
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -239,18 +239,8 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<List<SkillLevel>> GetSkillLevels()
-        {
-            var response = await GetSkillLevels_();
 
-            if (response.IsSuccess)
-            {
-                return response.Result as List<SkillLevel>;
-            }
-            return new List<SkillLevel>();
-        }
-
-        private async Task<Response> GetSports_()
+        public async Task<Response> GetSports()
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -260,18 +250,8 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<List<Sport>> GetSports()
-        {
-            var response = await GetSports_();
 
-            if (response.IsSuccess)
-            {
-                return response.Result as List<Sport>;
-            }
-            return new List<Sport>();
-        }
-
-        private async Task<Response> GetLanguages_()
+        public async Task<Response> GetLanguages()
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -281,18 +261,8 @@ namespace Joinup.Service
 
             return response;
         }
-        public async Task<List<Language>> GetLanguages()
-        {
-            var response = await GetLanguages_();
 
-            if (response.IsSuccess)
-            {
-                return response.Result as List<Language>;
-            }
-            return new List<Language>();
-        }
-
-        private async Task<Response> GetFoodTypes_()
+        public async Task<Response> GetFoodTypes()
         {
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -301,16 +271,6 @@ namespace Joinup.Service
             var response = await ApiService.GetInstance().GetList<FoodType>( url, prefix, controller, Settings.TokenType, Settings.AccessToken );
 
             return response;
-        }
-        public async Task<List<FoodType>> GetFoodTypes()
-        {
-            var response = await GetFoodTypes_();
-
-            if (response.IsSuccess)
-            {
-                return response.Result as List<FoodType>;
-            }
-            return new List<FoodType>();
         }
 
     }
